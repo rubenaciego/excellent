@@ -11,11 +11,11 @@ public class ResultatParserFull
     int midaColumna;
     int filaDesti;
     int columnaDesti;
-    Operacions operacio;
+    /*Operacions operacio;
     OpAritmetica tipusOpAritmetica;
     OpEstadistica tipusOpEstadistica;
     ConversioUnitats tipusConversioUnitats;
-    CriteriOrdenacio tipusCriteriOrdenacio;
+    CriteriOrdenacio tipusCriteriOrdenacio;*/
     String stringCercada;
     String stringRemplacadora;
     String inputUsuari;
