@@ -1,10 +1,9 @@
 package domini;
-import java.util.Date;
+
 import java.lang.*;
 
 
-public class ResultatParserFull
-{
+public class ResultatParserFull {
     int filaOrigen;
     int filaDesti;
     int columnaOrigen;
@@ -18,7 +17,5 @@ public class ResultatParserFull
     criteriOrdenacio tipusCriteriOrdenacio;
     String stringCercada;
     String stringRemplacadora;
-    String inputUsuari;
-
-
+    ContingutCelaModificada celaModificada;
 }

@@ -1,41 +1,8 @@
 package domini;
 
 import java.lang.*;
+import java.time.LocalDate;
 
-enum opAritmetica {
-    valorAbsolut, incrementar, decrementar, exponencial, cosinus, sinus,
-    cosinusHiperbolic, sinusHiperbolic, tangentHiperbolic;
-}
-
-enum opEstadistica {
-    mitjana, mediana, variancia, covariancia, desviacioEstandard,
-    coeficientPearson;
-}
-
-enum opFull {
-    extreuHoroscop, extreuAny, extreuDia, extreuDiaSetmana,
-    executaOperacioAritmeticaUnaria, executaFuncioEstadistica,
-    truncaNumero, converteixUnitats, extreuLongitudText,
-    cercaOcurrencies, converteixMajuscules, converteixMinuscules,
-    transposa, reemplaca, ordena, modificaCela,
-    afegeixColumna, afegeixFila, eliminaColumna, eliminaFila,
-    mouBloc, copiaBloc, buidaBloc;
-}
-
-enum opDocument {
-    creaDocument, carregaDocument, desaDocument, afegeixFull, eliminaFull;
-}
-
-enum criteriOrdenacio {
-    ascendent, descendent;
-}
-
-enum conversioUnitats {
-    radGraus, grausRad, kmMilla, millaKm, kgLliura, lliuraKg, litreGalo,
-    galoLitre, celsiusKelvin, kelvinCelsius, kelvinFahrenheit,
-    fahrenheitKelvin, fahrenheitCelsius, celsiuFahrenheit, km2Hecatarea,
-    hectareaKm2, kmhMillah, millahKmh;
-}
 
 public class Parser {
     /**
@@ -54,20 +21,81 @@ public class Parser {
         String[] splitted = opSenseParsejar[0].split(",");
         ResultatParserFull resultat = new ResultatParserFull();
 
+        int codiOp = Integer.parseInt(splitted[0]);
+        if (codiOp >= 0 && codiOp < 10) {
+            resultat.tipusOpAritmetica =
+                    opAritmetica.valueOf(String.valueOf(codiOp));
+        } else if (codiOp >= 10 && codiOp < 20) {
+            resultat.tipusOpEstadistica =
+                    opEstadistica.valueOf(String.valueOf(codiOp - 10));
+        } else if (codiOp >= 20 && codiOp < 40) {
+            resultat.tipusConversioUnitats =
+                    conversioUnitats.valueOf(String.valueOf(codiOp - 20));
+        } else if (codiOp >= 40 && codiOp < 50) {
+            resultat.tipusCriteriOrdenacio =
+                    criteriOrdenacio.valueOf(String.valueOf(codiOp - 40));
+        } else if (codiOp >= 50 && codiOp < 80) {
+            resultat.tipusOpFull =
+                    opFull.valueOf(String.valueOf(codiOp - 50));
+
+            if (codiOp == 60) resultat.stringCercada = opSenseParsejar[1];
+            else if (codiOp == 64) {
+                resultat.stringCercada = opSenseParsejar[1];
+                resultat.stringRemplacadora = opSenseParsejar[2];
+            } else if (codiOp == 66) {
+                if (opSenseParsejar[1].matches("-?\\d+(\\.\\d+)?")) {
+                    resultat.celaModificada.valorNumeric =
+                            Double.parseDouble(opSenseParsejar[1]);
+                    resultat.celaModificada.tipus = tipusCela.numerica;
+                }
+                else if (opSenseParsejar[1].matches(("^(0?[1-9]|[12][0-9]|3" +
+                        "[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
+                    String[] DDMMAAAA = opSenseParsejar[1].split("/");
+
+                    resultat.celaModificada.data =
+                            LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
+                                    Integer.parseInt(DDMMAAAA[1]),
+                                    Integer.parseInt(DDMMAAAA[2]));
+                    resultat.celaModificada.tipus = tipusCela.datada;
+                }
+                else if (opSenseParsejar[1].startsWith("=")) {
+                    String[] ref =
+                            opSenseParsejar[1].split("=")[0].split(":");
+                    resultat.celaModificada.colRef =
+                            Integer.parseInt(ref[0]);
+                    resultat.celaModificada.filaRef =
+                            Integer.parseInt(ref[1]);
+                    resultat.celaModificada.tipus = tipusCela.referencial;
+                }
+                else {
+                    resultat.celaModificada.inputUsuari = opSenseParsejar[1];
+                    resultat.celaModificada.tipus = tipusCela.textual;
+                }
+            }
+
+        }
         resultat.filaOrigen = Integer.parseInt(splitted[1]);
         resultat.filaDesti = Integer.parseInt(splitted[2]);
         resultat.columnaOrigen = Integer.parseInt(splitted[3]);
         resultat.columnaDesti = Integer.parseInt(splitted[4]);
         resultat.midaFila = Integer.parseInt(splitted[5]);
         resultat.midaColumna = Integer.parseInt(splitted[6]);
-        int codiOp = Integer.parseInt(splitted[0]);
-        if (codiOp >= 50 && codiOp < 80) {
-            resultat.tipusOpFull = opFull.valueOf(String.valueOf(codiOp-50));
-        }
+
         return resultat;
     }
 
-    //public ResultatParserDocument parseOpDocument (String opDocument)
+    public ResultatParserDocument parseOpDocument(String opSenseParsejar) {
+        String[] splitted = opSenseParsejar.split(",");
+        ResultatParserDocument resultat = new ResultatParserDocument();
 
-    //public ResultatParserInput parseOpInputUsuari (String opInputUsuari)
+        resultat.idFull = Integer.parseInt(splitted[0]);
+        int codiOp = Integer.parseInt(splitted[1]);
+        if (codiOp >= 80 && codiOp < 90) {
+            resultat.tipusOpDocument =
+                    opDocument.valueOf(String.valueOf(codiOp - 80));
+        }
+        resultat.nomDocument = splitted[2];
+
+        return resultat;
+    }
 }
