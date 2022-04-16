@@ -4,6 +4,7 @@ import java.lang.*;
 
 
 public class ResultatParserFull {
+    int idFull;
     int filaOrigen;
     int filaDesti;
     int columnaOrigen;

@@ -6,15 +6,16 @@ import java.time.LocalDate;
 
 public class Parser {
     /**
-     * @brief Fa el parseig d'una operació provinent de la capa de presentació
-     * * /pre opFull és un array de tres strings on el primer conté el codi
-     * d'operació fila d'origen, fila de destí, columna d'origen, columna de
-     * destí, mida fila, mida columna separat per comes (,); el segon string
-     * conté l'inputUsuari en cas que l'operació sigui modificaCela o la
-     * stringCercada en cas que l'operació sigui cercaOcurrencies o
-     * reemplaça;  el tercer string conté la stringReemplaçadora en cas que
-     * l'operació sigui reemplaça
-     * /post retorna les dades d'opFull estructurades en un objecte de
+     * @brief Fa el parseig d'una operació associada a full provinent de la capa
+     * de presentació
+     * * /pre opSenseParsejar és un array de tres strings on el primer conté el
+     * codi d'operació, id full, fila d'origen, fila de destí, columna d'origen,
+     * columna de destí, mida fila, mida columna separat per comes
+     * (,); el segon string conté l'inputUsuari en cas que l'operació sigui
+     * modificaCela o la stringCercada en cas que l'operació sigui
+     * cercaOcurrencies o reemplaça;  el tercer string conté la
+     * stringReemplaçadora en cas que l'operació sigui reemplaça
+     * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserFull
      */
     public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
@@ -74,27 +75,38 @@ public class Parser {
             }
 
         }
-        resultat.filaOrigen = Integer.parseInt(splitted[1]);
-        resultat.filaDesti = Integer.parseInt(splitted[2]);
-        resultat.columnaOrigen = Integer.parseInt(splitted[3]);
-        resultat.columnaDesti = Integer.parseInt(splitted[4]);
-        resultat.midaFila = Integer.parseInt(splitted[5]);
-        resultat.midaColumna = Integer.parseInt(splitted[6]);
+
+        resultat.idFull = Integer.parseInt(splitted[1]);
+        resultat.filaOrigen = Integer.parseInt(splitted[2]);
+        resultat.filaDesti = Integer.parseInt(splitted[3]);
+        resultat.columnaOrigen = Integer.parseInt(splitted[4]);
+        resultat.columnaDesti = Integer.parseInt(splitted[5]);
+        resultat.midaFila = Integer.parseInt(splitted[6]);
+        resultat.midaColumna = Integer.parseInt(splitted[7]);
 
         return resultat;
     }
 
+    /**
+     * @brief Fa el parseig d'una operació associada a document provinent de la
+     * capa de presentació
+     * * /pre opSenseParsejar és un string que conté el codi d'operació, el
+     * nom del document  i l'id del full a afegir o a eliminar, si
+     * s'escau, separat per comes (,)
+     * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
+     * ResultatParserDocument
+     */
     public ResultatParserDocument parseOpDocument(String opSenseParsejar) {
         String[] splitted = opSenseParsejar.split(",");
         ResultatParserDocument resultat = new ResultatParserDocument();
 
-        resultat.idFull = Integer.parseInt(splitted[0]);
-        int codiOp = Integer.parseInt(splitted[1]);
+        int codiOp = Integer.parseInt(splitted[0]);
         if (codiOp >= 80 && codiOp < 90) {
             resultat.tipusOpDocument =
                     opDocument.valueOf(String.valueOf(codiOp - 80));
         }
-        resultat.nomDocument = splitted[2];
+        resultat.nomDocument = splitted[1];
+        resultat.idFull = Integer.parseInt(splitted[2]);
 
         return resultat;
     }

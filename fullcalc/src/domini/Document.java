@@ -15,11 +15,11 @@ public class Document
 
     }
 
-    void eliminaFull() {
+    void eliminaFull(int idFull) {
 
     }
 
-    void obteFull(int full) {
+    void obteFull(int idFull) {
 
     }
 }

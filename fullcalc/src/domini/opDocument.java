@@ -1,5 +1,6 @@
 package domini;
 
 enum opDocument {
-    creaDocument, carregaDocument, desaDocument, afegeixFull, eliminaFull;
+    creaDocument, carregaDocument, desaDocument, tancaDocument, afegeixFull,
+    eliminaFull;
 }
