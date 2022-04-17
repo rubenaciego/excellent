@@ -13,9 +13,9 @@ public abstract class Cela {
         this.inputUsuari = inputUsuari;
     }
 
-    abstract public Double getNum();
+    abstract public Double obteNum();
 
-    abstract public LocalDate getDate();
+    abstract public LocalDate obteDate();
 
-    abstract public String getText();
+    abstract public String obteText();
 }

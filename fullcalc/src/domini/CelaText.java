@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class CelaText extends Cela {
 
-    public Double getNum() {
+    public Double obteNum() {
         return null;
     }
 
-    public LocalDate getDate() {
+    public LocalDate obteDate() {
         return null;
     }
 
-    public String getText() {
+    public String obteText() {
         return super.inputUsuari;
     }
 }

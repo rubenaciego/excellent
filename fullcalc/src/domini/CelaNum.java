@@ -10,15 +10,15 @@ public class CelaNum extends Cela {
         valor = valorInput;
     }
 
-    public Double getNum() {
+    public Double obteNum() {
         return valor;
     }
 
-    public LocalDate getDate() {
+    public LocalDate obteDate() {
         return null;
     }
 
-    public String getText() {
+    public String obteText() {
         return null;
     }
 }

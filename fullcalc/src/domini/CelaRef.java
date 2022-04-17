@@ -10,15 +10,15 @@ public class CelaRef extends Cela{
         celaReferenciada = celaRef;
     }
 
-    public Double getNum() {
-        return celaReferenciada.getNum();
+    public Double obteNum() {
+        return celaReferenciada.obteNum();
     }
 
-    public LocalDate getDate() {
-        return celaReferenciada.getDate();
+    public LocalDate obteDate() {
+        return celaReferenciada.obteDate();
     }
 
-    public String getText() {
-        return celaReferenciada.getText();
+    public String obteText() {
+        return celaReferenciada.obteText();
     }
 }
