@@ -2,10 +2,10 @@ package domini;
 
 public class ControladorDocument
 {
-    ControladorDocument controladorDocument;
-    Document document;
-    public void creaDocument(String nomDocument) {
+    private ControladorDocument controladorDocument;
+    private Document document;
 
+    public void creaDocument(String nomDocument) {
     }
     public void carregaDocument(String nomDocument) {
 
@@ -20,13 +20,13 @@ public class ControladorDocument
      * /post Executa l'operació codificada dins resultat
      */
     public void executaOperacio(ResultatParserDocument resultat) {
-        if (resultat.tipusOpDocument == opDocument.afegeixFull) {
+        if (resultat.getTipusOpDocument() == opDocument.afegeixFull) {
             document.afegeixFull();
         }
-        else if (resultat.tipusOpDocument == opDocument.eliminaFull) {
-            document.eliminaFull(resultat.idFull);
+        else if (resultat.getTipusOpDocument() == opDocument.eliminaFull) {
+            document.eliminaFull(resultat.getIdFull());
         }
-        else if (resultat.tipusOpDocument == opDocument.desaDocument) {
+        else if (resultat.getTipusOpDocument() == opDocument.desaDocument) {
             document.desa();
         }
     }

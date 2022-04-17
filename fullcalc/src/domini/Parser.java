@@ -24,65 +24,58 @@ public class Parser {
 
         int codiOp = Integer.parseInt(splitted[0]);
         if (codiOp >= 0 && codiOp < 10) {
-            resultat.tipusOpAritmetica =
-                    opAritmetica.valueOf(String.valueOf(codiOp));
+            resultat.setTipusOpAritmetica(opAritmetica.valueOf(String.valueOf(codiOp)));
         } else if (codiOp >= 10 && codiOp < 20) {
-            resultat.tipusOpEstadistica =
-                    opEstadistica.valueOf(String.valueOf(codiOp - 10));
+            resultat.setTipusOpEstadistica(opEstadistica.valueOf(String.valueOf(codiOp - 10)));
         } else if (codiOp >= 20 && codiOp < 40) {
-            resultat.tipusConversioUnitats =
-                    conversioUnitats.valueOf(String.valueOf(codiOp - 20));
+            resultat.setTipusConversioUnitats(conversioUnitats.valueOf(String.valueOf(codiOp - 20)));
         } else if (codiOp >= 40 && codiOp < 50) {
-            resultat.tipusCriteriOrdenacio =
-                    criteriOrdenacio.valueOf(String.valueOf(codiOp - 40));
+            resultat.setTipusCriteriOrdenacio(criteriOrdenacio.valueOf(String.valueOf(codiOp - 40)));
         } else if (codiOp >= 50 && codiOp < 80) {
-            resultat.tipusOpFull =
-                    opFull.valueOf(String.valueOf(codiOp - 50));
+            resultat.setTipusOpFull(opFull.valueOf(String.valueOf(codiOp - 50)));
 
-            if (codiOp == 60) resultat.stringCercada = opSenseParsejar[1];
+            if (codiOp == 60) resultat.setStringCercada(opSenseParsejar[1]);
             else if (codiOp == 64) {
-                resultat.stringCercada = opSenseParsejar[1];
-                resultat.stringRemplacadora = opSenseParsejar[2];
+                resultat.setStringCercada(opSenseParsejar[1]);
+                resultat.setStringRemplacadora(opSenseParsejar[2]);
             } else if (codiOp == 66) {
+                ContingutCelaModificada celaModificada = resultat.getCelaModificada();
                 if (opSenseParsejar[1].matches("-?\\d+(\\.\\d+)?")) {
-                    resultat.celaModificada.valorNumeric =
-                            Double.parseDouble(opSenseParsejar[1]);
-                    resultat.celaModificada.tipus = tipusCela.numerica;
+                    celaModificada.setValorNumeric(Double.parseDouble(opSenseParsejar[1]));
+                    celaModificada.setTipus(tipusCela.numerica);
                 }
                 else if (opSenseParsejar[1].matches(("^(0?[1-9]|[12][0-9]|3" +
                         "[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
                     String[] DDMMAAAA = opSenseParsejar[1].split("/");
 
-                    resultat.celaModificada.data =
-                            LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
-                                    Integer.parseInt(DDMMAAAA[1]),
-                                    Integer.parseInt(DDMMAAAA[2]));
-                    resultat.celaModificada.tipus = tipusCela.datada;
+                    celaModificada.setData(LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
+                            Integer.parseInt(DDMMAAAA[1]),
+                            Integer.parseInt(DDMMAAAA[2])));
+                    celaModificada.setTipus(tipusCela.datada);
                 }
                 else if (opSenseParsejar[1].startsWith("=")) {
                     String[] ref =
                             opSenseParsejar[1].split("=")[0].split(":");
-                    resultat.celaModificada.colRef =
-                            Integer.parseInt(ref[0]);
-                    resultat.celaModificada.filaRef =
-                            Integer.parseInt(ref[1]);
-                    resultat.celaModificada.tipus = tipusCela.referencial;
+                    celaModificada.setColRef(Integer.parseInt(ref[0]));
+                    celaModificada.setFilaRef(Integer.parseInt(ref[1]));
+                    celaModificada.setTipus(tipusCela.referencial);
                 }
                 else {
-                    resultat.celaModificada.inputUsuari = opSenseParsejar[1];
-                    resultat.celaModificada.tipus = tipusCela.textual;
+                    celaModificada.setInputUsuari(opSenseParsejar[1]);
+                    celaModificada.setTipus(tipusCela.textual);
                 }
+                resultat.setCelaModificada(celaModificada);
             }
 
         }
 
-        resultat.idFull = Integer.parseInt(splitted[1]);
-        resultat.filaOrigen = Integer.parseInt(splitted[2]);
-        resultat.filaDesti = Integer.parseInt(splitted[3]);
-        resultat.columnaOrigen = Integer.parseInt(splitted[4]);
-        resultat.columnaDesti = Integer.parseInt(splitted[5]);
-        resultat.midaFila = Integer.parseInt(splitted[6]);
-        resultat.midaColumna = Integer.parseInt(splitted[7]);
+        resultat.setIdFull(Integer.parseInt(splitted[1]));
+        resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
+        resultat.setFilaDesti(Integer.parseInt(splitted[3]));
+        resultat.setColumnaOrigen(Integer.parseInt(splitted[4]));
+        resultat.setColumnaDesti(Integer.parseInt(splitted[5]));
+        resultat.setMidaFila(Integer.parseInt(splitted[6]));
+        resultat.setMidaColumna(Integer.parseInt(splitted[7]));
 
         return resultat;
     }
@@ -102,11 +95,10 @@ public class Parser {
 
         int codiOp = Integer.parseInt(splitted[0]);
         if (codiOp >= 80 && codiOp < 90) {
-            resultat.tipusOpDocument =
-                    opDocument.valueOf(String.valueOf(codiOp - 80));
+            resultat.setTipusOpDocument(opDocument.valueOf(String.valueOf(codiOp - 80)));
         }
-        resultat.nomDocument = splitted[1];
-        resultat.idFull = Integer.parseInt(splitted[2]);
+        resultat.setNomDocument(splitted[1]);
+        resultat.setIdFull(Integer.parseInt(splitted[2]));
 
         return resultat;
     }

@@ -2,9 +2,9 @@ package domini;
 
 public class ControladorDomini
 {
-    ControladorDocument controladorDocument;
-    ControladorFull controladorFull;
-    Parser parser;
+    private ControladorDocument controladorDocument;
+    private ControladorFull controladorFull;
+    private Parser parser;
 
     /**
      * @brief Executa l'operació codificada dins opSenseParsejar
@@ -26,13 +26,13 @@ public class ControladorDomini
         if(opSenseParsejar[0].startsWith("8")) {
             ResultatParserDocument resultat =
                     parser.parseOpDocument(opSenseParsejar[0]);
-            if (resultat.tipusOpDocument == opDocument.creaDocument) {
-                controladorDocument.creaDocument(resultat.nomDocument);
+            if (resultat.getTipusOpDocument() == opDocument.creaDocument) {
+                controladorDocument.creaDocument(resultat.getNomDocument());
             }
-            else if (resultat.tipusOpDocument == opDocument.carregaDocument) {
-                controladorDocument.carregaDocument(resultat.nomDocument);
+            else if (resultat.getTipusOpDocument() == opDocument.carregaDocument) {
+                controladorDocument.carregaDocument(resultat.getNomDocument());
             }
-            else if (resultat.tipusOpDocument == opDocument.tancaDocument) {
+            else if (resultat.getTipusOpDocument() == opDocument.tancaDocument) {
                 controladorDocument.tancaDocument();
             }
             else {
