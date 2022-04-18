@@ -2,7 +2,6 @@ package domini;
 
 public class ControladorDocument
 {
-    private ControladorDocument controladorDocument;
     private Document document;
 
     public void creaDocument(String nomDocument) {
