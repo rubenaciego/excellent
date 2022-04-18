@@ -3,7 +3,7 @@ import java.lang.*;
 import java.time.LocalDate;
 
 public abstract class Cela {
-    String inputUsuari;
+    protected String inputUsuari;
 
     public String getInputUsuari() {
         return inputUsuari;

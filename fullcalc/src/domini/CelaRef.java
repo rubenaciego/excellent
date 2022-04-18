@@ -3,7 +3,7 @@ import java.lang.*;
 import java.time.LocalDate;
 
 public class CelaRef extends Cela{
-    Cela celaReferenciada;
+    private Cela celaReferenciada;
 
     public void setRef(String inputUsuari, Cela celaRef) {
         super.setInputUsuari(inputUsuari);

@@ -2,23 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4d2735f-0e09-4a87-8c6d-11ce6f445bef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/Application.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Cela.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaNum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaRef.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaText.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/ControladorDomini.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/MatriuCela.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Operador.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/TipusCela.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Errors.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Full.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domini/Errors.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/MatriuCeles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/MatriuCeles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/TipusCela.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/Cela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/Cela.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/CelaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/CelaNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaNum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/CelaRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaRef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domini/CelaText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domini/MatriuCeles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/MatriuCeles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domini/TipusCela.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -66,6 +62,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../junit-4.13.2.jar" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -126,5 +123,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar:///usr/lib/jvm/jdk-17/lib/src.zip!/java.base/java/util/ConcurrentModificationException.java</url>
+          <line>86</line>
+          <properties class="java.util.ConcurrentModificationException" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

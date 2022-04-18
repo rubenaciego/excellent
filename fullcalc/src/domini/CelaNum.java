@@ -3,7 +3,7 @@ import java.lang.*;
 import java.time.LocalDate;
 
 public class CelaNum extends Cela {
-    Double valor;
+    private Double valor;
 
     public void setNum(String inputUsuari, Double valorInput) {
         super.setInputUsuari(inputUsuari);

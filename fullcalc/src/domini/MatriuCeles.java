@@ -1,10 +1,13 @@
 package domini;
 import java.lang.*;
 import java.util.Collection;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 public class MatriuCeles {
-    TreeMap<Integer, TreeMap<Integer, Cela>> matriuCela;
+    protected Integer numFiles;
+    protected Integer numCols;
+
+    protected ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>> matriuCela;
 
     public Cela obteCela(Integer fila, Integer col) {
         if (!matriuCela.containsKey(col)) {
@@ -16,7 +19,7 @@ public class MatriuCeles {
 
     public void setCela(Cela novaCela, Integer fila, Integer col) {
         if (!matriuCela.containsKey(col)) {
-            matriuCela.put(col, new TreeMap<Integer, Cela>());
+            matriuCela.put(col, new ConcurrentSkipListMap<Integer, Cela>());
         }
         matriuCela.get(col).put(fila, novaCela);
     }

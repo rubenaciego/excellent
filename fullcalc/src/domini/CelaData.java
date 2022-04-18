@@ -3,7 +3,7 @@ import java.lang.*;
 import java.time.LocalDate;
 
 public class CelaData extends Cela {
-    LocalDate data;
+    private LocalDate data;
 
     public void setData(String inputUsuari, LocalDate dataInput) {
         super.setInputUsuari(inputUsuari);
