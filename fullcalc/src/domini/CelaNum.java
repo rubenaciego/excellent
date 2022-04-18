@@ -6,6 +6,7 @@ public class CelaNum extends Cela {
     private Double valor;
 
     public CelaNum() {}
+
     public CelaNum(String inputUsuari, Double valorInput) {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;

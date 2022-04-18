@@ -1,11 +1,33 @@
 package domini;
 
+import org.junit.Test;
+
 import java.util.Iterator;
 import java.util.concurrent.*;
 
 public class Full extends MatriuCeles {
     private Integer id;
     private Cela celaResultat;
+
+    public Full(Integer id) {
+        this.id = id;
+        super.numCols = 0;
+        super.numFiles = 0;
+    }
+
+    public Full(Integer id, Integer files, Integer cols) {
+        this.id = id;
+        super.numCols = cols;
+        super.numFiles = files;
+    }
+
+    public Integer obteId() {
+        return id;
+    }
+
+    public Cela obteCelaResultat() {
+        return celaResultat;
+    }
 
     public Errors modificaCela(Integer fila, Integer col, ContingutCelaModificada celaMod) {
         Cela c;
@@ -166,5 +188,23 @@ public class Full extends MatriuCeles {
         }
 
         return Errors.NOERROR;
+    }
+
+    //potser alguna excepcio
+    public MatriuCeles obteBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols) {
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return null;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return null;
+
+        MatriuCeles bloc = new MatriuCeles();
+        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni+numCols);
+
+        for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi: subSL.entrySet()) {
+            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj: SLi.getValue().entrySet()) {
+                Cela c = SLj.getValue();
+                bloc.setCela(c, SLi.getKey(), SLj.getKey());
+            }
+        }
+
+        return bloc;
     }
 }
