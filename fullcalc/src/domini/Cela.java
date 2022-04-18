@@ -15,7 +15,7 @@ public abstract class Cela {
 
     abstract public Double obteNum();
 
-    abstract public LocalDate obteDate();
+    abstract public LocalDate obteData();
 
     abstract public String obteText();
 }

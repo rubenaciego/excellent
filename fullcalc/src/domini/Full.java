@@ -7,8 +7,29 @@ public class Full extends MatriuCeles {
     private Integer id;
     private Cela celaResultat;
 
-    //Falta acabar aquesta funcio
-    public Errors modificaCela() {
+    public Errors modificaCela(Integer fila, Integer col, ContingutCelaModificada celaMod) {
+        Cela c;
+        switch(celaMod.getTipus()) {
+            case NUMERICA:
+                c = new CelaNum(celaMod.getInputUsuari(), celaMod.getValorNumeric());
+                break;
+            case DATADA:
+                c = new CelaData(celaMod.getInputUsuari(), celaMod.getData());
+                break;
+            case REFERENCIAL:
+                Cela cRef = super.obteCela(celaMod.getFilaRef(), celaMod.getColRef());
+                c = new CelaRef(celaMod.getInputUsuari(),  cRef);
+                break;
+            default:
+                c = new CelaText(celaMod.getInputUsuari());
+                break;
+        }
+
+        if (fila == -1 && col == -1) celaResultat = c;
+        else if (fila < 0 || fila >= super.numFiles || col < 0 || col >= super.numCols) {
+            return Errors.NOEXISTEIX;
+        } else super.setCela(c, fila, col);
+
         return Errors.NOERROR;
     }
 
@@ -23,7 +44,7 @@ public class Full extends MatriuCeles {
     }
 
     public Errors eliminaFila(Integer fila) {
-        if (fila > super.numFiles || fila < 0) return Errors.NOEXISTEIX;
+        if (fila >= super.numFiles || fila < 0) return Errors.NOEXISTEIX;
 
         for (Iterator<ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>>> i = super.matriuCela.entrySet().iterator();
              i.hasNext(); ) {
@@ -35,7 +56,7 @@ public class Full extends MatriuCeles {
                 Cela c = en.getValue();
                 j.remove();
                 if (!(en.getKey() == fila)) {
-                    super.matriuCela.get(enSkipList.getKey()).put(en.getKey()-1, c);
+                    super.setCela(c, en.getKey()-1, enSkipList.getKey());
                 }
             }
         }
@@ -44,7 +65,7 @@ public class Full extends MatriuCeles {
     }
 
     public Errors eliminaColumna(Integer col) {
-        if (col > super.numCols || col < 0) return Errors.NOEXISTEIX;
+        if (col >= super.numCols || col < 0) return Errors.NOEXISTEIX;
 
         if (super.matriuCela.containsKey(col)) {
             super.matriuCela.get(col).clear();
@@ -61,7 +82,7 @@ public class Full extends MatriuCeles {
                 if (!super.matriuCela.containsKey(enSkipList.getKey()-1)) {
                     super.matriuCela.put(enSkipList.getKey()-1, new ConcurrentSkipListMap<Integer, Cela>());
                 }
-                super.matriuCela.get(enSkipList.getKey()-1).put(en.getKey(), c);
+                super.setCela(c, en.getKey(), enSkipList.getKey()-1);
             }
         }
 
@@ -69,8 +90,8 @@ public class Full extends MatriuCeles {
     }
 
     public Errors buidaBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols) {
-        if (filaIni < 0 || filaIni+numFiles-1 > super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colIni < 0 || colIni+numCols-1 > super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
 
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni+numCols);
 
@@ -85,10 +106,10 @@ public class Full extends MatriuCeles {
     }
 
     public Errors copiaBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols, Integer filaFi, Integer colFi) {
-        if (filaIni < 0 || filaIni+numFiles-1 > super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colIni < 0 || colIni+numCols-1 > super.numCols) return Errors.FORALIMITSBLOC;
-        if (filaFi < 0 || filaFi+numFiles-1 > super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colFi < 0 || colFi+numCols-1 > super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaFi < 0 || filaFi+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
+        if (colFi < 0 || colFi+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
 
         Integer chFila = filaFi-filaIni;
         Integer chCol = colFi-colIni;
@@ -108,7 +129,7 @@ public class Full extends MatriuCeles {
                 if (!super.matriuCela.containsKey(enSkipList.getKey()+chCol)) {
                     super.matriuCela.put(enSkipList.getKey()+chCol, new ConcurrentSkipListMap<Integer, Cela>());
                 }
-                super.matriuCela.get(enSkipList.getKey()+chCol).put(en.getKey()+chFila, c);
+                super.setCela(c, en.getKey()+chFila, enSkipList.getKey()+chCol);
             }
         }
 
@@ -116,10 +137,10 @@ public class Full extends MatriuCeles {
     }
 
     public Errors mouBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols, Integer filaFi, Integer colFi) {
-        if (filaIni < 0 || filaIni+numFiles-1 > super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colIni < 0 || colIni+numCols-1 > super.numCols) return Errors.FORALIMITSBLOC;
-        if (filaFi < 0 || filaFi+numFiles-1 > super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colFi < 0 || colFi+numCols-1 > super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaFi < 0 || filaFi+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
+        if (colFi < 0 || colFi+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
 
         Integer chFila = filaFi-filaIni;
         Integer chCol = colFi-colIni;
@@ -140,7 +161,7 @@ public class Full extends MatriuCeles {
                 if (!super.matriuCela.containsKey(enSkipList.getKey()+chCol)) {
                     super.matriuCela.put(enSkipList.getKey()+chCol, new ConcurrentSkipListMap<Integer, Cela>());
                 }
-                super.matriuCela.get(enSkipList.getKey()+chCol).put(en.getKey()+chFila, c);
+                super.setCela(c, en.getKey()+chFila, enSkipList.getKey()+chCol);
             }
         }
 

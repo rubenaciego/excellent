@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4d2735f-0e09-4a87-8c6d-11ce6f445bef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Errors.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Full.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domini/Errors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domini/ContingutCelaModificada.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domini/TipusCela.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/Cela.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Cela.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaNum.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaNum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaRef.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaRef.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaText.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/CelaText.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/Full.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Full.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/MatriuCeles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/fullcalc/domini/MatriuCeles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/fullcalc/domini/TipusCela.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/Cela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/Cela.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/CelaData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/CelaNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaNum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domini/CelaRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaRef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domini/MatriuCeles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/MatriuCeles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domini/TipusCela.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domini/CelaText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/CelaText.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domini/Full.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domini/Full.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

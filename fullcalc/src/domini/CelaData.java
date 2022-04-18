@@ -5,6 +5,12 @@ import java.time.LocalDate;
 public class CelaData extends Cela {
     private LocalDate data;
 
+    public CelaData() {}
+    public CelaData(String inputUsuari, LocalDate dataInput) {
+        super.setInputUsuari(inputUsuari);
+        data = dataInput;
+    }
+
     public void setData(String inputUsuari, LocalDate dataInput) {
         super.setInputUsuari(inputUsuari);
         data = dataInput;
@@ -14,7 +20,7 @@ public class CelaData extends Cela {
         return null;
     }
 
-    public LocalDate obteDate() {
+    public LocalDate obteData() {
         return data;
     }
 
