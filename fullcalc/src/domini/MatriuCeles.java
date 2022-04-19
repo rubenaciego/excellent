@@ -46,7 +46,7 @@ public class MatriuCeles {
         matriuCela.get(col).put(fila, novaCela);
     }
 
-    public void esborraCela(Integer fila, Integer col) {
+    /*public void esborraCela(Integer fila, Integer col) {
         if (matriuCela.containsKey(col)) {
             matriuCela.get(col).remove(fila);
             if (col == numCols-1) {
@@ -69,7 +69,7 @@ public class MatriuCeles {
                 numFiles = maxim;
             }
         }
-    }
+    }*/
 
     public ArrayList<EntrMatrCeles> obteEntrades() {
         ArrayList<EntrMatrCeles> entrades = new ArrayList<EntrMatrCeles>();
