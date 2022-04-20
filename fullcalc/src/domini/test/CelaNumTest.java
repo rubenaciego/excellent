@@ -9,7 +9,7 @@ public class CelaNumTest {
 
     @Before
     public void setUp() {
-        celaNum = new CelaNum();
+        celaNum = new CelaNum("", 0.0);
     }
 
     @Test

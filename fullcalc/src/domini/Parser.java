@@ -57,7 +57,7 @@ public class Parser
                 ContingutCelaModificada celaModificada = resultat.getCelaModificada();
                 if (opSenseParsejar[1].matches("-?\\d+(\\.\\d+)?")) {
                     celaModificada.setValorNumeric(Double.parseDouble(opSenseParsejar[1]));
-                    celaModificada.setTipus(TipusCela.NUMERICA);
+                    celaModificada.setTipus(Cela.TipusCela.NUMERICA);
                 } else if (opSenseParsejar[1].matches(("^(0?[1-9]|[12][0-9]|3" +
                         "[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
                     String[] DDMMAAAA = opSenseParsejar[1].split("/");
@@ -65,16 +65,16 @@ public class Parser
                     celaModificada.setData(LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
                             Integer.parseInt(DDMMAAAA[1]),
                             Integer.parseInt(DDMMAAAA[2])));
-                    celaModificada.setTipus(TipusCela.DATADA);
+                    celaModificada.setTipus(Cela.TipusCela.DATADA);
                 } else if (opSenseParsejar[1].startsWith("=")) {
                     String[] ref =
                             opSenseParsejar[1].split("=")[0].split(":");
                     celaModificada.setColRef(Integer.parseInt(ref[0]));
                     celaModificada.setFilaRef(Integer.parseInt(ref[1]));
-                    celaModificada.setTipus(TipusCela.REFERENCIAL);
+                    celaModificada.setTipus(Cela.TipusCela.REFERENCIAL);
                 } else {
                     celaModificada.setInputUsuari(opSenseParsejar[1]);
-                    celaModificada.setTipus(TipusCela.TEXTUAL);
+                    celaModificada.setTipus(Cela.TipusCela.TEXTUAL);
                 }
                 resultat.setCelaModificada(celaModificada);
             }

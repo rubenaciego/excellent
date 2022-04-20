@@ -5,7 +5,16 @@ import java.time.LocalDate;
 
 public abstract class Cela
 {
+    public enum TipusCela
+    {
+        NUMERICA,
+        TEXTUAL,
+        DATADA,
+        REFERENCIAL
+    }
+
     protected String inputUsuari;
+    protected TipusCela tipusCela;
 
     public String getInputUsuari()
     {
@@ -17,9 +26,20 @@ public abstract class Cela
         this.inputUsuari = inputUsuari;
     }
 
-    abstract public Double getNum();
+    public abstract Double getNum();
+    public abstract LocalDate getData();
+    public abstract String getText();
 
-    abstract public LocalDate getData();
+    public int compare(Cela c)
+    {
+        if (c.tipusCela == TipusCela.REFERENCIAL)
+            return -c.compare(this);
 
-    abstract public String getText();
+        if (tipusCela != c.tipusCela)
+            return tipusCela.compareTo(c.tipusCela);
+        else return compareType(c);
+
+    }
+
+    public abstract int compareType(Cela c);
 }

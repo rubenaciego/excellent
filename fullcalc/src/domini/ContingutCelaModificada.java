@@ -9,7 +9,7 @@ public class ContingutCelaModificada
     LocalDate data;
     int filaRef;
     int colRef;
-    TipusCela tipus;
+    Cela.TipusCela tipus;
 
     public String getInputUsuari()
     {
@@ -61,12 +61,12 @@ public class ContingutCelaModificada
         this.colRef = colRef;
     }
 
-    public TipusCela getTipus()
+    public Cela.TipusCela getTipus()
     {
         return tipus;
     }
 
-    public void setTipus(TipusCela tipus)
+    public void setTipus(Cela.TipusCela tipus)
     {
         this.tipus = tipus;
     }

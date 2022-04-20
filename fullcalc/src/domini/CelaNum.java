@@ -11,6 +11,7 @@ public class CelaNum extends Cela
     {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
+        tipusCela = TipusCela.NUMERICA;
     }
 
     public void setNum(String inputUsuari, double valorInput)
@@ -32,5 +33,10 @@ public class CelaNum extends Cela
     public String getText()
     {
         return null;
+    }
+
+    public int compareType(Cela c)
+    {
+        return Double.compare(valor, c.getNum());
     }
 }

@@ -10,6 +10,7 @@ public class CelaRef extends Cela
     {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;
+        tipusCela = TipusCela.REFERENCIAL;
     }
 
     public void setRef(String inputUsuari, Cela celaRef)
@@ -31,5 +32,17 @@ public class CelaRef extends Cela
     public String getText()
     {
         return celaReferenciada.getText();
+    }
+
+    @Override
+    public int compare(Cela c)
+    {
+        return celaReferenciada.compare(c);
+    }
+
+    public int compareType(Cela c)
+    {
+        // error
+        return 0;
     }
 }

@@ -11,6 +11,7 @@ public class CelaText extends Cela
     {
         super.setInputUsuari(inputUsuari);
         this.text = inputUsuari;
+        tipusCela = TipusCela.TEXTUAL;
     }
 
     public CelaText(String inputUsuari, String text)
@@ -38,5 +39,10 @@ public class CelaText extends Cela
     public String getText()
     {
         return text;
+    }
+
+    public int compareType(Cela c)
+    {
+        return text.compareTo(c.getText());
     }
 }

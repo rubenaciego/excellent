@@ -11,6 +11,7 @@ public class CelaData extends Cela
     {
         super.setInputUsuari(inputUsuari);
         data = dataInput;
+        tipusCela = TipusCela.DATADA;
     }
 
     public void setData(String inputUsuari, LocalDate dataInput)
@@ -34,4 +35,10 @@ public class CelaData extends Cela
         return null;
     }
 
+    public int compareType(Cela c)
+    {
+        LocalDate d = c.getData();
+
+        return data.compareTo(d);
+    }
 }

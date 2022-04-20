@@ -2,15 +2,13 @@ package domini;
 
 import java.time.DayOfWeek;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
+import java.util.*;
 import java.lang.Math;
-import java.util.Locale;
 
 import net.sf.json.*;
 
 public class Operador
 {
-
     private static Operador operador = null;
 
     private Operador()
@@ -148,7 +146,41 @@ public class Operador
 
     public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op)
     {
-        return bloc;
+
+        ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        ArrayList<Double> dades = new ArrayList<>(entrades.size());
+
+        for (EntradaMatriuCeles e : entrades) {
+            Double d = e.getCela().getNum();
+            if (d != null) dades.add(d);
+        }
+
+        double res = 0.0;
+
+        switch (op) {
+            case MITJANA:
+                break;
+            case MEDIANA:
+                break;
+            case DESVIACIO_ESTANDARD:
+                break;
+            case VARIANCIA:
+                break;
+            case COVARIANCIA:
+                break;
+            case COEFICIENT_PEARSON:
+                break;
+            default:
+                // error
+                break;
+        }
+
+        // mirar com posar el bloc
+        CelaNum c = new CelaNum("operacioEstadistica(" + op + ")", res);
+        MatriuCeles result = new MatriuCeles(1, 1);
+        result.setCela(c, 0, 0);
+
+        return result;
     }
 
     public MatriuCeles truncaNumero(MatriuCeles bloc, int n)
@@ -378,9 +410,51 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles ordena(MatriuCeles bloc, Integer col, CriteriOrdenacio criteri)
+    public MatriuCeles ordena(MatriuCeles bloc, int col, CriteriOrdenacio criteri)
     {
-        return bloc;
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+        ArrayList<EntradaMatriuCeles> columna = bloc.getEntradesColumna(col);
+        ArrayList<Integer> nouOrdre = new ArrayList<Integer>(bloc.getNumFiles());
+        ArrayList<Boolean> vist = new ArrayList<Boolean>(Collections.nCopies(bloc.getNumFiles(), false));
+
+        if (criteri == CriteriOrdenacio.ASCENDENT) {
+            columna.sort(new Comparator<EntradaMatriuCeles>()
+            {
+                @Override
+                public int compare(EntradaMatriuCeles a, EntradaMatriuCeles b)
+                {
+                    return a.getCela().compare(b.getCela());
+                }
+            });
+        } else if (criteri == CriteriOrdenacio.DESCENDENT) {
+            columna.sort(new Comparator<EntradaMatriuCeles>()
+            {
+                @Override
+                public int compare(EntradaMatriuCeles a, EntradaMatriuCeles b)
+                {
+                    return b.getCela().compare(a.getCela());
+                }
+            });
+        }
+
+        for (EntradaMatriuCeles e : columna) {
+            int fila = e.getFila();
+            nouOrdre.add(fila);
+            vist.set(fila, true);
+        }
+
+        // Afegim les files que no apareixen en la columna respecte la qual ordenem
+        for (int i = 0; i < vist.size(); ++i) {
+            if (!vist.get(i))
+                nouOrdre.add(i);
+        }
+
+        ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+
+        for (EntradaMatriuCeles e : entrades)
+            result.setCela(e.getCela(), nouOrdre.get(e.getFila()), e.getCol());
+
+        return result;
     }
 
     private String horoscop(Integer dia, Integer mes)
