@@ -5,7 +5,9 @@ public class ExcepcioDomini extends RuntimeException
     public enum TipusError
     {
         FILA_COLUMNA_INVALIDA,
-        FORA_LIMITS
+        FORA_LIMITS,
+        INDEX_FULL_INVALID,
+        REF_A_REF
     }
 
     private final TipusError error;

@@ -14,6 +14,9 @@ public class Document
     private LocalDateTime dataModificacio;
     private ArrayList<Full> fulls;
 
+    private final int defaultFiles = 100;
+    private final int defaultCols = 100;
+
     /**
      * @param nom Nom del document
      * @brief Constructora de document, crea un document buit, sense fulls
@@ -52,8 +55,7 @@ public class Document
      */
     public void afegeixFull()
     {
-        // mida per defecte?
-        fulls.add(new Full());
+        fulls.add(new Full(defaultFiles, defaultCols));
     }
 
     /**
@@ -62,6 +64,9 @@ public class Document
      */
     public void eliminaFull(int idFull)
     {
+        if (idFull < 0 || idFull >= fulls.size())
+            throw new ExcepcioIndexFull(idFull, fulls.size());
+
         fulls.remove(idFull);
     }
 
@@ -72,6 +77,9 @@ public class Document
      */
     public Full getFull(int idFull)
     {
+        if (idFull < 0 || idFull >= fulls.size())
+            throw new ExcepcioIndexFull(idFull, fulls.size());
+
         return fulls.get(idFull);
     }
 }

@@ -51,7 +51,7 @@ public class Full extends MatriuCeles
         for (ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList : matriuCela.entrySet()) {
             ConcurrentSkipListMap<Integer, Cela> SL = enSkipList.getValue();
             ConcurrentNavigableMap<Integer, Cela> tail = SL.tailMap(fila);
-            for (Iterator<ConcurrentNavigableMap.Entry<Integer, Cela>> j = tail.entrySet().iterator(); j.hasNext();) {
+            for (Iterator<ConcurrentNavigableMap.Entry<Integer, Cela>> j = tail.entrySet().iterator(); j.hasNext(); ) {
                 ConcurrentNavigableMap.Entry<Integer, Cela> en = j.next();
                 Cela c = en.getValue();
                 j.remove();
@@ -95,7 +95,7 @@ public class Full extends MatriuCeles
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
-        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
+        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = matriuCela.subMap(colIni, colIni + numCols);
 
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList : subSL.entrySet()) {
             ConcurrentSkipListMap<Integer, Cela> SL = enSkipList.getValue();
@@ -110,7 +110,7 @@ public class Full extends MatriuCeles
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
         if (blocInvalid(filaFi, colFi, numFiles, numCols))
-            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
+            throw new ExcepcioForaLimits(filaFi, colFi, numFiles, numCols, this.numFiles, this.numCols);
 
         int chFila = filaFi - filaIni;
         int chCol = colFi - colIni;
@@ -139,7 +139,7 @@ public class Full extends MatriuCeles
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
         if (blocInvalid(filaFi, colFi, numFiles, numCols))
-            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
+            throw new ExcepcioForaLimits(filaFi, colFi, numFiles, numCols, this.numFiles, this.numCols);
 
         int chFila = filaFi - filaIni;
         int chCol = colFi - colIni;
