@@ -19,16 +19,19 @@ public class CelaRef extends Cela
         celaReferenciada = celaRef;
     }
 
+    @Override
     public Double getNum()
     {
         return celaReferenciada.getNum();
     }
 
+    @Override
     public LocalDate getData()
     {
         return celaReferenciada.getData();
     }
 
+    @Override
     public String getText()
     {
         return celaReferenciada.getText();
@@ -40,7 +43,8 @@ public class CelaRef extends Cela
         return celaReferenciada.compare(c);
     }
 
-    public int compareType(Cela c)
+    @Override
+    protected int compareType(Cela c)
     {
         // error
         return 0;

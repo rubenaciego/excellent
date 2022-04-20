@@ -20,22 +20,26 @@ public class CelaData extends Cela
         data = dataInput;
     }
 
+    @Override
     public Double getNum()
     {
         return null;
     }
 
+    @Override
     public LocalDate getData()
     {
         return data;
     }
 
+    @Override
     public String getText()
     {
         return null;
     }
 
-    public int compareType(Cela c)
+    @Override
+    protected int compareType(Cela c)
     {
         LocalDate d = c.getData();
 

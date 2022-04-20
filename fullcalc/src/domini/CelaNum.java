@@ -20,22 +20,26 @@ public class CelaNum extends Cela
         valor = valorInput;
     }
 
+    @Override
     public Double getNum()
     {
         return valor;
     }
 
+    @Override
     public LocalDate getData()
     {
         return null;
     }
 
+    @Override
     public String getText()
     {
         return null;
     }
 
-    public int compareType(Cela c)
+    @Override
+    protected int compareType(Cela c)
     {
         return Double.compare(valor, c.getNum());
     }

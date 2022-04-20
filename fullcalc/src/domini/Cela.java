@@ -41,5 +41,5 @@ public abstract class Cela
 
     }
 
-    public abstract int compareType(Cela c);
+    protected abstract int compareType(Cela c);
 }

@@ -26,22 +26,26 @@ public class CelaText extends Cela
         this.text = text;
     }
 
+    @Override
     public Double getNum()
     {
         return null;
     }
 
+    @Override
     public LocalDate getData()
     {
         return null;
     }
 
+    @Override
     public String getText()
     {
         return text;
     }
 
-    public int compareType(Cela c)
+    @Override
+    protected int compareType(Cela c)
     {
         return text.compareTo(c.getText());
     }
