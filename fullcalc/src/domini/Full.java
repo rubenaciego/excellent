@@ -33,21 +33,20 @@ public class Full extends MatriuCeles
         else super.setCela(novaCela, fila, col);
     }
 
-    public ErrorDomini afegeixFila()
+    public void afegeixFila()
     {
         ++numFiles;
-        return ErrorDomini.NO_ERROR;
     }
 
-    public ErrorDomini afegeixColumna()
+    public void afegeixColumna()
     {
         ++numCols;
-        return ErrorDomini.NO_ERROR;
     }
 
-    public ErrorDomini eliminaFila(Integer fila)
+    public void eliminaFila(int fila)
     {
-        if (fila >= numFiles || fila < 0) return ErrorDomini.NO_EXISTEIX;
+        if (fila >= numFiles || fila < 0)
+            throw new ExcepcioFilaColumnaInvalida(fila, numFiles);
 
         for (ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList : matriuCela.entrySet()) {
             ConcurrentSkipListMap<Integer, Cela> SL = enSkipList.getValue();
@@ -63,12 +62,12 @@ public class Full extends MatriuCeles
         }
 
         --numFiles;
-        return ErrorDomini.NO_ERROR;
     }
 
-    public ErrorDomini eliminaColumna(Integer col)
+    public void eliminaColumna(int col)
     {
-        if (col >= super.numCols || col < 0) return ErrorDomini.NO_EXISTEIX;
+        if (col >= numCols || col < 0)
+            throw new ExcepcioFilaColumnaInvalida(col, numCols);
 
         if (matriuCela.containsKey(col)) {
             matriuCela.get(col).clear();
@@ -89,13 +88,12 @@ public class Full extends MatriuCeles
         }
 
         --numCols;
-        return ErrorDomini.NO_ERROR;
     }
 
-    public ErrorDomini buidaBloc(int filaIni, int colIni, int numFiles, int numCols)
+    public void buidaBloc(int filaIni, int colIni, int numFiles, int numCols)
     {
-        if (filaIni < 0 || filaIni + numFiles - 1 >= super.numFiles) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (colIni < 0 || colIni + numCols - 1 >= super.numCols) return ErrorDomini.FORA_LIMITS_BLOC;
+        if (blocInvalid(filaIni, colIni, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
 
@@ -104,21 +102,20 @@ public class Full extends MatriuCeles
             ConcurrentNavigableMap<Integer, Cela> subsubSL = SL.subMap(filaIni, filaIni + numFiles);
             subsubSL.clear();
         }
-
-        return ErrorDomini.NO_ERROR;
     }
 
-    public ErrorDomini copiaBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols, Integer filaFi, Integer colFi)
+    public void copiaBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi)
     {
-        if (filaIni < 0 || filaIni + numFiles - 1 >= super.numFiles) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (colIni < 0 || colIni + numCols - 1 >= super.numCols) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (filaFi < 0 || filaFi + numFiles - 1 >= super.numFiles) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (colFi < 0 || colFi + numCols - 1 >= super.numCols) return ErrorDomini.FORA_LIMITS_BLOC;
+        if (blocInvalid(filaIni, colIni, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
-        Integer chFila = filaFi - filaIni;
-        Integer chCol = colFi - colIni;
+        if (blocInvalid(filaFi, colFi, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
-        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
+        int chFila = filaFi - filaIni;
+        int chCol = colFi - colIni;
+
+        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = matriuCela.subMap(colIni, colIni + numCols);
         if (colIni < colFi || (colIni == colFi && filaIni < filaFi)) subSL = subSL.descendingMap();
 
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList : subSL.entrySet()) {
@@ -128,27 +125,26 @@ public class Full extends MatriuCeles
             if (colIni < colFi || (colIni == colFi && filaIni < filaFi)) subsubSL = subsubSL.descendingMap();
             for (ConcurrentSkipListMap.Entry<Integer, Cela> en : subsubSL.entrySet()) {
                 Cela c = en.getValue();
-                if (!super.matriuCela.containsKey(enSkipList.getKey() + chCol)) {
-                    super.matriuCela.put(enSkipList.getKey() + chCol, new ConcurrentSkipListMap<Integer, Cela>());
+                if (!matriuCela.containsKey(enSkipList.getKey() + chCol)) {
+                    matriuCela.put(enSkipList.getKey() + chCol, new ConcurrentSkipListMap<Integer, Cela>());
                 }
                 super.setCela(c, en.getKey() + chFila, enSkipList.getKey() + chCol);
             }
         }
-
-        return ErrorDomini.NO_ERROR;
     }
 
-    public ErrorDomini mouBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols, Integer filaFi, Integer colFi)
+    public void mouBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi)
     {
-        if (filaIni < 0 || filaIni + numFiles - 1 >= super.numFiles) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (colIni < 0 || colIni + numCols - 1 >= super.numCols) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (filaFi < 0 || filaFi + numFiles - 1 >= super.numFiles) return ErrorDomini.FORA_LIMITS_BLOC;
-        if (colFi < 0 || colFi + numCols - 1 >= super.numCols) return ErrorDomini.FORA_LIMITS_BLOC;
+        if (blocInvalid(filaIni, colIni, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
-        Integer chFila = filaFi - filaIni;
-        Integer chCol = colFi - colIni;
+        if (blocInvalid(filaFi, colFi, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
-        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
+        int chFila = filaFi - filaIni;
+        int chCol = colFi - colIni;
+
+        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = matriuCela.subMap(colIni, colIni + numCols);
         if (colIni < colFi || (colIni == colFi && filaIni < filaFi)) subSL = subSL.descendingMap();
 
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList : subSL.entrySet()) {
@@ -160,21 +156,18 @@ public class Full extends MatriuCeles
                 ConcurrentSkipListMap.Entry<Integer, Cela> en = j.next();
                 Cela c = en.getValue();
                 j.remove();
-                if (!super.matriuCela.containsKey(enSkipList.getKey() + chCol)) {
-                    super.matriuCela.put(enSkipList.getKey() + chCol, new ConcurrentSkipListMap<Integer, Cela>());
+                if (!matriuCela.containsKey(enSkipList.getKey() + chCol)) {
+                    matriuCela.put(enSkipList.getKey() + chCol, new ConcurrentSkipListMap<Integer, Cela>());
                 }
                 super.setCela(c, en.getKey() + chFila, enSkipList.getKey() + chCol);
             }
         }
-
-        return ErrorDomini.NO_ERROR;
     }
 
-    //potser alguna excepcio
-    public MatriuCeles obteBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols)
+    public MatriuCeles obteBloc(int filaIni, int colIni, int numFiles, int numCols)
     {
-        if (filaIni < 0 || filaIni + numFiles - 1 >= super.numFiles) return null;
-        if (colIni < 0 || colIni + numCols - 1 >= super.numCols) return null;
+        if (blocInvalid(filaIni, colIni, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
         MatriuCeles bloc = new MatriuCeles();
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
@@ -187,5 +180,11 @@ public class Full extends MatriuCeles
         }
 
         return bloc;
+    }
+
+    private boolean blocInvalid(int filaIni, int colIni, int numFiles, int numCols)
+    {
+        if (filaIni < 0 || filaIni + numFiles - 1 >= this.numFiles) return true;
+        return colIni < 0 || colIni + numCols - 1 >= this.numCols;
     }
 }

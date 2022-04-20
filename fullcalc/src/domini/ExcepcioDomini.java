@@ -2,15 +2,21 @@ package domini;
 
 public class ExcepcioDomini extends RuntimeException
 {
-    private final ErrorDomini error;
+    public enum TipusError
+    {
+        FILA_COLUMNA_INVALIDA,
+        FORA_LIMITS
+    }
 
-    public ExcepcioDomini(ErrorDomini error, String errorString)
+    private final TipusError error;
+
+    public ExcepcioDomini(TipusError error, String errorString)
     {
         super(errorString);
         this.error = error;
     }
 
-    public ErrorDomini getError()
+    public TipusError getError()
     {
         return error;
     }
