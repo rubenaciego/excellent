@@ -2,5 +2,5 @@ package domini;
 
 public enum CriteriOrdenacio
 {
-    ASCENDENT, DESCENDENT;
+    ASCENDENT, DESCENDENT
 }

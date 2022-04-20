@@ -1,4 +1,5 @@
 package domini;
+
 import java.time.*;
 import java.lang.*;
 import java.util.ArrayList;
@@ -9,13 +10,16 @@ import java.util.ArrayList;
  */
 public class Document
 {
-    String nom;
-    LocalDateTime dataModificacio;
-    ArrayList<Full> fulls;
+    private final String nom;
+    private LocalDateTime dataModificacio;
+    private ArrayList<Full> fulls;
+
+    private final int defaultFiles = 100;
+    private final int defaultCols = 100;
 
     /**
-     * @brief Constructora de document, crea un document buit, sense fulls
      * @param nom Nom del document
+     * @brief Constructora de document, crea un document buit, sense fulls
      */
     public Document(String nom)
     {
@@ -51,25 +55,31 @@ public class Document
      */
     public void afegeixFull()
     {
-        fulls.add(new Full());
+        fulls.add(new Full(defaultFiles, defaultCols));
     }
 
     /**
-     * @brief Elimina un full a la posició especificada
      * @param idFull Índex del full que es vol eliminar
+     * @brief Elimina un full a la posició especificada
      */
     public void eliminaFull(int idFull)
     {
+        if (idFull < 0 || idFull >= fulls.size())
+            throw new ExcepcioIndexFull(idFull, fulls.size());
+
         fulls.remove(idFull);
     }
 
     /**
-     * @brief Obté full a la posició especificada
      * @param idFull Índex del full
      * @return Full en la posició especificada
+     * @brief Obté full a la posició especificada
      */
     public Full getFull(int idFull)
     {
+        if (idFull < 0 || idFull >= fulls.size())
+            throw new ExcepcioIndexFull(idFull, fulls.size());
+
         return fulls.get(idFull);
     }
 }

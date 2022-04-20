@@ -1,19 +1,50 @@
 package domini;
+
 import java.lang.*;
 import java.time.LocalDate;
 
-public abstract class Cela {
-    protected String inputUsuari;
+public abstract class Cela
+{
+    public enum TipusCela
+    {
+        NUMERICA,
+        TEXTUAL,
+        DATADA,
+        REFERENCIAL
+    }
 
-    public String getInputUsuari() {
+    protected String inputUsuari;
+    protected TipusCela tipusCela;
+
+    public String getInputUsuari()
+    {
         return inputUsuari;
     }
 
-    public void setInputUsuari(String inputUsuari) {
+    public void setInputUsuari(String inputUsuari)
+    {
         this.inputUsuari = inputUsuari;
     }
 
-    abstract public Double getNum();
-    abstract public LocalDate getData();
-    abstract public String getText();
+    public TipusCela getTipusCela()
+    {
+        return tipusCela;
+    }
+
+    public abstract Double getNum();
+    public abstract LocalDate getData();
+    public abstract String getText();
+
+    public int compare(Cela c)
+    {
+        if (c.tipusCela == TipusCela.REFERENCIAL)
+            return -c.compare(this);
+
+        if (tipusCela != c.tipusCela)
+            return tipusCela.compareTo(c.tipusCela);
+        else return compareType(c);
+
+    }
+
+    protected abstract int compareType(Cela c);
 }

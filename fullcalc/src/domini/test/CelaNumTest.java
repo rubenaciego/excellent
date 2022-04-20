@@ -10,7 +10,16 @@ public class CelaNumTest {
 
     @Before
     public void setUp() {
-        celaNum = celaNum = new CelaNum("0", 0);;
+        celaNum = new CelaNum("", 0.0);
+    }
+
+    @Test
+    public void testGetAndSetNum() {
+        String input = "2.0";
+        Double valorInput = 2.0;
+        celaNum.setNum(input, valorInput);
+        assertEquals("2.0", celaNum.getInputUsuari());
+        assertEquals((double) 2.0, (double) celaNum.getNum(), 0.001);
     }
 
     @Test

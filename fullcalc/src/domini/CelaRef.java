@@ -2,28 +2,53 @@ package domini;
 import java.lang.*;
 import java.time.LocalDate;
 
-public class CelaRef extends Cela{
+public class CelaRef extends Cela
+{
     private Cela celaReferenciada;
 
-    public CelaRef(String inputUsuari, Cela celaRef) {
+
+    public CelaRef(String inputUsuari, Cela celaRef)
+    {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;
+        tipusCela = TipusCela.REFERENCIAL;
     }
 
-    public void setRef(String inputUsuari, Cela celaRef) {
+    public void setRef(String inputUsuari, Cela celaRef)
+    {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;
+        tipusCela = TipusCela.REFERENCIAL;
     }
 
-    public Double getNum() {
+    @Override
+    public Double getNum()
+    {
         return celaReferenciada.getNum();
     }
 
-    public LocalDate getData() {
+    @Override
+    public LocalDate getData()
+    {
         return celaReferenciada.getData();
     }
 
-    public String getText() {
+    @Override
+    public String getText()
+    {
         return celaReferenciada.getText();
+    }
+
+    @Override
+    public int compare(Cela c)
+    {
+        return celaReferenciada.compare(c);
+    }
+
+    @Override
+    protected int compareType(Cela c)
+    {
+        // error
+        return 0;
     }
 }

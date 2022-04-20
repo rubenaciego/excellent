@@ -3,7 +3,22 @@ package domini;
 import java.lang.*;
 import java.time.LocalDate;
 
-public class Parser {
+public class Parser
+{
+    private static Parser parser;
+
+    private Parser()
+    {
+    }
+
+    public static Parser getInstance()
+    {
+        if (parser == null)
+            parser = new Parser();
+
+        return parser;
+    }
+
     /**
      * @brief Fa el parseig d'una operació associada a full provinent de la capa
      * de presentació
@@ -17,7 +32,8 @@ public class Parser {
      * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserFull
      */
-    public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
+    public ResultatParserFull parseOpFull(String[] opSenseParsejar)
+    {
         String[] splitted = opSenseParsejar[0].split(",");
         ResultatParserFull resultat = new ResultatParserFull();
 
@@ -41,27 +57,24 @@ public class Parser {
                 ContingutCelaModificada celaModificada = resultat.getCelaModificada();
                 if (opSenseParsejar[1].matches("-?\\d+(\\.\\d+)?")) {
                     celaModificada.setValorNumeric(Double.parseDouble(opSenseParsejar[1]));
-                    celaModificada.setTipus(TipusCela.NUMERICA);
-                }
-                else if (opSenseParsejar[1].matches(("^(0?[1-9]|[12][0-9]|3" +
+                    celaModificada.setTipus(Cela.TipusCela.NUMERICA);
+                } else if (opSenseParsejar[1].matches(("^(0?[1-9]|[12][0-9]|3" +
                         "[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
                     String[] DDMMAAAA = opSenseParsejar[1].split("/");
 
                     celaModificada.setData(LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
                             Integer.parseInt(DDMMAAAA[1]),
                             Integer.parseInt(DDMMAAAA[2])));
-                    celaModificada.setTipus(TipusCela.DATADA);
-                }
-                else if (opSenseParsejar[1].startsWith("=")) {
+                    celaModificada.setTipus(Cela.TipusCela.DATADA);
+                } else if (opSenseParsejar[1].startsWith("=")) {
                     String[] ref =
                             opSenseParsejar[1].split("=")[0].split(":");
                     celaModificada.setColRef(Integer.parseInt(ref[0]));
                     celaModificada.setFilaRef(Integer.parseInt(ref[1]));
-                    celaModificada.setTipus(TipusCela.REFERENCIAL);
-                }
-                else {
+                    celaModificada.setTipus(Cela.TipusCela.REFERENCIAL);
+                } else {
                     celaModificada.setInputUsuari(opSenseParsejar[1]);
-                    celaModificada.setTipus(TipusCela.TEXTUAL);
+                    celaModificada.setTipus(Cela.TipusCela.TEXTUAL);
                 }
                 resultat.setCelaModificada(celaModificada);
             }
@@ -88,7 +101,8 @@ public class Parser {
      * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserDocument
      */
-    public ResultatParserDocument parseOpDocument(String opSenseParsejar) {
+    public ResultatParserDocument parseOpDocument(String opSenseParsejar)
+    {
         String[] splitted = opSenseParsejar.split(",");
         ResultatParserDocument resultat = new ResultatParserDocument();
 
