@@ -11,51 +11,63 @@ public class ContingutCelaModificada
     int colRef;
     TipusCela tipus;
 
-    public String getInputUsuari() {
+    public String getInputUsuari()
+    {
         return inputUsuari;
     }
 
-    public void setInputUsuari(String inputUsuari) {
+    public void setInputUsuari(String inputUsuari)
+    {
         this.inputUsuari = inputUsuari;
     }
 
-    public double getValorNumeric() {
+    public double getValorNumeric()
+    {
         return valorNumeric;
     }
 
-    public void setValorNumeric(Double valorNumeric) {
+    public void setValorNumeric(Double valorNumeric)
+    {
         this.valorNumeric = valorNumeric;
     }
 
-    public LocalDate getData() {
+    public LocalDate getData()
+    {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDate data)
+    {
         this.data = data;
     }
 
-    public int getFilaRef() {
+    public int getFilaRef()
+    {
         return filaRef;
     }
 
-    public void setFilaRef(Integer filaRef) {
+    public void setFilaRef(Integer filaRef)
+    {
         this.filaRef = filaRef;
     }
 
-    public int getColRef() {
+    public int getColRef()
+    {
         return colRef;
     }
 
-    public void setColRef(Integer colRef) {
+    public void setColRef(Integer colRef)
+    {
         this.colRef = colRef;
     }
 
-    public TipusCela getTipus() {
+    public TipusCela getTipus()
+    {
         return tipus;
     }
 
-    public void setTipus(TipusCela tipus) {
+    public void setTipus(TipusCela tipus)
+    {
         this.tipus = tipus;
     }
 }

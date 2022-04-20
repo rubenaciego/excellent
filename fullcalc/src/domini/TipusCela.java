@@ -1,6 +1,7 @@
 package domini;
 
-public enum TipusCela {
+public enum TipusCela
+{
     NUMERICA,
     TEXTUAL,
     DATADA,

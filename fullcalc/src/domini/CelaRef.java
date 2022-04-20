@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class CelaRef extends Cela{
     private Cela celaReferenciada;
 
-    public CelaRef() {}
     public CelaRef(String inputUsuari, Cela celaRef) {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;

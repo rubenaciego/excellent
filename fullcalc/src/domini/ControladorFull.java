@@ -1,11 +1,19 @@
 package domini;
 
-public class ControladorFull {
-    private Full full;
-    private Operador op;
+public class ControladorFull
+{
+    private final Full full;
+    private final Operador op;
 
-    public void executaOperacio(ResultatParserFull parsejat) {
-        MatriuCeles bloc = obteBloc(parsejat);
+    public ControladorFull(Full full)
+    {
+        this.full = full;
+        op = Operador.getInstance();
+    }
+
+    public void executaOperacio(ResultatParserFull parsejat)
+    {
+        MatriuCeles bloc = getBloc(parsejat);
         MatriuCeles res;
 
         switch (parsejat.getTipusOpFull()) {
@@ -65,7 +73,8 @@ public class ControladorFull {
         }
     }
 
-    private MatriuCeles obteBloc(ResultatParserFull parsejat) {
+    private MatriuCeles getBloc(ResultatParserFull parsejat)
+    {
         int filaIni = parsejat.getFilaOrigen();
         int colIni = parsejat.getColumnaOrigen();
         int numFiles = parsejat.getMidaFila();

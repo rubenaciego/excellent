@@ -1,31 +1,36 @@
 package domini;
+
 import java.lang.*;
 import java.time.LocalDate;
 
-public class CelaNum extends Cela {
+public class CelaNum extends Cela
+{
     private double valor;
 
-    public CelaNum() {}
-
-    public CelaNum(String inputUsuari, double valorInput) {
+    public CelaNum(String inputUsuari, double valorInput)
+    {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
     }
 
-    public void setNum(String inputUsuari, double valorInput) {
+    public void setNum(String inputUsuari, double valorInput)
+    {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
     }
 
-    public Double getNum() {
+    public Double getNum()
+    {
         return valor;
     }
 
-    public LocalDate getData() {
+    public LocalDate getData()
+    {
         return null;
     }
 
-    public String getText() {
+    public String getText()
+    {
         return null;
     }
 }

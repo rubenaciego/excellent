@@ -1,6 +1,6 @@
 package domini;
 
-public enum Error
+public enum ErrorDomini
 {
     NO_ERROR,
     NO_EXISTEIX,
