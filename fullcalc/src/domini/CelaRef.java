@@ -16,15 +16,15 @@ public class CelaRef extends Cela{
         celaReferenciada = celaRef;
     }
 
-    public Double obteNum() {
-        return celaReferenciada.obteNum();
+    public Double getNum() {
+        return celaReferenciada.getNum();
     }
 
-    public LocalDate obteData() {
-        return celaReferenciada.obteData();
+    public LocalDate getData() {
+        return celaReferenciada.getData();
     }
 
-    public String obteText() {
-        return celaReferenciada.obteText();
+    public String getText() {
+        return celaReferenciada.getText();
     }
 }

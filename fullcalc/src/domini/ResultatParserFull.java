@@ -11,9 +11,9 @@ public class ResultatParserFull {
     private int columnaDesti;
     private int midaFila;
     private int midaColumna;
-    private OpFull tipusOpFull;
-    private OpAritmetica tipusOpAritmetica;
-    private OpEstadistica tipusOpEstadistica;
+    private OperacioFull tipusOperacioFull;
+    private OperacioAritmetica tipusOperacioAritmetica;
+    private OperacioEstadistica tipusOperacioEstadistica;
     private ConversioUnitats tipusConversioUnitats;
     private CriteriOrdenacio tipusCriteriOrdenacio;
     private String stringCercada;
@@ -76,28 +76,28 @@ public class ResultatParserFull {
         this.midaColumna = midaColumna;
     }
 
-    public OpFull getTipusOpFull() {
-        return tipusOpFull;
+    public OperacioFull getTipusOpFull() {
+        return tipusOperacioFull;
     }
 
-    public void setTipusOpFull(OpFull tipusOpFull) {
-        this.tipusOpFull = tipusOpFull;
+    public void setTipusOpFull(OperacioFull tipusOperacioFull) {
+        this.tipusOperacioFull = tipusOperacioFull;
     }
 
-    public OpAritmetica getTipusOpAritmetica() {
-        return tipusOpAritmetica;
+    public OperacioAritmetica getTipusOpAritmetica() {
+        return tipusOperacioAritmetica;
     }
 
-    public void setTipusOpAritmetica(OpAritmetica tipusOpAritmetica) {
-        this.tipusOpAritmetica = tipusOpAritmetica;
+    public void setTipusOpAritmetica(OperacioAritmetica tipusOperacioAritmetica) {
+        this.tipusOperacioAritmetica = tipusOperacioAritmetica;
     }
 
-    public OpEstadistica getTipusOpEstadistica() {
-        return tipusOpEstadistica;
+    public OperacioEstadistica getTipusOpEstadistica() {
+        return tipusOperacioEstadistica;
     }
 
-    public void setTipusOpEstadistica(OpEstadistica tipusOpEstadistica) {
-        this.tipusOpEstadistica = tipusOpEstadistica;
+    public void setTipusOpEstadistica(OperacioEstadistica tipusOperacioEstadistica) {
+        this.tipusOperacioEstadistica = tipusOperacioEstadistica;
     }
 
     public ConversioUnitats getTipusConversioUnitats() {

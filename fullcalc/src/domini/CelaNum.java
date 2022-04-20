@@ -3,29 +3,29 @@ import java.lang.*;
 import java.time.LocalDate;
 
 public class CelaNum extends Cela {
-    private Double valor;
+    private double valor;
 
     public CelaNum() {}
 
-    public CelaNum(String inputUsuari, Double valorInput) {
+    public CelaNum(String inputUsuari, double valorInput) {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
     }
 
-    public void setNum(String inputUsuari, Double valorInput) {
+    public void setNum(String inputUsuari, double valorInput) {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
     }
 
-    public Double obteNum() {
+    public Double getNum() {
         return valor;
     }
 
-    public LocalDate obteData() {
+    public LocalDate getData() {
         return null;
     }
 
-    public String obteText() {
+    public String getText() {
         return null;
     }
 }

@@ -23,15 +23,15 @@ public class Parser {
 
         int codiOp = Integer.parseInt(splitted[0]);
         if (codiOp >= 0 && codiOp < 10) {
-            resultat.setTipusOpAritmetica(OpAritmetica.valueOf(String.valueOf(codiOp)));
+            resultat.setTipusOpAritmetica(OperacioAritmetica.valueOf(String.valueOf(codiOp)));
         } else if (codiOp >= 10 && codiOp < 20) {
-            resultat.setTipusOpEstadistica(OpEstadistica.valueOf(String.valueOf(codiOp - 10)));
+            resultat.setTipusOpEstadistica(OperacioEstadistica.valueOf(String.valueOf(codiOp - 10)));
         } else if (codiOp >= 20 && codiOp < 40) {
             resultat.setTipusConversioUnitats(ConversioUnitats.valueOf(String.valueOf(codiOp - 20)));
         } else if (codiOp >= 40 && codiOp < 50) {
             resultat.setTipusCriteriOrdenacio(CriteriOrdenacio.valueOf(String.valueOf(codiOp - 40)));
         } else if (codiOp >= 50 && codiOp < 80) {
-            resultat.setTipusOpFull(OpFull.valueOf(String.valueOf(codiOp - 50)));
+            resultat.setTipusOpFull(OperacioFull.valueOf(String.valueOf(codiOp - 50)));
 
             if (codiOp == 60) resultat.setStringCercada(opSenseParsejar[1]);
             else if (codiOp == 64) {
@@ -94,7 +94,7 @@ public class Parser {
 
         int codiOp = Integer.parseInt(splitted[0]);
         if (codiOp >= 80 && codiOp < 90) {
-            resultat.setTipusOpDocument(OpDocument.valueOf(String.valueOf(codiOp - 80)));
+            resultat.setTipusOpDocument(OperacioDocument.valueOf(String.valueOf(codiOp - 80)));
         }
         resultat.setNomDocument(splitted[1]);
         resultat.setIdFull(Integer.parseInt(splitted[2]));

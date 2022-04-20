@@ -6,8 +6,8 @@ import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 public class MatriuCeles {
-    protected Integer numFiles;
-    protected Integer numCols;
+    protected int numFiles;
+    protected int numCols;
 
     protected ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>> matriuCela;
 
@@ -16,20 +16,20 @@ public class MatriuCeles {
         numCols = 0;
     }
 
-    public MatriuCeles(Integer numFiles, Integer numCols) {
+    public MatriuCeles(int numFiles, int numCols) {
         this.numCols = numCols;
         this.numFiles = numFiles;
     }
 
-    public Integer obteNumFiles() {
+    public Integer getNumFiles() {
         return numFiles;
     }
 
-    public Integer obteNumCols() {
+    public Integer getNumCols() {
         return numCols;
     }
 
-    public Cela obteCela(Integer fila, Integer col) {
+    public Cela getCela(int fila, int col) {
         if (!matriuCela.containsKey(col)) {
             return null;
         } else {
@@ -37,7 +37,7 @@ public class MatriuCeles {
         }
     }
 
-    public void setCela(Cela novaCela, Integer fila, Integer col) {
+    public void setCela(Cela novaCela, int fila, int col) {
         if (!matriuCela.containsKey(col)) {
             matriuCela.put(col, new ConcurrentSkipListMap<Integer, Cela>());
         }
@@ -46,7 +46,7 @@ public class MatriuCeles {
         matriuCela.get(col).put(fila, novaCela);
     }
 
-    /*public void esborraCela(Integer fila, Integer col) {
+    public void esborraCela(int fila, int col) {
         if (matriuCela.containsKey(col)) {
             matriuCela.get(col).remove(fila);
             if (col == numCols-1) {
@@ -69,16 +69,27 @@ public class MatriuCeles {
                 numFiles = maxim;
             }
         }
-    }*/
+    }
 
-    public ArrayList<EntrMatrCeles> obteEntrades() {
-        ArrayList<EntrMatrCeles> entrades = new ArrayList<EntrMatrCeles>();
+    public ArrayList<EntradaMatriuCeles> getEntrades() {
+        ArrayList<EntradaMatriuCeles> entrades = new ArrayList<EntradaMatriuCeles>();
 
         for (ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi: matriuCela.entrySet()) {
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj: SLi.getValue().entrySet()) {
-                EntrMatrCeles entry = new EntrMatrCeles(SLi.getKey(), SLj.getKey(), SLj.getValue());
+                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLi.getKey(), SLj.getKey(), SLj.getValue());
                 entrades.add(entry);
             }
+        }
+        return entrades;
+    }
+
+    public ArrayList<EntradaMatriuCeles> obteEntradesColumna(int col) {
+        ArrayList<EntradaMatriuCeles> entrades = new ArrayList<EntradaMatriuCeles>();
+
+        ConcurrentSkipListMap<Integer, Cela> SL = matriuCela.get(col);
+        for (ConcurrentSkipListMap.Entry<Integer, Cela> SLi: SL.entrySet()) {
+            EntradaMatriuCeles entry = new EntradaMatriuCeles(col, SLi.getKey(), SLi.getValue());
+            entrades.add(entry);
         }
         return entrades;
     }

@@ -26,13 +26,13 @@ public class ControladorDomini
         if(opSenseParsejar[0].startsWith("8")) {
             ResultatParserDocument resultat =
                     parser.parseOpDocument(opSenseParsejar[0]);
-            if (resultat.getTipusOpDocument() == OpDocument.CREA_DOCUMENT) {
+            if (resultat.getTipusOpDocument() == OperacioDocument.CREA_DOCUMENT) {
                 controladorDocument.creaDocument(resultat.getNomDocument());
             }
-            else if (resultat.getTipusOpDocument() == OpDocument.CARREGA_DOCUMENT) {
+            else if (resultat.getTipusOpDocument() == OperacioDocument.CARREGA_DOCUMENT) {
                 controladorDocument.carregaDocument(resultat.getNomDocument());
             }
-            else if (resultat.getTipusOpDocument() == OpDocument.TANCA_DOCUMENT) {
+            else if (resultat.getTipusOpDocument() == OperacioDocument.TANCA_DOCUMENT) {
                 controladorDocument.tancaDocument();
             }
             else {

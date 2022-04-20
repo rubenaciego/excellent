@@ -1,25 +1,26 @@
 package domini;
 
-public class EntrMatrCeles {
-    private Integer fila;
-    private Integer columna;
+public class EntradaMatriuCeles
+{
+    private int fila;
+    private int columna;
     private Cela c;
 
-    public EntrMatrCeles(Integer fila, Integer columna, Cela c) {
+    public EntradaMatriuCeles(int fila, int columna, Cela c) {
         this.fila = fila;
         this.columna = columna;
         this.c = c;
     }
 
-    public Integer obteFila() {
+    public int getFila() {
         return fila;
     }
 
-    public Integer obteCol() {
+    public int getCol() {
         return columna;
     }
 
-    public Cela obteCela() {
+    public Cela getCela() {
         return c;
     }
 

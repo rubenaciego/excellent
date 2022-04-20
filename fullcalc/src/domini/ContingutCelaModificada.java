@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public class ContingutCelaModificada
 {
     String inputUsuari;
-    Double valorNumeric;
+    double valorNumeric;
     LocalDate data;
-    Integer filaRef;
-    Integer colRef;
+    int filaRef;
+    int colRef;
     TipusCela tipus;
 
     public String getInputUsuari() {
@@ -19,7 +19,7 @@ public class ContingutCelaModificada
         this.inputUsuari = inputUsuari;
     }
 
-    public Double getValorNumeric() {
+    public double getValorNumeric() {
         return valorNumeric;
     }
 
@@ -35,7 +35,7 @@ public class ContingutCelaModificada
         this.data = data;
     }
 
-    public Integer getFilaRef() {
+    public int getFilaRef() {
         return filaRef;
     }
 
@@ -43,7 +43,7 @@ public class ContingutCelaModificada
         this.filaRef = filaRef;
     }
 
-    public Integer getColRef() {
+    public int getColRef() {
         return colRef;
     }
 

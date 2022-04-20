@@ -51,7 +51,7 @@ public class Document
      */
     public void afegeixFull()
     {
-        fulls.add(new Full(0));
+        fulls.add(new Full());
     }
 
     /**
@@ -68,7 +68,7 @@ public class Document
      * @param idFull Índex del full
      * @return Full en la posició especificada
      */
-    public Full obteFull(int idFull)
+    public Full getFull(int idFull)
     {
         return fulls.get(idFull);
     }

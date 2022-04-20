@@ -6,40 +6,33 @@ public class CelaText extends Cela
 {
     private String text;
 
-    public CelaText()
-    {
+    public CelaText() {
     }
 
-    public CelaText(String inputUsuari)
-    {
+    public CelaText(String inputUsuari) {
         super.setInputUsuari(inputUsuari);
         this.text = inputUsuari;
     }
 
-    public CelaText(String inputUsuari, String text)
-    {
+    public CelaText(String inputUsuari, String text) {
         super.setInputUsuari(inputUsuari);
         this.text = text;
     }
 
-    public void setNum(String inputUsuari, String text)
-    {
+    public void setText(String inputUsuari, String text) {
         super.setInputUsuari(inputUsuari);
         this.text = text;
     }
 
-    public Double obteNum()
-    {
+    public Double getNum() {
         return null;
     }
 
-    public LocalDate obteData()
-    {
+    public LocalDate getData() {
         return null;
     }
 
-    public String obteText()
-    {
+    public String getText() {
         return text;
     }
 }

@@ -1,6 +1,6 @@
 package domini;
 
-public enum OpAritmetica
+public enum OperacioAritmetica
 {
     VALOR_ABSOLUT, INCREMENTAR, DECREMENTAR, EXPONENCIAL, COSINUS, SINUS,
     COSINUS_HIPERBOLIC, SINUS_HIPERBOLIC, TANGENT_HIPERBOLIC;
