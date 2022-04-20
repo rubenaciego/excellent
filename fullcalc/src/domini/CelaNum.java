@@ -18,6 +18,7 @@ public class CelaNum extends Cela
     {
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
+        tipusCela = TipusCela.NUMERICA;
     }
 
     @Override

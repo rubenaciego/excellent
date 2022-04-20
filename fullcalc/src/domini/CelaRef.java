@@ -17,6 +17,7 @@ public class CelaRef extends Cela
     {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;
+        tipusCela = TipusCela.REFERENCIAL;
     }
 
     @Override

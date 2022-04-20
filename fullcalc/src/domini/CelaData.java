@@ -18,6 +18,7 @@ public class CelaData extends Cela
     {
         super.setInputUsuari(inputUsuari);
         data = dataInput;
+        tipusCela = TipusCela.DATADA;
     }
 
     @Override
@@ -42,7 +43,6 @@ public class CelaData extends Cela
     protected int compareType(Cela c)
     {
         LocalDate d = c.getData();
-
         return data.compareTo(d);
     }
 }

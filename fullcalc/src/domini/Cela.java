@@ -26,6 +26,11 @@ public abstract class Cela
         this.inputUsuari = inputUsuari;
     }
 
+    public TipusCela getTipusCela()
+    {
+        return tipusCela;
+    }
+
     public abstract Double getNum();
     public abstract LocalDate getData();
     public abstract String getText();

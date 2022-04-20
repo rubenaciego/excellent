@@ -18,6 +18,7 @@ public class CelaText extends Cela
     {
         super.setInputUsuari(inputUsuari);
         this.text = text;
+        tipusCela = TipusCela.TEXTUAL;
     }
 
     public void setText(String inputUsuari, String text)
