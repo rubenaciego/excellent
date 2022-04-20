@@ -49,25 +49,6 @@ public class MatriuCeles {
     public void esborraCela(int fila, int col) {
         if (matriuCela.containsKey(col)) {
             matriuCela.get(col).remove(fila);
-            if (col == numCols-1) {
-                Integer maxim = 0;
-                for (Iterator<ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>>> i = matriuCela.descendingMap().entrySet().iterator();
-                     i.hasNext(); ) {
-                    ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList = i.next();
-                    if (!enSkipList.getValue().isEmpty()) {
-                        maxim = enSkipList.getKey();
-                        break;
-                    }
-                }
-                numCols = maxim;
-            }
-            if (fila == numFiles-1) {
-                Integer maxim = 0;
-                for (ConcurrentSkipListMap<Integer, Cela> SL: matriuCela.values()) {
-                    maxim = Math.max(maxim, SL.lastKey());
-                }
-                numFiles = maxim;
-            }
         }
     }
 
