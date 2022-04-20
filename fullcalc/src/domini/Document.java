@@ -1,25 +1,52 @@
 package domini;
-import java.util.Date;
+import java.time.*;
 import java.lang.*;
+import java.util.HashMap;
 
+/*
+ * @class Document
+ * @brief Representa un document, un conjunt de fulls
+ */
 public class Document
 {
     String nom;
-    Date dataModificacio;
+    LocalDateTime dataModificacio;
+    HashMap<Integer, Full> fulls;
+    int lastFull = 0;
 
-    void desa() {
-
+    public Document(String nom)
+    {
+        this.nom = nom;
     }
 
-    void afegeixFull() {
-
+    public LocalDateTime getDataModificacio()
+    {
+        return dataModificacio;
     }
 
-    void eliminaFull(int idFull) {
-
+    public void setDataModificacio(LocalDateTime dataModificacio)
+    {
+        this.dataModificacio = dataModificacio;
     }
 
-    void obteFull(int idFull) {
+    public void desa()
+    {
+        // mock
+    }
 
+    public void afegeixFull()
+    {
+        ++lastFull;
+        fulls.put(lastFull, new Full(lastFull));
+    }
+
+    public void eliminaFull(int idFull)
+    {
+        fulls.remove(idFull);
+    }
+
+    public Full obteFull(int idFull)
+    {
+        return fulls.get(idFull);
     }
 }
