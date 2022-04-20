@@ -2,7 +2,6 @@
   <library name="junit4">
     <CLASSES>
       <root url="jar:///usr/share/java/junit4.jar!/" />
-      <root url="jar:///usr/share/java/mockito-core.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
