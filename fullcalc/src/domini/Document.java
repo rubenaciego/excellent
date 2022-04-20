@@ -36,8 +36,8 @@ public class Document
 
     public void afegeixFull()
     {
-        ++lastFull;
         fulls.put(lastFull, new Full(lastFull));
+        ++lastFull;
     }
 
     public void eliminaFull(int idFull)
