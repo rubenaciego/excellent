@@ -2,22 +2,44 @@ package domini;
 import java.lang.*;
 import java.time.LocalDate;
 
-public class CelaText extends Cela {
+public class CelaText extends Cela
+{
+    private String text;
 
-    public CelaText() {}
-    public CelaText(String inputUsuari) {
+    public CelaText()
+    {
+    }
+
+    public CelaText(String inputUsuari)
+    {
         super.setInputUsuari(inputUsuari);
+        this.text = inputUsuari;
     }
 
-    public Double obteNum() {
+    public CelaText(String inputUsuari, String text)
+    {
+        super.setInputUsuari(inputUsuari);
+        this.text = text;
+    }
+
+    public void setNum(String inputUsuari, String text)
+    {
+        super.setInputUsuari(inputUsuari);
+        this.text = text;
+    }
+
+    public Double obteNum()
+    {
         return null;
     }
 
-    public LocalDate obteData() {
+    public LocalDate obteData()
+    {
         return null;
     }
 
-    public String obteText() {
-        return super.inputUsuari;
+    public String obteText()
+    {
+        return text;
     }
 }

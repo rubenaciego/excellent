@@ -1,5 +1,7 @@
 package domini;
 
+import java.util.ArrayList;
+
 public class Operador {
     public MatriuCeles extreuHorocop(MatriuCeles bloc) {}
     public MatriuCeles extreuAny(MatriuCeles bloc) {}
@@ -13,7 +15,20 @@ public class Operador {
     public MatriuCeles truncaNumero(MatriuCeles bloc, Integer n) {}
     public MatriuCeles converteixUnitats(MatriuCeles bloc,
                                          conversioUnitats conv) {}
-    public MatriuCeles extreuLongitudText(MatriuCeles bloc) {}
+
+    public MatriuCeles extreuLongitudText(MatriuCeles bloc)
+    {
+        MatriuCeles result = new MatriuCeles(bloc.obteNumFiles(), bloc.obteNumCols());
+        ArrayList<EntrMatrCeles> entrades = bloc.obteEntrades();
+
+        for (EntrMatrCeles e : entrades)
+        {
+
+        }
+
+        return result;
+    }
+
     public MatriuCeles cercaOcurrencies(MatriuCeles bloc, String aCercar) {}
     public MatriuCeles converteixMajuscules(MatriuCeles bloc) {}
     public MatriuCeles converteixMinuscules(MatriuCeles bloc) {}
