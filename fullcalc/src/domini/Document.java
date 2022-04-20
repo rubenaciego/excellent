@@ -36,7 +36,7 @@ public class Document
 
     public void afegeixFull()
     {
-        fulls.put(lastFull, new Full(lastFull));
+        fulls.put(lastFull, new Full());
         ++lastFull;
     }
 

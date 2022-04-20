@@ -16,15 +16,15 @@ public class CelaData extends Cela {
         data = dataInput;
     }
 
-    public Double obteNum() {
+    public Double getNum() {
         return null;
     }
 
-    public LocalDate obteData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public String obteText() {
+    public String getText() {
         return null;
     }
 

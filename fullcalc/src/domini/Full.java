@@ -1,57 +1,31 @@
 package domini;
 
-import org.junit.Test;
 import java.util.Iterator;
 import java.util.concurrent.*;
 
 public class Full extends MatriuCeles {
-    private Integer id;
     private Cela celaResultat;
 
-    public Full(Integer id) {
-        this.id = id;
+    public Full() {
         super.numCols = 0;
         super.numFiles = 0;
     }
 
     public Full(Integer id, Integer files, Integer cols) {
-        this.id = id;
         super.numCols = cols;
         super.numFiles = files;
     }
 
-    public Integer obteId() {
-        return id;
+    @Override
+    public Cela getCela(int fila, int col) {
+        if (fila == -1 && col == -1) return celaResultat;
+        else return super.getCela(fila, col);
     }
 
-    public Cela obteCelaResultat() {
-        return celaResultat;
-    }
-
-    public Errors modificaCela(Integer fila, Integer col, ContingutCelaModificada celaMod) {
-        Cela c;
-        switch(celaMod.getTipus()) {
-            case NUMERICA:
-                c = new CelaNum(celaMod.getInputUsuari(), celaMod.getValorNumeric());
-                break;
-            case DATADA:
-                c = new CelaData(celaMod.getInputUsuari(), celaMod.getData());
-                break;
-            case REFERENCIAL:
-                Cela cRef = super.obteCela(celaMod.getFilaRef(), celaMod.getColRef());
-                c = new CelaRef(celaMod.getInputUsuari(),  cRef);
-                break;
-            default:
-                c = new CelaText(celaMod.getInputUsuari());
-                break;
-        }
-
-        if (fila == -1 && col == -1) celaResultat = c;
-        else if (fila < 0 || fila >= super.numFiles || col < 0 || col >= super.numCols) {
-            return Errors.NOEXISTEIX;
-        } else super.setCela(c, fila, col);
-
-        return Errors.NOERROR;
+    @Override
+    public void setCela(Cela novaCela, int fila, int col) {
+        if (fila == -1 && col == -1) celaResultat = novaCela;
+        else super.setCela(novaCela, fila, col);
     }
 
     public Errors afegeixFila() {
@@ -64,7 +38,7 @@ public class Full extends MatriuCeles {
         return Errors.NOERROR;
     }
 
-    public Errors eliminaFila(Integer fila) {
+    public Errors eliminaFila(int fila) {
         if (fila >= super.numFiles || fila < 0) return Errors.NOEXISTEIX;
 
         for (Iterator<ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>>> i = super.matriuCela.entrySet().iterator();
