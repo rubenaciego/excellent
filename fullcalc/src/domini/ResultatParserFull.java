@@ -11,11 +11,11 @@ public class ResultatParserFull {
     private int columnaDesti;
     private int midaFila;
     private int midaColumna;
-    private opFull tipusOpFull;
-    private opAritmetica tipusOpAritmetica;
-    private opEstadistica tipusOpEstadistica;
-    private conversioUnitats tipusConversioUnitats;
-    private criteriOrdenacio tipusCriteriOrdenacio;
+    private OpFull tipusOpFull;
+    private OpAritmetica tipusOpAritmetica;
+    private OpEstadistica tipusOpEstadistica;
+    private ConversioUnitats tipusConversioUnitats;
+    private CriteriOrdenacio tipusCriteriOrdenacio;
     private String stringCercada;
     private String stringRemplacadora;
     private ContingutCelaModificada celaModificada;
@@ -76,43 +76,43 @@ public class ResultatParserFull {
         this.midaColumna = midaColumna;
     }
 
-    public opFull getTipusOpFull() {
+    public OpFull getTipusOpFull() {
         return tipusOpFull;
     }
 
-    public void setTipusOpFull(opFull tipusOpFull) {
+    public void setTipusOpFull(OpFull tipusOpFull) {
         this.tipusOpFull = tipusOpFull;
     }
 
-    public opAritmetica getTipusOpAritmetica() {
+    public OpAritmetica getTipusOpAritmetica() {
         return tipusOpAritmetica;
     }
 
-    public void setTipusOpAritmetica(opAritmetica tipusOpAritmetica) {
+    public void setTipusOpAritmetica(OpAritmetica tipusOpAritmetica) {
         this.tipusOpAritmetica = tipusOpAritmetica;
     }
 
-    public opEstadistica getTipusOpEstadistica() {
+    public OpEstadistica getTipusOpEstadistica() {
         return tipusOpEstadistica;
     }
 
-    public void setTipusOpEstadistica(opEstadistica tipusOpEstadistica) {
+    public void setTipusOpEstadistica(OpEstadistica tipusOpEstadistica) {
         this.tipusOpEstadistica = tipusOpEstadistica;
     }
 
-    public conversioUnitats getTipusConversioUnitats() {
+    public ConversioUnitats getTipusConversioUnitats() {
         return tipusConversioUnitats;
     }
 
-    public void setTipusConversioUnitats(conversioUnitats tipusConversioUnitats) {
+    public void setTipusConversioUnitats(ConversioUnitats tipusConversioUnitats) {
         this.tipusConversioUnitats = tipusConversioUnitats;
     }
 
-    public criteriOrdenacio getTipusCriteriOrdenacio() {
+    public CriteriOrdenacio getTipusCriteriOrdenacio() {
         return tipusCriteriOrdenacio;
     }
 
-    public void setTipusCriteriOrdenacio(criteriOrdenacio tipusCriteriOrdenacio) {
+    public void setTipusCriteriOrdenacio(CriteriOrdenacio tipusCriteriOrdenacio) {
         this.tipusCriteriOrdenacio = tipusCriteriOrdenacio;
     }
 

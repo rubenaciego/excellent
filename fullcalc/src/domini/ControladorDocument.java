@@ -19,13 +19,13 @@ public class ControladorDocument
      * /post Executa l'operació codificada dins resultat
      */
     public void executaOperacio(ResultatParserDocument resultat) {
-        if (resultat.getTipusOpDocument() == opDocument.afegeixFull) {
+        if (resultat.getTipusOpDocument() == OpDocument.AFEGEIX_FULL) {
             document.afegeixFull();
         }
-        else if (resultat.getTipusOpDocument() == opDocument.eliminaFull) {
+        else if (resultat.getTipusOpDocument() == OpDocument.ELIMINA_FULL) {
             document.eliminaFull(resultat.getIdFull());
         }
-        else if (resultat.getTipusOpDocument() == opDocument.desaDocument) {
+        else if (resultat.getTipusOpDocument() == OpDocument.DESA_DOCUMENT) {
             document.desa();
         }
     }

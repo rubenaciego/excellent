@@ -1,0 +1,7 @@
+package domini;
+
+public enum OpDocument
+{
+    CREA_DOCUMENT, CARREGA_DOCUMENT, DESA_DOCUMENT, TANCA_DOCUMENT, AFEGEIX_FULL,
+    ELIMINA_FULL;
+}

@@ -5,65 +5,65 @@ public class ControladorFull {
     private Operador op;
 
     public void executaOperacio(ResultatParserFull parsejat) {
-        if (parsejat.getTipusOpFull() == opFull.extreuHoroscop) {
+        if (parsejat.getTipusOpFull() == OpFull.EXTREU_HOROSCOP) {
             MatriuCeles bloc = obteBloc(parsejat);
-            MatriuCeles res = op.extreuHorocop(bloc);
+            MatriuCeles res = op.extreuHoroscop(bloc);
         }
-        else if (parsejat.getTipusOpFull() == opFull.extreuAny) {
+        else if (parsejat.getTipusOpFull() == OpFull.EXTREU_ANY) {
             MatriuCeles bloc = obteBloc(parsejat);
             MatriuCeles res = op.extreuAny(bloc);
         }
-        else if (parsejat.getTipusOpFull() == opFull.extreuDia) {
+        else if (parsejat.getTipusOpFull() == OpFull.EXTREU_DIA) {
             MatriuCeles bloc = obteBloc(parsejat);
             MatriuCeles res = op.extreuDia(bloc);
         }
-        else if (parsejat.getTipusOpFull() == opFull.extreuDiaSetmana) {
+        else if (parsejat.getTipusOpFull() == OpFull.EXTREU_DIA_SETMANA) {
             MatriuCeles bloc = obteBloc(parsejat);
             MatriuCeles res = op.extreuDiaSetmana(bloc);
         }
-        else if (parsejat.getTipusOpFull() == opFull.executaOperacioAritmeticaUnaria) {
+        else if (parsejat.getTipusOpFull() == OpFull.EXECUTA_OPERACIO_ARITMETICA_UNARIA) {
             MatriuCeles bloc = obteBloc(parsejat);
             MatriuCeles res = op.executaOperacioAritmeticaUnaria(bloc,
                     parsejat.getTipusOpAritmetica());
         }
-        else if (parsejat.getTipusOpFull() == opFull.executaFuncioEstadistica) {
+        else if (parsejat.getTipusOpFull() == OpFull.EXECUTA_FUNCIO_ESTADISTICA) {
             MatriuCeles bloc = obteBloc(parsejat);
             MatriuCeles res = op.executaFuncioEstadistica(bloc,
                     parsejat.getTipusOpEstadistica());
         }
 
-        else if (parsejat.getTipusOpFull() == opFull.truncaNumero) {
+        else if (parsejat.getTipusOpFull() == OpFull.TRUNCA_NUMERO) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.converteixUnitats) {
+        else if (parsejat.getTipusOpFull() == OpFull.CONVERTEIX_UNITATS) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.cercaOcurrencies) {
+        else if (parsejat.getTipusOpFull() == OpFull.CERCA_OCURRENCIES) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.converteixMajuscules) {
+        else if (parsejat.getTipusOpFull() == OpFull.CONVERTEIX_MAJUSCULES) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.converteixMinuscules) {
+        else if (parsejat.getTipusOpFull() == OpFull.CONVERTEIX_MINUSCULES) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.transposa) {
+        else if (parsejat.getTipusOpFull() == OpFull.TRANSPOSA) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.reemplaca) {
+        else if (parsejat.getTipusOpFull() == OpFull.REEMPLACA) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.ordena) {
+        else if (parsejat.getTipusOpFull() == OpFull.ORDENA) {
             MatriuCeles bloc = obteBloc(parsejat);
         }
-        else if (parsejat.getTipusOpFull() == opFull.modificaCela) {}
-        else if (parsejat.getTipusOpFull() == opFull.afegeixColumna) {}
-        else if (parsejat.getTipusOpFull() == opFull.afegeixFila) {}
-        else if (parsejat.getTipusOpFull() == opFull.eliminaColumna) {}
-        else if (parsejat.getTipusOpFull() == opFull.eliminaFila) {}
-        else if (parsejat.getTipusOpFull() == opFull.mouBloc) {}
-        else if (parsejat.getTipusOpFull() == opFull.copiaBloc) {}
-        else if (parsejat.getTipusOpFull() == opFull.buidaBloc) {}
+        else if (parsejat.getTipusOpFull() == OpFull.MODIFICA_CELA) {}
+        else if (parsejat.getTipusOpFull() == OpFull.AFEGEIX_COLUMNA) {}
+        else if (parsejat.getTipusOpFull() == OpFull.AFEGEIX_FILA) {}
+        else if (parsejat.getTipusOpFull() == OpFull.ELIMINA_COLUMNA) {}
+        else if (parsejat.getTipusOpFull() == OpFull.ELIMINA_FILA) {}
+        else if (parsejat.getTipusOpFull() == OpFull.MOU_BLOC) {}
+        else if (parsejat.getTipusOpFull() == OpFull.COPIA_BLOC) {}
+        else if (parsejat.getTipusOpFull() == OpFull.BUIDA_BLOC) {}
     }
 
     private MatriuCeles obteBloc(ResultatParserFull parsejat) {

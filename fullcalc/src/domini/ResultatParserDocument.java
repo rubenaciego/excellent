@@ -4,7 +4,7 @@ import java.lang.*;
 public class ResultatParserDocument
 {
     private int idFull;
-    private opDocument tipusOpDocument;
+    private OpDocument tipusOpDocument;
     private String nomDocument;
 
     public int getIdFull() {
@@ -23,11 +23,11 @@ public class ResultatParserDocument
         this.nomDocument = nomDocument;
     }
 
-    public opDocument getTipusOpDocument() {
+    public OpDocument getTipusOpDocument() {
         return tipusOpDocument;
     }
 
-    public void setTipusOpDocument(opDocument tipusOpDocument) {
+    public void setTipusOpDocument(OpDocument tipusOpDocument) {
         this.tipusOpDocument = tipusOpDocument;
     }
 }

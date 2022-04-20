@@ -1,0 +1,7 @@
+package domini;
+
+public enum OpEstadistica
+{
+    MITJANA, MEDIANA, VARIANCIA, COVARIANCIA, DESVIACIO_ESTANDARD,
+    COEFICIENT_PEARSON;
+}

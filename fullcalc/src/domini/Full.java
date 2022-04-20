@@ -1,6 +1,5 @@
 package domini;
 
-import org.junit.Test;
 import java.util.Iterator;
 import java.util.concurrent.*;
 
@@ -48,24 +47,24 @@ public class Full extends MatriuCeles {
 
         if (fila == -1 && col == -1) celaResultat = c;
         else if (fila < 0 || fila >= super.numFiles || col < 0 || col >= super.numCols) {
-            return Errors.NOEXISTEIX;
+            return Errors.NO_EXISTEIX;
         } else super.setCela(c, fila, col);
 
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors afegeixFila() {
         ++super.numFiles;
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors afegeixColumna() {
         ++super.numCols;
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors eliminaFila(Integer fila) {
-        if (fila >= super.numFiles || fila < 0) return Errors.NOEXISTEIX;
+        if (fila >= super.numFiles || fila < 0) return Errors.NO_EXISTEIX;
 
         for (Iterator<ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>>> i = super.matriuCela.entrySet().iterator();
              i.hasNext(); ) {
@@ -82,11 +81,11 @@ public class Full extends MatriuCeles {
             }
         }
 
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors eliminaColumna(Integer col) {
-        if (col >= super.numCols || col < 0) return Errors.NOEXISTEIX;
+        if (col >= super.numCols || col < 0) return Errors.NO_EXISTEIX;
 
         if (super.matriuCela.containsKey(col)) {
             super.matriuCela.get(col).clear();
@@ -107,12 +106,12 @@ public class Full extends MatriuCeles {
             }
         }
 
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors buidaBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols) {
-        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORA_LIMITS_BLOC;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORA_LIMITS_BLOC;
 
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni+numCols);
 
@@ -123,14 +122,14 @@ public class Full extends MatriuCeles {
             subsubSL.clear();
         }
 
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors copiaBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols, Integer filaFi, Integer colFi) {
-        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
-        if (filaFi < 0 || filaFi+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colFi < 0 || colFi+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORA_LIMITS_BLOC;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORA_LIMITS_BLOC;
+        if (filaFi < 0 || filaFi+numFiles-1 >= super.numFiles) return Errors.FORA_LIMITS_BLOC;
+        if (colFi < 0 || colFi+numCols-1 >= super.numCols) return Errors.FORA_LIMITS_BLOC;
 
         Integer chFila = filaFi-filaIni;
         Integer chCol = colFi-colIni;
@@ -154,14 +153,14 @@ public class Full extends MatriuCeles {
             }
         }
 
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     public Errors mouBloc(Integer filaIni, Integer colIni, Integer numFiles, Integer numCols, Integer filaFi, Integer colFi) {
-        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
-        if (filaFi < 0 || filaFi+numFiles-1 >= super.numFiles) return Errors.FORALIMITSBLOC;
-        if (colFi < 0 || colFi+numCols-1 >= super.numCols) return Errors.FORALIMITSBLOC;
+        if (filaIni < 0 || filaIni+numFiles-1 >= super.numFiles) return Errors.FORA_LIMITS_BLOC;
+        if (colIni < 0 || colIni+numCols-1 >= super.numCols) return Errors.FORA_LIMITS_BLOC;
+        if (filaFi < 0 || filaFi+numFiles-1 >= super.numFiles) return Errors.FORA_LIMITS_BLOC;
+        if (colFi < 0 || colFi+numCols-1 >= super.numCols) return Errors.FORA_LIMITS_BLOC;
 
         Integer chFila = filaFi-filaIni;
         Integer chCol = colFi-colIni;
@@ -186,7 +185,7 @@ public class Full extends MatriuCeles {
             }
         }
 
-        return Errors.NOERROR;
+        return Errors.NO_ERROR;
     }
 
     //potser alguna excepcio
