@@ -3,7 +3,6 @@ package domini;
 import java.lang.*;
 import java.time.LocalDate;
 
-
 public class Parser {
     /**
      * @brief Fa el parseig d'una operació associada a full provinent de la capa
