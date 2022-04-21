@@ -49,8 +49,8 @@ public class MatriuCelesEntrColTest {
 
     @Test
     public void TestGetEntrades() {
-        matriu.setCela(cela1.getCela(), cela1.getFila(), cela1.getCol());
-        matriu.setCela(cela2.getCela(), cela2.getFila(), cela2.getCol());
+        matriu.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());
+        matriu.setCela(cela2.getCela(), cela2.getFila(), cela2.getColumna());
 
         ArrayList<EntradaMatriuCeles> entradesCol = matriu.getEntradesColumna(col);
         assertEquals(mida, entradesCol.size());

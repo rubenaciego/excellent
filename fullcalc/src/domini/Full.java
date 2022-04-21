@@ -9,16 +9,12 @@ public class Full extends MatriuCeles
 
     public Full()
     {
-        super.matriuCela = new ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>>();
-        numCols = 0;
-        numFiles = 0;
+        super();
     }
 
     public Full(int files, int cols)
     {
-        super.matriuCela = new ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>>();
-        numCols = cols;
-        numFiles = files;
+        super(files, cols);
     }
 
     @Override
@@ -109,8 +105,17 @@ public class Full extends MatriuCeles
         }
     }
 
-    //fer centrat en el (0,0)
-    public MatriuCeles obteBloc(int filaIni, int colIni, int numFiles, int numCols)
+    public MatriuCeles getBloc(int filaIni, int colIni, int numFiles, int numCols)
+    {
+        return getBlocOffset(filaIni, colIni, numFiles, numCols, 0, 0);
+    }
+
+    public MatriuCeles getBlocZeroOffset(int filaIni, int colIni, int numFiles, int numCols)
+    {
+        return getBlocOffset(filaIni, colIni, numFiles, numCols, filaIni, colIni);
+    }
+
+    private MatriuCeles getBlocOffset(int filaIni, int colIni, int numFiles, int numCols, int fOffset, int cOffset)
     {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
@@ -121,7 +126,7 @@ public class Full extends MatriuCeles
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
                 Cela c = SLj.getValue();
-                bloc.setCela(c, SLi.getKey(), SLj.getKey());
+                bloc.setCela(c, SLi.getKey() - fOffset, SLj.getKey() - cOffset);
             }
         }
 

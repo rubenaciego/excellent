@@ -18,7 +18,7 @@ public class EntradaMatriuCeles
         return fila;
     }
 
-    public int getCol()
+    public int getColumna()
     {
         return columna;
     }

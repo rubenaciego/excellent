@@ -1,4 +1,5 @@
 package domini;
+import java.awt.dnd.InvalidDnDOperationException;
 import java.lang.*;
 import java.time.LocalDate;
 
@@ -21,7 +22,8 @@ public class CelaRef extends Cela
         tipusCela = TipusCela.REFERENCIAL;
     }
 
-    public Cela getRef() {
+    public Cela getRef()
+    {
         return celaReferenciada;
     }
 
@@ -52,7 +54,6 @@ public class CelaRef extends Cela
     @Override
     protected int compareType(Cela c)
     {
-        // error
-        return 0;
+        throw new UnsupportedOperationException("compareType de CelaRef mai no pot ser cridat");
     }
 }

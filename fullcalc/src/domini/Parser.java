@@ -1,6 +1,7 @@
 package domini;
 
 import java.lang.*;
+import java.text.ParseException;
 import java.time.LocalDate;
 
 public class Parser
@@ -32,21 +33,38 @@ public class Parser
      * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserFull
      */
-    public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
+    public ResultatParserFull parseOpFull(String[] opSenseParsejar)
+    {
+        // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
+        // les necessàries?
+        if (opSenseParsejar.length == 0)
+            throw new ExcepcioParser(opSenseParsejar);
+
         String[] splitted = opSenseParsejar[0].split(",");
         ResultatParserFull resultat = new ResultatParserFull();
+        TipusOperacio tipus;
 
-        TipusOperacio tipus = TipusOperacio.valueOf(splitted[0]);
+        if (splitted.length < 9)
+            throw new ExcepcioParser(opSenseParsejar);
 
-        resultat.setIdFull(Integer.parseInt(splitted[1]));
-        resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
-        resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
-        resultat.setMidaFila(Integer.parseInt(splitted[4]));
-        resultat.setMidaColumna(Integer.parseInt(splitted[5]));
-        resultat.setFilaDesti(Integer.parseInt(splitted[6]));
-        resultat.setColumnaDesti(Integer.parseInt(splitted[7]));
+        try {
+            tipus = TipusOperacio.valueOf(splitted[0]);
+        } catch (IllegalArgumentException e) {
+            throw new ExcepcioParser(opSenseParsejar);
+        }
 
-        ResultatParserCela celaModificada;
+        try {
+            resultat.setIdFull(Integer.parseInt(splitted[1]));
+            resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
+            resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
+            resultat.setMidaFila(Integer.parseInt(splitted[4]));
+            resultat.setMidaColumna(Integer.parseInt(splitted[5]));
+            resultat.setFilaDesti(Integer.parseInt(splitted[6]));
+            resultat.setColumnaDesti(Integer.parseInt(splitted[7]));
+        } catch (NumberFormatException e) {
+            throw new ExcepcioParser(opSenseParsejar);
+        }
+
         switch (tipus) {
             case OPERACIO_ARITMETICA:
                 resultat.setTipusOpAritmetica(OperacioAritmetica.valueOf(splitted[8]));
@@ -58,22 +76,34 @@ public class Parser
                 resultat.setTipusConversioUnitats(ConversioUnitats.valueOf(splitted[8]));
                 break;
             case ORDENA:
+                if (splitted.length < 10)
+                    throw new ExcepcioParser(opSenseParsejar);
+
                 resultat.setTipusOpFull(OperacioFull.ORDENA);
                 resultat.setTipusCriteriOrdenacio(CriteriOrdenacio.valueOf(splitted[8]));
                 resultat.setColumnaOrdenacio(Integer.parseInt(splitted[9]));
                 break;
             case TRUNCA_NUMERO:
+                if (splitted.length < 10)
+                    throw new ExcepcioParser(opSenseParsejar);
+
                 resultat.setTipusOpFull(OperacioFull.TRUNCA_NUMERO);
                 resultat.setTipusCriteriOrdenacio(CriteriOrdenacio.valueOf(splitted[8]));
                 resultat.setDigitsTruncar(Integer.parseInt(splitted[9]));
                 break;
             case OPERACIO_FULL:
+                if (opSenseParsejar.length < 2)
+                    throw new ExcepcioParser(opSenseParsejar);
+
                 OperacioFull op = OperacioFull.valueOf(splitted[8]);
                 resultat.setTipusOpFull(op);
 
                 if (op == OperacioFull.CERCA_OCURRENCIES)
                     resultat.setStringCercada(opSenseParsejar[1]);
                 else if (op == OperacioFull.REEMPLACA) {
+                    if (opSenseParsejar.length < 3)
+                        throw new ExcepcioParser(opSenseParsejar);
+
                     resultat.setStringCercada(opSenseParsejar[1]);
                     resultat.setStringRemplacadora(opSenseParsejar[2]);
                 } else if (op == OperacioFull.MODIFICA_CELA)
@@ -94,23 +124,43 @@ public class Parser
      * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserDocument
      */
-    public ResultatParserDocument parseOpDocument (String[]opSenseParsejar)
+    public ResultatParserDocument parseOpDocument(String[] opSenseParsejar)
     {
         String[] splitted = opSenseParsejar[0].split(",");
         ResultatParserDocument resultat = new ResultatParserDocument();
 
-        OperacioDocument op = OperacioDocument.valueOf(splitted[1]);
+        if (splitted.length < 2)
+            throw new ExcepcioParser(opSenseParsejar);
 
-        if (op == OperacioDocument.CARREGA_DOCUMENT ||
-                op == OperacioDocument.CREA_DOCUMENT)
+        OperacioDocument op;
+
+        try {
+            op = OperacioDocument.valueOf(splitted[1]);
+        } catch (IllegalArgumentException e) {
+            throw new ExcepcioParser(opSenseParsejar);
+        }
+
+        if (op == OperacioDocument.CARREGA_DOCUMENT || op == OperacioDocument.CREA_DOCUMENT) {
+            if (opSenseParsejar.length < 2)
+                throw new ExcepcioParser(opSenseParsejar);
+
             resultat.setNomDocument(opSenseParsejar[1]);
-        else if (op == OperacioDocument.ELIMINA_FULL)
-            resultat.setIdFull(Integer.parseInt(splitted[2]));
+        }
+        else if (op == OperacioDocument.ELIMINA_FULL) {
+            if (splitted.length < 3)
+                throw new ExcepcioParser(opSenseParsejar);
+
+            try {
+                resultat.setIdFull(Integer.parseInt(splitted[2]));
+            } catch (NumberFormatException e) {
+                throw new ExcepcioParser(opSenseParsejar);
+            }
+        }
 
         return resultat;
     }
 
-    public TipusOperacio parseTipusOperacio (String opSenseParsejar)
+    public TipusOperacio parseTipusOperacio(String opSenseParsejar)
     {
         int pos = opSenseParsejar.indexOf(',');
         String operacio = opSenseParsejar.substring(0, pos);
@@ -118,19 +168,19 @@ public class Parser
         try {
             return TipusOperacio.valueOf(operacio);
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException();
+            String[] v = {opSenseParsejar};
+            throw new ExcepcioParser(v);
         }
     }
 
-    private ResultatParserCela parseResultatCela (String inputUsuari)
+    private ResultatParserCela parseResultatCela(String inputUsuari)
     {
         ResultatParserCela resultat = new ResultatParserCela();
 
         if (inputUsuari.matches("-?\\d+(\\.\\d+)?")) {
             resultat.setValorNumeric(Double.parseDouble(inputUsuari));
             resultat.setTipus(Cela.TipusCela.NUMERICA);
-        } else if (inputUsuari.matches(("^(0?[1-9]|[12][0-9]|3" +
-                "[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
+        } else if (inputUsuari.matches(("^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
             String[] DDMMAAAA = inputUsuari.split("/");
 
             resultat.setData(LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
@@ -138,16 +188,23 @@ public class Parser
                     Integer.parseInt(DDMMAAAA[2])));
             resultat.setTipus(Cela.TipusCela.DATADA);
         } else if (inputUsuari.startsWith("=")) {
-            String[] ref =
-                    inputUsuari.split("=")[0].split(":");
-            resultat.setColRef(Integer.parseInt(ref[0]));
-            resultat.setFilaRef(Integer.parseInt(ref[1]));
+            int index = inputUsuari.indexOf(':');
+            String fila = inputUsuari.substring(1, index);
+            String col = inputUsuari.substring(index + 1);
+
+            try {
+                resultat.setFilaRef(Integer.parseInt(fila));
+                resultat.setColRef(Integer.parseInt(col));
+            } catch (NumberFormatException e) {
+                String[] v = {inputUsuari};
+                throw new ExcepcioParser(v);
+            }
             resultat.setTipus(Cela.TipusCela.REFERENCIAL);
         } else {
             resultat.setInputUsuari(inputUsuari);
             resultat.setTipus(Cela.TipusCela.TEXTUAL);
         }
-        
+
         return resultat;
     }
 }

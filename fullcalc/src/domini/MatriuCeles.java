@@ -54,10 +54,10 @@ public class MatriuCeles
         if (blocInvalid(fila, col, 1, 1))
             throw new ExcepcioForaLimits(fila, col, 1, 1, this.numFiles, this.numCols);
 
-        if (!matriuCela.containsKey(col)) {
-            matriuCela.put(col, new ConcurrentSkipListMap<Integer, Cela>());
-        }
         if (novaCela != null) {
+            if (!matriuCela.containsKey(col))
+                matriuCela.put(col, new ConcurrentSkipListMap<Integer, Cela>());
+
             matriuCela.get(col).put(fila, novaCela);
         }
     }
@@ -94,9 +94,9 @@ public class MatriuCeles
                 ConcurrentNavigableMap.Entry<Integer, Cela> en = j.next();
                 Cela c = en.getValue();
                 j.remove();
-                if (!(en.getKey() == fila)) {
+
+                if (!(en.getKey() == fila))
                     setCela(c, en.getKey() - 1, enSkipList.getKey());
-                }
             }
         }
 
@@ -108,9 +108,9 @@ public class MatriuCeles
         if (col >= numCols || col < 0)
             throw new ExcepcioFilaColumnaInvalida(col, numCols);
 
-        if (matriuCela.containsKey(col)) {
+        if (matriuCela.containsKey(col))
             matriuCela.get(col).clear();
-        }
+
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> tail = matriuCela.tailMap(col);
 
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> enSkipList : tail.entrySet()) {
@@ -119,9 +119,10 @@ public class MatriuCeles
                 ConcurrentSkipListMap.Entry<Integer, Cela> en = j.next();
                 Cela c = en.getValue();
                 j.remove();
-                if (!matriuCela.containsKey(enSkipList.getKey() - 1)) {
+
+                if (!matriuCela.containsKey(enSkipList.getKey() - 1))
                     matriuCela.put(enSkipList.getKey() - 1, new ConcurrentSkipListMap<Integer, Cela>());
-                }
+
                 setCela(c, en.getKey(), enSkipList.getKey() - 1);
             }
         }

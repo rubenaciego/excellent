@@ -37,14 +37,14 @@ public class Document
         return dataModificacio;
     }
 
-    public int getNumFulls()
-    {
-        return fulls.size();
-    }
-
     public void setDataModificacio(LocalDateTime dataModificacio)
     {
         this.dataModificacio = dataModificacio;
+    }
+
+    public int getNumFulls()
+    {
+        return fulls.size();
     }
 
     /**
@@ -52,8 +52,9 @@ public class Document
      */
     public void desa()
     {
-        dataModificacio = LocalDateTime.now();
         // mock
+        dataModificacio = LocalDateTime.now();
+        throw new UnsupportedOperationException("Desar document no implementat");
     }
 
     /**

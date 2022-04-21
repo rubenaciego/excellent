@@ -26,13 +26,17 @@ public class Operador
     public MatriuCeles extreuHoroscop(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 String signe = horoscop(e.getCela().getData().getDayOfMonth(),
                         e.getCela().getData().getMonthValue());
                 CelaText novaCela = new CelaText("extreuHoroscop(" + e.getCela().getInputUsuari() + ")",
                         signe);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
         return bloc;
@@ -41,11 +45,15 @@ public class Operador
     public MatriuCeles extreuAny(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 double any = e.getCela().getData().getYear();
                 CelaNum novaCela = new CelaNum("extreuAny(" + e.getCela().getInputUsuari() + ")", any);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
         return bloc;
@@ -54,11 +62,15 @@ public class Operador
     public MatriuCeles extreuMes(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 double mes = e.getCela().getData().getMonthValue();
                 CelaNum novaCela = new CelaNum("extreuMes(" + e.getCela().getInputUsuari() + ")", mes);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
         return bloc;
@@ -67,11 +79,15 @@ public class Operador
     public MatriuCeles extreuDia(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 double dia = e.getCela().getData().getDayOfMonth();
                 CelaNum novaCela = new CelaNum("extreuDia(" + e.getCela().getInputUsuari() + ")", dia);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
         return bloc;
@@ -80,6 +96,8 @@ public class Operador
     public MatriuCeles extreuDiaSetmana(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         final Locale locale = new Locale("ca", "ES");
 
         for (EntradaMatriuCeles e : entrades) {
@@ -87,7 +105,9 @@ public class Operador
                 DayOfWeek diaSet = e.getCela().getData().getDayOfWeek();
                 CelaText novaCela = new CelaText("extreuDiaSetmana(" + e.getCela().getInputUsuari() + ")",
                         diaSet.getDisplayName(TextStyle.FULL_STANDALONE, locale));
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
         return bloc;
@@ -96,6 +116,7 @@ public class Operador
     public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getNum() != null) {
@@ -131,13 +152,14 @@ public class Operador
                         val = Math.tanh(num);
                         break;
                     default:
-                        // error
-                        break;
+                        throw new IncompatibleClassChangeError("Operació aritmètica unària" + op + " desconeguda");
                 }
 
                 CelaNum novaCela = new CelaNum("executaOperacioAritmeticaUnaria(" +
                         e.getCela().getInputUsuari() + ", " + op.toString() + ")", val);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
 
@@ -147,18 +169,17 @@ public class Operador
     public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op)
     {
         double res = 0.0;
-        
-        if (op.compareTo(OperacioEstadistica.COVARIANCIA) < 0)
-        {
+
+        if (op.compareTo(OperacioEstadistica.COVARIANCIA) >= 0) {
             // podriem canviar-ho
-            if (bloc.getNumCols() != 2)
-            {
-                // error
+            if (bloc.getNumCols() != 2) {
+                throw new ExcepcioOperador("Error en l'operador: operació estadística de dues variables " + op +
+                        " requereix exactament dues columnes");
             }
-            
+
             ArrayList<EntradaMatriuCeles> entradesX = bloc.getEntradesColumna(0);
             ArrayList<EntradaMatriuCeles> entradesY = bloc.getEntradesColumna(1);
-            
+
             ArrayList<Double> dadesX = new ArrayList<>(entradesX.size());
             ArrayList<Double> dadesY = new ArrayList<>(entradesY.size());
 
@@ -171,9 +192,8 @@ public class Operador
                 Double d = e.getCela().getNum();
                 if (d != null) dadesY.add(d);
             }
-            
-            switch (op)
-            {
+
+            switch (op) {
                 case COVARIANCIA:
                     res = covariancia(dadesX, dadesY);
                     break;
@@ -181,9 +201,7 @@ public class Operador
                     res = coeficientPearson(dadesX, dadesY);
                     break;
             }
-        }
-        else
-        {
+        } else {
             ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
             ArrayList<Double> dades = new ArrayList<>(entrades.size());
 
@@ -191,7 +209,7 @@ public class Operador
                 Double d = e.getCela().getNum();
                 if (d != null) dades.add(d);
             }
-            
+
             switch (op) {
                 case MITJANA:
                     res = mitjana(dades);
@@ -206,8 +224,7 @@ public class Operador
                     res = desviacioEstandard(dades);
                     break;
                 default:
-                    // error
-                    break;
+                    throw new IncompatibleClassChangeError("Operació estadística" + op + " desconeguda");
             }
         }
 
@@ -222,13 +239,17 @@ public class Operador
     public MatriuCeles truncaNumero(MatriuCeles bloc, int n)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getNum() != null) {
                 double tmp = e.getCela().getNum() * Math.pow(10.0, n);
                 double truncat = (double) (int) tmp / Math.pow(10.0, n);
                 CelaNum novaCela = new CelaNum("truncarNUmero(" + e.getCela().getInputUsuari() + ", " +
                         n + ")", truncat);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
         return bloc;
@@ -237,6 +258,7 @@ public class Operador
     public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getNum() != null) {
@@ -295,13 +317,14 @@ public class Operador
                         val = num / 100.0;
                         break;
                     default:
-                        // error
-                        break;
+                        throw new IncompatibleClassChangeError("Conversió d'unitats " + conv + " desconeguda");
                 }
 
                 CelaNum novaCela = new CelaNum("convertexUnitats(" + e.getCela().getInputUsuari() + ", " +
                         conv + ")", val);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getColumna());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
 
@@ -323,11 +346,11 @@ public class Operador
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getCol());
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             } else {
                 CelaNum c = new CelaNum("extreuLongitudText(" + e.getCela().getInputUsuari() + ")",
                         (double) text.length());
-                result.setCela(c, e.getFila(), e.getCol());
+                result.setCela(c, e.getFila(), e.getColumna());
             }
         }
 
@@ -358,7 +381,7 @@ public class Operador
                 cela.put("occurrences", count);
                 cela.put("indices", indices);
 
-                obj.put(e.getFila() + ":" + e.getCol(), cela);
+                obj.put(e.getFila() + ":" + e.getColumna(), cela);
                 total += count;
             }
         }
@@ -382,11 +405,11 @@ public class Operador
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getCol());
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("converteixMajuscules(" + e.getCela().getInputUsuari() + ")",
                         text.toUpperCase());
-                result.setCela(c, e.getFila(), e.getCol());
+                result.setCela(c, e.getFila(), e.getColumna());
             }
         }
 
@@ -403,11 +426,11 @@ public class Operador
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getCol());
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("converteixMinuscules(" + e.getCela().getInputUsuari() + ")",
                         text.toLowerCase());
-                result.setCela(c, e.getFila(), e.getCol());
+                result.setCela(c, e.getFila(), e.getColumna());
             }
         }
 
@@ -420,7 +443,7 @@ public class Operador
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades)
-            result.setCela(e.getCela(), e.getCol(), e.getFila());
+            result.setCela(e.getCela(), e.getColumna(), e.getFila());
 
         return result;
     }
@@ -435,11 +458,11 @@ public class Operador
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getCol());
+                result.setCela(e.getCela(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("reemplaça(" + e.getCela().getInputUsuari() + ", " +
                         aCercar + ", " + aSubstituir + ")", text.replaceAll(aCercar, aSubstituir));
-                result.setCela(c, e.getFila(), e.getCol());
+                result.setCela(c, e.getFila(), e.getColumna());
             }
         }
 
@@ -488,7 +511,7 @@ public class Operador
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades)
-            result.setCela(e.getCela(), nouOrdre.get(e.getFila()), e.getCol());
+            result.setCela(e.getCela(), nouOrdre.get(e.getFila()), e.getColumna());
 
         return result;
     }
@@ -560,56 +583,60 @@ public class Operador
         }
         return astro_sign;
     }
-    
+
     private double mitjana(ArrayList<Double> dades)
     {
         double res = 0.0;
-        
+
         for (double d : dades)
             res += d;
-                
-        res /= (double)dades.size();
+
+        res /= (double) dades.size();
         return res;
     }
-    
+
     private double mediana(ArrayList<Double> dades)
     {
         Collections.sort(dades);
         return dades.get(dades.size() / 2);
     }
-    
+
     private double variancia(ArrayList<Double> dades)
     {
         double mitj = mitjana(dades);
         double res = 0.0;
-        
+
         for (double d : dades)
             res += (d - mitj) * (d - mitj);
-        
-        res /= (double)dades.size();
+
+        res /= (double) dades.size();
         return res;
     }
-    
+
     private double covariancia(ArrayList<Double> x, ArrayList<Double> y)
     {
+        if (x.size() != y.size())
+            throw new ExcepcioOperador("Error en l'operador: quantitat de dades diferents al calcular la covariança");
+
         double mx = mitjana(x);
         double my = mitjana(y);
         double res = 0.0;
-        
+
         for (int i = 0; i < x.size(); ++i)
             res += (x.get(i) - mx) * (y.get(i) - my);
-        
-        res /= (double)x.size();
+
+        res /= (double) x.size();
         return res;
     }
-    
+
     private double desviacioEstandard(ArrayList<Double> dades)
     {
         return Math.sqrt(variancia(dades));
     }
-    
+
     private double coeficientPearson(ArrayList<Double> x, ArrayList<Double> y)
     {
+        // Comprovar divisions entre 0?
         return covariancia(x, y) / Math.sqrt(variancia(x) * variancia(y));
     }
 }

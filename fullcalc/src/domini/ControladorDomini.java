@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ControladorDomini
 {
     private Document document;
-    private ArrayList<ControladorFull> controladorsFull;
+    private final ArrayList<ControladorFull> controladorsFull;
     private final Parser parser;
 
     /**
@@ -31,7 +31,6 @@ public class ControladorDomini
         controladorsFull = new ArrayList<ControladorFull>();
     }
 
-
     public void creaDocument(String nomDocument)
     {
         document = new Document(nomDocument);
@@ -40,6 +39,7 @@ public class ControladorDomini
     public void carregaDocument(String nomDocument)
     {
         // mock
+        throw new UnsupportedOperationException("carregaDocument encara no implementat");
     }
 
     public void tancaDocument()
@@ -77,11 +77,12 @@ public class ControladorDomini
                 document.desa();
                 break;
             default:
-                break;
+                throw new IncompatibleClassChangeError("Operació " + resultat.getTipusOpDocument() + " desconeguda");
         }
     }
 
-    public void executaOperacio(String[] opSenseParsejar) {
+    public void executaOperacio(String[] opSenseParsejar)
+    {
         TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
         if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {

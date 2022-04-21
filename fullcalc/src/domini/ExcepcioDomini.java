@@ -6,7 +6,9 @@ public class ExcepcioDomini extends RuntimeException
     {
         FILA_COLUMNA_INVALIDA,
         FORA_LIMITS,
-        INDEX_FULL_INVALID
+        INDEX_FULL_INVALID,
+        FORMAT_PARSER_INVALID,
+        OPERADOR
     }
 
     private final TipusError error;
