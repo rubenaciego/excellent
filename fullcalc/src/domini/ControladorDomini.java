@@ -52,40 +52,42 @@ public class ControladorDomini
      * * /pre resultat és del tipus ResultatParserDocument
      * /post Executa l'operació codificada dins resultat
      */
-    public void executaOperacio(ResultatParserDocument resultat)
+    private void executaOperacioDocument(ResultatParserDocument resultat)
     {
-        if (resultat.getTipusOpDocument() == OperacioDocument.AFEGEIX_FULL) {
-            document.afegeixFull();
-        } else if (resultat.getTipusOpDocument() == OperacioDocument.ELIMINA_FULL) {
-            document.eliminaFull(resultat.getIdFull());
-        } else if (resultat.getTipusOpDocument() == OperacioDocument.DESA_DOCUMENT) {
-            document.desa();
+        switch (resultat.getTipusOpDocument()) {
+            case CREA_DOCUMENT:
+                creaDocument(resultat.getNomDocument());
+                break;
+            case CARREGA_DOCUMENT:
+                carregaDocument(resultat.getNomDocument());
+                break;
+            case TANCA_DOCUMENT:
+                tancaDocument();
+                break;
+            case AFEGEIX_FULL:
+                document.afegeixFull();
+                controladorsFull.add(new ControladorFull(
+                        document.getFull(document.getNumFulls() - 1)));
+                break;
+            case ELIMINA_FULL:
+                document.eliminaFull(resultat.getIdFull());
+                controladorsFull.remove(resultat.getIdFull());
+                break;
+            case DESA_DOCUMENT:
+                document.desa();
+                break;
+            default:
+                break;
         }
     }
 
-    public void executaOperacio(String[] opSenseParsejar)
-    {
-        /* Hem de distingir dos tipus d'operacions
-            - Operacions de document: s'executen AQUI mateix
-            - Operacions de full: es passen al controlador full adient
+    public void executaOperacio(String[] opSenseParsejar) {
+        TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
-            PD: hauriem d'ajuntar aquesta funció i la de dalt
-         */
-        // D'alguna manera també hauríem de detectar quines operacions modifiquen el full/doc (si no totes)
-        // i actualitzar la data de modificacio del document
-        if (opSenseParsejar[0].startsWith("8")) {
-            // Aqui falten crear, eliminar fulls
+        if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
             ResultatParserDocument resultat =
-                    parser.parseOpDocument(opSenseParsejar[0]);
-            if (resultat.getTipusOpDocument() == OperacioDocument.CREA_DOCUMENT) {
-                creaDocument(resultat.getNomDocument());
-            } else if (resultat.getTipusOpDocument() == OperacioDocument.CARREGA_DOCUMENT) {
-                carregaDocument(resultat.getNomDocument());
-            } else if (resultat.getTipusOpDocument() == OperacioDocument.TANCA_DOCUMENT) {
-                tancaDocument();
-            } else {
-                executaOperacio(resultat);
-            }
+                    parser.parseOpDocument(opSenseParsejar);
+            executaOperacioDocument(resultat);
         } else {
             ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
             controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);

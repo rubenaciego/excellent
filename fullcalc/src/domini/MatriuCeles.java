@@ -14,12 +14,14 @@ public class MatriuCeles
 
     public MatriuCeles()
     {
+        matriuCela = new ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>>();
         numFiles = 0;
         numCols = 0;
     }
 
     public MatriuCeles(int numFiles, int numCols)
     {
+        matriuCela = new ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>>();
         this.numCols = numCols;
         this.numFiles = numFiles;
     }
@@ -50,7 +52,9 @@ public class MatriuCeles
         }
         numFiles = Math.max(numFiles, fila);
         numCols = Math.max(numCols, col);
-        matriuCela.get(col).put(fila, novaCela);
+        if (novaCela != null) {
+            matriuCela.get(col).put(fila, novaCela);
+        }
     }
 
     public void esborraCela(int fila, int col)
@@ -77,10 +81,12 @@ public class MatriuCeles
     {
         ArrayList<EntradaMatriuCeles> entrades = new ArrayList<EntradaMatriuCeles>();
 
-        ConcurrentSkipListMap<Integer, Cela> SL = matriuCela.get(col);
-        for (ConcurrentSkipListMap.Entry<Integer, Cela> SLi : SL.entrySet()) {
-            EntradaMatriuCeles entry = new EntradaMatriuCeles(col, SLi.getKey(), SLi.getValue());
-            entrades.add(entry);
+        if (matriuCela.containsKey(col)) {
+            ConcurrentSkipListMap<Integer, Cela> SL = matriuCela.get(col);
+            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLi : SL.entrySet()) {
+                EntradaMatriuCeles entry = new EntradaMatriuCeles(col, SLi.getKey(), SLi.getValue());
+                entrades.add(entry);
+            }
         }
         return entrades;
     }
