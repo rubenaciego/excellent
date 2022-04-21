@@ -21,6 +21,10 @@ public class CelaRef extends Cela
         tipusCela = TipusCela.REFERENCIAL;
     }
 
+    public Cela getRef() {
+        return celaReferenciada;
+    }
+
     @Override
     public Double getNum()
     {
