@@ -16,6 +16,7 @@ public class MatriuCelesGetSetTest {
         matriu = new MatriuCeles();
     }
 
+    //Falta afegir fila i col, i afegir testos parametrized d'eliminar fila i columna
     @Test
     public void TestConstructorGetNumFilesCols() {
         matriu = new MatriuCeles(15, 10);
@@ -30,7 +31,6 @@ public class MatriuCelesGetSetTest {
         assertEquals(celaText, matriu.getCela(4, 5));
     }
 
-    // Fer un cas fora limits, excepcions tb haurien d'estar a MatriuCeles
     @Test
     public void TestSetCelaGetCela2() {
         CelaNum celaNum = new CelaNum("546.7", 546.7);
