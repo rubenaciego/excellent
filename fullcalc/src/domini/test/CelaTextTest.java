@@ -1,9 +1,11 @@
 package domini.test;
 import domini.CelaText;
+import domini.Cela;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 
+//falta el compare i compareType
 public class CelaTextTest {
     CelaText celaText;
 
@@ -18,6 +20,7 @@ public class CelaTextTest {
         celaText = new CelaText(input);
         assertEquals("Bon dia!", celaText.getInputUsuari());
         assertEquals( "Bon dia!", celaText.getText());
+        assertEquals(Cela.TipusCela.TEXTUAL, celaText.getTipusCela());
     }
 
     @Test
@@ -27,6 +30,7 @@ public class CelaTextTest {
         celaText = new CelaText(input, text);
         assertEquals("convMin(HolA)!", celaText.getInputUsuari());
         assertEquals( "hola", celaText.getText());
+        assertEquals(Cela.TipusCela.TEXTUAL, celaText.getTipusCela());
     }
 
     @Test

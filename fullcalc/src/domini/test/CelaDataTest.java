@@ -1,5 +1,6 @@
 package domini.test;
 
+import domini.Cela;
 import domini.CelaData;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+//falta el compare
 public class CelaDataTest {
     CelaData celaData;
 
@@ -25,6 +27,7 @@ public class CelaDataTest {
         celaData = new CelaData(input, data);
         assertEquals("24/04/2022", celaData.getInputUsuari());
         assertEquals( LocalDate.parse("2022-04-24"), celaData.getData());
+        assertEquals(Cela.TipusCela.DATADA, celaData.getTipusCela());
     }
 
     @Test
