@@ -136,7 +136,7 @@ public class MatriuCeles
 
         for (ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : matriuCela.entrySet()) {
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
-                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLi.getKey(), SLj.getKey(), SLj.getValue());
+                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLj.getKey(), SLi.getKey(), SLj.getValue());
                 entrades.add(entry);
             }
         }
@@ -153,7 +153,7 @@ public class MatriuCeles
         if (matriuCela.containsKey(col)) {
             ConcurrentSkipListMap<Integer, Cela> SL = matriuCela.get(col);
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLi : SL.entrySet()) {
-                EntradaMatriuCeles entry = new EntradaMatriuCeles(col, SLi.getKey(), SLi.getValue());
+                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLi.getKey(), col, SLi.getValue());
                 entrades.add(entry);
             }
         }

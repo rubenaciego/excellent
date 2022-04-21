@@ -13,15 +13,28 @@ public class MatriuCelesGetSetTest {
 
     @Before
     public void setUp() {
-        matriu = new MatriuCeles();
+        matriu = new MatriuCeles(20, 20);
     }
 
-    //Falta afegir fila i col, i afegir testos parametrized d'eliminar fila i columna
     @Test
     public void TestConstructorGetNumFilesCols() {
         matriu = new MatriuCeles(15, 10);
         assertEquals(15, matriu.getNumFiles());
         assertEquals(10, matriu.getNumCols());
+    }
+
+    @Test
+    public void TestAfegeixFila() {
+        matriu = new MatriuCeles(5, 10);
+        matriu.afegeixFila();
+        assertEquals(6, matriu.getNumFiles());
+    }
+
+    @Test
+    public void TestAfegeixCol() {
+        matriu = new MatriuCeles(5, 10);
+        matriu.afegeixColumna();
+        assertEquals(11, matriu.getNumCols());
     }
 
     @Test

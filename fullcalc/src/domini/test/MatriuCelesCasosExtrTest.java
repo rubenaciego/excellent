@@ -6,14 +6,9 @@ import domini.MatriuCeles;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MatriuCelesCasosExtr {
+public class MatriuCelesCasosExtrTest {
 
     MatriuCeles matriu;
-
-    @Before
-    public void setUp() {
-        matriu = new MatriuCeles();
-    }
 
     @Test(expected = ExcepcioForaLimits.class)
     public void TestSetCelaFora1() {
@@ -63,5 +58,17 @@ public class MatriuCelesCasosExtr {
     public void TestGetEntradesColFora2() {
         matriu = new MatriuCeles(8, 9);
         matriu.getEntradesColumna(-6);
+    }
+
+    @Test(expected = ExcepcioFilaColumnaInvalida.class)
+    public void TestEliminaFila() {
+        matriu = new MatriuCeles(0, 4);
+        matriu.eliminaFila(0);
+    }
+
+    @Test(expected = ExcepcioFilaColumnaInvalida.class)
+    public void TestEliminaColumna() {
+        matriu = new MatriuCeles(7, 4);
+        matriu.eliminaColumna(5);
     }
 }

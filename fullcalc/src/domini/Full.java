@@ -44,7 +44,7 @@ public class Full extends MatriuCeles
             subsubSL.clear();
         }
     }
-
+//Mirar si s'ha de fer copy expres
     public void copiaBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi)
     {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
@@ -120,13 +120,15 @@ public class Full extends MatriuCeles
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
-        MatriuCeles bloc = new MatriuCeles();
+        MatriuCeles bloc = new MatriuCeles(filaIni-fOffset+numFiles, colIni-cOffset+numCols);
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
 
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
-            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
+            ConcurrentSkipListMap<Integer, Cela> T = SLi.getValue();
+            ConcurrentNavigableMap<Integer, Cela> subsubSL = T.subMap(filaIni, filaIni + numFiles);
+            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : subsubSL.entrySet()) {
                 Cela c = SLj.getValue();
-                bloc.setCela(c, SLi.getKey() - fOffset, SLj.getKey() - cOffset);
+                bloc.setCela(c, SLj.getKey() - fOffset, SLi.getKey() - cOffset);
             }
         }
 
