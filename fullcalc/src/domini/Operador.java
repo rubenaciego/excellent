@@ -26,13 +26,17 @@ public class Operador
     public MatriuCeles extreuHoroscop(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 String signe = horoscop(e.getCela().getData().getDayOfMonth(),
                         e.getCela().getData().getMonthValue());
                 CelaText novaCela = new CelaText("extreuHoroscop(" + e.getCela().getInputUsuari() + ")",
                         signe);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
         return bloc;
@@ -41,11 +45,15 @@ public class Operador
     public MatriuCeles extreuAny(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 double any = e.getCela().getData().getYear();
                 CelaNum novaCela = new CelaNum("extreuAny(" + e.getCela().getInputUsuari() + ")", any);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
         return bloc;
@@ -54,11 +62,15 @@ public class Operador
     public MatriuCeles extreuMes(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 double mes = e.getCela().getData().getMonthValue();
                 CelaNum novaCela = new CelaNum("extreuMes(" + e.getCela().getInputUsuari() + ")", mes);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
         return bloc;
@@ -67,11 +79,15 @@ public class Operador
     public MatriuCeles extreuDia(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getData() != null) {
                 double dia = e.getCela().getData().getDayOfMonth();
                 CelaNum novaCela = new CelaNum("extreuDia(" + e.getCela().getInputUsuari() + ")", dia);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
         return bloc;
@@ -80,6 +96,8 @@ public class Operador
     public MatriuCeles extreuDiaSetmana(MatriuCeles bloc)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         final Locale locale = new Locale("ca", "ES");
 
         for (EntradaMatriuCeles e : entrades) {
@@ -87,7 +105,9 @@ public class Operador
                 DayOfWeek diaSet = e.getCela().getData().getDayOfWeek();
                 CelaText novaCela = new CelaText("extreuDiaSetmana(" + e.getCela().getInputUsuari() + ")",
                         diaSet.getDisplayName(TextStyle.FULL_STANDALONE, locale));
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
         return bloc;
@@ -96,6 +116,7 @@ public class Operador
     public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getNum() != null) {
@@ -137,7 +158,9 @@ public class Operador
 
                 CelaNum novaCela = new CelaNum("executaOperacioAritmeticaUnaria(" +
                         e.getCela().getInputUsuari() + ", " + op.toString() + ")", val);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
 
@@ -222,13 +245,17 @@ public class Operador
     public MatriuCeles truncaNumero(MatriuCeles bloc, int n)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
+
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getNum() != null) {
                 double tmp = e.getCela().getNum() * Math.pow(10.0, n);
                 double truncat = (double) (int) tmp / Math.pow(10.0, n);
                 CelaNum novaCela = new CelaNum("truncarNUmero(" + e.getCela().getInputUsuari() + ", " +
                         n + ")", truncat);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
         return bloc;
@@ -237,6 +264,7 @@ public class Operador
     public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv)
     {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+        MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
         for (EntradaMatriuCeles e : entrades) {
             if (e.getCela().getNum() != null) {
@@ -301,7 +329,9 @@ public class Operador
 
                 CelaNum novaCela = new CelaNum("convertexUnitats(" + e.getCela().getInputUsuari() + ", " +
                         conv + ")", val);
-                bloc.setCela(novaCela, e.getFila(), e.getCol());
+                result.setCela(novaCela, e.getFila(), e.getCol());
+            } else {
+                result.setCela(e.getCela(), e.getFila(), e.getCol());
             }
         }
 
@@ -599,7 +629,7 @@ public class Operador
         for (int i = 0; i < x.size(); ++i)
             res += (x.get(i) - mx) * (y.get(i) - my);
         
-        res /= (double)dades.size();
+        res /= (double) dades.size();
         return res;
     }
     
