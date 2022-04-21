@@ -14,8 +14,8 @@ public class Document
     private LocalDateTime dataModificacio;
     private ArrayList<Full> fulls;
 
-    private final int defaultFiles = 100;
-    private final int defaultCols = 100;
+    private final int DEFAULT_FILES = 100;
+    private final int DEFAULT_COLS = 100;
 
     /**
      * @param nom Nom del document
@@ -55,7 +55,7 @@ public class Document
      */
     public void afegeixFull()
     {
-        fulls.add(new Full(defaultFiles, defaultCols));
+        fulls.add(new Full(DEFAULT_FILES, DEFAULT_COLS));
     }
 
     /**
