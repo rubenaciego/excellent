@@ -2,7 +2,7 @@ package domini;
 
 import java.time.LocalDate;
 
-public class ContingutCelaModificada
+public class ResultatParserCela
 {
     String inputUsuari;
     double valorNumeric;

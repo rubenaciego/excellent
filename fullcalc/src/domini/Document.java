@@ -37,6 +37,11 @@ public class Document
         return dataModificacio;
     }
 
+    public int getNumFulls()
+    {
+        return fulls.size();
+    }
+
     public void setDataModificacio(LocalDateTime dataModificacio)
     {
         this.dataModificacio = dataModificacio;
@@ -47,6 +52,7 @@ public class Document
      */
     public void desa()
     {
+        dataModificacio = LocalDateTime.now();
         // mock
     }
 

@@ -148,7 +148,7 @@ public class Operador
     {
         double res = 0.0;
         
-        if (op >= COVARIANCIA)
+        if (op.compareTo(OperacioEstadistica.COVARIANCIA) < 0)
         {
             // podriem canviar-ho
             if (bloc.getNumCols() != 2)
@@ -156,20 +156,20 @@ public class Operador
                 // error
             }
             
-            ArrayList<EntradaMatriuCeles> entradesX = bloc.getCol(0);
-            ArrayList<EntradaMatriuCeles> entradesY = bloc.getCol(1);
+            ArrayList<EntradaMatriuCeles> entradesX = bloc.getEntradesColumna(0);
+            ArrayList<EntradaMatriuCeles> entradesY = bloc.getEntradesColumna(1);
             
             ArrayList<Double> dadesX = new ArrayList<>(entradesX.size());
             ArrayList<Double> dadesY = new ArrayList<>(entradesY.size());
 
-            for (EntradaMatriuCeles e : entrades) {
+            for (EntradaMatriuCeles e : entradesX) {
                 Double d = e.getCela().getNum();
-                if (d != null) dades.add(d);
+                if (d != null) dadesX.add(d);
             }
 
-            for (EntradaMatriuCeles e : entrades) {
+            for (EntradaMatriuCeles e : entradesY) {
                 Double d = e.getCela().getNum();
-                if (d != null) dades.add(d);
+                if (d != null) dadesY.add(d);
             }
             
             switch (op)
@@ -574,7 +574,7 @@ public class Operador
     
     private double mediana(ArrayList<Double> dades)
     {
-        dades.sort();
+        Collections.sort(dades);
         return dades.get(dades.size() / 2);
     }
     
@@ -599,7 +599,7 @@ public class Operador
         for (int i = 0; i < x.size(); ++i)
             res += (x.get(i) - mx) * (y.get(i) - my);
         
-        res /= (double)dades.size();
+        res /= (double)x.size();
         return res;
     }
     
