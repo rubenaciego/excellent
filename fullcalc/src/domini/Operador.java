@@ -146,33 +146,69 @@ public class Operador
 
     public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op)
     {
-
-        ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
-        ArrayList<Double> dades = new ArrayList<>(entrades.size());
-
-        for (EntradaMatriuCeles e : entrades) {
-            Double d = e.getCela().getNum();
-            if (d != null) dades.add(d);
-        }
-
         double res = 0.0;
-
-        switch (op) {
-            case MITJANA:
-                break;
-            case MEDIANA:
-                break;
-            case DESVIACIO_ESTANDARD:
-                break;
-            case VARIANCIA:
-                break;
-            case COVARIANCIA:
-                break;
-            case COEFICIENT_PEARSON:
-                break;
-            default:
+        
+        if (op >= COVARIANCIA)
+        {
+            // podriem canviar-ho
+            if (bloc.getNumCols() != 2)
+            {
                 // error
-                break;
+            }
+            
+            ArrayList<EntradaMatriuCeles> entradesX = bloc.getCol(0);
+            ArrayList<EntradaMatriuCeles> entradesY = bloc.getCol(1);
+            
+            ArrayList<Double> dadesX = new ArrayList<>(entradesX.size());
+            ArrayList<Double> dadesY = new ArrayList<>(entradesY.size());
+
+            for (EntradaMatriuCeles e : entrades) {
+                Double d = e.getCela().getNum();
+                if (d != null) dades.add(d);
+            }
+
+            for (EntradaMatriuCeles e : entrades) {
+                Double d = e.getCela().getNum();
+                if (d != null) dades.add(d);
+            }
+            
+            switch (op)
+            {
+                case COVARIANCIA:
+                    res = covariancia(dadesX, dadesY);
+                    break;
+                case COEFICIENT_PEARSON:
+                    res = coeficientPearson(dadesX, dadesY);
+                    break;
+            }
+        }
+        else
+        {
+            ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
+            ArrayList<Double> dades = new ArrayList<>(entrades.size());
+
+            for (EntradaMatriuCeles e : entrades) {
+                Double d = e.getCela().getNum();
+                if (d != null) dades.add(d);
+            }
+            
+            switch (op) {
+                case MITJANA:
+                    res = mitjana(dades);
+                    break;
+                case MEDIANA:
+                    res = mediana(dades);
+                    break;
+                case VARIANCIA:
+                    res = variancia(dades);
+                    break;
+                case DESVIACIO_ESTANDARD:
+                    res = desviacioEstandard(dades);
+                    break;
+                default:
+                    // error
+                    break;
+            }
         }
 
         // mirar com posar el bloc
@@ -523,5 +559,57 @@ public class Operador
                 astro_sign = "Sagitari";
         }
         return astro_sign;
+    }
+    
+    private double mitjana(ArrayList<Double> dades)
+    {
+        double res = 0.0;
+        
+        for (double d : dades)
+            res += d;
+                
+        res /= (double)dades.size();
+        return res;
+    }
+    
+    private double mediana(ArrayList<Double> dades)
+    {
+        dades.sort();
+        return dades.get(dades.size() / 2);
+    }
+    
+    private double variancia(ArrayList<Double> dades)
+    {
+        double mitj = mitjana(dades);
+        double res = 0.0;
+        
+        for (double d : dades)
+            res += (d - mitj) * (d - mitj);
+        
+        res /= (double)dades.size();
+        return res;
+    }
+    
+    private double covariancia(ArrayList<Double> x, ArrayList<Double> y)
+    {
+        double mx = mitjana(x);
+        double my = mitjana(y);
+        double res = 0.0;
+        
+        for (int i = 0; i < x.size(); ++i)
+            res += (x.get(i) - mx) * (y.get(i) - my);
+        
+        res /= (double)dades.size();
+        return res;
+    }
+    
+    private double desviacioEstandard(ArrayList<Double> dades)
+    {
+        return Math.sqrt(variancia(dades));
+    }
+    
+    private double coeficientPearson(ArrayList<Double> x, ArrayList<Double> y)
+    {
+        return covariancia(x, y) / Math.sqrt(variancia(x) * variancia(y));
     }
 }

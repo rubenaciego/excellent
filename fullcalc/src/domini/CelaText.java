@@ -7,7 +7,6 @@ public class CelaText extends Cela
 {
     private String text;
 
-
     public CelaText(String inputUsuari)
     {
         super.setInputUsuari(inputUsuari);
