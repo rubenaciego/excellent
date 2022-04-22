@@ -24,7 +24,9 @@ import org.junit.runners.Suite;
         MatriuCelesElimFila.class,
         MatriuCelesEntrColTest.class,
         MatriuCelesEntrTest.class,
-        MatriuCelesGetSetTest.class
+        MatriuCelesGetSetTest.class,
+
+        OperadorPart1Test.class
 })
 public class TotsTestos {
 }
