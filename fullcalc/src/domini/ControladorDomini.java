@@ -2,8 +2,7 @@ package domini;
 
 import java.util.ArrayList;
 
-public class ControladorDomini
-{
+public class ControladorDomini {
     private Document document;
     private final ArrayList<ControladorFull> controladorsFull;
     private final Parser parser;
@@ -25,25 +24,21 @@ public class ControladorDomini
      * ResultatParserDocument
      */
 
-    public ControladorDomini()
-    {
+    public ControladorDomini() {
         parser = Parser.getInstance();
         controladorsFull = new ArrayList<ControladorFull>();
     }
 
-    public void creaDocument(String nomDocument)
-    {
+    public void creaDocument(String nomDocument) {
         document = new Document(nomDocument);
     }
 
-    public void carregaDocument(String nomDocument)
-    {
+    public void carregaDocument(String nomDocument) {
         // mock
         throw new UnsupportedOperationException("carregaDocument encara no implementat");
     }
 
-    public void tancaDocument()
-    {
+    public void tancaDocument() {
         document = null;
     }
 
@@ -52,8 +47,7 @@ public class ControladorDomini
      * * /pre resultat és del tipus ResultatParserDocument
      * /post Executa l'operació codificada dins resultat
      */
-    private void executaOperacioDocument(ResultatParserDocument resultat)
-    {
+    private void executaOperacioDocument(ResultatParserDocument resultat) {
         switch (resultat.getTipusOpDocument()) {
             case CREA_DOCUMENT:
                 creaDocument(resultat.getNomDocument());
@@ -81,8 +75,7 @@ public class ControladorDomini
         }
     }
 
-    public void executaOperacio(String[] opSenseParsejar)
-    {
+    public void executaOperacio(String[] opSenseParsejar) {
         TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
         if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {

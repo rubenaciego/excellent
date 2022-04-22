@@ -6,39 +6,33 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
-public class MatriuCeles
-{
+public class MatriuCeles {
     protected int numFiles;
     protected int numCols;
 
     protected ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>> matriuCela;
 
-    public MatriuCeles()
-    {
+    public MatriuCeles() {
         matriuCela = new ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>>();
         numFiles = 0;
         numCols = 0;
     }
 
-    public MatriuCeles(int numFiles, int numCols)
-    {
+    public MatriuCeles(int numFiles, int numCols) {
         matriuCela = new ConcurrentSkipListMap<Integer, ConcurrentSkipListMap<Integer, Cela>>();
         this.numCols = numCols;
         this.numFiles = numFiles;
     }
 
-    public int getNumFiles()
-    {
+    public int getNumFiles() {
         return numFiles;
     }
 
-    public int getNumCols()
-    {
+    public int getNumCols() {
         return numCols;
     }
 
-    public Cela getCela(int fila, int col)
-    {
+    public Cela getCela(int fila, int col) {
         if (blocInvalid(fila, col, 1, 1))
             throw new ExcepcioForaLimits(fila, col, 1, 1, this.numFiles, this.numCols);
 
@@ -49,8 +43,7 @@ public class MatriuCeles
         }
     }
 
-    public void setCela(Cela novaCela, int fila, int col)
-    {
+    public void setCela(Cela novaCela, int fila, int col) {
         if (blocInvalid(fila, col, 1, 1))
             throw new ExcepcioForaLimits(fila, col, 1, 1, this.numFiles, this.numCols);
 
@@ -62,8 +55,7 @@ public class MatriuCeles
         }
     }
 
-    public void esborraCela(int fila, int col)
-    {
+    public void esborraCela(int fila, int col) {
         if (blocInvalid(fila, col, 1, 1))
             throw new ExcepcioForaLimits(fila, col, 1, 1, this.numFiles, this.numCols);
 
@@ -72,18 +64,15 @@ public class MatriuCeles
         }
     }
 
-    public void afegeixFila()
-    {
+    public void afegeixFila() {
         ++numFiles;
     }
 
-    public void afegeixColumna()
-    {
+    public void afegeixColumna() {
         ++numCols;
     }
 
-    public void eliminaFila(int fila)
-    {
+    public void eliminaFila(int fila) {
         if (fila >= numFiles || fila < 0)
             throw new ExcepcioFilaColumnaInvalida(fila, numFiles);
 
@@ -103,8 +92,7 @@ public class MatriuCeles
         --numFiles;
     }
 
-    public void eliminaColumna(int col)
-    {
+    public void eliminaColumna(int col) {
         if (col >= numCols || col < 0)
             throw new ExcepcioFilaColumnaInvalida(col, numCols);
 
@@ -130,8 +118,7 @@ public class MatriuCeles
         --numCols;
     }
 
-    public MatriuCeles getBloc(int filaIni, int colIni, int numFiles, int numCols)
-    {
+    public MatriuCeles getBloc(int filaIni, int colIni, int numFiles, int numCols) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
@@ -148,21 +135,19 @@ public class MatriuCeles
         return bloc;
     }
 
-    public ArrayList<EntradaMatriuCeles> getEntrades()
-    {
+    public ArrayList<EntradaMatriuCeles> getEntrades() {
         ArrayList<EntradaMatriuCeles> entrades = new ArrayList<EntradaMatriuCeles>();
 
         for (ConcurrentSkipListMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : matriuCela.entrySet()) {
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
-                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLi.getKey(), SLj.getKey(), SLj.getValue());
+                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLj.getKey(), SLi.getKey(), SLj.getValue());
                 entrades.add(entry);
             }
         }
         return entrades;
     }
 
-    public ArrayList<EntradaMatriuCeles> getEntradesColumna(int col)
-    {
+    public ArrayList<EntradaMatriuCeles> getEntradesColumna(int col) {
         if (col >= numCols || col < 0)
             throw new ExcepcioFilaColumnaInvalida(col, numCols);
 
@@ -171,15 +156,14 @@ public class MatriuCeles
         if (matriuCela.containsKey(col)) {
             ConcurrentSkipListMap<Integer, Cela> SL = matriuCela.get(col);
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLi : SL.entrySet()) {
-                EntradaMatriuCeles entry = new EntradaMatriuCeles(col, SLi.getKey(), SLi.getValue());
+                EntradaMatriuCeles entry = new EntradaMatriuCeles(SLi.getKey(), col, SLi.getValue());
                 entrades.add(entry);
             }
         }
         return entrades;
     }
 
-    protected boolean blocInvalid(int filaIni, int colIni, int numFiles, int numCols)
-    {
+    protected boolean blocInvalid(int filaIni, int colIni, int numFiles, int numCols) {
         if (filaIni < 0 || filaIni + numFiles - 1 >= this.numFiles) return true;
         return colIni < 0 || colIni + numCols - 1 >= this.numCols;
     }

@@ -4,16 +4,13 @@ import java.lang.*;
 import java.text.ParseException;
 import java.time.LocalDate;
 
-public class Parser
-{
+public class Parser {
     private static Parser parser;
 
-    private Parser()
-    {
+    private Parser() {
     }
 
-    public static Parser getInstance()
-    {
+    public static Parser getInstance() {
         if (parser == null)
             parser = new Parser();
 
@@ -33,8 +30,7 @@ public class Parser
      * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserFull
      */
-    public ResultatParserFull parseOpFull(String[] opSenseParsejar)
-    {
+    public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
         // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
         // les necessàries?
         if (opSenseParsejar.length == 0)
@@ -124,8 +120,7 @@ public class Parser
      * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
      * ResultatParserDocument
      */
-    public ResultatParserDocument parseOpDocument(String[] opSenseParsejar)
-    {
+    public ResultatParserDocument parseOpDocument(String[] opSenseParsejar) {
         String[] splitted = opSenseParsejar[0].split(",");
         ResultatParserDocument resultat = new ResultatParserDocument();
 
@@ -145,8 +140,7 @@ public class Parser
                 throw new ExcepcioParser(opSenseParsejar);
 
             resultat.setNomDocument(opSenseParsejar[1]);
-        }
-        else if (op == OperacioDocument.ELIMINA_FULL) {
+        } else if (op == OperacioDocument.ELIMINA_FULL) {
             if (splitted.length < 3)
                 throw new ExcepcioParser(opSenseParsejar);
 
@@ -160,8 +154,7 @@ public class Parser
         return resultat;
     }
 
-    public TipusOperacio parseTipusOperacio(String opSenseParsejar)
-    {
+    public TipusOperacio parseTipusOperacio(String opSenseParsejar) {
         int pos = opSenseParsejar.indexOf(',');
         String operacio = opSenseParsejar.substring(0, pos);
 
@@ -173,8 +166,7 @@ public class Parser
         }
     }
 
-    private ResultatParserCela parseResultatCela(String inputUsuari)
-    {
+    private ResultatParserCela parseResultatCela(String inputUsuari) {
         ResultatParserCela resultat = new ResultatParserCela();
 
         if (inputUsuari.matches("-?\\d+(\\.\\d+)?")) {

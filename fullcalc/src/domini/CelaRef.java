@@ -4,56 +4,47 @@ import java.lang.*;
 import java.time.LocalDate;
 
 
-public class CelaRef extends Cela
-{
+public class CelaRef extends Cela {
     private Cela celaReferenciada;
 
-    public CelaRef(String inputUsuari, Cela celaRef)
-    {
+    public CelaRef(String inputUsuari, Cela celaRef) {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;
         tipusCela = TipusCela.REFERENCIAL;
     }
 
-    public void setRef(String inputUsuari, Cela celaRef)
-    {
+    public void setRef(String inputUsuari, Cela celaRef) {
         super.setInputUsuari(inputUsuari);
         celaReferenciada = celaRef;
         tipusCela = TipusCela.REFERENCIAL;
     }
 
-    public Cela getRef()
-    {
+    public Cela getRef() {
         return celaReferenciada;
     }
 
     @Override
-    public Double getNum()
-    {
+    public Double getNum() {
         return celaReferenciada.getNum();
     }
 
     @Override
-    public LocalDate getData()
-    {
+    public LocalDate getData() {
         return celaReferenciada.getData();
     }
 
     @Override
-    public String getText()
-    {
+    public String getText() {
         return celaReferenciada.getText();
     }
 
     @Override
-    public int compare(Cela c)
-    {
+    public int compare(Cela c) {
         return celaReferenciada.compare(c);
     }
 
     @Override
-    protected int compareType(Cela c)
-    {
+    protected int compareType(Cela c) {
         throw new UnsupportedOperationException("compareType de CelaRef mai no pot ser cridat");
     }
 }

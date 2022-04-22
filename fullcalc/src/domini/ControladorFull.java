@@ -2,19 +2,16 @@ package domini;
 
 import java.util.ArrayList;
 
-public class ControladorFull
-{
+public class ControladorFull {
     private final Full full;
     private final Operador op;
 
-    public ControladorFull(Full full)
-    {
+    public ControladorFull(Full full) {
         this.full = full;
         op = Operador.getInstance();
     }
 
-    public void executaOperacio(ResultatParserFull parsejat)
-    {
+    public void executaOperacio(ResultatParserFull parsejat) {
         int filaIni = parsejat.getFilaOrigen();
         int colIni = parsejat.getColumnaOrigen();
         int numFiles = parsejat.getMidaFila();
@@ -168,8 +165,7 @@ public class ControladorFull
         }
     }
 
-    private void guardaBloc(MatriuCeles bloc, int filaDest, int colDest)
-    {
+    private void guardaBloc(MatriuCeles bloc, int filaDest, int colDest) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades) {

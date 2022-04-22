@@ -649,7 +649,7 @@ public class Operador {
      * @param y Segon conjunt de dades de mida n
      * @return Covariància entre les dades de x i y
      */
-    private double covariancia(ArrayList<Double> x, ArrayList<Double> y)  throws ExcepcioOperador{
+    private double covariancia(ArrayList<Double> x, ArrayList<Double> y) throws ExcepcioOperador {
         if (x.size() != y.size())
             throw new ExcepcioOperador("Error en l'operador: quantitat de dades diferents al calcular la covariancia");
 

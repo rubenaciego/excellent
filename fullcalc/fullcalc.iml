@@ -10,5 +10,7 @@
     <orderEntry type="library" name="junit4" level="project" />
     <orderEntry type="library" name="mockito-core" level="project" />
     <orderEntry type="library" name="json-lib" level="project" />
+    <orderEntry type="library" name="byte-buddy" level="project" />
+    <orderEntry type="library" name="objenesis" level="project" />
   </component>
 </module>

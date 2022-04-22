@@ -33,7 +33,7 @@ public class MatriuCelesEntrColTest {
 
     @Before
     public void setUp() {
-        matriu = new MatriuCeles();
+        matriu = new MatriuCeles(30, 40);
     }
 
     @Parameters

@@ -2,8 +2,7 @@ package domini;
 
 import java.lang.*;
 
-public class ResultatParserFull
-{
+public class ResultatParserFull {
     private int idFull;
     private int filaOrigen;
     private int filaDesti;
@@ -24,183 +23,147 @@ public class ResultatParserFull
     private ResultatParserCela resultatParserCela;
 
 
-    public int getIdFull()
-    {
+    public int getIdFull() {
         return idFull;
     }
 
-    public void setIdFull(int idFull)
-    {
+    public void setIdFull(int idFull) {
         this.idFull = idFull;
     }
 
-    public int getFilaOrigen()
-    {
+    public int getFilaOrigen() {
         return filaOrigen;
     }
 
-    public void setFilaOrigen(int filaOrigen)
-    {
+    public void setFilaOrigen(int filaOrigen) {
         this.filaOrigen = filaOrigen;
     }
 
-    public int getFilaDesti()
-    {
+    public int getFilaDesti() {
         return filaDesti;
     }
 
-    public void setFilaDesti(int filaDesti)
-    {
+    public void setFilaDesti(int filaDesti) {
         this.filaDesti = filaDesti;
     }
 
-    public int getColumnaOrigen()
-    {
+    public int getColumnaOrigen() {
         return columnaOrigen;
     }
 
-    public void setColumnaOrigen(int columnaOrigen)
-    {
+    public void setColumnaOrigen(int columnaOrigen) {
         this.columnaOrigen = columnaOrigen;
     }
 
-    public int getColumnaDesti()
-    {
+    public int getColumnaDesti() {
         return columnaDesti;
     }
 
-    public void setColumnaDesti(int columnaDesti)
-    {
+    public void setColumnaDesti(int columnaDesti) {
         this.columnaDesti = columnaDesti;
     }
 
-    public int getMidaFila()
-    {
+    public int getMidaFila() {
         return midaFila;
     }
 
-    public void setMidaFila(int midaFila)
-    {
+    public void setMidaFila(int midaFila) {
         this.midaFila = midaFila;
     }
 
-    public int getMidaColumna()
-    {
+    public int getMidaColumna() {
         return midaColumna;
     }
 
-    public void setMidaColumna(int midaColumna)
-    {
+    public void setMidaColumna(int midaColumna) {
         this.midaColumna = midaColumna;
     }
 
-    public OperacioFull getTipusOpFull()
-    {
+    public OperacioFull getTipusOpFull() {
         return tipusOperacioFull;
     }
 
-    public void setTipusOpFull(OperacioFull tipusOperacioFull)
-    {
+    public void setTipusOpFull(OperacioFull tipusOperacioFull) {
         this.tipusOperacioFull = tipusOperacioFull;
     }
 
-    public OperacioAritmetica getTipusOpAritmetica()
-    {
+    public OperacioAritmetica getTipusOpAritmetica() {
         return tipusOperacioAritmetica;
     }
 
-    public void setTipusOpAritmetica(OperacioAritmetica tipusOperacioAritmetica)
-    {
+    public void setTipusOpAritmetica(OperacioAritmetica tipusOperacioAritmetica) {
         this.tipusOperacioAritmetica = tipusOperacioAritmetica;
     }
 
-    public OperacioEstadistica getTipusOpEstadistica()
-    {
+    public OperacioEstadistica getTipusOpEstadistica() {
         return tipusOperacioEstadistica;
     }
 
-    public void setTipusOpEstadistica(OperacioEstadistica tipusOperacioEstadistica)
-    {
+    public void setTipusOpEstadistica(OperacioEstadistica tipusOperacioEstadistica) {
         this.tipusOperacioEstadistica = tipusOperacioEstadistica;
     }
 
-    public ConversioUnitats getTipusConversioUnitats()
-    {
+    public ConversioUnitats getTipusConversioUnitats() {
         return tipusConversioUnitats;
     }
 
-    public void setTipusConversioUnitats(ConversioUnitats tipusConversioUnitats)
-    {
+    public void setTipusConversioUnitats(ConversioUnitats tipusConversioUnitats) {
         this.tipusConversioUnitats = tipusConversioUnitats;
     }
 
-    public CriteriOrdenacio getTipusCriteriOrdenacio()
-    {
+    public CriteriOrdenacio getTipusCriteriOrdenacio() {
         return tipusCriteriOrdenacio;
     }
 
-    public void setTipusCriteriOrdenacio(CriteriOrdenacio tipusCriteriOrdenacio)
-    {
+    public void setTipusCriteriOrdenacio(CriteriOrdenacio tipusCriteriOrdenacio) {
         this.tipusCriteriOrdenacio = tipusCriteriOrdenacio;
     }
 
-    public String getStringCercada()
-    {
+    public String getStringCercada() {
         return stringCercada;
     }
 
-    public void setStringCercada(String stringCercada)
-    {
+    public void setStringCercada(String stringCercada) {
         this.stringCercada = stringCercada;
     }
 
-    public String getStringRemplacadora()
-    {
+    public String getStringRemplacadora() {
         return stringRemplacadora;
     }
 
-    public void setStringRemplacadora(String stringRemplacadora)
-    {
+    public void setStringRemplacadora(String stringRemplacadora) {
         this.stringRemplacadora = stringRemplacadora;
     }
 
-    public int getDigitsTruncar()
-    {
+    public int getDigitsTruncar() {
         return digitsTruncar;
     }
 
-    public void setDigitsTruncar(int digitsTruncar)
-    {
+    public void setDigitsTruncar(int digitsTruncar) {
         this.digitsTruncar = digitsTruncar;
     }
 
-    public int getFilaColEliminar()
-    {
+    public int getFilaColEliminar() {
         return filaColEliminar;
     }
 
-    public void setFilaColEliminar(int filaColEliminar)
-    {
+    public void setFilaColEliminar(int filaColEliminar) {
         this.filaColEliminar = filaColEliminar;
     }
 
-    public int getColumnaOrdenacio()
-    {
+    public int getColumnaOrdenacio() {
         return columnaOrdenacio;
     }
 
-    public void setColumnaOrdenacio(int columnaOrdenacio)
-    {
+    public void setColumnaOrdenacio(int columnaOrdenacio) {
         this.columnaOrdenacio = columnaOrdenacio;
     }
 
-    public ResultatParserCela getResultatParserCela()
-    {
+    public ResultatParserCela getResultatParserCela() {
         return resultatParserCela;
     }
 
-    public void setResultatParserCela(ResultatParserCela resultatParserCela)
-    {
+    public void setResultatParserCela(ResultatParserCela resultatParserCela) {
         this.resultatParserCela = resultatParserCela;
     }
 }

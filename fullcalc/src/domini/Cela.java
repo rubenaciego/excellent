@@ -3,10 +3,8 @@ package domini;
 import java.lang.*;
 import java.time.LocalDate;
 
-public abstract class Cela
-{
-    public enum TipusCela
-    {
+public abstract class Cela {
+    public enum TipusCela {
         NUMERICA,
         TEXTUAL,
         DATADA,
@@ -16,27 +14,25 @@ public abstract class Cela
     protected String inputUsuari;
     protected TipusCela tipusCela;
 
-    public String getInputUsuari()
-    {
+    public String getInputUsuari() {
         return inputUsuari;
     }
 
-    public void setInputUsuari(String inputUsuari)
-    {
+    public void setInputUsuari(String inputUsuari) {
         this.inputUsuari = inputUsuari;
     }
 
-    public TipusCela getTipusCela()
-    {
+    public TipusCela getTipusCela() {
         return tipusCela;
     }
 
     public abstract Double getNum();
+
     public abstract LocalDate getData();
+
     public abstract String getText();
 
-    public int compare(Cela c)
-    {
+    public int compare(Cela c) {
         if (c.tipusCela == TipusCela.REFERENCIAL)
             return -c.compare(this);
 

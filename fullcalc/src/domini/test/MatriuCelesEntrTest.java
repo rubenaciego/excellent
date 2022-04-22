@@ -29,7 +29,7 @@ public class MatriuCelesEntrTest {
 
     @Before
     public void setUp() {
-        matriu = new MatriuCeles();
+        matriu = new MatriuCeles(30, 15);
     }
 
     @Parameters
@@ -51,6 +51,7 @@ public class MatriuCelesEntrTest {
         matriu.setCela(cela2.getCela(), cela2.getFila(), cela2.getColumna());
 
         ArrayList<EntradaMatriuCeles> entrades = matriu.getEntrades();
+        System.out.println(entrades.get(1).getColumna());
         if (numNulls == 0) {
             assertEquals(entrades.get(0).getCela(), cela1.getCela());
             assertEquals(entrades.get(1).getCela(), cela2.getCela());

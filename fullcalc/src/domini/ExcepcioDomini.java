@@ -1,9 +1,7 @@
 package domini;
 
-public class ExcepcioDomini extends RuntimeException
-{
-    public enum TipusError
-    {
+public class ExcepcioDomini extends RuntimeException {
+    public enum TipusError {
         FILA_COLUMNA_INVALIDA,
         FORA_LIMITS,
         INDEX_FULL_INVALID,
@@ -13,14 +11,12 @@ public class ExcepcioDomini extends RuntimeException
 
     private final TipusError error;
 
-    public ExcepcioDomini(TipusError error, String errorString)
-    {
+    public ExcepcioDomini(TipusError error, String errorString) {
         super(errorString);
         this.error = error;
     }
 
-    public TipusError getError()
-    {
+    public TipusError getError() {
         return error;
     }
 }

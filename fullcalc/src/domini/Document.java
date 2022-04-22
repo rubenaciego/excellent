@@ -8,8 +8,7 @@ import java.util.ArrayList;
  * @class Document
  * @brief Representa un document, un conjunt de fulls
  */
-public class Document
-{
+public class Document {
     private final String nom;
     private LocalDateTime dataModificacio;
     private final ArrayList<Full> fulls;
@@ -21,38 +20,32 @@ public class Document
      * @param nom Nom del document
      * @brief Constructora de document, crea un document buit, sense fulls
      */
-    public Document(String nom)
-    {
+    public Document(String nom) {
         this.nom = nom;
         fulls = new ArrayList<Full>();
         dataModificacio = LocalDateTime.now();
     }
 
-    public String getNom()
-    {
+    public String getNom() {
         return nom;
     }
 
-    public LocalDateTime getDataModificacio()
-    {
+    public LocalDateTime getDataModificacio() {
         return dataModificacio;
     }
 
-    public void setDataModificacio(LocalDateTime dataModificacio)
-    {
+    public void setDataModificacio(LocalDateTime dataModificacio) {
         this.dataModificacio = dataModificacio;
     }
 
-    public int getNumFulls()
-    {
+    public int getNumFulls() {
         return fulls.size();
     }
 
     /**
      * @brief Desa el document al disc
      */
-    public void desa()
-    {
+    public void desa() {
         // mock
         dataModificacio = LocalDateTime.now();
         throw new UnsupportedOperationException("Desar document no implementat");
@@ -61,8 +54,7 @@ public class Document
     /**
      * @brief Afegeix un nou full al final
      */
-    public void afegeixFull()
-    {
+    public void afegeixFull() {
         fulls.add(new Full(DEFAULT_FILES, DEFAULT_COLS));
     }
 
@@ -70,8 +62,7 @@ public class Document
      * @param idFull Índex del full que es vol eliminar
      * @brief Elimina un full a la posició especificada
      */
-    public void eliminaFull(int idFull)
-    {
+    public void eliminaFull(int idFull) {
         if (idFull < 0 || idFull >= fulls.size())
             throw new ExcepcioIndexFull(idFull, fulls.size());
 
@@ -83,8 +74,7 @@ public class Document
      * @return Full en la posició especificada
      * @brief Obté full a la posició especificada
      */
-    public Full getFull(int idFull)
-    {
+    public Full getFull(int idFull) {
         if (idFull < 0 || idFull >= fulls.size())
             throw new ExcepcioIndexFull(idFull, fulls.size());
 
