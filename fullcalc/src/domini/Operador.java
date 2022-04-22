@@ -167,7 +167,7 @@ public class Operador {
      * @param op   Operació estadística a executar
      * @return Matriu de cel·les que només conté una cel·la, el resultat de l'operació
      */
-    public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op) {
+    public MatriuCeles executaOperacioEstadistica(MatriuCeles bloc, OperacioEstadistica op) {
         double res = 0.0;
 
         if (op.compareTo(OperacioEstadistica.COVARIANCIA) >= 0) {

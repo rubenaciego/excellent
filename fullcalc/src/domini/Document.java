@@ -13,8 +13,8 @@ public class Document {
     private LocalDateTime dataModificacio;
     private final ArrayList<Full> fulls;
 
-    private final int DEFAULT_FILES = 100;
-    private final int DEFAULT_COLS = 100;
+    private static final int DEFAULT_FILES = 100;
+    private static final int DEFAULT_COLS = 100;
 
     /**
      * @param nom Nom del document
