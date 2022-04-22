@@ -1,9 +1,9 @@
 package domini;
-import java.awt.dnd.InvalidDnDOperationException;
+
 import java.lang.*;
 import java.time.LocalDate;
 
-//falta el compare
+
 public class CelaRef extends Cela
 {
     private Cela celaReferenciada;

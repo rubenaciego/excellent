@@ -22,7 +22,7 @@ public class ControladorFull
         int filaDest = parsejat.getFilaDesti();
         int colDest = parsejat.getColumnaDesti();
 
-        MatriuCeles bloc = full.getBlocZeroOffset(filaIni, colIni, numFiles, numCols);
+        MatriuCeles bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
         MatriuCeles res;
 
         switch (parsejat.getTipusOpFull()) {
@@ -32,6 +32,10 @@ public class ControladorFull
                 break;
             case EXTREU_ANY:
                 res = op.extreuAny(bloc);
+                guardaBloc(res, filaDest, colDest);
+                break;
+            case EXTREU_MES:
+                res = op.extreuMes(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_DIA:

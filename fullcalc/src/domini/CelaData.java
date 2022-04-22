@@ -7,10 +7,8 @@ public class CelaData extends Cela
 {
     private LocalDate data;
 
-
     public CelaData(String inputUsuari, LocalDate dataInput)
     {
-
         super.setInputUsuari(inputUsuari);
         data = dataInput;
         tipusCela = TipusCela.DATADA;

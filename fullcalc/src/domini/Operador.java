@@ -7,24 +7,25 @@ import java.lang.Math;
 
 import net.sf.json.*;
 
-public class Operador
-{
+/**
+ * @class Operador
+ * @brief Classe operador singleton, realitza diverses operacions sobre matrius de cel·les i
+ * retorna un resultat
+ */
+public class Operador {
     private static Operador operador = null;
 
-    private Operador()
-    {
+    private Operador() {
     }
 
-    public static Operador getInstance()
-    {
+    public static Operador getInstance() {
         if (operador == null)
             operador = new Operador();
 
         return operador;
     }
 
-    public MatriuCeles extreuHoroscop(MatriuCeles bloc)
-    {
+    public MatriuCeles extreuHoroscop(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -42,8 +43,7 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles extreuAny(MatriuCeles bloc)
-    {
+    public MatriuCeles extreuAny(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -59,8 +59,7 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles extreuMes(MatriuCeles bloc)
-    {
+    public MatriuCeles extreuMes(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -76,8 +75,7 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles extreuDia(MatriuCeles bloc)
-    {
+    public MatriuCeles extreuDia(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -93,8 +91,7 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles extreuDiaSetmana(MatriuCeles bloc)
-    {
+    public MatriuCeles extreuDiaSetmana(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -113,8 +110,7 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op)
-    {
+    public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -166,8 +162,12 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op)
-    {
+    /**
+     * @param bloc Bloc on executar l'operació estadística
+     * @param op   Operació estadística a executar
+     * @return Matriu de cel·les que només conté una cel·la, el resultat de l'operació
+     */
+    public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op) {
         double res = 0.0;
 
         if (op.compareTo(OperacioEstadistica.COVARIANCIA) >= 0) {
@@ -200,6 +200,8 @@ public class Operador
                 case COEFICIENT_PEARSON:
                     res = coeficientPearson(dadesX, dadesY);
                     break;
+                default:
+                    throw new IncompatibleClassChangeError("Operació estadística" + op + " desconeguda");
             }
         } else {
             ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
@@ -236,8 +238,7 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles truncaNumero(MatriuCeles bloc, int n)
-    {
+    public MatriuCeles truncaNumero(MatriuCeles bloc, int n) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -255,8 +256,7 @@ public class Operador
         return bloc;
     }
 
-    public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv)
-    {
+    public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
 
@@ -336,8 +336,7 @@ public class Operador
      * @return Bloc resultat d'aplicar l'operació
      * @brief Extreu la longitud de les cel·les textuals
      */
-    public MatriuCeles extreuLongitudText(MatriuCeles bloc)
-    {
+    public MatriuCeles extreuLongitudText(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
@@ -357,8 +356,13 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles cercaOcurrencies(MatriuCeles bloc, String aCercar)
-    {
+    /**
+     * @param bloc    Bloc on cercar ocurrències
+     * @param aCercar Text a cercar
+     * @return Una matriu de cel·les amb una sola cel·la textual que conté el resultat de la cerca en format JSON,
+     * on s'indica el nombre total d'ocurrències i les ocurrències dins de cada cel·la i les posicions on s'han trobat
+     */
+    public MatriuCeles cercaOcurrencies(MatriuCeles bloc, String aCercar) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         JSONObject obj = new JSONObject();
         int total = 0;
@@ -395,8 +399,12 @@ public class Operador
         return mc;
     }
 
-    public MatriuCeles converteixMajuscules(MatriuCeles bloc)
-    {
+    /**
+     * @param bloc Bloc que convertir a majúscules
+     * @return Matriu de cel·les resultat de la mateixa mida que el bloc on les cel·les textuals s'han convertit a
+     * majúscules
+     */
+    public MatriuCeles converteixMajuscules(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
@@ -416,8 +424,12 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles converteixMinuscules(MatriuCeles bloc)
-    {
+    /**
+     * @param bloc Bloc que convertir a minúscules
+     * @return Matriu de cel·les resultat de la mateixa mida que el bloc on les cel·les textuals s'han convertit a
+     * minúscules
+     */
+    public MatriuCeles converteixMinuscules(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
@@ -437,8 +449,11 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles transposa(MatriuCeles bloc)
-    {
+    /**
+     * @param bloc Bloc a transposar
+     * @return Mateix bloc de mida transposada i transposat
+     */
+    public MatriuCeles transposa(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumCols(), bloc.getNumFiles());
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
@@ -448,8 +463,14 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles reemplaca(MatriuCeles bloc, String aCercar, String aSubstituir)
-    {
+    /**
+     * @param bloc        Bloc on realitzar la substitució
+     * @param aCercar     Text a reemplaçar
+     * @param aSubstituir Text reemplaçat
+     * @return Matriu de cel·les de la mateixa mida on a les cel·les textuals s'ha reemplçat el text aCercar pel
+     * text aSubstituir
+     */
+    public MatriuCeles reemplaca(MatriuCeles bloc, String aCercar, String aSubstituir) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
@@ -469,28 +490,30 @@ public class Operador
         return result;
     }
 
-    public MatriuCeles ordena(MatriuCeles bloc, int col, CriteriOrdenacio criteri)
-    {
+    /**
+     * @param bloc    Bloc on realitzar l'ordenació
+     * @param col     Columna del bloc respecta la que ordenar
+     * @param criteri Criteri respecte el qual es realitza l'ordenació
+     * @return Retorna el mateix bloc però amb les files permutades respecte l'ordre marcat per la columna col
+     * i el criteri d'ordenació
+     */
+    public MatriuCeles ordena(MatriuCeles bloc, int col, CriteriOrdenacio criteri) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> columna = bloc.getEntradesColumna(col);
         ArrayList<Integer> nouOrdre = new ArrayList<Integer>(bloc.getNumFiles());
         ArrayList<Boolean> vist = new ArrayList<Boolean>(Collections.nCopies(bloc.getNumFiles(), false));
 
         if (criteri == CriteriOrdenacio.ASCENDENT) {
-            columna.sort(new Comparator<EntradaMatriuCeles>()
-            {
+            columna.sort(new Comparator<EntradaMatriuCeles>() {
                 @Override
-                public int compare(EntradaMatriuCeles a, EntradaMatriuCeles b)
-                {
+                public int compare(EntradaMatriuCeles a, EntradaMatriuCeles b) {
                     return a.getCela().compare(b.getCela());
                 }
             });
         } else if (criteri == CriteriOrdenacio.DESCENDENT) {
-            columna.sort(new Comparator<EntradaMatriuCeles>()
-            {
+            columna.sort(new Comparator<EntradaMatriuCeles>() {
                 @Override
-                public int compare(EntradaMatriuCeles a, EntradaMatriuCeles b)
-                {
+                public int compare(EntradaMatriuCeles a, EntradaMatriuCeles b) {
                     return b.getCela().compare(a.getCela());
                 }
             });
@@ -516,76 +539,78 @@ public class Operador
         return result;
     }
 
-    private String horoscop(Integer dia, Integer mes)
-    {
-        String astro_sign = "";
+    private String horoscop(Integer dia, Integer mes) {
+        String astroSign = "";
 
         if (mes == 12) {
             if (dia < 22)
-                astro_sign = "Sagitari";
+                astroSign = "Sagitari";
             else
-                astro_sign = "Capricorn";
+                astroSign = "Capricorn";
         } else if (mes == 1) {
             if (dia < 20)
-                astro_sign = "Capricorn";
+                astroSign = "Capricorn";
             else
-                astro_sign = "Aquari";
+                astroSign = "Aquari";
         } else if (mes == 2) {
             if (dia < 19)
-                astro_sign = "Aquari";
+                astroSign = "Aquari";
             else
-                astro_sign = "Piscis";
+                astroSign = "Piscis";
         } else if (mes == 3) {
             if (dia < 21)
-                astro_sign = "Piscis";
+                astroSign = "Piscis";
             else
-                astro_sign = "Aries";
+                astroSign = "Aries";
         } else if (mes == 4) {
             if (dia < 20)
-                astro_sign = "Aries";
+                astroSign = "Aries";
             else
-                astro_sign = "Tauro";
+                astroSign = "Tauro";
         } else if (mes == 5) {
             if (dia < 21)
-                astro_sign = "Tauro";
+                astroSign = "Tauro";
             else
-                astro_sign = "Geminis";
+                astroSign = "Geminis";
         } else if (mes == 6) {
             if (dia < 21)
-                astro_sign = "Geminis";
+                astroSign = "Geminis";
             else
-                astro_sign = "Cancer";
+                astroSign = "Cancer";
         } else if (mes == 7) {
             if (dia < 23)
-                astro_sign = "Cancer";
+                astroSign = "Cancer";
             else
-                astro_sign = "Leo";
+                astroSign = "Leo";
         } else if (mes == 8) {
             if (dia < 23)
-                astro_sign = "Leo";
+                astroSign = "Leo";
             else
-                astro_sign = "Virgo";
+                astroSign = "Virgo";
         } else if (mes == 9) {
             if (dia < 23)
-                astro_sign = "Virgo";
+                astroSign = "Virgo";
             else
-                astro_sign = "Libra";
+                astroSign = "Libra";
         } else if (mes == 10) {
             if (dia < 23)
-                astro_sign = "Libra";
+                astroSign = "Libra";
             else
-                astro_sign = "Escorpio";
+                astroSign = "Escorpio";
         } else if (mes == 11) {
             if (dia < 22)
-                astro_sign = "Escorpio";
+                astroSign = "Escorpio";
             else
-                astro_sign = "Sagitari";
+                astroSign = "Sagitari";
         }
-        return astro_sign;
+        return astroSign;
     }
 
-    private double mitjana(ArrayList<Double> dades)
-    {
+    /**
+     * @param dades Vector sobre el que calcular la mitjana
+     * @return Mitjana dels valors del vector
+     */
+    private double mitjana(ArrayList<Double> dades) {
         double res = 0.0;
 
         for (double d : dades)
@@ -595,14 +620,20 @@ public class Operador
         return res;
     }
 
-    private double mediana(ArrayList<Double> dades)
-    {
+    /**
+     * @param dades Vector sobre el que calcular la mediana
+     * @return Mediana dels valors del vector
+     */
+    private double mediana(ArrayList<Double> dades) {
         Collections.sort(dades);
         return dades.get(dades.size() / 2);
     }
 
-    private double variancia(ArrayList<Double> dades)
-    {
+    /**
+     * @param dades Vector sobre el que calcular la variància
+     * @return Variància dels valors del vector
+     */
+    private double variancia(ArrayList<Double> dades) {
         double mitj = mitjana(dades);
         double res = 0.0;
 
@@ -613,10 +644,14 @@ public class Operador
         return res;
     }
 
-    private double covariancia(ArrayList<Double> x, ArrayList<Double> y)
-    {
+    /**
+     * @param x Primer conjunt de dades de mida n
+     * @param y Segon conjunt de dades de mida n
+     * @return Covariància entre les dades de x i y
+     */
+    private double covariancia(ArrayList<Double> x, ArrayList<Double> y)  throws ExcepcioOperador{
         if (x.size() != y.size())
-            throw new ExcepcioOperador("Error en l'operador: quantitat de dades diferents al calcular la covariança");
+            throw new ExcepcioOperador("Error en l'operador: quantitat de dades diferents al calcular la covariancia");
 
         double mx = mitjana(x);
         double my = mitjana(y);
@@ -629,13 +664,11 @@ public class Operador
         return res;
     }
 
-    private double desviacioEstandard(ArrayList<Double> dades)
-    {
+    private double desviacioEstandard(ArrayList<Double> dades) {
         return Math.sqrt(variancia(dades));
     }
 
-    private double coeficientPearson(ArrayList<Double> x, ArrayList<Double> y)
-    {
+    private double coeficientPearson(ArrayList<Double> x, ArrayList<Double> y) {
         // Comprovar divisions entre 0?
         return covariancia(x, y) / Math.sqrt(variancia(x) * variancia(y));
     }

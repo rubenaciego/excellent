@@ -104,32 +104,4 @@ public class Full extends MatriuCeles
             }
         }
     }
-
-    public MatriuCeles getBloc(int filaIni, int colIni, int numFiles, int numCols)
-    {
-        return getBlocOffset(filaIni, colIni, numFiles, numCols, 0, 0);
-    }
-
-    public MatriuCeles getBlocZeroOffset(int filaIni, int colIni, int numFiles, int numCols)
-    {
-        return getBlocOffset(filaIni, colIni, numFiles, numCols, filaIni, colIni);
-    }
-
-    private MatriuCeles getBlocOffset(int filaIni, int colIni, int numFiles, int numCols, int fOffset, int cOffset)
-    {
-        if (blocInvalid(filaIni, colIni, numFiles, numCols))
-            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
-
-        MatriuCeles bloc = new MatriuCeles();
-        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
-
-        for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
-            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
-                Cela c = SLj.getValue();
-                bloc.setCela(c, SLi.getKey() - fOffset, SLj.getKey() - cOffset);
-            }
-        }
-
-        return bloc;
-    }
 }

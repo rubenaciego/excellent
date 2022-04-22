@@ -12,7 +12,7 @@ public class Document
 {
     private final String nom;
     private LocalDateTime dataModificacio;
-    private ArrayList<Full> fulls;
+    private final ArrayList<Full> fulls;
 
     private final int DEFAULT_FILES = 100;
     private final int DEFAULT_COLS = 100;
@@ -24,6 +24,7 @@ public class Document
     public Document(String nom)
     {
         this.nom = nom;
+        fulls = new ArrayList<Full>();
         dataModificacio = LocalDateTime.now();
     }
 

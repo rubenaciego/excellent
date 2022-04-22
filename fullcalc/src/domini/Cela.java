@@ -43,7 +43,6 @@ public abstract class Cela
         if (tipusCela != c.tipusCela)
             return tipusCela.compareTo(c.tipusCela);
         else return compareType(c);
-
     }
 
     protected abstract int compareType(Cela c);

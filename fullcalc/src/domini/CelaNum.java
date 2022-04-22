@@ -7,10 +7,8 @@ public class CelaNum extends Cela
 {
     private double valor;
 
-
     public CelaNum(String inputUsuari, double valorInput)
     {
-
         super.setInputUsuari(inputUsuari);
         valor = valorInput;
         tipusCela = TipusCela.NUMERICA;

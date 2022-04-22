@@ -86,8 +86,7 @@ public class ControladorDomini
         TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
         if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
-            ResultatParserDocument resultat =
-                    parser.parseOpDocument(opSenseParsejar);
+            ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
             executaOperacioDocument(resultat);
         } else {
             ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
