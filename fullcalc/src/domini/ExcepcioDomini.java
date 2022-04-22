@@ -16,7 +16,7 @@ public class ExcepcioDomini extends RuntimeException {
         this.error = error;
     }
 
-    public TipusError getError() {
+    public TipusError getTipusError() {
         return error;
     }
 }

@@ -1,4 +1,4 @@
-package domini.test;
+package test;
 import domini.CelaText;
 import domini.Cela;
 import static org.junit.Assert.*;

@@ -1,4 +1,4 @@
-package domini.test;
+package test;
 import domini.CelaNum;
 import domini.CelaText;
 import domini.Full;

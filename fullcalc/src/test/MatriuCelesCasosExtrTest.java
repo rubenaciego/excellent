@@ -1,9 +1,8 @@
-package domini.test;
+package test;
 import domini.CelaText;
 import domini.ExcepcioFilaColumnaInvalida;
 import domini.ExcepcioForaLimits;
 import domini.MatriuCeles;
-import org.junit.Before;
 import org.junit.Test;
 
 public class MatriuCelesCasosExtrTest {

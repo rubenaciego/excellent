@@ -1,4 +1,4 @@
-package domini.test;
+package test;
 
 import domini.Cela;
 import domini.CelaData;

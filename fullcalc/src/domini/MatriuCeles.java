@@ -128,7 +128,7 @@ public class MatriuCeles {
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
             for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
                 Cela c = SLj.getValue();
-                bloc.setCela(c, SLi.getKey() - filaIni, SLj.getKey() - colIni);
+                bloc.setCela(c, SLj.getKey() - filaIni, SLi.getKey() - colIni);
             }
         }
 
