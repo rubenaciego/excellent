@@ -19,6 +19,10 @@ public class CelaDataTest {
         celaData = new CelaData("01/01/1900",localDate);
     }
 
+    /**
+     * @brief S'executa el constructor de la classe, i es comprova que efectivament s'ha executat correctament amb el
+     * getter corresponent.
+     */
     @Test
     public void TestConstructor() {
         String input = "24/04/2022";
@@ -29,6 +33,9 @@ public class CelaDataTest {
         assertEquals(Cela.TipusCela.DATADA, celaData.getTipusCela());
     }
 
+    /**
+     * @brief S'executa els setters i getters de la classe per veure que introdueixen i retornen les dades correctes.
+     */
     @Test
     public void TestSetAndGetText() {
         String input = "20/04/2022";
@@ -38,6 +45,9 @@ public class CelaDataTest {
         assertEquals(LocalDate.parse("2022-04-20"), celaData.getData());
     }
 
+    /**
+     * @brief S'executa getNum() i getText() en celaData per veure que efectivament retornen null.
+     */
     @Test
     public void TestNumAndText() {
         String input = "28/07/2001";
@@ -47,6 +57,10 @@ public class CelaDataTest {
         assertNull(celaData.getText());
     }
 
+    /**
+     * @brief Primer test amb l'operacio compare(Cela). En aquest cas comprovem que la comparacio és correcta entre
+     * celaData i una cela d'un altre tipus.
+     */
     @Test
     public void TestCompare1() {
         LocalDate data = LocalDate.of(1900, 1, 1);
@@ -55,6 +69,9 @@ public class CelaDataTest {
         assertTrue(0 < celaData.compare(cela2));
     }
 
+    /**
+     * @brief Segon test amb l'operacio compare(Cela). Es comprova que la comparacio entre dues CelaData es correcta.
+     */
     @Test
     public void TestCompare2() {
         LocalDate data = LocalDate.of(1900, 1, 1);
@@ -63,6 +80,10 @@ public class CelaDataTest {
         assertTrue(0 > celaData.compare(cela2));
     }
 
+    /**
+     * @brief Test per comprovar el funcionament del metode copy de Cela. Es comprova que les dues celes tinguin el
+     * mateix contingut pero que no referenciin al mateix objecte.
+     */
     @Test
     public void TestCopy() {
         LocalDate data = LocalDate.of(2000, 1, 1);

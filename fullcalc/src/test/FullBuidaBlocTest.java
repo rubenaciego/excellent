@@ -68,6 +68,12 @@ public class FullBuidaBlocTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode BuidaBloc buida el bloc concret que se li passa. Per
+     * fer-ho, s'obte el mateix bloc que es volia esborrar i es comprova que efectivament no hi ha cap entrada.
+     * Finalment es comprova que cap de la resta d'entrades del full s'han esborrat. Cada un dels testos parametritzats
+     * es dedica a casos diferenciats: s'esborren totes les Cela de full, una part d'elles o cap.
+     */
     @Test
     public void TestBuidaBloc() {
         full.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());

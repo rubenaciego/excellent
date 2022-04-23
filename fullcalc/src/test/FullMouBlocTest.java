@@ -64,6 +64,14 @@ public class FullMouBlocTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode MouBloc mou el bloc concret que se li passa. Per
+     * fer-ho, s'obte les Cela de les noves posicions per veure que es tracta del mateix objecte que les originals,
+     * i tambe es comprova que el numero total d'entrades a Full es correcta. Els casos que es proven son situacions
+     * diferents: el primer es mou un bloc cap a un altre sense solapament, i a la resta es tracten casos de solapament
+     * (parcial o total). De solapaments parcials n'hi ha uns quants de diferents per comprovar que els blocs funcionen
+     * en un cas general (solapament a l'esquerra, dreta, amunt i avall del bloc).
+     */
     @Test
     public void TestMouBloc() {
         full.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());
