@@ -12,8 +12,6 @@ import org.junit.runners.Suite;
 
         FullBuidaBlocTest.class,
         FullCasosExtrTest.class,
-        FullGetBlocTest.class,
-        FullGetBlocZeroOffTest.class,
         FullGetSetTest.class,
 
         MatriuCelesAllTests.class,
