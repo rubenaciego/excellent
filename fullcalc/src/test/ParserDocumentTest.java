@@ -53,14 +53,13 @@ import static org.junit.Assert.assertEquals;
          String [] opSenseParsejarTest6 = new String[] {"OPERACIO_DOCUMENT," +
                  "TANCA_DOCUMENT,3"};
          ResultatParserDocument resultatTest6 = new ResultatParserDocument();
-         resultatTest3.setTipusOpDocument(OperacioDocument.TANCA_DOCUMENT);
+         resultatTest6.setTipusOpDocument(OperacioDocument.TANCA_DOCUMENT);
 
          Object[][] data = new Object[][]{{opSenseParsejarTest1,
                  resultatTest1}, {opSenseParsejarTest2, resultatTest2},
                  {opSenseParsejarTest3, resultatTest3}, {opSenseParsejarTest4
                  , resultatTest4}, {opSenseParsejarTest5, resultatTest5},
                  {opSenseParsejarTest6, resultatTest6}};
-
          return Arrays.asList(data);
      }
 

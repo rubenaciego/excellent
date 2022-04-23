@@ -51,12 +51,15 @@ public class Parser {
 
         try {
             resultat.setIdFull(Integer.parseInt(splitted[1]));
-            resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
-            resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
-            resultat.setMidaFila(Integer.parseInt(splitted[4]));
-            resultat.setMidaColumna(Integer.parseInt(splitted[5]));
-            resultat.setFilaDesti(Integer.parseInt(splitted[6]));
-            resultat.setColumnaDesti(Integer.parseInt(splitted[7]));
+            if (!splitted[8].equals("ELIMINA_FILA") && !splitted[8].equals(
+                    "ELIMINA_COLUMNA")) {
+                resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
+                resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
+                resultat.setMidaFila(Integer.parseInt(splitted[4]));
+                resultat.setMidaColumna(Integer.parseInt(splitted[5]));
+                resultat.setFilaDesti(Integer.parseInt(splitted[6]));
+                resultat.setColumnaDesti(Integer.parseInt(splitted[7]));
+            }
         } catch (NumberFormatException e) {
             throw new ExcepcioParser(opSenseParsejar);
         }
@@ -80,30 +83,32 @@ public class Parser {
                 resultat.setColumnaOrdenacio(Integer.parseInt(splitted[9]));
                 break;
             case TRUNCA_NUMERO:
-                if (splitted.length < 10)
-                    throw new ExcepcioParser(opSenseParsejar);
-
                 resultat.setTipusOpFull(OperacioFull.TRUNCA_NUMERO);
-                resultat.setTipusCriteriOrdenacio(CriteriOrdenacio.valueOf(splitted[8]));
-                resultat.setDigitsTruncar(Integer.parseInt(splitted[9]));
+                resultat.setDigitsTruncar(Integer.parseInt(splitted[8]));
                 break;
             case OPERACIO_FULL:
-                if (opSenseParsejar.length < 2)
-                    throw new ExcepcioParser(opSenseParsejar);
-
                 OperacioFull op = OperacioFull.valueOf(splitted[8]);
                 resultat.setTipusOpFull(op);
 
-                if (op == OperacioFull.CERCA_OCURRENCIES)
+                if (op == OperacioFull.CERCA_OCURRENCIES) {
+                    if (opSenseParsejar.length < 2)
+                        throw new ExcepcioParser(opSenseParsejar);
                     resultat.setStringCercada(opSenseParsejar[1]);
+                }
                 else if (op == OperacioFull.REEMPLACA) {
                     if (opSenseParsejar.length < 3)
                         throw new ExcepcioParser(opSenseParsejar);
-
                     resultat.setStringCercada(opSenseParsejar[1]);
                     resultat.setStringRemplacadora(opSenseParsejar[2]);
-                } else if (op == OperacioFull.MODIFICA_CELA)
+                } else if (op == OperacioFull.MODIFICA_CELA) {
+                    if (opSenseParsejar.length < 2)
+                        throw new ExcepcioParser(opSenseParsejar);
                     resultat.setResultatParserCela(parseResultatCela(opSenseParsejar[1]));
+                } else if (op == OperacioFull.ELIMINA_FILA || op == OperacioFull.ELIMINA_COLUMNA) {
+                    if (splitted.length < 10)
+                        throw new ExcepcioParser(opSenseParsejar);
+                    resultat.setFilaColEliminar(Integer.parseInt(splitted[9]));
+                }
 
                 break;
         }
@@ -169,16 +174,18 @@ public class Parser {
 
     private ResultatParserCela parseResultatCela(String inputUsuari) {
         ResultatParserCela resultat = new ResultatParserCela();
+        resultat.setInputUsuari(inputUsuari);
 
         if (inputUsuari.matches("-?\\d+(\\.\\d+)?")) {
             resultat.setValorNumeric(Double.parseDouble(inputUsuari));
             resultat.setTipus(Cela.TipusCela.NUMERICA);
-        } else if (inputUsuari.matches(("^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-(\\d{4})$"))) {
+        } else if (inputUsuari.matches(("^(0?[1-9]|[12][0-9]|3[01])/" +
+                "(0?[1-9]|1[012])/(\\d{4})$"))) {
             String[] DDMMAAAA = inputUsuari.split("/");
 
-            resultat.setData(LocalDate.of(Integer.parseInt(DDMMAAAA[0]),
+            resultat.setData(LocalDate.of(Integer.parseInt(DDMMAAAA[2]),
                     Integer.parseInt(DDMMAAAA[1]),
-                    Integer.parseInt(DDMMAAAA[2])));
+                    Integer.parseInt(DDMMAAAA[0])));
             resultat.setTipus(Cela.TipusCela.DATADA);
         } else if (inputUsuari.startsWith("=")) {
             int index = inputUsuari.indexOf(':');
@@ -194,7 +201,6 @@ public class Parser {
             }
             resultat.setTipus(Cela.TipusCela.REFERENCIAL);
         } else {
-            resultat.setInputUsuari(inputUsuari);
             resultat.setTipus(Cela.TipusCela.TEXTUAL);
         }
 
