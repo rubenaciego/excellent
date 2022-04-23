@@ -13,6 +13,8 @@ public class TestRunner {
         }
 
         if (result.wasSuccessful())
-            System.out.println("All tests passed");
+            System.out.println("Tots els testos passats");
+        else
+            System.out.println("Alguns testos no passats");
     }
 }

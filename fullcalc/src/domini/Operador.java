@@ -40,7 +40,8 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuAny(MatriuCeles bloc) {
@@ -56,7 +57,8 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuMes(MatriuCeles bloc) {
@@ -72,7 +74,8 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuDia(MatriuCeles bloc) {
@@ -88,7 +91,8 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuDiaSetmana(MatriuCeles bloc) {
@@ -107,7 +111,8 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op) {
@@ -159,7 +164,7 @@ public class Operador {
             }
         }
 
-        return bloc;
+        return result;
     }
 
     /**
@@ -253,7 +258,7 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+        return result;
     }
 
     public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv) {
@@ -328,7 +333,7 @@ public class Operador {
             }
         }
 
-        return bloc;
+        return result;
     }
 
     /**

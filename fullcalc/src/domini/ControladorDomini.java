@@ -75,15 +75,22 @@ public class ControladorDomini {
         }
     }
 
-    public void executaOperacio(String[] opSenseParsejar) {
-        TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
+    public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
+        try {
+            TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
-        if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
-            ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
-            executaOperacioDocument(resultat);
-        } else {
-            ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
-            controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
+            if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
+                ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
+                executaOperacioDocument(resultat);
+            } else {
+                ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
+                controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
+            }
+
+            return ExcepcioDomini.TipusError.NO_ERROR;
+        } catch(ExcepcioDomini e) {
+            System.out.println(e.getMessage());
+            return e.getTipusError();
         }
     }
 }
