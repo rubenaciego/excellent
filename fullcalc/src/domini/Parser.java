@@ -131,6 +131,7 @@ public class Parser {
 
         try {
             op = OperacioDocument.valueOf(splitted[1]);
+            resultat.setTipusOpDocument(op);
         } catch (IllegalArgumentException e) {
             throw new ExcepcioParser(opSenseParsejar);
         }
