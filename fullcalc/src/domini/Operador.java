@@ -37,7 +37,7 @@ public class Operador {
                         signe);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -54,7 +54,7 @@ public class Operador {
                 CelaNum novaCela = new CelaNum("extreuAny(" + e.getCela().getInputUsuari() + ")", any);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -71,7 +71,7 @@ public class Operador {
                 CelaNum novaCela = new CelaNum("extreuMes(" + e.getCela().getInputUsuari() + ")", mes);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -88,7 +88,7 @@ public class Operador {
                 CelaNum novaCela = new CelaNum("extreuDia(" + e.getCela().getInputUsuari() + ")", dia);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -108,7 +108,7 @@ public class Operador {
                         diaSet.getDisplayName(TextStyle.FULL_STANDALONE, locale));
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -160,7 +160,7 @@ public class Operador {
                         e.getCela().getInputUsuari() + ", " + op.toString() + ")", val);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -329,7 +329,7 @@ public class Operador {
                         conv + ")", val);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
@@ -350,7 +350,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaNum c = new CelaNum("extreuLongitudText(" + e.getCela().getInputUsuari() + ")",
                         (double) text.length());
@@ -418,7 +418,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("converteixMajuscules(" + e.getCela().getInputUsuari() + ")",
                         text.toUpperCase());
@@ -443,7 +443,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("converteixMinuscules(" + e.getCela().getInputUsuari() + ")",
                         text.toLowerCase());
@@ -463,7 +463,7 @@ public class Operador {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades)
-            result.setCela(e.getCela(), e.getColumna(), e.getFila());
+            result.setCela(e.getCela().copy(), e.getColumna(), e.getFila());
 
         return result;
     }
@@ -484,7 +484,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("reemplaça(" + e.getCela().getInputUsuari() + ", " +
                         aCercar + ", " + aSubstituir + ")", text.replaceAll(aCercar, aSubstituir));
@@ -539,7 +539,7 @@ public class Operador {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades)
-            result.setCela(e.getCela(), nouOrdre.get(e.getFila()), e.getColumna());
+            result.setCela(e.getCela().copy(), nouOrdre.get(e.getFila()), e.getColumna());
 
         return result;
     }

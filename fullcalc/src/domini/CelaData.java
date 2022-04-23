@@ -34,6 +34,12 @@ public class CelaData extends Cela {
     }
 
     @Override
+    public Cela copy()
+    {
+        return new CelaData(inputUsuari, data);
+    }
+
+    @Override
     protected int compareType(Cela c) {
         LocalDate d = c.getData();
         return data.compareTo(d);

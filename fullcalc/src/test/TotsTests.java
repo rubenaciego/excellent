@@ -26,8 +26,7 @@ import org.junit.runners.Suite;
         MatriuCelesEntrTest.class,
         MatriuCelesGetSetTest.class,
 
-        OperadorEstadistica1Test.class,
-        OperadorEstadistica2Test.class
+        OperadorTest.class
 })
-public class TotsTestos {
+public class TotsTests {
 }

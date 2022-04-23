@@ -34,6 +34,12 @@ public class CelaNum extends Cela {
     }
 
     @Override
+    public Cela copy()
+    {
+        return new CelaNum(inputUsuari, valor);
+    }
+
+    @Override
     protected int compareType(Cela c) {
         return Double.compare(valor, c.getNum());
     }
