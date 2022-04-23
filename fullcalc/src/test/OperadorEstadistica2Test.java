@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class OperadorEstadistica2Test {
     private Operador operador;
-    private static final double TOL = 1e-16;
+    private static final double TOL = 1e-13;
 
     @Before
     public void setUp() {
