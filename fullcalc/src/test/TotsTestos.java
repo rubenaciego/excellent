@@ -26,7 +26,12 @@ import org.junit.runners.Suite;
         MatriuCelesEntrTest.class,
         MatriuCelesGetSetTest.class,
 
-        OperadorPart1Test.class
+        OperadorPart1Test.class,
+
+        ParserDocumentTest.class,
+        ParserFullTest.class,
+
+        ControladorDominiTest.class
 })
 public class TotsTestos {
 }
