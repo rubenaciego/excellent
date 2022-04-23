@@ -9,6 +9,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.*;
 import org.mockito.stubbing.OngoingStubbing;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -42,11 +43,25 @@ public class OperadorMajusculesTest {
     @Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
-                {(new EntradaMatriuCeles(0, 0, new CelaText("test", "minúscules"))),
-                (new EntradaMatriuCeles(1, 1, new CelaText("test", "Una mica de Tot, Sí"))),
-                (new EntradaMatriuCeles(2, 2, new CelaText("test",
-                        "1234567890'¡!\"·$%&/()=?¿-,.\\<>`+'ç^*Ç{}[]ºª|@#~€¬"))), "MINÚSCULES",
-                        "UNA MICA DE TOT, SÍ", "1234567890'¡!\"·$%&/()=?¿-,.\\<>`+'ç^*Ç{}[]ºª|@#~€¬"}};
+                {
+                        (new EntradaMatriuCeles(0, 0, new CelaText("test", "minúscules"))),
+                        (new EntradaMatriuCeles(1, 1, new CelaText("test", "Una mica de Tot, Sí"))),
+                        (new EntradaMatriuCeles(2, 2, new CelaText("test",
+                                "1234567890'¡!\"·$%&/()=?¿-,.\\<>`+'ç^*Ç{}[]ºª|@#~€¬;"))), "MINÚSCULES",
+                        "UNA MICA DE TOT, SÍ", "1234567890'¡!\"·$%&/()=?¿-,.\\<>`+'ç^*Ç{}[]ºª|@#~€¬;"},
+                {
+                        (new EntradaMatriuCeles(0, 0, new CelaText("test", "MAJÚSCULES"))),
+                        (new EntradaMatriuCeles(1, 1, new CelaText("test", "áàäâ"))),
+                        (new EntradaMatriuCeles(2, 2, new CelaText("test", ""))),
+                        "MAJÚSCULES", "ÁÀÄÂ", ""},
+
+                {
+                        (new EntradaMatriuCeles(0, 0, new CelaNum("test", 3.0))),
+                        (new EntradaMatriuCeles(1, 1, new CelaData("test", LocalDate.now()))),
+                        (new EntradaMatriuCeles(2, 2, new CelaText("test", "Aa"))),
+                        null, null, "AA"},
+        };
+
         return Arrays.asList(data);
     }
 
