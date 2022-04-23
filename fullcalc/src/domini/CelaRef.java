@@ -46,6 +46,12 @@ public class CelaRef extends Cela
     }
 
     @Override
+    public CelaRef copy() {
+        CelaRef nova = new CelaRef(new String(inputUsuari), celaReferenciada);
+        return nova;
+    }
+
+    @Override
     public int compare(Cela c)
     {
         return celaReferenciada.compare(c);

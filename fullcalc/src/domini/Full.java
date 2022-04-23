@@ -44,7 +44,7 @@ public class Full extends MatriuCeles
             subsubSL.clear();
         }
     }
-//Mirar si s'ha de fer copy expres
+
     public void copiaBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi)
     {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
@@ -69,7 +69,7 @@ public class Full extends MatriuCeles
                 if (!matriuCela.containsKey(enSkipList.getKey() + chCol)) {
                     matriuCela.put(enSkipList.getKey() + chCol, new ConcurrentSkipListMap<Integer, Cela>());
                 }
-                setCela(c, en.getKey() + chFila, enSkipList.getKey() + chCol);
+                setCela(c.copy(), en.getKey() + chFila, enSkipList.getKey() + chCol);
             }
         }
     }

@@ -34,6 +34,7 @@ public abstract class Cela
     public abstract Double getNum();
     public abstract LocalDate getData();
     public abstract String getText();
+    public abstract Cela copy();
 
     public int compare(Cela c)
     {
