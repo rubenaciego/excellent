@@ -1,9 +1,12 @@
 package test;
 import domini.CelaText;
+import domini.CelaData;
 import domini.Cela;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
+
+import java.time.LocalDate;
 
 //falta el compare i compareType
 public class CelaTextTest {
@@ -49,5 +52,30 @@ public class CelaTextTest {
         celaText.setText(input, text);
         assertNull(celaText.getData());
         assertNull(celaText.getNum());
+    }
+
+    @Test
+    public void TestCompare1() {
+        String input = "abc";
+        celaText = new CelaText(input);
+        CelaData cela2 = new CelaData("01/01/1900", LocalDate.of(1900, 1, 1));
+        assertTrue(0 > celaText.compare(cela2));
+    }
+
+    @Test
+    public void TestCompare2() {
+        String input = "abc";
+        celaText = new CelaText(input);
+        CelaText cela2 = new CelaText("bcd");
+        assertTrue(0 > celaText.compare(cela2));
+    }
+
+    @Test
+    public void TestCopy() {
+        String input = "abc";
+        celaText = new CelaText(input);
+        Cela c = celaText.copy();
+        assertTrue(0 == celaText.compare(c));
+        assertNotSame(celaText, c);
     }
 }

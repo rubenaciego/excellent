@@ -6,9 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-        CelaDataTest.class,
-        CelaNumTest.class,
-        CelaRefTest.class,
+        CelaAllTests.class,
 
         DocumentTest.class,
 

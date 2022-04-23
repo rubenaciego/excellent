@@ -3,6 +3,7 @@ import domini.Cela;
 import domini.CelaNum;
 import static org.junit.Assert.*;
 
+import domini.CelaText;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -15,7 +16,7 @@ public class CelaNumTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void TestConstructor() {
         String input = "0.1";
         Double valorInput = 0.1;
         celaNum = new CelaNum(input, valorInput);
@@ -25,7 +26,7 @@ public class CelaNumTest {
     }
 
     @Test
-    public void testGetAndSetNum() {
+    public void TestGetAndSetNum() {
         String input = "2.0";
         Double valorInput = 2.0;
         celaNum.setNum(input, valorInput);
@@ -34,7 +35,7 @@ public class CelaNumTest {
     }
 
     @Test
-    public void testSetAndGetNum() {
+    public void TestSetAndGetNum() {
         String input = "2.0";
         Double valorInput = 2.0;
         celaNum = new CelaNum("0", 0);
@@ -44,12 +45,40 @@ public class CelaNumTest {
     }
 
     @Test
-    public void testDataAndText() {
+    public void TestDataAndText() {
         String input = "143.789";
         Double valorInput = 143.789;
         celaNum = new CelaNum("0", 0);
         celaNum.setNum(input, valorInput);
         assertNull(celaNum.getData());
         assertNull(celaNum.getText());
+    }
+
+    @Test
+    public void TestCompare1() {
+        String input = "143.789";
+        Double valorInput = 143.789;
+        celaNum = new CelaNum(input, valorInput);
+        CelaText cela2 = new CelaText("Hola");
+        assertTrue(0 > celaNum.compare(cela2));
+    }
+
+    @Test
+    public void TestCompare2() {
+        String input = "143.789";
+        Double valorInput = 143.789;
+        celaNum = new CelaNum(input, valorInput);
+        CelaNum cela2 = new CelaNum("2.1", 2.1);
+        assertTrue(0 < celaNum.compare(cela2));
+    }
+
+    @Test
+    public void TestCopy() {
+        String input = "42.15";
+        Double valorInput = 42.15;
+        celaNum = new CelaNum(input, valorInput);
+        Cela c = celaNum.copy();
+        assertTrue(0 == celaNum.compare(c));
+        assertNotSame(celaNum, c);
     }
 }

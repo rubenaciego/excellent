@@ -34,8 +34,7 @@ public class CelaData extends Cela {
     }
 
     @Override
-    public Cela copy()
-    {
+    public Cela copy() {
         return new CelaData(inputUsuari, data);
     }
 
