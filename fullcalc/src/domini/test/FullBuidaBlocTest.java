@@ -69,7 +69,7 @@ public class FullBuidaBlocTest {
     }
 
     @Test
-    public void TestGetBloc() {
+    public void TestBuidaBloc() {
         full.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());
         full.setCela(cela2.getCela(), cela2.getFila(), cela2.getColumna());
         full.setCela(cela3.getCela(), cela3.getFila(), cela3.getColumna());

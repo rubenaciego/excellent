@@ -37,14 +37,14 @@ public class FullCasosExtrTest {
     }
 
     @Test(expected = ExcepcioForaLimits.class)
-    public void TestGetBlocFora() {
+    public void TestGetBlocFora1() {
         full = new Full(23, 4);
         full.getBloc(5, 2, 20, 2);
     }
 
     @Test(expected = ExcepcioForaLimits.class)
-    public void TestGetBlocZeroOffsetFora() {
+    public void TestGetBlocFora2() {
         full = new Full(2, 2);
-        full.getBlocZeroOffset(2, 2, 1, 1);
+        full.getBloc(2, 2, 1, 1);
     }
 }

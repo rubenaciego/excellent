@@ -3,36 +3,30 @@ package domini;
 import java.util.Iterator;
 import java.util.concurrent.*;
 
-public class Full extends MatriuCeles
-{
+public class Full extends MatriuCeles {
     private Cela celaResultat;
 
-    public Full()
-    {
+    public Full() {
         super();
     }
 
-    public Full(int files, int cols)
-    {
+    public Full(int files, int cols) {
         super(files, cols);
     }
 
     @Override
-    public Cela getCela(int fila, int col)
-    {
+    public Cela getCela(int fila, int col) {
         if (fila == -1 && col == -1) return celaResultat;
         else return super.getCela(fila, col);
     }
 
     @Override
-    public void setCela(Cela novaCela, int fila, int col)
-    {
+    public void setCela(Cela novaCela, int fila, int col) {
         if (fila == -1 && col == -1 && novaCela != null) celaResultat = novaCela;
         else super.setCela(novaCela, fila, col);
     }
 
-    public void buidaBloc(int filaIni, int colIni, int numFiles, int numCols)
-    {
+    public void buidaBloc(int filaIni, int colIni, int numFiles, int numCols) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
@@ -45,8 +39,7 @@ public class Full extends MatriuCeles
         }
     }
 
-    public void copiaBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi)
-    {
+    public void copiaBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
@@ -74,8 +67,7 @@ public class Full extends MatriuCeles
         }
     }
 
-    public void mouBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi)
-    {
+    public void mouBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
 
@@ -103,35 +95,5 @@ public class Full extends MatriuCeles
                 setCela(c, en.getKey() + chFila, enSkipList.getKey() + chCol);
             }
         }
-    }
-
-    public MatriuCeles getBloc(int filaIni, int colIni, int numFiles, int numCols)
-    {
-        return getBlocOffset(filaIni, colIni, numFiles, numCols, 0, 0);
-    }
-
-    public MatriuCeles getBlocZeroOffset(int filaIni, int colIni, int numFiles, int numCols)
-    {
-        return getBlocOffset(filaIni, colIni, numFiles, numCols, filaIni, colIni);
-    }
-
-    private MatriuCeles getBlocOffset(int filaIni, int colIni, int numFiles, int numCols, int fOffset, int cOffset)
-    {
-        if (blocInvalid(filaIni, colIni, numFiles, numCols))
-            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
-
-        MatriuCeles bloc = new MatriuCeles(filaIni-fOffset+numFiles, colIni-cOffset+numCols);
-        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = super.matriuCela.subMap(colIni, colIni + numCols);
-
-        for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
-            ConcurrentSkipListMap<Integer, Cela> T = SLi.getValue();
-            ConcurrentNavigableMap<Integer, Cela> subsubSL = T.subMap(filaIni, filaIni + numFiles);
-            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : subsubSL.entrySet()) {
-                Cela c = SLj.getValue();
-                bloc.setCela(c, SLj.getKey() - fOffset, SLi.getKey() - cOffset);
-            }
-        }
-
-        return bloc;
     }
 }

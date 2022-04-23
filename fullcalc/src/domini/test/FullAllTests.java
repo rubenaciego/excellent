@@ -9,8 +9,6 @@ import org.junit.runners.Suite.SuiteClasses;
         FullBuidaBlocTest.class,
         FullCasosExtrTest.class,
         FullCopiaBlocTest.class,
-        FullGetBlocTest.class,
-        FullGetBlocZeroOffTest.class,
         FullGetSetTest.class,
         FullMouBlocTest.class
 })

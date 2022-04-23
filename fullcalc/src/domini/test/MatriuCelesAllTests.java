@@ -11,7 +11,8 @@ import org.junit.runners.Suite.SuiteClasses;
         MatriuCelesCasosExtrTest.class,
         MatriuCelesEntrColTest.class,
         MatriuCelesEntrTest.class,
-        MatriuCelesGetSetTest.class })
+        MatriuCelesGetSetTest.class,
+        MatriuCelesGetBlocTest.class })
 
 public class MatriuCelesAllTests {
 }

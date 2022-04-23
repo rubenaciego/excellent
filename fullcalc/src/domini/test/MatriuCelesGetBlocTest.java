@@ -11,16 +11,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.*;
 import org.mockito.Spy;
 
+import static org.junit.Assert.*;
+
 @RunWith(Parameterized.class)
-public class FullGetBlocTest {
+public class MatriuCelesGetBlocTest {
     @Parameter(0)
     public EntradaMatriuCeles cela1;
     @Parameter(1)
@@ -78,8 +77,8 @@ public class FullGetBlocTest {
         assertEquals(celesIn, entrades.size());
 
         for (EntradaMatriuCeles E: entrades) {
-            assertTrue(E.getFila() >= filaIni && E.getColumna() >= colIni
-                    && E.getFila() < filaIni+numFiles && E.getFila() < colIni+numCols);
+            assertTrue(E.getFila() >= 0 && E.getColumna() >= 0
+                    && E.getFila() < numFiles && E.getFila() < numCols);
         }
     }
 }

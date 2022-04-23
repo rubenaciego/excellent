@@ -130,6 +130,25 @@ public class MatriuCeles
         --numCols;
     }
 
+    public MatriuCeles getBloc(int filaIni, int colIni, int numFiles, int numCols) {
+        if (blocInvalid(filaIni, colIni, numFiles, numCols))
+            throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
+
+        MatriuCeles bloc = new MatriuCeles(numFiles, numCols);
+        ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = matriuCela.subMap(colIni, colIni + numCols);
+
+        for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
+            ConcurrentSkipListMap<Integer, Cela> T = SLi.getValue();
+            ConcurrentNavigableMap<Integer, Cela> subsubSL = T.subMap(filaIni, filaIni + numFiles);
+            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : subsubSL.entrySet()) {
+                Cela c = SLj.getValue();
+                bloc.setCela(c, SLj.getKey() - filaIni, SLi.getKey() - colIni);
+            }
+        }
+
+        return bloc;
+    }
+
     public ArrayList<EntradaMatriuCeles> getEntrades()
     {
         ArrayList<EntradaMatriuCeles> entrades = new ArrayList<EntradaMatriuCeles>();
