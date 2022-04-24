@@ -19,72 +19,88 @@ public class ControladorFull {
         int filaDest = parsejat.getFilaDesti();
         int colDest = parsejat.getColumnaDesti();
 
-        MatriuCeles bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
+        MatriuCeles bloc;
         MatriuCeles res;
 
         switch (parsejat.getTipusOpFull()) {
             case EXTREU_HOROSCOP:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.extreuHoroscop(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_ANY:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.extreuAny(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_MES:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.extreuMes(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_DIA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.extreuDia(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_DIA_SETMANA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.extreuDiaSetmana(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXECUTA_OPERACIO_ARITMETICA_UNARIA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.executaOperacioAritmeticaUnaria(bloc, parsejat.getTipusOpAritmetica());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXECUTA_FUNCIO_ESTADISTICA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.executaOperacioEstadistica(bloc, parsejat.getTipusOpEstadistica());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case TRUNCA_NUMERO:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.truncaNumero(bloc, parsejat.getDigitsTruncar());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case CONVERTEIX_UNITATS:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.converteixUnitats(bloc,
                         parsejat.getTipusConversioUnitats());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_LONGITUD_TEXT:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.extreuLongitudText(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case CERCA_OCURRENCIES:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.cercaOcurrencies(bloc, parsejat.getStringCercada());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case CONVERTEIX_MAJUSCULES:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.converteixMajuscules(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case CONVERTEIX_MINUSCULES:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.converteixMinuscules(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case TRANSPOSA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.transposa(bloc);
                 guardaBloc(res, filaDest, colDest);
                 break;
             case REEMPLACA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.reemplaca(bloc, parsejat.getStringCercada(), parsejat.getStringRemplacadora());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case ORDENA:
+                bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.ordena(bloc, parsejat.getColumnaOrdenacio(), parsejat.getTipusCriteriOrdenacio());
                 guardaBloc(res, filaDest, colDest);
                 break;
