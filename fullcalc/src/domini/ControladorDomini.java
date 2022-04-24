@@ -34,8 +34,6 @@ public class ControladorDomini {
 
     /**
      * @brief Executa l'operació codificada dins resultat
-     * * /pre resultat és del tipus ResultatParserDocument
-     * /post Executa l'operació codificada dins resultat
      */
     private void executaOperacioDocument(ResultatParserDocument resultat) {
         switch (resultat.getTipusOpDocument()) {

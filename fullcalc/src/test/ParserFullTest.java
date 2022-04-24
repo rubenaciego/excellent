@@ -15,8 +15,6 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ParserFullTest {
-    Parser parser;
-
     @Parameterized.Parameter(0)
     public String[] opSenseParsejar;
     @Parameterized.Parameter(1)
@@ -230,6 +228,25 @@ public class ParserFullTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el mètode parseOpFull
+     * retorna un objecte de la classe ResultatParserFull correctament
+     * parsejat.
+     * Per fer-ho, es fan 14 testos per veure que les operacions
+     * associadaes amb full es parsegen correctament. En aquest cas, no hem
+     * comprovat que tots els tipus d'operacions disponibles es parsegen bé
+     * (ja que n'hem implementat una quantitat considerable) sinó que una
+     * operació de cada tipus d'operació per veure que hi ha un coverage
+     * complet en termes de poder provar tot el codi del mètode.
+     * Així doncs, s'ha fet un test per una operació concreta del tipus
+     * operació aritmètica i un altre per operació estadística. Per operació
+     * full, hem distingit conversió unitats, ordena, trunca numero, cerca
+     * ocurrencies, reemplaça, modifica cel·la (per text, numeric, data i
+     * referencia), elimina fila i elimina columna perque es codifiquen
+     * diferent a la resta d'operacions full (tenen mes camps) o be perque la
+     * seva crida fa que s'hagi d'executar mes codi del metode. A mes, hem
+     * testejat una operacio "general" d'operacio full com es extreu mes.
+     */
     @Test
     public void TestParseOpFull() {
         ResultatParserFull resultatOutput =
