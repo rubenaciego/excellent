@@ -120,7 +120,6 @@ public class DriverControladorFull {
         System.out.println("Introdueix totes les dades necessaries per al " +
                 "Parsejat de la operacio a realitzar:");
         System.out.println("Introdueix un int de filaOrigen:");
-        int fo = entry.nextInt();
         parsejat.setFilaOrigen(fo);
 
         System.out.println("Introdueix un int de columnaOrigen:");
@@ -343,8 +342,8 @@ public class DriverControladorFull {
                 parsejat.setTipusOpFull(OperacioFull.ELIMINA_FILA);
                 parsejat.setTipusOpFull(OperacioFull.ORDENA);
                 System.out.println("Introdueix un int de filaEliminar:");
-                int filaColEliminar = entry.nextInt();
-                parsejat.setFilaColEliminar(filaColEliminar);
+                int filaColEliminar2 = entry.nextInt();
+                parsejat.setFilaColEliminar(filaColEliminar2);
                 break;
             case "MOU_BLOC":
                 parsejat.setTipusOpFull(OperacioFull.MOU_BLOC);
