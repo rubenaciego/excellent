@@ -1,6 +1,7 @@
 package drivers;
 import domini.*;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class DriverFull {
@@ -208,6 +209,11 @@ public class DriverFull {
             TestBlocInvalid(fil, col, numFil, numCol);
             System.out.println("Imprimint la matriu final");
             imprimir();
+
+            System.out.println("Desitges sortir de l'executable? Introdueix un 0 si vols sortir, o entra qualsevol" +
+                    " altre caracter si es que vols continuar");
+            input = entry.next();
+            if (Objects.equals(input, "0")) break;
         }
     }
 }
