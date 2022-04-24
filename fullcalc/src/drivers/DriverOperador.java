@@ -10,6 +10,7 @@ public class DriverOperador {
     static Operador op;
     static MatriuCeles bloc;
 
+    static Scanner entry;
 
     public static void imprimir(MatriuCeles bloc) {
 
@@ -33,10 +34,7 @@ public class DriverOperador {
             }
         }
     }
-    public static void main(String[] args) {
-        Scanner entry = new Scanner(System.in);
-        op = Operador.getInstance();
-
+    public static void llegirBloc() {
         System.out.println("Introdueix el nombre de files del bloc sobre el " +
                 "que operar");
 
@@ -110,12 +108,17 @@ public class DriverOperador {
                     break;
                 default:
                     System.out.println("Tipus no valid, torna a començar el " +
-                            "proces d'enregistrar la cela.");
+                            "proces d'enregistrar la cela");
                     --p;
                     break;
             }
         }
+    }
+    public static void main(String[] args) {
+        entry = new Scanner(System.in);
+        op = Operador.getInstance();
 
+        llegirBloc();
         imprimir(bloc);
 
         MatriuCeles res;
@@ -220,6 +223,16 @@ public class DriverOperador {
                         case "DESVIACIO_ESTANDARD":
                             res = op.executaOperacioEstadistica(bloc,
                                     OperacioEstadistica.DESVIACIO_ESTANDARD);
+                            imprimir(res);
+                            break;
+                        case "COVARIANCIA":
+                            res = op.executaOperacioEstadistica(bloc,
+                                    OperacioEstadistica.COVARIANCIA);
+                            imprimir(res);
+                            break;
+                        case "COEFICIENT_PEARSON":
+                            res = op.executaOperacioEstadistica(bloc,
+                                    OperacioEstadistica.COEFICIENT_PEARSON);
                             imprimir(res);
                             break;
                         default:
