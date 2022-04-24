@@ -55,11 +55,10 @@ public class DriverCelaNum {
     public static void main(String[] args) {
         Scanner entry = new Scanner(System.in);
 
-        System.out.println("Introdueix un String i un double per incialitzar la CelaNum");
+        System.out.println("Introdueix un String i un double per inicialitzar la CelaNum");
         String input = entry.next();
         double valor = entry.nextDouble();
         TestConstructor(input, valor);
-        celaNum = new CelaNum(input, valor);
 
         System.out.println("Executant getInputUsuari()");
         TestGetInputUsuari();
