@@ -393,7 +393,7 @@ public class Operador {
 
                 JSONObject cela = new JSONObject();
                 cela.put("ocurrencies", count);
-                cela.put("indexos", indices);
+                cela.put("indexs", indices);
 
                 obj.put(e.getFila() + ":" + e.getColumna(), cela);
                 total += count;
@@ -551,7 +551,7 @@ public class Operador {
         return result;
     }
 
-    private String horoscop(Integer dia, Integer mes) {
+    private String horoscop(int dia, int mes) {
         String astroSign = "";
 
         if (mes == 12) {
@@ -662,11 +662,19 @@ public class Operador {
     }
 
     /**
+     * @param dades Vector sobre el que calcular la variància
+     * @return Desviació estàndard dels valors del vector
+     */
+    private double desviacioEstandard(ArrayList<Double> dades) {
+        return Math.sqrt(variancia(dades));
+    }
+
+    /**
      * @param x Primer conjunt de dades de mida n
      * @param y Segon conjunt de dades de mida n
      * @return Covariància entre les dades de x i y
      */
-    private double covariancia(ArrayList<Double> x, ArrayList<Double> y) throws ExcepcioOperador {
+    private double covariancia(ArrayList<Double> x, ArrayList<Double> y) {
         if (x.size() != y.size())
             throw new ExcepcioOperador("Error en l'operador: quantitat de dades diferents al calcular la covariancia");
         else if (x.size() == 0) return 0.0;
@@ -682,10 +690,11 @@ public class Operador {
         return res;
     }
 
-    private double desviacioEstandard(ArrayList<Double> dades) {
-        return Math.sqrt(variancia(dades));
-    }
-
+    /**
+     * @param x Primer conjunt de dades de mida n
+     * @param y Segon conjunt de dades de mida n
+     * @return Coeficient de Pearson entre les dades de x i y
+     */
     private double coeficientPearson(ArrayList<Double> x, ArrayList<Double> y) {
         double div = Math.sqrt(variancia(x) * variancia(y));
         if (div == 0.0) return 0.0;

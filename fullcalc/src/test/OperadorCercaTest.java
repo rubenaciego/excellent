@@ -51,27 +51,27 @@ public class OperadorCercaTest {
                         (new EntradaMatriuCeles(0, 0, new CelaText("test", "la paraula no hi es"))),
                         (new EntradaMatriuCeles(1, 1, new CelaText("test", "m'agrada molt el peix"))),
                         (new EntradaMatriuCeles(2, 2, new CelaText("test", "peixexegepeix"))),
-                        "peix", "{\"ocurrencies\": 3, \"0:0\":{\"ocurrencies\":0, \"indexos\":[]}, " +
-                        "\"1:1\":{\"ocurrencies\": 1, \"indexos\": [17]}, \"2:2\": {\"ocurrencies\": 2, \"indexos\": [0, 9]} }"},
+                        "peix", "{\"ocurrencies\": 3, \"0:0\":{\"ocurrencies\":0, \"indexs\":[]}, " +
+                        "\"1:1\":{\"ocurrencies\": 1, \"indexs\": [17]}, \"2:2\": {\"ocurrencies\": 2, \"indexs\": [0, 9]} }"},
                 {
                         (new EntradaMatriuCeles(0, 0, new CelaText("test", "lele"))),
                         (new EntradaMatriuCeles(1, 1, new CelaText("test", "lelelelelele"))),
                         (new EntradaMatriuCeles(2, 2, new CelaText("test", ""))),
-                        "lele", "{\"0:0\":{\"ocurrencies\":1,\"indexos\":[0]},\"1:1\":{\"ocurrencies\":5," +
-                        "\"indexos\":[0,2,4,6,8]},\"2:2\":{\"ocurrencies\":0,\"indexos\":[]},\"ocurrencies\":6}"},
+                        "lele", "{\"0:0\":{\"ocurrencies\":1,\"indexs\":[0]},\"1:1\":{\"ocurrencies\":5," +
+                        "\"indexs\":[0,2,4,6,8]},\"2:2\":{\"ocurrencies\":0,\"indexs\":[]},\"ocurrencies\":6}"},
                 {
                         (new EntradaMatriuCeles(0, 0, new CelaText("test", "hola bon dia"))),
                         (new EntradaMatriuCeles(1, 1, new CelaText("test", "a a a a a"))),
                         (new EntradaMatriuCeles(2, 2, new CelaText("test",
                                 "abcdefghijklmnopqrstuvwxyz0123456789"))), "a", "{\"0:0\":{\"ocurrencies\":2," +
-                        "\"indexos\":[3,11]},\"1:1\":{\"ocurrencies\":5,\"indexos\":[0,2,4,6,8]}," +
-                        "\"2:2\":{\"ocurrencies\":1,\"indexos\":[0]},\"ocurrencies\":8}"},
+                        "\"indexs\":[3,11]},\"1:1\":{\"ocurrencies\":5,\"indexs\":[0,2,4,6,8]}," +
+                        "\"2:2\":{\"ocurrencies\":1,\"indexs\":[0]},\"ocurrencies\":8}"},
                 {
                         (new EntradaMatriuCeles(0, 0, new CelaText("test", ""))),
                         (new EntradaMatriuCeles(1, 1, new CelaText("test", "aa"))),
                         (new EntradaMatriuCeles(2, 2, new CelaText("test", "arreu"))),
-                        "", "{\"ocurrencies\": 8, \"0:0\":{\"ocurrencies\":1, \"indexos\":[0]}, " +
-                        "\"1:1\":{\"ocurrencies\": 2, \"indexos\": [0,1]}, \"2:2\": {\"ocurrencies\": 5, \"indexos\": "
+                        "", "{\"ocurrencies\": 8, \"0:0\":{\"ocurrencies\":1, \"indexs\":[0]}, " +
+                        "\"1:1\":{\"ocurrencies\": 2, \"indexs\": [0,1]}, \"2:2\": {\"ocurrencies\": 5, \"indexs\": "
                         + "[0,1,2,3,4]} }"},
         };
 

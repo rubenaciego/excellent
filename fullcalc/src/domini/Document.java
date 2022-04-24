@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @brief Representa un document, un conjunt de fulls
  */
 public class Document {
-    private final String nom;
+    private String nom;
     private LocalDateTime dataModificacio;
     private final ArrayList<Full> fulls;
 
@@ -24,6 +24,10 @@ public class Document {
         this.nom = nom;
         fulls = new ArrayList<Full>();
         dataModificacio = LocalDateTime.now();
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getNom() {

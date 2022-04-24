@@ -14,7 +14,7 @@ import java.util.Collection;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class OperadorExtreuLongitutTextTest {
+public class OperadorExtreuLongitudTextTest {
     private Operador operador;
 
     @Before

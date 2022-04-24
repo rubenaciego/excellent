@@ -17,10 +17,10 @@ import org.junit.runners.Suite;
         OperadorLongitudTest.class,
         OperadorConversioUnitatsTest.class,
         OperadorExtreuDatesTest.class,
-        OperadorExtreuLongitutTextTest.class,
+        OperadorExtreuLongitudTextTest.class,
+        OperadorExtreuDiesStringTest.class,
         OperadorOpAritmeticaTest.class,
         OperadorTruncaTest.class
 })
-
 public class OperadorAllTests {
 }
