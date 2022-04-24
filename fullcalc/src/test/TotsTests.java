@@ -15,17 +15,11 @@ import org.junit.runners.Suite;
         FullGetSetTest.class,
 
         MatriuCelesAllTests.class,
-        MatriuCelesCasosExtrTest.class,
-        MatriuCelesElimCol.class,
-        MatriuCelesElimFila.class,
-        MatriuCelesEntrColTest.class,
-        MatriuCelesEntrTest.class,
-        MatriuCelesGetSetTest.class,
 
         ParserDocumentTest.class,
         ParserFullTest.class,
 
-        OperadorTest.class,
+        OperadorAllTests.class,
 
         ControladorDominiTest.class
 })

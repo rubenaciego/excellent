@@ -387,15 +387,15 @@ public class Operador {
                 }
 
                 JSONObject cela = new JSONObject();
-                cela.put("occurrences", count);
-                cela.put("indices", indices);
+                cela.put("ocurrencies", count);
+                cela.put("indexos", indices);
 
                 obj.put(e.getFila() + ":" + e.getColumna(), cela);
                 total += count;
             }
         }
 
-        obj.put("occurrences", total);
+        obj.put("ocurrencies", total);
         // problema que posar d'input usuari
         CelaText c = new CelaText("cercaOcurrencies(" + aCercar + ")", obj.toString());
         MatriuCeles mc = new MatriuCeles(1, 1);
