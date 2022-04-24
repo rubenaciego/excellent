@@ -46,6 +46,12 @@ public class MatriuCelesElimFila {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode eliminaFila elimina el numero de fila que se li passa.
+     * Per fer-ho, s'executa l'operacio i es confirma que les Cela d'un nombre de fila inferior no varien, les d'un
+     * numero superior es veuen mogudes cap a un numero de fila inferior, i que les Cela de la fila corresponent
+     * deixen d'existir.
+     */
     @Test
     public void TestEliminaFila() {
         matriu.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());

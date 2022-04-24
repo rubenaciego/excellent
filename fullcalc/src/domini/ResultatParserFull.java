@@ -1,6 +1,7 @@
 package domini;
 
 import java.lang.*;
+import java.util.Objects;
 
 public class ResultatParserFull {
     private int idFull;
@@ -165,5 +166,37 @@ public class ResultatParserFull {
 
     public void setResultatParserCela(ResultatParserCela resultatParserCela) {
         this.resultatParserCela = resultatParserCela;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof ResultatParserFull)) {
+            return false;
+        }
+
+        ResultatParserFull c = (ResultatParserFull) o;
+
+        return (idFull == c.idFull && filaOrigen == c.filaOrigen && filaDesti == c.filaDesti &&
+                columnaOrigen == c.columnaOrigen && columnaDesti == c.columnaDesti
+                && midaFila == c.midaFila && midaColumna == c.midaColumna &&
+                digitsTruncar == c.digitsTruncar && filaColEliminar == c.filaColEliminar
+                && columnaOrdenacio == c.columnaOrdenacio &&
+                Objects.equals(String.valueOf(tipusOperacioFull),
+                        String.valueOf(c.tipusOperacioFull)) &&
+                Objects.equals(String.valueOf(tipusOperacioAritmetica),
+                        String.valueOf(c.tipusOperacioAritmetica)) &&
+                Objects.equals(String.valueOf(tipusOperacioEstadistica),
+                        String.valueOf(c.tipusOperacioEstadistica)) &&
+                Objects.equals(String.valueOf(tipusConversioUnitats),
+                        String.valueOf(c.tipusConversioUnitats)) &&
+                Objects.equals(String.valueOf(tipusCriteriOrdenacio),
+                        String.valueOf(c.tipusCriteriOrdenacio)) &&
+                Objects.equals(stringCercada, c.stringCercada) && Objects.equals(stringRemplacadora, c.stringRemplacadora) &&
+                Objects.equals(resultatParserCela, c.resultatParserCela));
     }
 }

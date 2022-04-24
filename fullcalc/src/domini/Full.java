@@ -92,7 +92,8 @@ public class Full extends MatriuCeles {
                 if (!matriuCela.containsKey(enSkipList.getKey() + chCol)) {
                     matriuCela.put(enSkipList.getKey() + chCol, new ConcurrentSkipListMap<Integer, Cela>());
                 }
-                setCela(c.copy(), en.getKey() + chFila, enSkipList.getKey() + chCol);
+
+                setCela(c, en.getKey() + chFila, enSkipList.getKey() + chCol);
             }
         }
     }

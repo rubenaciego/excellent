@@ -12,16 +12,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.*;
 import org.mockito.Spy;
 
+import static org.junit.Assert.*;
+
 @RunWith(Parameterized.class)
-public class FullGetBlocTest {
+public class MatriuCelesGetBlocTest {
     @Parameter(0)
     public EntradaMatriuCeles cela1;
     @Parameter(1)
@@ -39,10 +38,10 @@ public class FullGetBlocTest {
     @Parameter(7)
     public int celesIn;
 
-    Full full;
+    private Full full;
 
     @Spy
-    MatriuCeles matriu;
+    private MatriuCeles matriu;
 
     @Before
     public void setUp() {
@@ -69,6 +68,12 @@ public class FullGetBlocTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode getBloc buida el bloc concret que se li passa. Per
+     * fer-ho, s'obte el mateix bloc que es volia esborrar i es comprova que efectivament no hi ha cap entrada.
+     * Finalment es comprova que cap de la resta d'entrades del full s'han esborrat. Cada un dels testos parametritzats
+     * es dedica a casos diferenciats: s'esborren totes les Cela de full, una part d'elles o cap.
+     */
     @Test
     public void TestGetBloc() {
         full.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());
@@ -79,8 +84,8 @@ public class FullGetBlocTest {
         assertEquals(celesIn, entrades.size());
 
         for (EntradaMatriuCeles E: entrades) {
-            assertTrue(E.getFila() >= filaIni && E.getColumna() >= colIni
-                    && E.getFila() < filaIni+numFiles && E.getFila() < colIni+numCols);
+            assertTrue(E.getFila() >= 0 && E.getColumna() >= 0
+                    && E.getFila() < numFiles && E.getFila() < numCols);
         }
     }
 }

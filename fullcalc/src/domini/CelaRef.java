@@ -39,8 +39,7 @@ public class CelaRef extends Cela {
     }
 
     @Override
-    public Cela copy()
-    {
+    public Cela copy() {
         return new CelaRef(inputUsuari, celaReferenciada);
     }
 
