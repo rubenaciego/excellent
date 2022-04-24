@@ -116,10 +116,10 @@ public class DriverControladorFull {
 
     public static void llegirParsejat() {
         parsejat = new ResultatParserFull();
-        int fo = entry.nextInt();
         System.out.println("Introdueix totes les dades necessaries per al " +
                 "Parsejat de la operacio a realitzar:");
         System.out.println("Introdueix un int de filaOrigen:");
+        int fo = entry.nextInt();
         parsejat.setFilaOrigen(fo);
 
         System.out.println("Introdueix un int de columnaOrigen:");
@@ -372,7 +372,7 @@ public class DriverControladorFull {
             ControladorFull contr = new ControladorFull(full);
             contr.executaOperacio(parsejat);
             imprimir(full);
-            System.out.println("Introdueix FI per abortar o CONTINUA per " +
+            System.out.println("Introdueix 1 per abortar o 0 per " +
                     "omplir un nou parsejat");
             int sortir = entry.nextInt();
             if (sortir == 1) return;
