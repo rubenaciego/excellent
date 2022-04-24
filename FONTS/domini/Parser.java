@@ -57,12 +57,15 @@ public class Parser {
         switch (tipus) {
             case OPERACIO_ARITMETICA:
                 resultat.setTipusOpAritmetica(OperacioAritmetica.valueOf(splitted[8]));
+                resultat.setTipusOpFull(OperacioFull.EXECUTA_OPERACIO_ARITMETICA_UNARIA);
                 break;
             case OPERACIO_ESTADISTICA:
                 resultat.setTipusOpEstadistica(OperacioEstadistica.valueOf(splitted[8]));
+                resultat.setTipusOpFull(OperacioFull.EXECUTA_FUNCIO_ESTADISTICA);
                 break;
             case CONVERSIO_UNITATS:
                 resultat.setTipusConversioUnitats(ConversioUnitats.valueOf(splitted[8]));
+                resultat.setTipusOpFull(OperacioFull.CONVERTEIX_UNITATS);
                 break;
             case ORDENA:
                 if (splitted.length < 10)
