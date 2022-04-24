@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="byte-buddy">
-    <CLASSES>
-      <root url="jar:///usr/share/java/byte-buddy.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
