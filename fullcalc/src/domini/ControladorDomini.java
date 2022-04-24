@@ -29,17 +29,23 @@ public class ControladorDomini {
         controladorsFull = new ArrayList<ControladorFull>();
     }
 
-    public void creaDocument(String nomDocument) {
-        document = new Document(nomDocument);
-    }
+    public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
+        try {
+            TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
-    public void carregaDocument(String nomDocument) {
-        // mock
-        throw new UnsupportedOperationException("carregaDocument encara no implementat");
-    }
+            if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
+                ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
+                executaOperacioDocument(resultat);
+            } else {
+                ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
+                controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
+            }
 
-    public void tancaDocument() {
-        document = null;
+            return ExcepcioDomini.TipusError.NO_ERROR;
+        } catch(ExcepcioDomini e) {
+            System.out.println(e.getMessage());
+            return e.getTipusError();
+        }
     }
 
     /**
@@ -75,22 +81,15 @@ public class ControladorDomini {
         }
     }
 
-    public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
-        try {
-            TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
+    private void creaDocument(String nomDocument) {
+        document = new Document(nomDocument);
+    }
 
-            if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
-                ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
-                executaOperacioDocument(resultat);
-            } else {
-                ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
-                controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
-            }
+    private void carregaDocument(String nomDocument) {
+        throw new UnsupportedOperationException("carregaDocument encara no implementat");
+    }
 
-            return ExcepcioDomini.TipusError.NO_ERROR;
-        } catch(ExcepcioDomini e) {
-            System.out.println(e.getMessage());
-            return e.getTipusError();
-        }
+    private void tancaDocument() {
+        document = null;
     }
 }
