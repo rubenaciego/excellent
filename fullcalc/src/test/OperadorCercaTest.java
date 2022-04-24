@@ -92,8 +92,8 @@ public class OperadorCercaTest {
         MatriuCeles res = operador.cercaOcurrencies(mc, cerca);
         assertNotNull(res);
 
-        assertEquals(1, res.getNumCols());
-        assertEquals(1, res.getNumFiles());
+        assertEquals(3, res.getNumCols());
+        assertEquals(3, res.getNumFiles());
         assertEquals(3, res.getEntrades().size());
 
         String jsonRes = res.getCela(0, 0).getText();
