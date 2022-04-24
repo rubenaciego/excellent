@@ -25,6 +25,11 @@ public class ControladorFullTest {
         op = mock(Operador.class);
     }
 
+    /**
+     * @brief Test amb mocks de MatriuCeles i Operador per comprovar que les
+     * crides que es fan a ambdues classes a ControladorFull son rebudes
+     * correctament per aquestes.
+     */
     @Test
     public void TestExecutaOperacio() {
         MatriuCeles bloc = mock(MatriuCeles.class);
@@ -148,8 +153,13 @@ public class ControladorFullTest {
                 "Operador ordena cridat! :)");
     }
 
+    /**
+     * @brief Test amb mock de Full per comprovar que les crides a setCela i
+     * getCela que es fan des de OperadorFull son rebudes correctament per la
+     * classe Full.
+     */
     @Test
-    public void TestExecutaOperacioFull() {
+    public void TestExecutaOperacioModCela() {
         CelaText cNova = new CelaText("Cela Nova :)");
         doNothing().when(full).setCela(cNova,0,0);
         when(full.getCela(0,0)).thenReturn(cNova);

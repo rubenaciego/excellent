@@ -39,6 +39,11 @@ public class OperadorExtreuLongitutTextTest {
     @Parameter(7)
     public Double lon4;
 
+    /**
+     * @brief Parametritzacio de una Cel·la de cada tipus per executar els
+     * testos i dels resultats esperats per cada Cel·la i
+     * extreuLongitudText
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         CelaText ct = new CelaText("test", "Feliç St Jordi :)");
@@ -55,6 +60,11 @@ public class OperadorExtreuLongitutTextTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació extreuLongitudText amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testExtreuLongitudText()
     {
