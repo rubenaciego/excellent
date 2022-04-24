@@ -137,13 +137,13 @@ public class DriverControladorFull {
         int cd = entry.nextInt();
         parsejat.setColumnaDesti(cd);
 
-        System.out.println("Introdueix un int de midaColumna:");
-        int midaCol = entry.nextInt();
-        parsejat.setMidaColumna(midaCol);
-
         System.out.println("Introdueix un int de midaFila:");
         int midaFila = entry.nextInt();
         parsejat.setMidaFila(midaFila);
+
+        System.out.println("Introdueix un int de midaColumna:");
+        int midaCol = entry.nextInt();
+        parsejat.setMidaColumna(midaCol);
 
         System.out.println("Introdueix tipusOperacioFull:");
         String tipusOperacioFull = entry.next();
@@ -327,6 +327,15 @@ public class DriverControladorFull {
                 parsejat.setTipusOpFull(OperacioFull.ORDENA);
                 System.out.println("Introdueix un int de columnaOrdenacio:");
                 int columnaOrdenacio = entry.nextInt();
+                System.out.println("Introdueix un criteriOrdenacio:");
+                String criteriOrdenacio = entry.next();
+                switch (criteriOrdenacio) {
+                    case "ASCENDENT":
+                        parsejat.setTipusCriteriOrdenacio(CriteriOrdenacio.ASCENDENT);
+                        break;
+                    case "DESCENDENT":
+                        parsejat.setTipusCriteriOrdenacio(CriteriOrdenacio.DESCENDENT);
+                }
                 parsejat.setColumnaOrdenacio(columnaOrdenacio);
                 break;
             case "MODIFICA_CELA":
@@ -425,10 +434,6 @@ public class DriverControladorFull {
             ControladorFull contr = new ControladorFull(full);
             contr.executaOperacio(parsejat);
             imprimir(full);
-            int files = full.getNumFiles();
-            int cols = full.getNumCols();
-
-            System.out.println("Files: " + files + " columnes: " + cols);
 
             System.out.println("Introdueix 1 per continuar introduint un nou " +
                     "parsejat o 0 per abortar");
