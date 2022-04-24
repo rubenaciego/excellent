@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ControladorDomini {
     private Document document;
-    private final ArrayList<ControladorFull> controladorsFull;
+    private ArrayList<ControladorFull> controladorsFull;
     private final Parser parser;
 
     /**
@@ -26,7 +26,6 @@ public class ControladorDomini {
 
     public ControladorDomini() {
         parser = Parser.getInstance();
-        controladorsFull = new ArrayList<ControladorFull>();
     }
 
     public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
@@ -65,15 +64,24 @@ public class ControladorDomini {
                 tancaDocument();
                 break;
             case AFEGEIX_FULL:
+                if (document == null)
+                    throw new ExcepcioNoDocument("Error: no hi ha cap document obert");
+
                 document.afegeixFull();
                 controladorsFull.add(new ControladorFull(
                         document.getFull(document.getNumFulls() - 1)));
                 break;
             case ELIMINA_FULL:
+                if (document == null)
+                    throw new ExcepcioNoDocument("Error: no hi ha cap document obert");
+
                 document.eliminaFull(resultat.getIdFull());
                 controladorsFull.remove(resultat.getIdFull());
                 break;
             case DESA_DOCUMENT:
+                if (document == null)
+                    throw new ExcepcioNoDocument("Error: no hi ha cap document obert");
+
                 document.desa();
                 break;
             default:
@@ -83,6 +91,7 @@ public class ControladorDomini {
 
     private void creaDocument(String nomDocument) {
         document = new Document(nomDocument);
+        controladorsFull = new ArrayList<ControladorFull>();
     }
 
     private void carregaDocument(String nomDocument) {
@@ -91,5 +100,6 @@ public class ControladorDomini {
 
     private void tancaDocument() {
         document = null;
+        controladorsFull = null;
     }
 }

@@ -7,7 +7,8 @@ public class ExcepcioDomini extends RuntimeException {
         CELA_FORA_LIMITS,
         INDEX_FULL_INVALID,
         FORMAT_PARSER_INVALID,
-        OPERADOR
+        OPERADOR,
+        NO_DOCUMENT
     }
 
     private final TipusError error;
