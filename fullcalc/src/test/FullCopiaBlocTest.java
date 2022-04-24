@@ -60,10 +60,20 @@ public class FullCopiaBlocTest {
                 {(new EntradaMatriuCeles(1, 1, new CelaNum("2.1", 2.1))),
                         (new EntradaMatriuCeles(1, 2, new CelaText("Hola"))), 1, 1, 1, 2, 1, 2, 3},
                 {(new EntradaMatriuCeles(1, 1, new CelaNum("2.1", 2.1))),
-                        (new EntradaMatriuCeles(1, 2, new CelaText("Hola"))), 1, 1, 1, 2, 1, 0, 3}};
+                        (new EntradaMatriuCeles(1, 2, new CelaText("Hola"))), 1, 1, 1, 2, 1, 0, 3},
+                {(new EntradaMatriuCeles(1, 1, new CelaNum("2.1", 2.1))),
+                        (new EntradaMatriuCeles(1, 2, new CelaText("Hola"))), 1, 1, 1, 2, 1, 1, 2}};
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode CopiaBloc copia el bloc concret que se li passa. Per
+     * fer-ho, s'obte les Cela de les noves posicions per veure que el contingut es el mateix que les originals, pero
+     * que els objects son diferents, i tambe es comprova que el numero total d'entrades a Full es correcta. Els casos
+     * que es proven son situacions diferents: el primer es copia un bloc cap a un altre sense solapament, i a la resta
+     * es tracten casos de solapament (parcial o total). De solapaments parcials n'hi ha uns quants de diferents per
+     * comprovar que els blocs funcionen en un cas general (solapament a l'esquerra, dreta, amunt i avall del bloc).
+     */
     @Test
     public void TestCopiaBloc() {
         full.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());

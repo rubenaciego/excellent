@@ -17,6 +17,10 @@ public class CelaRefTest {
         celaRef = new CelaRef("", null);
     }
 
+    /**
+     * @brief S'executa el constructor de la classe, i es comprova que efectivament s'ha executat correctament amb el
+     * getter corresponent.
+     */
     @Test
     public void TestConstructor() {
         String input = "=0:0";
@@ -27,6 +31,9 @@ public class CelaRefTest {
         assertEquals(Cela.TipusCela.REFERENCIAL, celaRef.getTipusCela());
     }
 
+    /**
+     * @brief S'executa els setters i getters de la classe per veure que introdueixen i retornen les dades correctes.
+     */
     @Test
     public void TestGetAndSetRef() {
         String input = "=3:0";
@@ -36,6 +43,9 @@ public class CelaRefTest {
         assertEquals(c, celaRef.getRef());
     }
 
+    /**
+     * @brief S'executa getNum() de celaRef que referencia a una CelaNum per veure que retorna el valor correcte.
+     */
     @Test
     public void TestGetNum() {
         String input = "2.0";
@@ -45,6 +55,9 @@ public class CelaRefTest {
         assertEquals((double) 2.0, (double) celaRef.getNum(), 0.001);
     }
 
+    /**
+     * @brief S'executa getText() de celaRef que referencia a una CelaText per veure que retorna el valor correcte.
+     */
     @Test
     public void TestGetText() {
         String input = "Ahoy!";
@@ -53,6 +66,9 @@ public class CelaRefTest {
         assertEquals("Ahoy!", celaRef.getText());
     }
 
+    /**
+     * @brief S'executa getData() de celaRef que referencia a una CelaText per veure que retorna null.
+     */
     @Test
     public void TestGetDataNull() {
         String text = "xd";
@@ -61,6 +77,10 @@ public class CelaRefTest {
         assertNull(celaRef.getData());
     }
 
+    /**
+     * @brief Primer test amb l'operacio compare(Cela). En aquest cas comprovem que la comparacio es correcta entre
+     * celaRef (de fet, de la Cela que aquest referencia) i una cela d'un altre tipus.
+     */
     @Test
     public void TestCompare1() {
         String text = "xd";
@@ -73,6 +93,10 @@ public class CelaRefTest {
         assertTrue(0 < celaRef.compare(c2));
     }
 
+    /**
+     * @brief Segon test amb l'operacio compare(Cela). Es comprova que la comparacio entre dues CelaRef (és a dir,
+     * de les Cela que referencien) es correcta.
+     */
     @Test
     public void TestCompare2() {
         String text = "xd";
@@ -86,6 +110,10 @@ public class CelaRefTest {
         assertTrue(0 < celaRef.compare(ref2));
     }
 
+    /**
+     * @brief Test per comprovar el funcionament del metode copy de Cela. Es comprova que les dues celes tinguin el
+     * mateix contingut pero que no referenciin al mateix objecte.
+     */
     @Test
     public void TestCopy() {
         String input = "42.15";

@@ -10,9 +10,7 @@ import org.junit.runners.Suite;
 
         DocumentTest.class,
 
-        FullBuidaBlocTest.class,
-        FullCasosExtrTest.class,
-        FullGetSetTest.class,
+        FullAllTests.class,
 
         MatriuCelesAllTests.class,
 
