@@ -39,6 +39,11 @@ public class CelaText extends Cela {
     }
 
     @Override
+    public Cela copy() {
+        return new CelaText(inputUsuari, text);
+    }
+
+    @Override
     protected int compareType(Cela c) {
         return text.compareTo(c.getText());
     }

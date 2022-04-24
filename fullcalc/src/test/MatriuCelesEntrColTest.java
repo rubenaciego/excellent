@@ -47,8 +47,14 @@ public class MatriuCelesEntrColTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode getEntradesCol obte totes les entrades de la columna
+     * pertinent de MatriuCeles. Per fer-ho, s'executa l'operacio i es confirma que les Cela obtingudes son les
+     * mateixes que s'han passat i son de la columna que es demana, i que per tant no s'estan obtenint entrades d'altres
+     * columnes.
+     */
     @Test
-    public void TestGetEntrades() {
+    public void TestGetEntradesCol() {
         matriu.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());
         matriu.setCela(cela2.getCela(), cela2.getFila(), cela2.getColumna());
 

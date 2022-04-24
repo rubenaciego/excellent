@@ -32,6 +32,8 @@ public abstract class Cela {
 
     public abstract String getText();
 
+    public abstract Cela copy();
+
     public int compare(Cela c) {
         if (c.tipusCela == TipusCela.REFERENCIAL)
             return -c.compare(this);

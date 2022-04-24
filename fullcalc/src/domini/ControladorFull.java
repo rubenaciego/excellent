@@ -48,7 +48,7 @@ public class ControladorFull {
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXECUTA_FUNCIO_ESTADISTICA:
-                res = op.executaFuncioEstadistica(bloc, parsejat.getTipusOpEstadistica());
+                res = op.executaOperacioEstadistica(bloc, parsejat.getTipusOpEstadistica());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case TRUNCA_NUMERO:

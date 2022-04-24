@@ -37,10 +37,11 @@ public class Operador {
                         signe);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuAny(MatriuCeles bloc) {
@@ -53,10 +54,11 @@ public class Operador {
                 CelaNum novaCela = new CelaNum("extreuAny(" + e.getCela().getInputUsuari() + ")", any);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuMes(MatriuCeles bloc) {
@@ -69,10 +71,11 @@ public class Operador {
                 CelaNum novaCela = new CelaNum("extreuMes(" + e.getCela().getInputUsuari() + ")", mes);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuDia(MatriuCeles bloc) {
@@ -85,10 +88,11 @@ public class Operador {
                 CelaNum novaCela = new CelaNum("extreuDia(" + e.getCela().getInputUsuari() + ")", dia);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles extreuDiaSetmana(MatriuCeles bloc) {
@@ -104,10 +108,11 @@ public class Operador {
                         diaSet.getDisplayName(TextStyle.FULL_STANDALONE, locale));
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+
+        return result;
     }
 
     public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op) {
@@ -155,11 +160,11 @@ public class Operador {
                         e.getCela().getInputUsuari() + ", " + op.toString() + ")", val);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
-        return bloc;
+        return result;
     }
 
     /**
@@ -167,7 +172,7 @@ public class Operador {
      * @param op   Operació estadística a executar
      * @return Matriu de cel·les que només conté una cel·la, el resultat de l'operació
      */
-    public MatriuCeles executaFuncioEstadistica(MatriuCeles bloc, OperacioEstadistica op) {
+    public MatriuCeles executaOperacioEstadistica(MatriuCeles bloc, OperacioEstadistica op) {
         double res = 0.0;
 
         if (op.compareTo(OperacioEstadistica.COVARIANCIA) >= 0) {
@@ -253,7 +258,7 @@ public class Operador {
                 result.setCela(e.getCela(), e.getFila(), e.getColumna());
             }
         }
-        return bloc;
+        return result;
     }
 
     public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv) {
@@ -324,11 +329,11 @@ public class Operador {
                         conv + ")", val);
                 result.setCela(novaCela, e.getFila(), e.getColumna());
             } else {
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
 
-        return bloc;
+        return result;
     }
 
     /**
@@ -345,7 +350,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaNum c = new CelaNum("extreuLongitudText(" + e.getCela().getInputUsuari() + ")",
                         (double) text.length());
@@ -379,18 +384,21 @@ public class Operador {
                     ++count;
                     indices.add(index);
                     index = text.indexOf(aCercar, index + 1);
+
+                    if (index == text.length())
+                        break;
                 }
 
                 JSONObject cela = new JSONObject();
-                cela.put("occurrences", count);
-                cela.put("indices", indices);
+                cela.put("ocurrencies", count);
+                cela.put("indexos", indices);
 
                 obj.put(e.getFila() + ":" + e.getColumna(), cela);
                 total += count;
             }
         }
 
-        obj.put("occurrences", total);
+        obj.put("ocurrencies", total);
         // problema que posar d'input usuari
         CelaText c = new CelaText("cercaOcurrencies(" + aCercar + ")", obj.toString());
         MatriuCeles mc = new MatriuCeles(1, 1);
@@ -413,7 +421,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("converteixMajuscules(" + e.getCela().getInputUsuari() + ")",
                         text.toUpperCase());
@@ -438,7 +446,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("converteixMinuscules(" + e.getCela().getInputUsuari() + ")",
                         text.toLowerCase());
@@ -458,7 +466,7 @@ public class Operador {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades)
-            result.setCela(e.getCela(), e.getColumna(), e.getFila());
+            result.setCela(e.getCela().copy(), e.getColumna(), e.getFila());
 
         return result;
     }
@@ -479,7 +487,7 @@ public class Operador {
 
             if (text == null) {
                 // Deixem la cel·la original
-                result.setCela(e.getCela(), e.getFila(), e.getColumna());
+                result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             } else {
                 CelaText c = new CelaText("reemplaça(" + e.getCela().getInputUsuari() + ", " +
                         aCercar + ", " + aSubstituir + ")", text.replaceAll(aCercar, aSubstituir));
@@ -500,7 +508,7 @@ public class Operador {
     public MatriuCeles ordena(MatriuCeles bloc, int col, CriteriOrdenacio criteri) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> columna = bloc.getEntradesColumna(col);
-        ArrayList<Integer> nouOrdre = new ArrayList<Integer>(bloc.getNumFiles());
+        ArrayList<Integer> nouOrdre = new ArrayList<Integer>(Collections.nCopies(bloc.getNumFiles(), -1));
         ArrayList<Boolean> vist = new ArrayList<Boolean>(Collections.nCopies(bloc.getNumFiles(), false));
 
         if (criteri == CriteriOrdenacio.ASCENDENT) {
@@ -519,22 +527,24 @@ public class Operador {
             });
         }
 
-        for (EntradaMatriuCeles e : columna) {
+        for (int i = 0; i < columna.size(); ++i) {
+            EntradaMatriuCeles e = columna.get(i);
             int fila = e.getFila();
-            nouOrdre.add(fila);
+            nouOrdre.set(e.getFila(), i);
             vist.set(fila, true);
         }
 
         // Afegim les files que no apareixen en la columna respecte la qual ordenem
+        int curr = columna.size();
         for (int i = 0; i < vist.size(); ++i) {
             if (!vist.get(i))
-                nouOrdre.add(i);
+                nouOrdre.set(i, curr++);
         }
 
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades)
-            result.setCela(e.getCela(), nouOrdre.get(e.getFila()), e.getColumna());
+            result.setCela(e.getCela().copy(), nouOrdre.get(e.getFila()), e.getColumna());
 
         return result;
     }

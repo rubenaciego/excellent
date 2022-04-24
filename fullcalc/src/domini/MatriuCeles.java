@@ -126,7 +126,9 @@ public class MatriuCeles {
         ConcurrentNavigableMap<Integer, ConcurrentSkipListMap<Integer, Cela>> subSL = matriuCela.subMap(colIni, colIni + numCols);
 
         for (ConcurrentNavigableMap.Entry<Integer, ConcurrentSkipListMap<Integer, Cela>> SLi : subSL.entrySet()) {
-            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : SLi.getValue().entrySet()) {
+            ConcurrentSkipListMap<Integer, Cela> T = SLi.getValue();
+            ConcurrentNavigableMap<Integer, Cela> subsubSL = T.subMap(filaIni, filaIni + numFiles);
+            for (ConcurrentSkipListMap.Entry<Integer, Cela> SLj : subsubSL.entrySet()) {
                 Cela c = SLj.getValue();
                 bloc.setCela(c, SLj.getKey() - filaIni, SLi.getKey() - colIni);
             }

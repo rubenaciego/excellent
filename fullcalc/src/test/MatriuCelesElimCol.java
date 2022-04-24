@@ -46,6 +46,12 @@ public class MatriuCelesElimCol {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que el metode eliminaCol elimina el numero de columna que se li passa.
+     * Per fer-ho, s'executa l'operacio i es confirma que les Cela d'un nombre de columna inferior no varien, les d'un
+     * numero superior es veuen mogudes cap a un numero de columna inferior, i que les Cela de la columna corresponent
+     * deixen d'existir.
+     */
     @Test
     public void TestEliminaCol() {
         matriu.setCela(cela1.getCela(), cela1.getFila(), cela1.getColumna());
