@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class DriverOperador {
     static Operador op;
     static MatriuCeles bloc;
-
     static Scanner entry;
 
     public static void imprimir(MatriuCeles bloc) {

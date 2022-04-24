@@ -34,12 +34,12 @@ public class DriverControladorFull {
     }
 
     public static void llegirFull() {
-        System.out.println("Introdueix el nombre de files del bloc sobre el " +
+        System.out.println("Introdueix el nombre de files del full sobre el " +
                 "que operar");
 
         int n = entry.nextInt();
 
-        System.out.println("Introdueix el nombre de columnes del bloc sobre " +
+        System.out.println("Introdueix el nombre de columnes del full sobre " +
                 "el que operar");
 
         int m = entry.nextInt();
