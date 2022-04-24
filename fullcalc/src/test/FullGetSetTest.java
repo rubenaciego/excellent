@@ -14,6 +14,10 @@ public class FullGetSetTest {
         full = new Full(20, 20);
     }
 
+    /**
+     * @brief S'executa getNumFiles() i getNumCols() despres del constructor per veure que introdueixen i retornen les
+     * dades correctes.
+     */
     @Test
     public void TestConstructorGetNumFilesCols() {
         full = new Full(15, 10);
@@ -21,8 +25,12 @@ public class FullGetSetTest {
         assertEquals(10, full.getNumCols());
     }
 
+    /**
+     * @brief S'executa getCela() heredat de MatriuCeles, pero en un cas que en aquest no es contempla, que es per
+     * obtenir la Cela Resultat.
+     */
     @Test
-    public void TestSetCelaGetCelaRef() {
+    public void TestSetCelaGetCelaRes() {
         CelaText celaText = new CelaText("Hola");
         full.setCela(celaText, -1, -1);
         assertEquals(celaText, full.getCela(-1, -1));

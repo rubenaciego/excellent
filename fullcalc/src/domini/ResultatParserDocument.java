@@ -29,4 +29,20 @@ public class ResultatParserDocument {
     public void setTipusOpDocument(OperacioDocument tipusOperacioDocument) {
         this.tipusOperacioDocument = tipusOperacioDocument;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof ResultatParserDocument)) {
+            return false;
+        }
+
+        ResultatParserDocument c = (ResultatParserDocument) o;
+
+        return (idFull == c.idFull && tipusOperacioDocument == c.tipusOperacioDocument && nomDocument == c.nomDocument);
+    }
 }

@@ -1,6 +1,7 @@
 package domini;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class ResultatParserCela {
     String inputUsuari;
@@ -56,5 +57,23 @@ public class ResultatParserCela {
 
     public void setTipus(Cela.TipusCela tipus) {
         this.tipus = tipus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof ResultatParserCela)) {
+            return false;
+        }
+
+        ResultatParserCela c = (ResultatParserCela) o;
+
+        return (inputUsuari == c.inputUsuari && valorNumeric == c.valorNumeric &&
+                Objects.equals(data, c.data) && colRef == c.colRef &&
+                String.valueOf(tipus) == String.valueOf(c.tipus));
     }
 }
