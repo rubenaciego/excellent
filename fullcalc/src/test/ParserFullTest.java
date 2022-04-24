@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ParserFullTest {
+    Parser parser;
 
     @Parameterized.Parameter(0)
     public String[] opSenseParsejar;
