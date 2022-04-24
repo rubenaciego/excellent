@@ -1,36 +1,49 @@
 package test;
 
-import domini.ExcepcioDomini;
-import domini.Full;
-import domini.Document;
+import domini.*;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ControladorDominiTest {
-    private Document document;
+    private ControladorDomini controladorDomini;
 
     @Before
     public void setUp() {
-        document = new Document("DocumentTest");
+        controladorDomini = new ControladorDomini();
     }
 
     @Test
-    public void testContructor() {
-        document = new Document("TestName");
-        assertEquals("TestName", document.getNom());
+    public void testCreaDocument() {
+        controladorDomini.creaDocument("Document nou");
+        assertEquals("Document nou", controladorDomini.getDocument().getNom());
     }
 
     @Test
-    public void testSetGetData() {
-        LocalDateTime now = LocalDateTime.now();
-        document.setDataModificacio(now);
-        assertEquals(now, document.getDataModificacio());
+    public void testTancaDocument() {
+        controladorDomini.tancaDocument();
+        assertEquals(null, controladorDomini.getDocument());
+    }
+
+    @Test
+    public void testExecutaOperacioDocument() {
+        String [] opSenseParsejarTest1 = new String[] {"OPERACIO_DOCUMENT," +
+                "CREA_DOCUMENT", "Document nou"};
+        controladorDomini.executaOperacio(opSenseParsejarTest1);
+        assertEquals("Document nou", controladorDomini.getDocument().getNom());
+
+        String [] opSenseParsejarTest2 = new String[] {"OPERACIO_DOCUMENT," +
+                "ELIMINA_FULL,3"};
+        controladorDomini.executaOperacio(opSenseParsejarTest2);
+        assertEquals();
+
     }
 
     @Test

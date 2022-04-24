@@ -94,4 +94,8 @@ public class ControladorDomini {
 
     }
 
+    public Document getDocument() {
+        return document;
+    }
+
 }
