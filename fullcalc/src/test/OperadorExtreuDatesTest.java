@@ -55,6 +55,11 @@ public class OperadorExtreuDatesTest {
     @Parameter(15)
     public Double dia4;
 
+    /**
+     * @brief Parametritzacio de una Cel·la de cada tipus per executar els
+     * testos i dels resultats esperats per cada Cel·la i
+     * extreureAny, extreureMes i extreureDia.
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         CelaData cd = new CelaData("test",
@@ -73,6 +78,11 @@ public class OperadorExtreuDatesTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació extreuAny amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testExtreuAny()
     {
@@ -93,6 +103,11 @@ public class OperadorExtreuDatesTest {
 
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació extreuMes amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testExtreuMes()
     {
@@ -113,6 +128,11 @@ public class OperadorExtreuDatesTest {
 
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació extreuDia amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testExtreuDia()
     {

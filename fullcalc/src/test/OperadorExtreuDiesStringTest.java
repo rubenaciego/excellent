@@ -48,6 +48,11 @@ public class OperadorExtreuDiesStringTest {
     @Parameter(11)
     public String hor4;
 
+    /**
+     * @brief Parametritzacio de una Cel·la de cada tipus per executar els
+     * testos i dels resultats esperats per cada Cel·la i
+     * extreureDiaSetmana i extreureHoroscop.
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         CelaData cd = new CelaData("test",
@@ -65,7 +70,11 @@ public class OperadorExtreuDiesStringTest {
         return Arrays.asList(data);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació extreuHoroscop amb tots els
+     * tipus de Cel·la.
+     */@Test
     public void testExtreuHoroscop()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -85,6 +94,11 @@ public class OperadorExtreuDiesStringTest {
 
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació extreuDiaSetmana amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testExtreuDia()
     {

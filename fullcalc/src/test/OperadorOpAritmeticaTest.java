@@ -113,6 +113,10 @@ public class OperadorOpAritmeticaTest {
     public Double tanh4;
 
 
+    /**
+     * @brief Parametritzacio de una Cel·la de cada tipus per executar els
+     * testos i dels resultats esperats per cada Cel·la i Operació Aritmètica.
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Double val = -3.141592;
@@ -145,6 +149,11 @@ public class OperadorOpAritmeticaTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Valor Absolut amb tots els tipus de
+     * Cel·la.
+     */
     @Test
     public void testValorAbsolut()
     {
@@ -165,7 +174,12 @@ public class OperadorOpAritmeticaTest {
                 , abs4);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Incrementar amb tots els
+     * tipus de
+     * Cel·la.
+     */@Test
     public void testIncrementar()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -186,6 +200,11 @@ public class OperadorOpAritmeticaTest {
                 , inc4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Decrementar amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testDecrementar()
     {
@@ -207,7 +226,11 @@ public class OperadorOpAritmeticaTest {
                 , dec4);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Cosinus amb tots els
+     * tipus de Cel·la.
+     */@Test
     public void testCos()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -228,7 +251,11 @@ public class OperadorOpAritmeticaTest {
                 , cos4);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Sinus amb tots els
+     * tipus de Cel·la.
+     */@Test
     public void testSin()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -249,6 +276,11 @@ public class OperadorOpAritmeticaTest {
                 , sin4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Cosinus Hiperbòlic amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testCosH()
     {
@@ -270,6 +302,11 @@ public class OperadorOpAritmeticaTest {
                 , cosh4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Sinus Hiperbòlic amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testSinH()
     {
@@ -291,6 +328,11 @@ public class OperadorOpAritmeticaTest {
                 , sinh4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació aritmètica Tangent Hiperbòlica amb tots els
+     * tipus de Cel·la.
+     */
     @Test
     public void testTanH()
     {
