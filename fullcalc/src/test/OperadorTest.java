@@ -7,7 +7,12 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
         OperadorEstadistica1Test.class,
-        OperadorEstadistica2Test.class
+        OperadorEstadistica2Test.class,
+        OperadorMajusculesTest.class,
+        OperadorMinusculesTest.class,
+        OperadorTransposaTest.class,
+        OperadorReemplacaTest.class,
+        OperadorOrdenaTest.class
 })
 
 public class OperadorTest {

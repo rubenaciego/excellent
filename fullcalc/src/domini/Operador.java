@@ -505,7 +505,7 @@ public class Operador {
     public MatriuCeles ordena(MatriuCeles bloc, int col, CriteriOrdenacio criteri) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
         ArrayList<EntradaMatriuCeles> columna = bloc.getEntradesColumna(col);
-        ArrayList<Integer> nouOrdre = new ArrayList<Integer>(bloc.getNumFiles());
+        ArrayList<Integer> nouOrdre = new ArrayList<Integer>(Collections.nCopies(bloc.getNumFiles(), -1));
         ArrayList<Boolean> vist = new ArrayList<Boolean>(Collections.nCopies(bloc.getNumFiles(), false));
 
         if (criteri == CriteriOrdenacio.ASCENDENT) {
@@ -524,16 +524,18 @@ public class Operador {
             });
         }
 
-        for (EntradaMatriuCeles e : columna) {
+        for (int i = 0; i < columna.size(); ++i) {
+            EntradaMatriuCeles e = columna.get(i);
             int fila = e.getFila();
-            nouOrdre.add(fila);
+            nouOrdre.set(e.getFila(), i);
             vist.set(fila, true);
         }
 
         // Afegim les files que no apareixen en la columna respecte la qual ordenem
+        int curr = columna.size();
         for (int i = 0; i < vist.size(); ++i) {
             if (!vist.get(i))
-                nouOrdre.add(i);
+                nouOrdre.set(i, curr++);
         }
 
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
