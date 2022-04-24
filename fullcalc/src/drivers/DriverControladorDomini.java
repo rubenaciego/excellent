@@ -54,6 +54,7 @@ public class DriverControladorDomini {
 
         contr = new ControladorDomini(doc, contrsFull);
 
+        //contr = new ControladorDomini();
         while (true) {
             System.out.println("Introdueix el nombre d'strings " +
                     "necessaris per codificar l'operació que vol " +
@@ -65,8 +66,9 @@ public class DriverControladorDomini {
                     "codificar l'operació de document a parsejar");
             String opSenseParsejar[] = new String[num];
             for (int i = 0; i < num; ++i) {
-                opSenseParsejar[i] = entry.nextLine();
+                opSenseParsejar[i] = entry.next();
             }
+
             contr.executaOperacio(opSenseParsejar);
             imprimirDoc();
             System.out.println("Introdueix 1 per continuar introduint un nou " +

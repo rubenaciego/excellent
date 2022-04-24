@@ -26,6 +26,7 @@ public class ParserFullTest {
                 new String[] {"OPERACIO_ARITMETICA,2,66,9,80,70,1,6,VALOR_ABSOLUT"};
         ResultatParserFull resultatTest1 = new ResultatParserFull();
         resultatTest1.setTipusOpAritmetica(OperacioAritmetica.VALOR_ABSOLUT);
+        resultatTest1.setTipusOpFull(OperacioFull.EXECUTA_OPERACIO_ARITMETICA_UNARIA);
         resultatTest1.setIdFull(2);
         resultatTest1.setFilaOrigen(66);
         resultatTest1.setColumnaOrigen(9);
@@ -38,6 +39,7 @@ public class ParserFullTest {
                 new String[] {"OPERACIO_ESTADISTICA,4,7,8,1,2,6,4,MITJANA"};
         ResultatParserFull resultatTest2 = new ResultatParserFull();
         resultatTest2.setTipusOpEstadistica(OperacioEstadistica.MITJANA);
+        resultatTest2.setTipusOpFull(OperacioFull.EXECUTA_FUNCIO_ESTADISTICA);
         resultatTest2.setIdFull(4);
         resultatTest2.setFilaOrigen(7);
         resultatTest2.setColumnaOrigen(8);
@@ -51,6 +53,7 @@ public class ParserFullTest {
         ResultatParserFull resultatTest3 = new ResultatParserFull();
         resultatTest3.setTipusConversioUnitats(ConversioUnitats.RAD_GRAUS);
         resultatTest3.setIdFull(5);
+        resultatTest3.setTipusOpFull(OperacioFull.CONVERTEIX_UNITATS);
         resultatTest3.setFilaOrigen(70);
         resultatTest3.setColumnaOrigen(80);
         resultatTest3.setMidaFila(6);
