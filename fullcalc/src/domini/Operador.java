@@ -384,6 +384,9 @@ public class Operador {
                     ++count;
                     indices.add(index);
                     index = text.indexOf(aCercar, index + 1);
+
+                    if (index == text.length())
+                        break;
                 }
 
                 JSONObject cela = new JSONObject();

@@ -36,6 +36,14 @@ public class OperadorCercaTest {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief En el primer test els casos de prova consisteixen en un cas on la paraula cercada no hi és,
+     * un altre on la paraula apareix un cop aïllada i un últim cas on apareix la paraula dos cops seguida de text.
+     * El segon cas de prova comprova un string buit on no hi apareix la paraula i la cerca d'una paraula que es pot
+     * solapar amb ella mateixa (acaba igual que comença). El tercer test prova la cerca d'un sol caràcter i l'últim test
+     * prova el cas extrem de cercar un caràcter buit, el qual es troba a totes les posicions de l'string i, en el cas d'un
+     * string buit considerem que es troba a la posició 0
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
@@ -44,7 +52,7 @@ public class OperadorCercaTest {
                         (new EntradaMatriuCeles(1, 1, new CelaText("test", "m'agrada molt el peix"))),
                         (new EntradaMatriuCeles(2, 2, new CelaText("test", "peixexegepeix"))),
                         "peix", "{\"ocurrencies\": 3, \"0:0\":{\"ocurrencies\":0, \"indexos\":[]}, " +
-                        "\"1:1\":{\"ocurrencies\": 1, \"indexos\": [17]}, \"2:2\": {\"ocurrencies\": 2, \"indexos\": [0, 9]} }" },
+                        "\"1:1\":{\"ocurrencies\": 1, \"indexos\": [17]}, \"2:2\": {\"ocurrencies\": 2, \"indexos\": [0, 9]} }"},
                 {
                         (new EntradaMatriuCeles(0, 0, new CelaText("test", "lele"))),
                         (new EntradaMatriuCeles(1, 1, new CelaText("test", "lelelelelele"))),
@@ -57,12 +65,23 @@ public class OperadorCercaTest {
                         (new EntradaMatriuCeles(2, 2, new CelaText("test",
                                 "abcdefghijklmnopqrstuvwxyz0123456789"))), "a", "{\"0:0\":{\"ocurrencies\":2," +
                         "\"indexos\":[3,11]},\"1:1\":{\"ocurrencies\":5,\"indexos\":[0,2,4,6,8]}," +
-                        "\"2:2\":{\"ocurrencies\":1,\"indexos\":[0]},\"ocurrencies\":8}"}
+                        "\"2:2\":{\"ocurrencies\":1,\"indexos\":[0]},\"ocurrencies\":8}"},
+                {
+                        (new EntradaMatriuCeles(0, 0, new CelaText("test", ""))),
+                        (new EntradaMatriuCeles(1, 1, new CelaText("test", "aa"))),
+                        (new EntradaMatriuCeles(2, 2, new CelaText("test", "arreu"))),
+                        "", "{\"ocurrencies\": 8, \"0:0\":{\"ocurrencies\":1, \"indexos\":[0]}, " +
+                        "\"1:1\":{\"ocurrencies\": 2, \"indexos\": [0,1]}, \"2:2\": {\"ocurrencies\": 5, \"indexos\": "
+                        + "[0,1,2,3,4]} }"},
         };
 
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief El test comprova que el resultat JSON coincideixi amb el que es passa com a paràmetre (que ha de
+     * ser el correcte)
+     */
     @Test
     public void testCerca() {
         MatriuCeles mc = new MatriuCeles(3, 3);
@@ -75,6 +94,7 @@ public class OperadorCercaTest {
 
         assertEquals(1, res.getNumCols());
         assertEquals(1, res.getNumFiles());
+        assertEquals(3, res.getEntrades().size());
 
         String jsonRes = res.getCela(0, 0).getText();
         assertNotNull(jsonRes);

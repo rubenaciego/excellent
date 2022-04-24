@@ -20,12 +20,20 @@ public class DocumentTest {
         document = new Document("DocumentTest");
     }
 
+    /**
+     * @brief Test del constructor de Document, només cal comprovar que s'ha guardat el nom
+     * del document corrcetament i que és buit (zero fulls)
+     */
     @Test
     public void testContructor() {
         document = new Document("TestName");
         assertEquals("TestName", document.getNom());
+        assertEquals(0, document.getNumFulls());
     }
 
+    /**
+     * @brief Test que comprova el getter i setter de la data
+     */
     @Test
     public void testSetGetData() {
         LocalDateTime now = LocalDateTime.now();
@@ -33,6 +41,10 @@ public class DocumentTest {
         assertEquals(now, document.getDataModificacio());
     }
 
+    /**
+     * @brief En aquest test comprovem que podem afegir i eliminar fulls i el resultat és l'esperat,
+     * que al eliminar un full en un índex concret el vector de fulls es desplaci
+     */
     @Test
     public void testFulls() {
         for (int i = 0; i < 10; ++i)
@@ -58,6 +70,10 @@ public class DocumentTest {
         }
     }
 
+    /**
+     * @brief En aquest test comprovem que els accessos a índexs invàlids de fulls del document
+     * disparen correctament les excepcions
+     */
     @Test
     public void testFullInvalid() {
         for (int i = 0; i < 10; ++i)
