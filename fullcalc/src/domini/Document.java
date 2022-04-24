@@ -43,15 +43,6 @@ public class Document {
     }
 
     /**
-     * @brief Desa el document al disc
-     */
-    public void desa() {
-        // mock
-        dataModificacio = LocalDateTime.now();
-        throw new UnsupportedOperationException("Desar document no implementat");
-    }
-
-    /**
      * @brief Afegeix un nou full al final
      */
     public void afegeixFull() {

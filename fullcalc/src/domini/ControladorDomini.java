@@ -1,5 +1,6 @@
 package domini;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ControladorDomini {
@@ -41,7 +42,7 @@ public class ControladorDomini {
             }
 
             return ExcepcioDomini.TipusError.NO_ERROR;
-        } catch(ExcepcioDomini e) {
+        } catch (ExcepcioDomini e) {
             System.out.println(e.getMessage());
             return e.getTipusError();
         }
@@ -82,7 +83,7 @@ public class ControladorDomini {
                 if (document == null)
                     throw new ExcepcioNoDocument("Error: no hi ha cap document obert");
 
-                document.desa();
+                desaDocument();
                 break;
             default:
                 throw new IncompatibleClassChangeError("Operació " + resultat.getTipusOpDocument() + " desconeguda");
@@ -101,5 +102,11 @@ public class ControladorDomini {
     private void tancaDocument() {
         document = null;
         controladorsFull = null;
+    }
+
+    private void desaDocument() {
+        document.setDataModificacio(LocalDateTime.now());
+        throw new UnsupportedOperationException("desaDocument encara no implementat");
+
     }
 }
