@@ -16,23 +16,16 @@ public class ControladorDominiTest {
     private ControladorDomini controladorDomini;
     Document mockDocument = mock(Document.class);
     ArrayList<ControladorFull> mockControladorsFull = mock(ArrayList.class);
-    ControladorFull mockControladorFull = mock(ControladorFull.class);
 
     @Before
     public void setUp() {
         controladorDomini = new ControladorDomini();
     }
 
-    @Test
-    public void testExecutaOperacioDocument() {
-        String[] opSenseParsejarTest0 = new String[]{"OPERACIO_DOCUMENT," +
-                "ELIMINA_FULL,3"};
-        controladorDomini = new ControladorDomini(mockDocument,
-                mockControladorsFull);
-        controladorDomini.executaOperacio(opSenseParsejarTest0);
-        verify(Parser.getInstance(), times(1)).parseOpDocument(opSenseParsejarTest0);
-    }
-
+    /**
+     * @brief Test que comprova que les operacions creaDocument s'executen
+     * quan se li passa aquest tipus d'operació.
+     */
     @Test
     public void testExecutaOperacioDocumentCreaDocument() {
         String[] opSenseParsejarTest1 = new String[]{"OPERACIO_DOCUMENT," +
@@ -41,6 +34,10 @@ public class ControladorDominiTest {
         assertEquals("Document nou", controladorDomini.getDocument().getNom());
     }
 
+    /**
+     * @brief Test que comprova que les operacions tanca_document s'executen
+     * quan se li passa aquest tipus d'operació.
+     */
     @Test
     public void testExecutaOperacioDocumentTancaDocument() {
         String[] opSenseParsejarTest2 = new String[]{"OPERACIO_DOCUMENT," +
@@ -49,6 +46,12 @@ public class ControladorDominiTest {
         assertEquals(null, controladorDomini.getDocument());
     }
 
+    /**
+     * @brief Test que comprova que les operacions eliminaFull s'executen
+     * quan se li passa aquest tipus d'operació. Utilitza mock i verify per
+     * veure que eliminaFull i remove s'executen només un cop quan es crida
+     * executaOperacio
+     */
     @Test
     public void testExecutaOperacioDocumentEliminaFull() {
         String[] opSenseParsejarTest3 = new String[]{"OPERACIO_DOCUMENT," +
@@ -60,6 +63,12 @@ public class ControladorDominiTest {
         verify(mockControladorsFull, times(1)).remove(3);
     }
 
+    /**
+     * @brief Test que comprova que les operacions afegeixFull s'executen
+     * quan se li passa aquest tipus d'operació. Utilitza mock i verify per
+     * veure que afegeixFull s'executa només un cop quan es crida
+     * executaOperacio
+     */
     @Test
     public void testExecutaOperacioDocumentAfegeixFull() {
         String[] opSenseParsejarTest3 = new String[]{"OPERACIO_DOCUMENT," +
@@ -68,32 +77,7 @@ public class ControladorDominiTest {
                 mockControladorsFull);
         controladorDomini.executaOperacio(opSenseParsejarTest3);
         verify(mockDocument, times(1)).afegeixFull();
-        //verify(mockControladorsFull, times(1)).add(new ());
     }
 
-    @Test
-    public void testExecutaOperacioFull() {
-        String [] opSenseParsejarTest4 = new String[] {"OPERACIO_FULL,5,67,8,2,3,4,8,MODIFICA_CELA",
-                        "4.5"};
-        ResultatParserFull resultatTest4 = new ResultatParserFull();
-        resultatTest4.setTipusOpFull(OperacioFull.MODIFICA_CELA);
-        resultatTest4.setIdFull(5);
-        resultatTest4.setFilaOrigen(67);
-        resultatTest4.setColumnaOrigen(8);
-        resultatTest4.setMidaFila(2);
-        resultatTest4.setMidaColumna(3);
-        resultatTest4.setFilaDesti(4);
-        resultatTest4.setColumnaDesti(8);
-        ResultatParserCela resultatParserCelaTest4 = new ResultatParserCela();
-        resultatParserCelaTest4.setInputUsuari("4.5");
-        resultatParserCelaTest4.setValorNumeric(4.5);
-        resultatParserCelaTest4.setTipus(Cela.TipusCela.NUMERICA);
-        resultatTest4.setResultatParserCela(resultatParserCelaTest4);
 
-        controladorDomini = new ControladorDomini(mockDocument,
-                mockControladorsFull);
-        controladorDomini.executaOperacio(opSenseParsejarTest4);
-        verify(Parser.getInstance(), times(1)).parseOpFull(opSenseParsejarTest4);
-        verify(mockControladorsFull, times(1)).get(5).executaOperacio(resultatTest4);
-    }
 }
