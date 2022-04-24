@@ -236,8 +236,3 @@ public class ParserFullTest {
         assertEquals(resultatParserFull, resultatOutput);
     }
 }
-
-
-
-
-

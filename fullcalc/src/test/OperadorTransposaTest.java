@@ -34,6 +34,10 @@ public class OperadorTransposaTest {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief Els casos comproven una matriu igual a la seva transposada (simètrica), una matriu fila i una matriu
+     * amb files i columnes repartides
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
@@ -54,6 +58,10 @@ public class OperadorTransposaTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief El test comrpova que el resultat sigui una matriu cel·les igual que l'original però amb files i columnes
+     * permutades (transposada)
+     */
     @Test
     public void testTransposar() {
         MatriuCeles mc = new MatriuCeles(numFiles, numCols);

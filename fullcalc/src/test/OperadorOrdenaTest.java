@@ -42,6 +42,10 @@ public class OperadorOrdenaTest {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief Els testos comproven casos amb cel·les d'un mateix tipus (numèriques, datades i textuals), un cas
+     * amb tipus de cel·les combinades i un cas amb més d'una columna
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
@@ -78,6 +82,11 @@ public class OperadorOrdenaTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief El test comprova que l'ordre resultant de les files coincideix amb el que es passa com a paràmetre
+     * (que ha de ser l'ordre després d'ordenar respecte la columna passada com a paràmetre) i que es mantenen els
+     * continguts de les cel·les així com la columna on eren
+     */
     @Test
     public void testOrdenar() {
         EntradaMatriuCeles[] celes = {cela1, cela2, cela3, cela4, cela5};

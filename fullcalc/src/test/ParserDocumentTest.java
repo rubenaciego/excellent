@@ -70,8 +70,3 @@ import static org.junit.Assert.assertEquals;
          assertEquals(resultatParserDocument, resultatOutput);
      }
 }
-
-
-
-
-

@@ -37,6 +37,10 @@ public class OperadorMajusculesTest {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief Els tests comrpoven casos de tot majúscules, algunes lletres amb majúscula i minúscula, paraules amb
+     * símbols que no s'han de convertir, paraula buida i lletres amb accents i altres
+     */
     @Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
@@ -62,6 +66,10 @@ public class OperadorMajusculesTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief El test comprova que el resultat de convertir a majúscules coincideix amb el passat com a paràmetre
+     * (que ha de ser el correcte)
+     */
     @Test
     public void testMajuscular()
     {
