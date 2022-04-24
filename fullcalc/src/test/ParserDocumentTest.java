@@ -51,7 +51,7 @@ import static org.junit.Assert.assertEquals;
          resultatTest5.setTipusOpDocument(OperacioDocument.DESA_DOCUMENT);
 
          String [] opSenseParsejarTest6 = new String[] {"OPERACIO_DOCUMENT," +
-                 "TANCA_DOCUMENT,3"};
+                 "TANCA_DOCUMENT"};
          ResultatParserDocument resultatTest6 = new ResultatParserDocument();
          resultatTest6.setTipusOpDocument(OperacioDocument.TANCA_DOCUMENT);
 
@@ -63,6 +63,14 @@ import static org.junit.Assert.assertEquals;
          return Arrays.asList(data);
      }
 
+     /**
+      * @brief Test parametritzat per comprovar que el mètode parseOpDocument
+      * retorna un objecte de la classe ResultatParserDocument correctament
+      * parsejat.
+      * Per fer-ho, es fan 6 testos, és a dir, un per operació de document
+      * per veure que totes les operacions associadaes amb document es
+      * parsegen correctament (entrant així dins de tots els ifs).
+      */
      @Test
      public void TestParseOpDocument() {
          ResultatParserDocument resultatOutput =

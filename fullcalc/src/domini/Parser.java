@@ -18,17 +18,7 @@ public class Parser {
     }
 
     /**
-     * @brief Fa el parseig d'una operació associada a full provinent de la capa
-     * de presentació
-     * * /pre opSenseParsejar és un array de tres strings on el primer conté el
-     * codi d'operació, id full, fila d'origen, fila de destí, columna d'origen,
-     * columna de destí, mida fila, mida columna separat per comes
-     * (,); el segon string conté l'inputUsuari en cas que l'operació sigui
-     * modificaCela o la stringCercada en cas que l'operació sigui
-     * cercaOcurrencies o reemplaça;  el tercer string conté la
-     * stringReemplaçadora en cas que l'operació sigui reemplaça
-     * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
-     * ResultatParserFull
+     * @brief Fa el parseig d'una operació associada a full
      */
     public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
         // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
@@ -117,13 +107,7 @@ public class Parser {
     }
 
     /**
-     * @brief Fa el parseig d'una operació associada a document provinent de la
-     * capa de presentació
-     * * /pre opSenseParsejar és un string que conté el codi d'operació, el
-     * nom del document  i l'id del full a afegir o a eliminar, si
-     * s'escau, separat per comes (,)
-     * /post retorna les dades d'opSenseParsejar estructurades en un objecte de
-     * ResultatParserDocument
+     * @brief Fa el parseig d'una operació associada a document
      */
     public ResultatParserDocument parseOpDocument(String[] opSenseParsejar) {
         String[] splitted = opSenseParsejar[0].split(",");
