@@ -12,6 +12,7 @@ import org.mockito.stubbing.OngoingStubbing;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -25,6 +26,10 @@ public class OperadorEstadistica1Test {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief Test que comprova el càlcul correcte de la mitjana de dades amb tolerància TOL i amb una cel·la
+     * no numèrica (que s'ha d'ignorar)
+     */
     @Test
     public void testMitjana() {
         ArrayList<Double> dades = new ArrayList<Double>();
@@ -49,18 +54,30 @@ public class OperadorEstadistica1Test {
             }
         }
 
+        EntradaMatriuCeles e = mock(EntradaMatriuCeles.class);
+        next = next.thenReturn(e);
+
+        Cela c = mock(Cela.class);
+        when(e.getCela()).thenReturn(c);
+        when(c.getNum()).thenReturn(null);
+        when(c.getText()).thenReturn("Cel·la textual");
+        when(c.getInputUsuari()).thenReturn("test");
+        when(e.getFila()).thenReturn(4);
+        when(e.getColumna()).thenReturn(0);
+
         OngoingStubbing<Boolean> hasNext = when(iterator.hasNext());
         for (int j = 0; j < 2; ++j)
             for (int i = 0; i < 3; ++i)
                 hasNext = hasNext.thenReturn(true);
 
+        hasNext.thenReturn(true);
         hasNext.thenReturn(false);
 
         MatriuCeles mc = mock(MatriuCeles.class);
         ArrayList<EntradaMatriuCeles> entrades = (ArrayList<EntradaMatriuCeles>) mock(ArrayList.class);
         when(entrades.iterator()).thenReturn(iterator);
         when(mc.getEntrades()).thenReturn(entrades);
-        when(entrades.size()).thenReturn(2 * 3);
+        when(entrades.size()).thenReturn(2 * 3 + 1);
 
         double res = 0.0;
         for (double d : dades) res += d;
@@ -71,7 +88,7 @@ public class OperadorEstadistica1Test {
         assertEquals(1, resMc.getNumFiles());
         assertEquals(1, resMc.getNumCols());
 
-        Cela c = resMc.getCela(0, 0);
+        c = resMc.getCela(0, 0);
         assertNotNull(c);
         assertTrue(c instanceof CelaNum);
 
@@ -80,6 +97,10 @@ public class OperadorEstadistica1Test {
         assertTrue(Math.abs(res - val) < TOL);
     }
 
+    /**
+     * @brief Test que comprova el càlcul correcte de la mediana de dades amb tolerància TOL i amb una cel·la
+     * no numèrica (que s'ha d'ignorar)
+     */
     @Test
     public void testMediana() {
         ArrayList<Double> dades = new ArrayList<Double>();
@@ -104,18 +125,30 @@ public class OperadorEstadistica1Test {
             }
         }
 
+        EntradaMatriuCeles e = mock(EntradaMatriuCeles.class);
+        next = next.thenReturn(e);
+
+        Cela c = mock(Cela.class);
+        when(e.getCela()).thenReturn(c);
+        when(c.getNum()).thenReturn(null);
+        when(c.getData()).thenReturn(LocalDate.now());
+        when(c.getInputUsuari()).thenReturn("test");
+        when(e.getFila()).thenReturn(43);
+        when(e.getColumna()).thenReturn(0);
+
         OngoingStubbing<Boolean> hasNext = when(iterator.hasNext());
         for (int j = 0; j < 9; ++j)
             for (int i = 0; i < 43; ++i)
                 hasNext = hasNext.thenReturn(true);
 
+        hasNext.thenReturn(true);
         hasNext.thenReturn(false);
 
         MatriuCeles mc = mock(MatriuCeles.class);
         ArrayList<EntradaMatriuCeles> entrades = (ArrayList<EntradaMatriuCeles>) mock(ArrayList.class);
         when(entrades.iterator()).thenReturn(iterator);
         when(mc.getEntrades()).thenReturn(entrades);
-        when(entrades.size()).thenReturn(43 * 9);
+        when(entrades.size()).thenReturn(43 * 9 + 1);
 
         Collections.sort(dades);
         double res = dades.get(dades.size() / 2);
@@ -125,7 +158,7 @@ public class OperadorEstadistica1Test {
         assertEquals(1, resMc.getNumFiles());
         assertEquals(1, resMc.getNumCols());
 
-        Cela c = resMc.getCela(0, 0);
+        c = resMc.getCela(0, 0);
         assertNotNull(c);
         assertTrue(c instanceof CelaNum);
 
@@ -134,6 +167,10 @@ public class OperadorEstadistica1Test {
         assertTrue(Math.abs(res - val) < TOL);
     }
 
+    /**
+     * @brief Test que comprova el càlcul correcte de la variància de dades amb tolerància TOL i amb una cel·la
+     * no numèrica (que s'ha d'ignorar)
+     */
     @Test
     public void testVariancia() {
         ArrayList<Double> dades = new ArrayList<Double>();
@@ -158,18 +195,30 @@ public class OperadorEstadistica1Test {
             }
         }
 
+        EntradaMatriuCeles e = mock(EntradaMatriuCeles.class);
+        next = next.thenReturn(e);
+
+        Cela c = mock(Cela.class);
+        when(e.getCela()).thenReturn(c);
+        when(c.getNum()).thenReturn(null);
+        when(c.getText()).thenReturn("Cel·la textual");
+        when(c.getInputUsuari()).thenReturn("test");
+        when(e.getFila()).thenReturn(4);
+        when(e.getColumna()).thenReturn(0);
+
         OngoingStubbing<Boolean> hasNext = when(iterator.hasNext());
         for (int j = 0; j < 22; ++j)
             for (int i = 0; i < 4; ++i)
                 hasNext = hasNext.thenReturn(true);
 
+        hasNext.thenReturn(true);
         hasNext.thenReturn(false);
 
         MatriuCeles mc = mock(MatriuCeles.class);
         ArrayList<EntradaMatriuCeles> entrades = (ArrayList<EntradaMatriuCeles>) mock(ArrayList.class);
         when(entrades.iterator()).thenReturn(iterator);
         when(mc.getEntrades()).thenReturn(entrades);
-        when(entrades.size()).thenReturn(22 * 4);
+        when(entrades.size()).thenReturn(22 * 4 + 1);
 
         double mitj = 0.0;
         for (double d : dades) mitj += d;
@@ -184,7 +233,7 @@ public class OperadorEstadistica1Test {
         assertEquals(1, resMc.getNumFiles());
         assertEquals(1, resMc.getNumCols());
 
-        Cela c = resMc.getCela(0, 0);
+        c = resMc.getCela(0, 0);
         assertNotNull(c);
         assertTrue(c instanceof CelaNum);
 
@@ -193,6 +242,10 @@ public class OperadorEstadistica1Test {
         assertTrue(Math.abs(res - val) < TOL);
     }
 
+    /**
+     * @brief Test que comprova el càlcul correcte de la desviació estàndard de dades amb tolerància TOL i amb una cel·la
+     * no numèrica (que s'ha d'ignorar)
+     */
     @Test
     public void testDesviacioEstandard() {
         ArrayList<Double> dades = new ArrayList<Double>();
@@ -217,18 +270,30 @@ public class OperadorEstadistica1Test {
             }
         }
 
+        EntradaMatriuCeles e = mock(EntradaMatriuCeles.class);
+        next = next.thenReturn(e);
+
+        Cela c = mock(Cela.class);
+        when(e.getCela()).thenReturn(c);
+        when(c.getNum()).thenReturn(null);
+        when(c.getData()).thenReturn(LocalDate.now());
+        when(c.getInputUsuari()).thenReturn("test");
+        when(e.getFila()).thenReturn(90);
+        when(e.getColumna()).thenReturn(0);
+
         OngoingStubbing<Boolean> hasNext = when(iterator.hasNext());
         for (int j = 0; j < 234; ++j)
             for (int i = 0; i < 65; ++i)
                 hasNext = hasNext.thenReturn(true);
 
+        hasNext.thenReturn(true);
         hasNext.thenReturn(false);
 
         MatriuCeles mc = mock(MatriuCeles.class);
         ArrayList<EntradaMatriuCeles> entrades = (ArrayList<EntradaMatriuCeles>) mock(ArrayList.class);
         when(entrades.iterator()).thenReturn(iterator);
         when(mc.getEntrades()).thenReturn(entrades);
-        when(entrades.size()).thenReturn(234 * 65);
+        when(entrades.size()).thenReturn(234 * 65 + 1);
 
         double mitj = 0.0;
         for (double d : dades) mitj += d;
@@ -243,7 +308,7 @@ public class OperadorEstadistica1Test {
         assertEquals(1, resMc.getNumFiles());
         assertEquals(1, resMc.getNumCols());
 
-        Cela c = resMc.getCela(0, 0);
+        c = resMc.getCela(0, 0);
         assertNotNull(c);
         assertTrue(c instanceof CelaNum);
 

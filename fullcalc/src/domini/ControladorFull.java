@@ -166,6 +166,10 @@ public class ControladorFull {
     }
 
     private void guardaBloc(MatriuCeles bloc, int filaDest, int colDest) {
+        if (full.blocInvalid(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols()))
+            throw new ExcepcioForaLimits(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols(),
+                    full.getNumFiles(), full.getNumCols());
+
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades) {

@@ -212,26 +212,28 @@ public class Operador {
             ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
             ArrayList<Double> dades = new ArrayList<>(entrades.size());
 
-            for (EntradaMatriuCeles e : entrades) {
-                Double d = e.getCela().getNum();
-                if (d != null) dades.add(d);
-            }
+            if (entrades.size() != 0) {
+                for (EntradaMatriuCeles e : entrades) {
+                    Double d = e.getCela().getNum();
+                    if (d != null) dades.add(d);
+                }
 
-            switch (op) {
-                case MITJANA:
-                    res = mitjana(dades);
-                    break;
-                case MEDIANA:
-                    res = mediana(dades);
-                    break;
-                case VARIANCIA:
-                    res = variancia(dades);
-                    break;
-                case DESVIACIO_ESTANDARD:
-                    res = desviacioEstandard(dades);
-                    break;
-                default:
-                    throw new IncompatibleClassChangeError("Operació estadística" + op + " desconeguda");
+                switch (op) {
+                    case MITJANA:
+                        res = mitjana(dades);
+                        break;
+                    case MEDIANA:
+                        res = mediana(dades);
+                        break;
+                    case VARIANCIA:
+                        res = variancia(dades);
+                        break;
+                    case DESVIACIO_ESTANDARD:
+                        res = desviacioEstandard(dades);
+                        break;
+                    default:
+                        throw new IncompatibleClassChangeError("Operació estadística" + op + " desconeguda");
+                }
             }
         }
 
@@ -621,6 +623,8 @@ public class Operador {
      * @return Mitjana dels valors del vector
      */
     private double mitjana(ArrayList<Double> dades) {
+        if (dades.size() == 0) return 0.0;
+
         double res = 0.0;
 
         for (double d : dades)
@@ -635,6 +639,7 @@ public class Operador {
      * @return Mediana dels valors del vector
      */
     private double mediana(ArrayList<Double> dades) {
+        if (dades.size() == 0) return 0.0;
         Collections.sort(dades);
         return dades.get(dades.size() / 2);
     }
@@ -644,6 +649,8 @@ public class Operador {
      * @return Variància dels valors del vector
      */
     private double variancia(ArrayList<Double> dades) {
+        if (dades.size() == 0) return 0.0;
+
         double mitj = mitjana(dades);
         double res = 0.0;
 
@@ -662,6 +669,7 @@ public class Operador {
     private double covariancia(ArrayList<Double> x, ArrayList<Double> y) throws ExcepcioOperador {
         if (x.size() != y.size())
             throw new ExcepcioOperador("Error en l'operador: quantitat de dades diferents al calcular la covariancia");
+        else if (x.size() == 0) return 0.0;
 
         double mx = mitjana(x);
         double my = mitjana(y);
@@ -679,7 +687,8 @@ public class Operador {
     }
 
     private double coeficientPearson(ArrayList<Double> x, ArrayList<Double> y) {
-        // Comprovar divisions entre 0?
-        return covariancia(x, y) / Math.sqrt(variancia(x) * variancia(y));
+        double div = Math.sqrt(variancia(x) * variancia(y));
+        if (div == 0.0) return 0.0;
+        return covariancia(x, y) / div;
     }
 }

@@ -33,6 +33,9 @@ public class OperadorLongitudTest {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief Els tests comproven paraules de diferents mides incloent la paraula buida
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
@@ -54,6 +57,9 @@ public class OperadorLongitudTest {
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief El test comprova que el resultat d'extreure longitud concideix amb el correcte
+     */
     @Test
     public void testLongitud() {
         MatriuCeles mc = new MatriuCeles(3, 3);

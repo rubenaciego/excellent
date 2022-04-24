@@ -165,7 +165,7 @@ public class MatriuCeles {
         return entrades;
     }
 
-    protected boolean blocInvalid(int filaIni, int colIni, int numFiles, int numCols) {
+    public boolean blocInvalid(int filaIni, int colIni, int numFiles, int numCols) {
         if (filaIni < 0 || filaIni + numFiles - 1 >= this.numFiles) return true;
         return colIni < 0 || colIni + numCols - 1 >= this.numCols;
     }

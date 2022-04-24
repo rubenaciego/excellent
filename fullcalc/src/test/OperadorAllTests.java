@@ -14,7 +14,12 @@ import org.junit.runners.Suite;
         OperadorReemplacaTest.class,
         OperadorOrdenaTest.class,
         OperadorCercaTest.class,
-        OperadorLongitudTest.class
+        OperadorLongitudTest.class,
+        OperadorConversioUnitatsTest.class,
+        OperadorExtreuDatesTest.class,
+        OperadorExtreuLongitutTextTest.class,
+        OperadorOpAritmeticaTest.class,
+        OperadorTruncaTest.class
 })
 
 public class OperadorAllTests {

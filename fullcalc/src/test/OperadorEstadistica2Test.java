@@ -22,6 +22,11 @@ public class OperadorEstadistica2Test {
         operador = Operador.getInstance();
     }
 
+    /**
+     * @brief Fem test de la covariància que comprova el resultat correcte amb tolerància TOL, un test que comprova que
+     * salta una excepció quan l'entrada té més de dues columnes i un test que comprova que salti una excepció quan
+     * s'intenta executar l'operació amb diferent quantitat de dades
+     */
     @Test
     public void testCovariancia() {
         // Test resultat correcte
@@ -204,6 +209,12 @@ public class OperadorEstadistica2Test {
         assertTrue(excp);
     }
 
+    /**
+     * @brief Fem test del coeficient de Pearson que comprova el resultat correcte amb tolerància TOL, un test que comprovi el
+     * cas d'una variable amb variància 0 (que el resultat no està definit i retornem 0), un test que comprova que
+     * salta una excepció quan l'entrada té més de dues columnes i un test que comprova que salti una excepció quan
+     * s'intenta executar l'operació amb diferent quantitat de dades
+     */
     @Test
     public void testPerason() {
         // Test resultat correcte
@@ -300,6 +311,83 @@ public class OperadorEstadistica2Test {
         Double val = c.getNum();
         assertNotNull(val);
         assertTrue(Math.abs(res - val) < TOL);
+
+        // Test variable constant (variància 0)
+        x = new ArrayList<Double>();
+        y = new ArrayList<Double>();
+
+        iterator1 =(Iterator<EntradaMatriuCeles>) mock(Iterator.class);
+        next1 = when(iterator1.next());
+
+        for (int i = 0; i < 34; ++i) {
+            double xval = 2.0;
+            x.add(xval);
+
+            EntradaMatriuCeles e = mock(EntradaMatriuCeles.class);
+            next1 = next1.thenReturn(e);
+
+            c = mock(Cela.class);
+            when(e.getCela()).thenReturn(c);
+            when(c.getNum()).thenReturn(xval);
+            when(c.getInputUsuari()).thenReturn("test");
+            when(e.getFila()).thenReturn(i);
+            when(e.getColumna()).thenReturn(0);
+        }
+
+        hasNext1 = when(iterator1.hasNext());
+        for (int i = 0; i < 34; ++i)
+            hasNext1 = hasNext1.thenReturn(true);
+
+        hasNext1.thenReturn(false);
+
+        iterator2 =(Iterator<EntradaMatriuCeles>) mock(Iterator.class);
+        next2 = when(iterator2.next());
+
+        for (int i = 0; i < 34; ++i) {
+            double yval = 4.0;
+            y.add(yval);
+
+            EntradaMatriuCeles e = mock(EntradaMatriuCeles.class);
+            next2 = next2.thenReturn(e);
+
+            c = mock(Cela.class);
+            when(e.getCela()).thenReturn(c);
+            when(c.getNum()).thenReturn(yval);
+            when(c.getInputUsuari()).thenReturn("test");
+            when(e.getFila()).thenReturn(i);
+            when(e.getColumna()).thenReturn(1);
+        }
+
+        hasNext2 = when(iterator2.hasNext());
+        for (int i = 0; i < 34; ++i)
+            hasNext2 = hasNext2.thenReturn(true);
+
+        hasNext2.thenReturn(false);
+
+        mc = mock(MatriuCeles.class);
+        col1 = (ArrayList<EntradaMatriuCeles>) mock(ArrayList.class);
+        col2 = (ArrayList<EntradaMatriuCeles>) mock(ArrayList.class);
+        when(col1.iterator()).thenReturn(iterator1);
+        when(col2.iterator()).thenReturn(iterator2);
+        when(mc.getNumCols()).thenReturn(2);
+        when(mc.getNumFiles()).thenReturn(34);
+        when(mc.getEntradesColumna(0)).thenReturn(col1);
+        when(mc.getEntradesColumna(1)).thenReturn(col2);
+        when(col1.size()).thenReturn(34);
+        when(col2.size()).thenReturn(34);
+
+        resMc = operador.executaOperacioEstadistica(mc, OperacioEstadistica.COEFICIENT_PEARSON);
+        assertNotNull(resMc);
+        assertEquals(1, resMc.getNumFiles());
+        assertEquals(1, resMc.getNumCols());
+
+        c = resMc.getCela(0, 0);
+        assertNotNull(c);
+        assertTrue(c instanceof CelaNum);
+
+        val = c.getNum();
+        assertNotNull(val);
+        assertTrue(0.0 == val);
 
         // Test numero incorrecte de columnes
         when(mc.getNumCols()).thenReturn(23);

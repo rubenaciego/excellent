@@ -180,6 +180,11 @@ public class OperadorConversioUnitatsTest
     @Parameter(67)
     public Double h2km4;
 
+    /**
+     * @brief Parametritzacio de una Cel·la de cada tipus per executar els
+     * testos i dels resultats esperats per cada Cel·la i cada conversió
+     * d'unitats possible.
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Double val = -3.141592;
@@ -230,6 +235,11 @@ public class OperadorConversioUnitatsTest
         return Arrays.asList(data);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Radians a Graus Hexadecimals.
+     */
     @Test
     public void testConvR2g()
     {
@@ -250,6 +260,11 @@ public class OperadorConversioUnitatsTest
                 , r2g4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Graus Hexadecimals a Radians.
+     */
     @Test
     public void testConvG2r()
     {
@@ -270,6 +285,11 @@ public class OperadorConversioUnitatsTest
                 , g2r4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Km a Milles.
+     */
     @Test
     public void testConvKm2m()
     {
@@ -290,6 +310,11 @@ public class OperadorConversioUnitatsTest
                 , km2m4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Milles a Km.
+     */
     @Test
     public void testConvM2km()
     {
@@ -310,6 +335,11 @@ public class OperadorConversioUnitatsTest
                 , m2km4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Kg a Lliures.
+     */
     @Test
     public void testConvKh2lb()
     {
@@ -330,6 +360,11 @@ public class OperadorConversioUnitatsTest
                 , kg2lb4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Lliures a Kg.
+     */
     @Test
     public void testConvLb2kg()
     {
@@ -350,6 +385,11 @@ public class OperadorConversioUnitatsTest
                 , lb2kg4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Litres a Galons.
+     */
     @Test
     public void testConvL2gal()
     {
@@ -370,6 +410,11 @@ public class OperadorConversioUnitatsTest
                 , l2gal4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Galons a Litres.
+     */
     @Test
     public void testConvGal2l()
     {
@@ -390,6 +435,11 @@ public class OperadorConversioUnitatsTest
                 , gal2l4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de graus Kelvin a graus Celsius.
+     */
     @Test
     public void testConvC2K()
     {
@@ -410,7 +460,11 @@ public class OperadorConversioUnitatsTest
                 , c2k4);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de graus Celsius a graus Kelvin.
+     */ @Test
     public void testConvK2c()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -430,6 +484,11 @@ public class OperadorConversioUnitatsTest
                 , k2c4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de graus Kelvin a graus Fahrenheit.
+     */
     @Test
     public void testConvK2f()
     {
@@ -450,6 +509,11 @@ public class OperadorConversioUnitatsTest
                 , k2f4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de graus Fahrenheit a graus Kelvin.
+     */
     @Test
     public void testConvF2k()
     {
@@ -470,7 +534,11 @@ public class OperadorConversioUnitatsTest
                 , f2k4);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de graus Fahrenheit a graus Celsius.
+     */@Test
     public void testConvF2c()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -490,7 +558,11 @@ public class OperadorConversioUnitatsTest
                 , f2c4);
     }
 
-    @Test
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de graus Km Quadrats a Hectarees.
+     */@Test
     public void testConvKm2h()
     {
         MatriuCeles mc = new MatriuCeles(2, 2);
@@ -510,6 +582,11 @@ public class OperadorConversioUnitatsTest
                 , km2h4);
     }
 
+    /**
+     * @brief Test parametritzat per comprovar que Operador executa
+     * correctament l'operació Convertir Unitats amb tots els
+     * tipus de Cel·la convertint de Hectarees a Km Quadrats.
+     */
     @Test
     public void testConvH2km()
     {
