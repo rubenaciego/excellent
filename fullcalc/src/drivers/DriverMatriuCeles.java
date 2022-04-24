@@ -4,6 +4,7 @@ import domini.*;
 import java.util.ArrayList;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class DriverMatriuCeles {
@@ -291,9 +292,11 @@ public class DriverMatriuCeles {
 
             System.out.println("Imprimint la matriu final");
             imprimir(matriu);
+
+            System.out.println("Desitges sortir de l'executable? Introdueix un 0 si vols sortir, o entra qualsevol" +
+                    " altre caracter si es que vols continuar");
+            input = entry.next();
+            if (Objects.equals(input, "0")) break;
         }
-
-
-
     }
 }
