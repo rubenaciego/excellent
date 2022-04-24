@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="commons-logging">
     <CLASSES>
-      <root url="jar:///usr/share/java/commons-logging.jar!/" />
+      <root url="jar:///usr/share/java/commons-logging-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
