@@ -13,6 +13,12 @@ public class ControladorDomini {
         parser = Parser.getInstance();
     }
 
+    public ControladorDomini(Document document, ArrayList<ControladorFull> controladorsFull) {
+        this.document = document;
+        this.controladorsFull = controladorsFull;
+        parser = Parser.getInstance();
+    }
+
     public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
         try {
             TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
