@@ -149,8 +149,6 @@ public class ControladorFull {
                 full.eliminaFila(parsejat.getFilaColEliminar());
                 break;
             case MOU_BLOC:
-
-
                 full.mouBloc(filaIni, colIni, numFiles, numCols, filaDest, colDest);
                 break;
             case COPIA_BLOC:
