@@ -3,7 +3,6 @@ package drivers;
 import domini.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DriverOperador {
@@ -12,25 +11,28 @@ public class DriverOperador {
     static Scanner entry;
 
     public static void imprimir(MatriuCeles bloc) {
-
-        ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
-        for (EntradaMatriuCeles e : entrades) {
-            System.out.println("Cela: " + e.getFila() + ", " +
-                    e.getColumna() + " de tipus " + e.getCela().getTipusCela() + " amb ");
-            switch (e.getCela().getTipusCela()) {
-                case NUMERICA:
-                    System.out.println("Valor: " + e.getCela().getNum());
-                    break;
-                case TEXTUAL:
-                    System.out.println("Text: " + e.getCela().getText());
-                    break;
-                case DATADA:
-                    System.out.println("Data: " + e.getCela().getData().toString());
-                    break;
-                case REFERENCIAL:
-                    System.out.println("Referencia");
-                    break;
+        for (int i = 0; i < bloc.getNumFiles(); ++i) {
+            for (int j = 0; j < bloc.getNumCols(); ++j) {
+                Cela c = bloc.getCela(i, j);
+                if (c == null) System.out.print("--  ");
+                else {
+                    switch (c.getTipusCela()) {
+                        case NUMERICA:
+                            System.out.print(c.getNum() + "  ");
+                            break;
+                        case TEXTUAL:
+                            System.out.print(c.getText() + "  ");
+                            break;
+                        case DATADA:
+                            System.out.print(c.getData().toString() + "  ");
+                            break;
+                        case REFERENCIAL:
+                            System.out.println(c.getInputUsuari() + "  ");
+                            break;
+                    }
+                }
             }
+            System.out.println();
         }
     }
     public static void llegirBloc() {

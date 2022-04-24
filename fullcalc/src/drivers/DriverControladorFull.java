@@ -3,7 +3,6 @@ package drivers;
 import domini.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DriverControladorFull {
@@ -12,24 +11,28 @@ public class DriverControladorFull {
     static Scanner entry;
 
     public static void imprimir(Full full) {
-        ArrayList<EntradaMatriuCeles> entrades = full.getEntrades();
-        for (EntradaMatriuCeles e : entrades) {
-            System.out.println("Cela: " + e.getFila() + ", " +
-                    e.getColumna() + " de tipus " + e.getCela().getTipusCela() + " amb ");
-            switch (e.getCela().getTipusCela()) {
-                case NUMERICA:
-                    System.out.println("Valor: " + e.getCela().getNum());
-                    break;
-                case TEXTUAL:
-                    System.out.println("Text: " + e.getCela().getText());
-                    break;
-                case DATADA:
-                    System.out.println("Data: " + e.getCela().getData().toString());
-                    break;
-                case REFERENCIAL:
-                    System.out.println("Referencia");
-                    break;
+        for (int i = 0; i < full.getNumFiles(); ++i) {
+            for (int j = 0; j < full.getNumCols(); ++j) {
+                Cela c = full.getCela(i, j);
+                if (c == null) System.out.print("--  ");
+                else {
+                    switch (c.getTipusCela()) {
+                        case NUMERICA:
+                            System.out.print(c.getNum() + "  ");
+                            break;
+                        case TEXTUAL:
+                            System.out.print(c.getText() + "  ");
+                            break;
+                        case DATADA:
+                            System.out.print(c.getData().toString() + "  ");
+                            break;
+                        case REFERENCIAL:
+                            System.out.println(c.getInputUsuari() + "  ");
+                            break;
+                    }
+                }
             }
+            System.out.println();
         }
     }
 
@@ -134,9 +137,13 @@ public class DriverControladorFull {
         int cd = entry.nextInt();
         parsejat.setColumnaDesti(cd);
 
-        parsejat.setMidaColumna(Math.abs(cd - co));
-        parsejat.setMidaFila(Math.abs(fd - fo));
+        System.out.println("Introdueix un int de midaColumna:");
+        int midaCol = entry.nextInt();
+        parsejat.setMidaColumna(midaCol);
 
+        System.out.println("Introdueix un int de midaFila:");
+        int midaFila = entry.nextInt();
+        parsejat.setMidaFila(midaFila);
 
         System.out.println("Introdueix tipusOperacioFull:");
         String tipusOperacioFull = entry.next();
@@ -294,6 +301,9 @@ public class DriverControladorFull {
                 break;
             case "CERCA_OCURRENCIES":
                 parsejat.setTipusOpFull(OperacioFull.CERCA_OCURRENCIES);
+                System.out.println("Introdueix stringCercada:");
+                String stringCercada = entry.next();
+                parsejat.setStringCercada(stringCercada);
                 break;
             case "CONVERTEIX_MAJUSCULES":
                 parsejat.setTipusOpFull(OperacioFull.CONVERTEIX_MAJUSCULES);
@@ -318,12 +328,57 @@ public class DriverControladorFull {
                 System.out.println("Introdueix un int de columnaOrdenacio:");
                 int columnaOrdenacio = entry.nextInt();
                 parsejat.setColumnaOrdenacio(columnaOrdenacio);
-                System.out.println("Introdueix stringCercada:");
-                String stringCercada = entry.next();
-                parsejat.setStringCercada(stringCercada);
                 break;
             case "MODIFICA_CELA":
                 parsejat.setTipusOpFull(OperacioFull.MODIFICA_CELA);
+                ResultatParserCela resParsCel = new ResultatParserCela();
+
+                System.out.println("Introdueix el tipus de la nova cela:");
+                String tipus = entry.next();
+
+                switch (tipus) {
+                    case "Textual":
+                        resParsCel.setTipus(Cela.TipusCela.TEXTUAL);
+                        System.out.println("Introdueix el text de la Cela");
+                        String input = entry.next();
+
+                        resParsCel.setInputUsuari(input);
+                        break;
+                    case "Numerica":
+                        resParsCel.setTipus(Cela.TipusCela.NUMERICA);
+                        System.out.println("Introdueix el valor de la Cela");
+                        double val = entry.nextDouble();
+
+                        resParsCel.setValorNumeric(val);
+                        resParsCel.setInputUsuari(String.valueOf(val));
+                        break;
+                    case "Datada":
+                        resParsCel.setTipus(Cela.TipusCela.DATADA);
+                        System.out.println("Introdueix l'any de la Cela");
+                        int any = entry.nextInt();
+                        System.out.println("Introdueix el mes de la Cela");
+                        int mes = entry.nextInt();
+                        System.out.println("Introdueix el dia de la Cela");
+                        int dia = entry.nextInt();
+
+                        LocalDate data = LocalDate.of(any, mes, dia);
+                        resParsCel.setData(data);
+                        resParsCel.setInputUsuari(data.toString());
+                        break;
+                    case "Referencia":
+                        resParsCel.setTipus(Cela.TipusCela.REFERENCIAL);
+                        System.out.println("Introdueix la fila de la Cela " +
+                                "referenciada");
+                        int ir = entry.nextInt();
+                        System.out.println("Introdueix la columna de la Cela " +
+                                "referenciada");
+                        int jr = entry.nextInt();
+
+                        resParsCel.setFilaRef(ir);
+                        resParsCel.setColRef(jr);
+                        resParsCel.setInputUsuari("res");
+                }
+                parsejat.setResultatParserCela(resParsCel);
                 break;
             case "AFEGEIX_COLUMNA":
                 parsejat.setTipusOpFull(OperacioFull.AFEGEIX_COLUMNA);
@@ -333,14 +388,12 @@ public class DriverControladorFull {
                 break;
             case "ELIMINA_COLUMNA":
                 parsejat.setTipusOpFull(OperacioFull.ELIMINA_COLUMNA);
-                parsejat.setTipusOpFull(OperacioFull.ORDENA);
                 System.out.println("Introdueix un int de colEliminar:");
                 int filaColEliminar = entry.nextInt();
                 parsejat.setFilaColEliminar(filaColEliminar);
                 break;
             case "ELIMINA_FILA":
                 parsejat.setTipusOpFull(OperacioFull.ELIMINA_FILA);
-                parsejat.setTipusOpFull(OperacioFull.ORDENA);
                 System.out.println("Introdueix un int de filaEliminar:");
                 int filaColEliminar2 = entry.nextInt();
                 parsejat.setFilaColEliminar(filaColEliminar2);
@@ -356,8 +409,8 @@ public class DriverControladorFull {
                 break;
             default:
                 System.out.println("Operacio no valida, abortant, fixant " +
-                        "BUIDA_BLOC");
-                parsejat.setTipusOpFull(OperacioFull.BUIDA_BLOC);
+                        "AFEGEIX_FILA");
+                parsejat.setTipusOpFull(OperacioFull.AFEGEIX_FILA);
         }
     }
 
@@ -372,10 +425,15 @@ public class DriverControladorFull {
             ControladorFull contr = new ControladorFull(full);
             contr.executaOperacio(parsejat);
             imprimir(full);
-            System.out.println("Introdueix 1 per abortar o 0 per " +
-                    "omplir un nou parsejat");
+            int files = full.getNumFiles();
+            int cols = full.getNumCols();
+
+            System.out.println("Files: " + files + " columnes: " + cols);
+
+            System.out.println("Introdueix 1 per continuar introduint un nou " +
+                    "parsejat o 0 per abortar");
             int sortir = entry.nextInt();
-            if (sortir == 1) return;
+            if (sortir == 0) return;
         }
     }
 }
