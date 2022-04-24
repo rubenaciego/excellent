@@ -108,8 +108,8 @@ public class ControladorFull {
                 Cela c;
                 ResultatParserCela resCela = parsejat.getResultatParserCela();
 
-                int fila = resCela.getFilaRef();
-                int col = resCela.getColRef();
+                int fila = parsejat.getFilaDesti();
+                int col = parsejat.getColumnaDesti();
 
                 switch (resCela.getTipus()) {
                     case NUMERICA:
@@ -149,31 +149,14 @@ public class ControladorFull {
                 full.eliminaFila(parsejat.getFilaColEliminar());
                 break;
             case MOU_BLOC:
-                filaIni = parsejat.getFilaOrigen();
-                colIni = parsejat.getColumnaOrigen();
-                numFiles = parsejat.getMidaFila();
-                numCols = parsejat.getMidaColumna();
-                filaDest = parsejat.getFilaDesti();
-                colDest = parsejat.getColumnaDesti();
+
 
                 full.mouBloc(filaIni, colIni, numFiles, numCols, filaDest, colDest);
                 break;
             case COPIA_BLOC:
-                filaIni = parsejat.getFilaOrigen();
-                colIni = parsejat.getColumnaOrigen();
-                numFiles = parsejat.getMidaFila();
-                numCols = parsejat.getMidaColumna();
-                filaDest = parsejat.getFilaDesti();
-                colDest = parsejat.getColumnaDesti();
-
                 full.copiaBloc(filaIni, colIni, numFiles, numCols, filaDest, colDest);
                 break;
             case BUIDA_BLOC:
-                filaIni = parsejat.getFilaOrigen();
-                colIni = parsejat.getColumnaOrigen();
-                numFiles = parsejat.getMidaFila();
-                numCols = parsejat.getMidaColumna();
-
                 full.buidaBloc(filaIni, colIni, numFiles, numCols);
                 break;
             default:
