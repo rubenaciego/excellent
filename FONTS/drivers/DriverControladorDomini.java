@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class DriverControladorDomini {
     static ControladorDomini contr;
-    static Document doc;
     static Scanner entry;
 
     public static void imprimir(Full full) {
@@ -37,8 +36,8 @@ public class DriverControladorDomini {
     }
 
     public static void imprimirDoc() {
-        int n = doc.getNumFulls();
-        for (int i = 0; i < n; ++i) imprimir(doc.getFull(i));
+        int n = contr.getDocument().getNumFulls();
+        for (int i = 0; i < n; ++i) imprimir(contr.getDocument().getFull(i));
     }
 
     public static void main(String[] args) {
@@ -48,13 +47,7 @@ public class DriverControladorDomini {
                 "treballar:");
         String nom = entry.next();
 
-        doc = new Document(nom);
-        ArrayList<ControladorFull> contrsFull =
-                new ArrayList<ControladorFull>();
-
-        contr = new ControladorDomini(doc, contrsFull);
-
-        //contr = new ControladorDomini();
+        contr = new ControladorDomini();
         while (true) {
             System.out.println("Introdueix el nombre d'strings " +
                     "necessaris per codificar l'operació que vol " +

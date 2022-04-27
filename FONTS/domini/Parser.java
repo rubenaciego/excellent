@@ -23,6 +23,7 @@ public class Parser {
     public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
         // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
         // les necessàries?
+        // Pensar paràmetres de modificar cel·la
         if (opSenseParsejar.length == 0)
             throw new ExcepcioParser(opSenseParsejar);
 
