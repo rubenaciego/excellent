@@ -1,16 +1,20 @@
 package domini;
 
+import dades.ControladorDades;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ControladorDomini {
     private Document document;
     private ArrayList<ControladorFull> controladorsFull;
+    private ControladorDades controladorDades;
     private final Parser parser;
 
 
     public ControladorDomini() {
         parser = Parser.getInstance();
+        controladorDades = new ControladorDades();
     }
 
     public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
@@ -78,7 +82,10 @@ public class ControladorDomini {
     }
 
     private void carregaDocument(String nomDocument) {
-        throw new UnsupportedOperationException("carregaDocument encara no implementat");
+        String documentTxt = controladorDades.llegeixArxiu(nomDocument);
+        FormatDocument format = getTypeFromExtension(nomDocument);
+        DocumentParser dp = new DocumentParser();
+        document = dp.parseFrom(documentTxt, format);
     }
 
     private void tancaDocument() {
@@ -88,12 +95,31 @@ public class ControladorDomini {
 
     private void desaDocument() {
         document.setDataModificacio(LocalDateTime.now());
-        throw new UnsupportedOperationException("desaDocument encara no implementat");
+        FormatDocument format = getTypeFromExtension(document.getNom());
+        DocumentConverter dc = new DocumentConverter(document);
+        String documentTxt = dc.convertTo(format);
 
+        controladorDades.guardaArxiu(document.getNom(), documentTxt);
     }
 
     public Document getDocument() {
         return document;
     }
 
+    private FormatDocument getTypeFromExtension(String nom)
+    {
+        int index = nom.lastIndexOf('.');
+
+        if (index == -1)
+            throw new ExcepcioExtensioDocument(nom);
+
+        String ext = nom.substring(index + 1).toLowerCase();
+
+        switch (ext)
+        {
+            case "csv": return FormatDocument.CSV;
+            case "json": return FormatDocument.JSON;
+            default: throw new ExcepcioExtensioDocument(nom);
+        }
+    }
 }
