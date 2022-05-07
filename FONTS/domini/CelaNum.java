@@ -34,6 +34,11 @@ public class CelaNum extends Cela {
     }
 
     @Override
+    public String toString() {
+        return Double.toString(valor);
+    }
+
+    @Override
     public Cela copy()
     {
         return new CelaNum(inputUsuari, valor);
