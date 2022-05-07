@@ -54,6 +54,13 @@ public class Document {
     }
 
     /**
+     * @brief Afegeix un nou full al final
+     */
+    public void afegeixFull(int files, int cols) {
+        fulls.add(new Full(files, cols));
+    }
+
+    /**
      * @param idFull Índex del full que es vol eliminar
      * @brief Elimina un full a la posició especificada
      */

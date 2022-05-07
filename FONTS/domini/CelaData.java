@@ -34,6 +34,11 @@ public class CelaData extends Cela {
     }
 
     @Override
+    public String toString() {
+        return data.toString();
+    }
+
+    @Override
     public Cela copy() {
         return new CelaData(inputUsuari, data);
     }

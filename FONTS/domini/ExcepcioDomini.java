@@ -8,7 +8,9 @@ public class ExcepcioDomini extends RuntimeException {
         INDEX_FULL_INVALID,
         FORMAT_PARSER_INVALID,
         OPERADOR,
-        NO_DOCUMENT
+        NO_DOCUMENT,
+        GUARDAR_CARREGAR,
+        EXTENSIO_DOCUMENT
     }
 
     private final TipusError error;

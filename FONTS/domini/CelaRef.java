@@ -39,6 +39,11 @@ public class CelaRef extends Cela {
     }
 
     @Override
+    public String toString() {
+        return celaReferenciada.toString();
+    }
+
+    @Override
     public Cela copy() {
         return new CelaRef(inputUsuari, celaReferenciada);
     }

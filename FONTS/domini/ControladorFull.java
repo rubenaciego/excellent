@@ -105,7 +105,7 @@ public class ControladorFull {
                 guardaBloc(res, filaDest, colDest);
                 break;
             case MODIFICA_CELA:
-                Cela c;
+                Cela c = null;
                 ResultatParserCela resCela = parsejat.getResultatParserCela();
 
                 int fila = parsejat.getFilaDesti();
@@ -122,10 +122,14 @@ public class ControladorFull {
                         Cela cRef = full.getCela(resCela.getFilaRef(),
                                 resCela.getColRef());
 
-                        if (cRef instanceof CelaRef)
-                            cRef = ((CelaRef) cRef).getRef();
+                        if (cRef != null) {
+                            if (cRef instanceof CelaRef) {
+                                resCela.setInputUsuari(cRef.getInputUsuari());
+                                cRef = ((CelaRef) cRef).getRef();
+                            }
 
-                        c = new CelaRef(resCela.getInputUsuari(), cRef);
+                            c = new CelaRef(resCela.getInputUsuari(), cRef);
+                        }
                         break;
                     case TEXTUAL:
                         c = new CelaText(resCela.getInputUsuari());

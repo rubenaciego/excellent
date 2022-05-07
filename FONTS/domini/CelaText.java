@@ -39,6 +39,11 @@ public class CelaText extends Cela {
     }
 
     @Override
+    public String toString() {
+        return text;
+    }
+
+    @Override
     public Cela copy() {
         return new CelaText(inputUsuari, text);
     }

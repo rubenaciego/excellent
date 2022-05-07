@@ -1,22 +1,31 @@
 package domini;
 
+import dades.ControladorDades;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ControladorDomini {
     private Document document;
     private ArrayList<ControladorFull> controladorsFull;
+    private final ControladorDades controladorDades;
     private final Parser parser;
 
 
     public ControladorDomini() {
         parser = Parser.getInstance();
+        controladorDades = new ControladorDades();
     }
 
     public ControladorDomini(Document document, ArrayList<ControladorFull> controladorsFull) {
+        this();
         this.document = document;
         this.controladorsFull = controladorsFull;
-        parser = Parser.getInstance();
+    }
+
+    public Document getDocument() {
+        return document;
     }
 
     public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
@@ -30,12 +39,12 @@ public class ControladorDomini {
                 ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
                 controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
             }
-
-            return ExcepcioDomini.TipusError.NO_ERROR;
         } catch (ExcepcioDomini e) {
             System.out.println(e.getMessage());
             return e.getTipusError();
         }
+
+        return ExcepcioDomini.TipusError.NO_ERROR;
     }
 
     /**
@@ -84,7 +93,18 @@ public class ControladorDomini {
     }
 
     private void carregaDocument(String nomDocument) {
-        throw new UnsupportedOperationException("carregaDocument encara no implementat");
+        String documentTxt;
+
+        try {
+            documentTxt = controladorDades.llegeixArxiu(nomDocument);
+        } catch (IOException e) {
+            throw new ExcepcioGuardarCarregar(nomDocument);
+        }
+
+        FormatDocument format = getTypeFromExtension(nomDocument);
+        DocumentParser dp = new DocumentParser();
+        document = dp.parseFrom(documentTxt, format);
+        document.setNom(nomDocument);
     }
 
     private void tancaDocument() {
@@ -94,12 +114,32 @@ public class ControladorDomini {
 
     private void desaDocument() {
         document.setDataModificacio(LocalDateTime.now());
-        throw new UnsupportedOperationException("desaDocument encara no implementat");
+        FormatDocument format = getTypeFromExtension(document.getNom());
+        DocumentConverter dc = new DocumentConverter(document);
+        String documentTxt = dc.convertTo(format);
 
+        try {
+            controladorDades.guardaArxiu(document.getNom(), documentTxt);
+        } catch (IOException e) {
+            throw new ExcepcioGuardarCarregar(document.getNom());
+        }
     }
 
-    public Document getDocument() {
-        return document;
-    }
+    private FormatDocument getTypeFromExtension(String nom) {
+        int index = nom.lastIndexOf('.');
 
+        if (index == -1)
+            throw new ExcepcioExtensioDocument(nom);
+
+        String ext = nom.substring(index + 1).toLowerCase();
+
+        switch (ext) {
+            case "csv":
+                return FormatDocument.CSV;
+            case "json":
+                return FormatDocument.JSON;
+            default:
+                throw new ExcepcioExtensioDocument(nom);
+        }
+    }
 }
