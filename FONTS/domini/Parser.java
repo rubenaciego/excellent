@@ -21,8 +21,7 @@ public class Parser {
      * @brief Fa el parseig d'una operació associada a full
      */
     public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
-        // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
-        // les necessàries?
+        // Modifica cel·la canviar estructura string entrada?
         if (opSenseParsejar.length == 0)
             throw new ExcepcioParser(opSenseParsejar);
 
