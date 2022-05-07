@@ -36,17 +36,15 @@ public class DriverControladorDomini {
     }
 
     public static void imprimirDoc() {
+        if (contr.getDocument() == null)
+            return;
+
         int n = contr.getDocument().getNumFulls();
         for (int i = 0; i < n; ++i) imprimir(contr.getDocument().getFull(i));
     }
 
     public static void main(String[] args) {
         entry  = new Scanner(System.in);
-
-        System.out.println("Introdueix el nom del nou document amb el que " +
-                "treballar:");
-        String nom = entry.next();
-
         contr = new ControladorDomini();
         while (true) {
             System.out.println("Introdueix el nombre d'strings " +

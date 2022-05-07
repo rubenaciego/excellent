@@ -26,7 +26,7 @@ public class DriverCelaRef {
     }
 
     public static void TestSetRef(String inputUsuari, Cela c) {
-        celaRef.setRef(inputUsuari, c);
+        celaRef.setRef(c);
     }
 
     public static void TestGetNum() {
