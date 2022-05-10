@@ -13,10 +13,8 @@ public class CelaRef extends Cela {
         tipusCela = TipusCela.REFERENCIAL;
     }
 
-    public void setRef(String inputUsuari, Cela celaRef) {
-        super.setInputUsuari(inputUsuari);
+    public void setRef(Cela celaRef) {
         celaReferenciada = celaRef;
-        tipusCela = TipusCela.REFERENCIAL;
     }
 
     public Cela getRef() {

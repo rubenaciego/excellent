@@ -127,7 +127,8 @@ public class Parser {
             throw new ExcepcioParser(opSenseParsejar);
         }
 
-        if (op == OperacioDocument.CARREGA_DOCUMENT || op == OperacioDocument.CREA_DOCUMENT) {
+        if (op == OperacioDocument.CARREGA_DOCUMENT || op == OperacioDocument.CREA_DOCUMENT
+                || op == OperacioDocument.CANVIA_NOM_DOCUMENT) {
             if (opSenseParsejar.length < 2)
                 throw new ExcepcioParser(opSenseParsejar);
 
@@ -148,11 +149,11 @@ public class Parser {
 
     public TipusOperacio parseTipusOperacio(String opSenseParsejar) {
         int pos = opSenseParsejar.indexOf(',');
-        String operacio = opSenseParsejar.substring(0, pos);
 
         try {
+            String operacio = opSenseParsejar.substring(0, pos);
             return TipusOperacio.valueOf(operacio);
-        } catch (IllegalArgumentException e) {
+        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
             String[] v = {opSenseParsejar};
             throw new ExcepcioParser(v);
         }

@@ -10,7 +10,8 @@ public class ExcepcioDomini extends RuntimeException {
         OPERADOR,
         NO_DOCUMENT,
         GUARDAR_CARREGAR,
-        EXTENSIO_DOCUMENT
+        EXTENSIO_DOCUMENT,
+        FORMAT_DOCUMENT
     }
 
     private final TipusError error;

@@ -38,7 +38,8 @@ public class CelaRefTest {
     public void TestGetAndSetRef() {
         String input = "=3:0";
         CelaText c = new CelaText("Hola");
-        celaRef.setRef(input, c);
+        celaRef.setInputUsuari(input);
+        celaRef.setRef(c);
         assertEquals("=3:0", celaRef.getInputUsuari());
         assertEquals(c, celaRef.getRef());
     }
@@ -51,7 +52,8 @@ public class CelaRefTest {
         String input = "2.0";
         Double valorInput = 2.0;
         CelaNum c = new CelaNum("2.0", 2.0);
-        celaRef.setRef("=43:12", c);
+        celaRef.setInputUsuari("=43:12");
+        celaRef.setRef(c);
         assertEquals((double) 2.0, (double) celaRef.getNum(), 0.001);
     }
 
@@ -62,7 +64,8 @@ public class CelaRefTest {
     public void TestGetText() {
         String input = "Ahoy!";
         CelaText c = new CelaText(input);
-        celaRef.setRef("=6:9", c);
+        celaRef.setInputUsuari("=6:9");
+        celaRef.setRef(c);
         assertEquals("Ahoy!", celaRef.getText());
     }
 
@@ -73,7 +76,8 @@ public class CelaRefTest {
     public void TestGetDataNull() {
         String text = "xd";
         CelaText c = new CelaText("xd");
-        celaRef.setRef("=9:1",c);
+        celaRef.setInputUsuari("=9:1");
+        celaRef.setRef(c);
         assertNull(celaRef.getData());
     }
 

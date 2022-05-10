@@ -1,6 +1,7 @@
 package domini;
 
 import dades.ControladorDades;
+import vista.ControladorVista;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -10,12 +11,14 @@ public class ControladorDomini {
     private Document document;
     private ArrayList<ControladorFull> controladorsFull;
     private final ControladorDades controladorDades;
+    private final ControladorVista controladorVista;
     private final Parser parser;
 
 
     public ControladorDomini() {
         parser = Parser.getInstance();
         controladorDades = new ControladorDades();
+        controladorVista = new ControladorVista(this);
     }
 
     public ControladorDomini(Document document, ArrayList<ControladorFull> controladorsFull) {
@@ -29,6 +32,9 @@ public class ControladorDomini {
     }
 
     public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
+        if (opSenseParsejar.length == 0)
+            return ExcepcioDomini.TipusError.FORMAT_PARSER_INVALID;
+
         try {
             TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
@@ -37,6 +43,10 @@ public class ControladorDomini {
                 executaOperacioDocument(resultat);
             } else {
                 ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
+
+                if (resultat.getIdFull() >= controladorsFull.size() || resultat.getIdFull() < 0)
+                    throw new ExcepcioIndexFull(resultat.getIdFull(), document.getNumFulls());
+
                 controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
             }
         } catch (ExcepcioDomini e) {
@@ -82,6 +92,12 @@ public class ControladorDomini {
 
                 desaDocument();
                 break;
+            case CANVIA_NOM_DOCUMENT:
+                if (document == null)
+                    throw new ExcepcioNoDocument("Error: no hi ha cap document obert");
+
+                document.setNom(resultat.getNomDocument());
+                break;
             default:
                 throw new IncompatibleClassChangeError("Operació " + resultat.getTipusOpDocument() + " desconeguda");
         }
@@ -105,6 +121,10 @@ public class ControladorDomini {
         DocumentParser dp = new DocumentParser();
         document = dp.parseFrom(documentTxt, format);
         document.setNom(nomDocument);
+        controladorsFull = new ArrayList<ControladorFull>();
+
+        for (int i = 0; i < document.getNumFulls(); ++i)
+            controladorsFull.add(new ControladorFull(document.getFull(i)));
     }
 
     private void tancaDocument() {
