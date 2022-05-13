@@ -12,12 +12,13 @@
     <orderEntry type="library" name="commons-collections3" level="project" />
     <orderEntry type="library" name="commons-lang-2.6" level="project" />
     <orderEntry type="library" name="commons-logging-1.2" level="project" />
-    <orderEntry type="library" name="ezmorph" level="project" />
     <orderEntry type="library" name="json-lib-2.4" level="project" />
     <orderEntry type="library" name="junit4" level="project" />
     <orderEntry type="library" name="mockito-core-2.23.0" level="project" />
     <orderEntry type="library" name="objenesis-3.1" level="project" />
     <orderEntry type="library" name="opencsv" level="project" />
     <orderEntry type="library" name="commons-lang3" level="project" />
+    <orderEntry type="library" name="ezmorph-1.0.6" level="project" />
+    <orderEntry type="library" name="commons-collections3-3.2.2" level="project" />
   </component>
 </module>
