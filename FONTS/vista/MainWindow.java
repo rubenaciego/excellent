@@ -3,13 +3,16 @@ package vista;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainWindow {
     private JFrame mainFrame;
     private JPanel mainPanel;
     private JTabbedPane tabFulls;
-    private JTable table1;
     private JButton valAbsButton;
     private JButton expButton;
     private JButton incrButton;
@@ -40,7 +43,6 @@ public class MainWindow {
     private JButton cercaButton;
     private JButton afegirFullButton;
     private JButton elimFullButton;
-    private JButton closeButton;
 
     //Menu
     private JMenuBar menuBarVista = new JMenuBar();
@@ -70,7 +72,7 @@ public class MainWindow {
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
 
     //TODO: vista secundaria
-    private JMenu menuVista = new JMenu("Full");
+    private JMenu menuVista = new JMenu("Vista");
     private JMenuItem menuItemNightMode = new JMenuItem("Activa el mode nocturn");
     private JMenuItem menuItemCanviarEstil = new JMenuItem("Canvia l'estil...");
 
@@ -79,30 +81,42 @@ public class MainWindow {
     private JMenuItem menuItemDocu = new JMenuItem("Documentacio");
     private JMenuItem menuItemSobre = new JMenuItem("Sobre Excellent...");
 
+    //Fulls
+    private ArrayList<TableModel> fullTables;
+
     public MainWindow() {
-        mainFrame = new JFrame("MainWindow");
+        fullTables = new ArrayList<TableModel>();
+        mainFrame = new JFrame("Excellent");
 
         $$$setupUI$$$();
-
-        /*try {
-            for (UIManager.LookAndFeelInfo i : UIManager.getInstalledLookAndFeels())
-                System.out.println(i.getClassName());
-
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-        } catch (Exception ignored) {
-        }*/
-
-       /* closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("Closing");
-            }
-        });*/
 
         mainFrame.setContentPane(mainPanel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setVisible(true);
+
+
+        afegirFullButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                afegeixFull(100, 100);
+                tabFulls.setSelectedIndex(fullTables.size() - 1);
+                // realment hauria de cridar a controlador vista
+            }
+        });
+
+        elimFullButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int selected = tabFulls.getSelectedIndex();
+
+                if (selected != -1)
+                {
+                    tabFulls.remove(selected);
+                    fullTables.remove(selected);
+                }
+            }
+        });
     }
 
     /**
@@ -113,7 +127,6 @@ public class MainWindow {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        createUIComponents();
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         final JPanel panel1 = new JPanel();
@@ -484,7 +497,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel9.add(mesButton, gbc);
         final JLabel label4 = new JLabel();
-        label4.setText("Operacions textuals");
+        label4.setText("Operacions de dates");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -569,28 +582,12 @@ public class MainWindow {
         mainPanel.add(tabFulls, gbc);
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridBagLayout());
-        tabFulls.addTab("Full1", panel12);
-        final JScrollPane scrollPane1 = new JScrollPane();
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        panel12.add(scrollPane1, gbc);
-        table1.setAutoResizeMode(0);
-        table1.setColumnSelectionAllowed(true);
-        table1.setDropMode(DropMode.USE_SELECTION);
-        table1.setRowSelectionAllowed(true);
-        scrollPane1.setViewportView(table1);
-        final JPanel panel13 = new JPanel();
-        panel13.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.VERTICAL;
-        mainPanel.add(panel13, gbc);
+        mainPanel.add(panel12, gbc);
         afegirFullButton = new JButton();
         afegirFullButton.setText("+");
         gbc = new GridBagConstraints();
@@ -598,7 +595,7 @@ public class MainWindow {
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel13.add(afegirFullButton, gbc);
+        panel12.add(afegirFullButton, gbc);
         elimFullButton = new JButton();
         elimFullButton.setText("-");
         gbc = new GridBagConstraints();
@@ -606,7 +603,7 @@ public class MainWindow {
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel13.add(elimFullButton, gbc);
+        panel12.add(elimFullButton, gbc);
     }
 
     /**
@@ -617,17 +614,6 @@ public class MainWindow {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
-        DefaultTableModel model = new DefaultTableModel();
-        model.setNumRows(100);
-        model.setColumnCount(100);
-
-        model.setValueAt("Hola", 0, 0);
-        model.setValueAt(":)", 0, 1);
-        model.setValueAt("Adeu", 1, 0);
-        model.setValueAt(":)", 1, 1);
-        table1 = new JTable(model);
-
         inicialitzar_menuBar();
     }
 
@@ -670,5 +656,41 @@ public class MainWindow {
         menuBarVista.add(menuAjuda);
 
         mainFrame.setJMenuBar(menuBarVista);
+    }
+
+    private void afegeixFull(int nrows, int ncols) {
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table1 = new JTable(model);
+        model.setNumRows(nrows);
+        model.setColumnCount(ncols);
+
+        int numFull = fullTables.size() + 1;
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        tabFulls.addTab("Full " + numFull, panel);
+        final JScrollPane scrollPane1 = new JScrollPane();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        panel.add(scrollPane1, gbc);
+        table1.setAutoResizeMode(0);
+        table1.setColumnSelectionAllowed(true);
+        table1.setDropMode(DropMode.USE_SELECTION);
+        table1.setRowSelectionAllowed(true);
+        scrollPane1.setViewportView(table1);
+        table1.setAutoResizeMode(0);
+        table1.setColumnSelectionAllowed(true);
+        table1.setDropMode(DropMode.USE_SELECTION);
+        table1.setRowSelectionAllowed(true);
+        table1.getTableHeader().setReorderingAllowed(false);
+        scrollPane1.setViewportView(table1);
+
+        RowNumberTable rowNumberTable = new RowNumberTable(table1);
+        scrollPane1.setRowHeaderView(rowNumberTable);
+
+        fullTables.add(model);
     }
 }

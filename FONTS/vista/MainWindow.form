@@ -360,7 +360,7 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Operacions textuals"/>
+                  <text value="Operacions de dates"/>
                 </properties>
               </component>
             </children>
@@ -449,36 +449,7 @@
           <tabPlacement value="3"/>
         </properties>
         <border type="none"/>
-        <children>
-          <grid id="e6b6f" layout-manager="GridBagLayout">
-            <constraints>
-              <tabbedpane title="Full1"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <scrollpane id="d301b">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="1.0" weighty="1.0"/>
-                </constraints>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="5c729" class="javax.swing.JTable" binding="table1" custom-create="true" default-binding="true">
-                    <constraints/>
-                    <properties>
-                      <autoResizeMode value="0"/>
-                      <columnSelectionAllowed value="true"/>
-                      <dropMode value="USE_SELECTION"/>
-                      <rowSelectionAllowed value="true"/>
-                    </properties>
-                  </component>
-                </children>
-              </scrollpane>
-            </children>
-          </grid>
-        </children>
+        <children/>
       </tabbedpane>
       <grid id="445b5" layout-manager="GridBagLayout">
         <constraints>
