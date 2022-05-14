@@ -170,10 +170,10 @@ public class RowNumberTable extends JTable
 				}
 			}
 
-			if (isSelected)
+			/*if (isSelected)
 			{
 				setFont( getFont().deriveFont(Font.BOLD) );
-			}
+			}*/
 
 			setText((value == null) ? "" : value.toString());
 			setBorder(UIManager.getBorder("TableHeader.cellBorder"));

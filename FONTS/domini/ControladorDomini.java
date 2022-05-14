@@ -2,6 +2,7 @@ package domini;
 
 import dades.ControladorDades;
 import vista.ControladorVista;
+import vista.EntradaTaula;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,7 +14,6 @@ public class ControladorDomini {
     private final ControladorDades controladorDades;
     private final ControladorVista controladorVista;
     private final Parser parser;
-
 
     public ControladorDomini() {
         parser = Parser.getInstance();
@@ -29,6 +29,60 @@ public class ControladorDomini {
 
     public Document getDocument() {
         return document;
+    }
+
+    public int getNumFulls()
+    {
+        if (document != null)
+            return document.getNumFulls();
+
+        return -1;
+    }
+
+    public int getNumFiles(int full)
+    {
+        if (document != null)
+        {
+            Full f = document.getFull(full);
+
+            if (f != null)
+                return f.getNumFiles();
+        }
+
+        return -1;
+    }
+
+    public int getNumCols(int full)
+    {
+        if (document != null)
+        {
+            Full f = document.getFull(full);
+
+            if (f != null)
+                return f.getNumCols();
+        }
+
+        return -1;
+    }
+
+    public ArrayList<EntradaTaula> getEntrades(int full, int srow, int scol, int numFiles, int numCols)
+    {
+        ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
+
+        if (document != null)
+        {
+            Full f = document.getFull(full);
+
+            if (f != null)
+            {
+                ArrayList<EntradaMatriuCeles> e = f.getBloc(srow, scol, numFiles, numCols).getEntrades();
+
+                for (EntradaMatriuCeles entrada : e)
+                    entrades.add(new EntradaTaula(entrada.getFila(), entrada.getColumna(), entrada.getCela().toString()));
+            }
+        }
+
+        return entrades;
     }
 
     public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
