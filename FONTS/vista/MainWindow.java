@@ -121,7 +121,7 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 FileDialog fd = new FileDialog(mainFrame, "Escull un arxiu", FileDialog.LOAD);
-                // filename filter fd.setFile("*.json;*.csv");
+                fd.setFile("*.json;*.csv");
                 fd.setVisible(true);
                 controladorVista.carregaDocument(fd.getFile());
             }
