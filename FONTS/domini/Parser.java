@@ -1,5 +1,7 @@
 package domini;
 
+import util.Utilitats;
+
 import java.lang.*;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -42,8 +44,8 @@ public class Parser {
 
         try {
             resultat.setIdFull(Integer.parseInt(splitted[1]));
-            if (!splitted[8].equals("ELIMINA_FILA") && !splitted[8].equals(
-                    "ELIMINA_COLUMNA")) {
+            if (!splitted[8].equals(OperacioFull.ELIMINA_FILA.toString()) && !splitted[8].equals(
+                    OperacioFull.ELIMINA_COLUMNA.toString())) {
                 resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
                 resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
                 resultat.setMidaFila(Integer.parseInt(splitted[4]));
@@ -176,18 +178,20 @@ public class Parser {
                     Integer.parseInt(DDMMAAAA[1]),
                     Integer.parseInt(DDMMAAAA[0])));
             resultat.setTipus(Cela.TipusCela.DATADA);
-        } else if (inputUsuari.startsWith("=")) {
-            int index = inputUsuari.indexOf(':');
-            String fila = inputUsuari.substring(1, index);
-            String col = inputUsuari.substring(index + 1);
+        } else if (inputUsuari.matches("^=[A-Z]+[1-9][0-9]*$")) {
+            int index = 0;
+            char c;
 
-            try {
-                resultat.setFilaRef(Integer.parseInt(fila));
-                resultat.setColRef(Integer.parseInt(col));
-            } catch (NumberFormatException e) {
-                String[] v = {inputUsuari};
-                throw new ExcepcioParser(v);
-            }
+            do {
+                ++index;
+                c = inputUsuari.charAt(index);
+            } while (c >= 'A' && c <= 'Z');
+
+            String fila = inputUsuari.substring(index);
+            String col = inputUsuari.substring(1, index);
+
+            resultat.setFilaRef(Integer.parseInt(fila));
+            resultat.setColRef(Utilitats.convertirBase26(col));
             resultat.setTipus(Cela.TipusCela.REFERENCIAL);
         } else {
             resultat.setTipus(Cela.TipusCela.TEXTUAL);

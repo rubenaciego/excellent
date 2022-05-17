@@ -14,7 +14,15 @@ public class ControladorVista {
 
     public void afegeixFull()
     {
-        // construeix missatge a controlador domini
+        String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL"};
+
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
         int i = controladorDomini.getNumFulls() - 1;
         window.afegeixFull(controladorDomini.getNumFiles(i), controladorDomini.getNumCols(i));
     }
@@ -25,14 +33,27 @@ public class ControladorVista {
         window.esborraFull(index);
     }
 
+    public void creaDocument(String nom)
+    {
+        String[] message = {"OPERACIO_DOCUMENT,CREA_DOCUMENT", nom};
+
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void carregaDocument(String nom)
     {
-        String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT",nom};
-        ExcepcioDomini.TipusError error = controladorDomini.executaOperacio(message);
+        String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT", nom};
 
-        if (error != ExcepcioDomini.TipusError.NO_ERROR)
-        {
-            System.out.println("Error desde presentació");
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         for (int i = 0; i < controladorDomini.getNumFulls(); ++i)
@@ -43,6 +64,6 @@ public class ControladorVista {
             window.setEntradesFull(i, controladorDomini.getEntrades(i, 0, 0, files, cols));
         }
 
-        window.focusFull(0);
+        window.setFocusedFull(0);
     }
 }
