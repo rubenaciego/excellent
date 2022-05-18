@@ -112,8 +112,14 @@ public class MainWindow {
         elimFullButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int selected = tabFulls.getSelectedIndex();
-                controladorVista.esborraFull(selected);
+                controladorVista.esborraFull(getFocusedFull());
+            }
+        });
+
+        menuItemCrear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.creaDocument("doc.json");
             }
         });
 
@@ -121,11 +127,30 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 FileDialog fd = new FileDialog(mainFrame, "Escull un arxiu", FileDialog.LOAD);
-                fd.setFile("*.json;*.csv");
+                fd.setFilenameFilter(new FilenameFilter() {
+                    @Override
+                    public boolean accept(File file, String s) {
+                        return s.endsWith(".json") || s.endsWith(".csv");
+                    }
+                });
+
                 fd.setVisible(true);
-                controladorVista.carregaDocument(fd.getFile());
+
+                String file = fd.getFile();
+                if (file != null)
+                    controladorVista.carregaDocument(file);
             }
         });
+
+        absButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                System.out.println(s.row + ", " + s.col + " " + s.nrows + ", " + s.ncols);
+            }
+        });
+
     }
 
     private void inicialitzar_menuBar() {
@@ -179,31 +204,26 @@ public class MainWindow {
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         tabFulls.addTab("Full " + numFull, panel);
-        final JScrollPane scrollPane1 = new JScrollPane();
+        final JScrollPane scrollPane = new JScrollPane();
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        panel.add(scrollPane1, gbc);
+        panel.add(scrollPane, gbc);
         table.setAutoResizeMode(0);
         table.setColumnSelectionAllowed(true);
-        table.setDropMode(DropMode.USE_SELECTION);
         table.setRowSelectionAllowed(true);
-        scrollPane1.setViewportView(table);
-        table.setAutoResizeMode(0);
-        table.setColumnSelectionAllowed(true);
-        table.setDropMode(DropMode.USE_SELECTION);
-        table.setRowSelectionAllowed(true);
+        table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
-        scrollPane1.setViewportView(table);
+        scrollPane.setViewportView(table);
 
         RowNumberTable rowNumberTable = new RowNumberTable(table);
-        scrollPane1.setRowHeaderView(rowNumberTable);
+        scrollPane.setRowHeaderView(rowNumberTable);
 
         fullTables.add(model);
-        focusFull(fullTables.size() - 1);
+        setFocusedFull(fullTables.size() - 1);
     }
 
     public void esborraFull(int index) {
@@ -216,8 +236,28 @@ public class MainWindow {
         }
     }
 
-    public void setEntradesFull(int full, ArrayList<EntradaTaula> entrades)
-    {
+    public int getFocusedFull() {
+        return tabFulls.getSelectedIndex();
+    }
+
+    public SeleccioTaula getCurrentSelection() {
+        JPanel panel = (JPanel) tabFulls.getSelectedComponent();
+        JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
+
+        return new SeleccioTaula(table.convertRowIndexToModel(table.getSelectedRow()),
+                table.convertColumnIndexToModel(table.getSelectedColumn()),
+                table.getSelectedRowCount(), table.getSelectedColumnCount());
+    }
+
+    public void buidaSeleccio(int full, SeleccioTaula seleccio) {
+        TableModel model = fullTables.get(full);
+
+        for (int i = 0; i < seleccio.nrows; ++i)
+            for (int j = 0; j < seleccio.ncols; ++j)
+                model.setValueAt("", i + seleccio.row, j + seleccio.col);
+    }
+
+    public void setEntradesFull(int full, ArrayList<EntradaTaula> entrades) {
         if (full >= 0 && full < fullTables.size()) {
             TableModel model = fullTables.get(full);
 
@@ -226,10 +266,13 @@ public class MainWindow {
         }
     }
 
-    public void focusFull(int full)
-    {
+    public void setFocusedFull(int full) {
         if (full >= 0 && full < fullTables.size())
             tabFulls.setSelectedIndex(full);
+    }
+
+    public void errorMessage(String error) {
+        JOptionPane.showMessageDialog(mainFrame, error, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
     /**

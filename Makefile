@@ -4,10 +4,10 @@ LIBS = $(CP)/byte-buddy.jar:$(CP)/commons-beanutils.jar:$(CP)/commons-collection
 JC = javac
 JAR = jar
 JFLAGS =
-SRC = $(wildcard $(SRC_PATH)/domini/*.java) $(wildcard $(SRC_PATH)/test/*.java) $(wildcard $(SRC_PATH)/test/runners/*.java) $(wildcard $(SRC_PATH)/drivers/*.java)
+SRC = $(wildcard $(SRC_PATH)/*.java) $(wildcard $(SRC_PATH)/domini/*.java) $(wildcard $(SRC_PATH)/vista/*.java) $(wildcard $(SRC_PATH)/dades/*.java) $(wildcard $(SRC_PATH)/util/*.java) $(wildcard $(SRC_PATH)/test/*.java) $(wildcard $(SRC_PATH)/test/runners/*.java) $(wildcard $(SRC_PATH)/drivers/*.java)
 CLASS = $(SRC:java=class)
 EXEC_DIR = EXE
-EXEC_SRC = $(wildcard $(SRC_PATH)/test/runners/*.java) $(wildcard $(SRC_PATH)/drivers/*.java)
+EXEC_SRC = $(wildcard $(SRC_PATH)/test/runners/*.java) $(wildcard $(SRC_PATH)/drivers/*.java) $(SRC_PATH)/Application.java
 EXEC = $(subst $(SRC_PATH), $(EXEC_DIR), $(EXEC_SRC:java=jar))
 
 all: $(EXEC)
@@ -15,7 +15,7 @@ all: $(EXEC)
 class: $(CLASS)
 
 %.jar: class
-	cd $(SRC_PATH); jar cfem ../$(subst runners/,,$@) $(patsubst %.jar,%, $(subst $(EXEC_DIR)/,, $@)) ../manifest.txt domini/*.class test/*.class test/runners/*.class drivers/*.class
+	mkdir -p $(EXEC_DIR)/test; cd $(SRC_PATH); jar cfem ../$(subst runners/,,$@) $(patsubst %.jar,%, $(subst $(EXEC_DIR)/,, $@)) ../manifest.txt *.class vista/*.class domini/*.class dades/*.class util/*.class test/*.class test/runners/*.class drivers/*.class
 
 %.class: %.java
 	$(JC) $(JFLAGS) -cp $(LIBS):$(SRC_PATH) $<

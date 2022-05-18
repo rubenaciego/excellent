@@ -85,30 +85,23 @@ public class ControladorDomini {
         return entrades;
     }
 
-    public ExcepcioDomini.TipusError executaOperacio(String[] opSenseParsejar) {
+    public void executaOperacio(String[] opSenseParsejar) {
         if (opSenseParsejar.length == 0)
-            return ExcepcioDomini.TipusError.FORMAT_PARSER_INVALID;
+            throw new ExcepcioParser(opSenseParsejar);
 
-        try {
-            TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
+        TipusOperacio tipus = parser.parseTipusOperacio(opSenseParsejar[0]);
 
-            if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
-                ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
-                executaOperacioDocument(resultat);
-            } else {
-                ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
+        if (tipus == TipusOperacio.OPERACIO_DOCUMENT) {
+            ResultatParserDocument resultat = parser.parseOpDocument(opSenseParsejar);
+            executaOperacioDocument(resultat);
+        } else {
+            ResultatParserFull resultat = parser.parseOpFull(opSenseParsejar);
 
-                if (resultat.getIdFull() >= controladorsFull.size() || resultat.getIdFull() < 0)
-                    throw new ExcepcioIndexFull(resultat.getIdFull(), document.getNumFulls());
+            if (resultat.getIdFull() >= controladorsFull.size() || resultat.getIdFull() < 0)
+                throw new ExcepcioIndexFull(resultat.getIdFull(), document.getNumFulls());
 
-                controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
-            }
-        } catch (ExcepcioDomini e) {
-            System.out.println(e.getMessage());
-            return e.getTipusError();
+            controladorsFull.get(resultat.getIdFull()).executaOperacio(resultat);
         }
-
-        return ExcepcioDomini.TipusError.NO_ERROR;
     }
 
     /**
