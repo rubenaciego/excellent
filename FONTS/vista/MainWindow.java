@@ -3,14 +3,21 @@ package vista;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
 
 public class MainWindow {
+    private ControladorVista controladorVista;
+
     private JFrame mainFrame;
     private JPanel mainPanel;
     private JTabbedPane tabFulls;
-    private JTable table1;
-    private JButton valAbsButton;
+    private JButton absButton;
     private JButton expButton;
     private JButton incrButton;
     private JButton decrButton;
@@ -40,7 +47,6 @@ public class MainWindow {
     private JButton cercaButton;
     private JButton afegirFullButton;
     private JButton elimFullButton;
-    private JButton closeButton;
 
     //Menu
     private JMenuBar menuBarVista = new JMenuBar();
@@ -70,7 +76,7 @@ public class MainWindow {
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
 
     //TODO: vista secundaria
-    private JMenu menuVista = new JMenu("Full");
+    private JMenu menuVista = new JMenu("Vista");
     private JMenuItem menuItemNightMode = new JMenuItem("Activa el mode nocturn");
     private JMenuItem menuItemCanviarEstil = new JMenuItem("Canvia l'estil...");
 
@@ -79,30 +85,151 @@ public class MainWindow {
     private JMenuItem menuItemDocu = new JMenuItem("Documentacio");
     private JMenuItem menuItemSobre = new JMenuItem("Sobre Excellent...");
 
-    public MainWindow() {
-        mainFrame = new JFrame("MainWindow");
+    //Fulls
+    private ArrayList<TableModel> fullTables;
+
+    public MainWindow(ControladorVista controlador) {
+        this.controladorVista = controlador;
+        fullTables = new ArrayList<TableModel>();
+        mainFrame = new JFrame("Excellent");
 
         $$$setupUI$$$();
-
-        /*try {
-            for (UIManager.LookAndFeelInfo i : UIManager.getInstalledLookAndFeels())
-                System.out.println(i.getClassName());
-
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-        } catch (Exception ignored) {
-        }*/
-
-       /* closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.out.println("Closing");
-            }
-        });*/
+        inicialitzar_menuBar();
 
         mainFrame.setContentPane(mainPanel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setVisible(true);
+
+
+        afegirFullButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.afegeixFull();
+            }
+        });
+
+        elimFullButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int selected = tabFulls.getSelectedIndex();
+                controladorVista.esborraFull(selected);
+            }
+        });
+
+        menuItemCarregar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                FileDialog fd = new FileDialog(mainFrame, "Escull un arxiu", FileDialog.LOAD);
+                fd.setFile("*.json;*.csv");
+                fd.setVisible(true);
+                controladorVista.carregaDocument(fd.getFile());
+            }
+        });
+    }
+
+    private void inicialitzar_menuBar() {
+        //Fitxer
+        menuFile.add(menuItemCrear);
+        menuFile.add(menuItemCarregar);
+        menuFile.add(menuItemTancar);
+        menuFile.add(menuItemDesar);
+
+        //Editar
+        menuEditar.add(menuItemSelectAll);
+        menuEditar.add(menuItemSelectFila);
+        menuEditar.add(menuItemSelectCol);
+
+        //Full
+        menuFull.add(menuItemAfegirFila);
+        menuFull.add(menuItemAfegirCol);
+        menuFull.add(menuItemElimFila);
+        menuFull.add(menuItemElimCol);
+        menuFull.add(menuItemCopiarBloc);
+        menuFull.add(menuItemMoureBloc);
+        menuFull.add(menuItemBuidarBloc);
+        menuFull.add(menuItemOrdenarBloc);
+        menuFull.add(menuItemTransposarBloc);
+
+        //Vista
+        menuVista.add(menuItemNightMode);
+        menuVista.add(menuItemCanviarEstil);
+
+        //Ajuda
+        menuAjuda.add(menuItemDocu);
+        menuAjuda.add(menuItemSobre);
+
+        //Barra Menu
+        menuBarVista.add(menuFile);
+        menuBarVista.add(menuEditar);
+        menuBarVista.add(menuFull);
+        menuBarVista.add(menuVista);
+        menuBarVista.add(menuAjuda);
+
+        mainFrame.setJMenuBar(menuBarVista);
+    }
+
+    public void afegeixFull(int nrows, int ncols) {
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+        model.setNumRows(nrows);
+        model.setColumnCount(ncols);
+
+        int numFull = fullTables.size() + 1;
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridBagLayout());
+        tabFulls.addTab("Full " + numFull, panel);
+        final JScrollPane scrollPane1 = new JScrollPane();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        panel.add(scrollPane1, gbc);
+        table.setAutoResizeMode(0);
+        table.setColumnSelectionAllowed(true);
+        table.setDropMode(DropMode.USE_SELECTION);
+        table.setRowSelectionAllowed(true);
+        scrollPane1.setViewportView(table);
+        table.setAutoResizeMode(0);
+        table.setColumnSelectionAllowed(true);
+        table.setDropMode(DropMode.USE_SELECTION);
+        table.setRowSelectionAllowed(true);
+        table.getTableHeader().setReorderingAllowed(false);
+        scrollPane1.setViewportView(table);
+
+        RowNumberTable rowNumberTable = new RowNumberTable(table);
+        scrollPane1.setRowHeaderView(rowNumberTable);
+
+        fullTables.add(model);
+        focusFull(fullTables.size() - 1);
+    }
+
+    public void esborraFull(int index) {
+        if (index >= 0 && index < fullTables.size()) {
+            tabFulls.remove(index);
+            fullTables.remove(index);
+
+            for (int i = index; i < fullTables.size(); ++i)
+                tabFulls.setTitleAt(i, "Full " + (i + 1));
+        }
+    }
+
+    public void setEntradesFull(int full, ArrayList<EntradaTaula> entrades)
+    {
+        if (full >= 0 && full < fullTables.size()) {
+            TableModel model = fullTables.get(full);
+
+            for (EntradaTaula e : entrades)
+                model.setValueAt(e.valor, e.fila, e.columna);
+        }
+    }
+
+    public void focusFull(int full)
+    {
+        if (full >= 0 && full < fullTables.size())
+            tabFulls.setSelectedIndex(full);
     }
 
     /**
@@ -113,7 +240,6 @@ public class MainWindow {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        createUIComponents();
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         final JPanel panel1 = new JPanel();
@@ -194,8 +320,8 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel3.add(tanhButton, gbc);
-        valAbsButton = new JButton();
-        valAbsButton.setText("ValAbs");
+        absButton = new JButton();
+        absButton.setText("Abs");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -203,7 +329,7 @@ public class MainWindow {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel3.add(valAbsButton, gbc);
+        panel3.add(absButton, gbc);
         decrButton = new JButton();
         decrButton.setText("Decr");
         gbc = new GridBagConstraints();
@@ -484,7 +610,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel9.add(mesButton, gbc);
         final JLabel label4 = new JLabel();
-        label4.setText("Operacions textuals");
+        label4.setText("Operacions de dates");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -566,31 +692,16 @@ public class MainWindow {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
+        gbc.ipady = 500;
         mainPanel.add(tabFulls, gbc);
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridBagLayout());
-        tabFulls.addTab("Full1", panel12);
-        final JScrollPane scrollPane1 = new JScrollPane();
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        panel12.add(scrollPane1, gbc);
-        table1.setAutoResizeMode(0);
-        table1.setColumnSelectionAllowed(true);
-        table1.setDropMode(DropMode.USE_SELECTION);
-        table1.setRowSelectionAllowed(true);
-        scrollPane1.setViewportView(table1);
-        final JPanel panel13 = new JPanel();
-        panel13.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.VERTICAL;
-        mainPanel.add(panel13, gbc);
+        mainPanel.add(panel12, gbc);
         afegirFullButton = new JButton();
         afegirFullButton.setText("+");
         gbc = new GridBagConstraints();
@@ -598,7 +709,7 @@ public class MainWindow {
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel13.add(afegirFullButton, gbc);
+        panel12.add(afegirFullButton, gbc);
         elimFullButton = new JButton();
         elimFullButton.setText("-");
         gbc = new GridBagConstraints();
@@ -606,7 +717,7 @@ public class MainWindow {
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel13.add(elimFullButton, gbc);
+        panel12.add(elimFullButton, gbc);
     }
 
     /**
@@ -616,59 +727,4 @@ public class MainWindow {
         return mainPanel;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        DefaultTableModel model = new DefaultTableModel();
-        model.setNumRows(100);
-        model.setColumnCount(100);
-
-        model.setValueAt("Hola", 0, 0);
-        model.setValueAt(":)", 0, 1);
-        model.setValueAt("Adeu", 1, 0);
-        model.setValueAt(":)", 1, 1);
-        table1 = new JTable(model);
-
-        inicialitzar_menuBar();
-    }
-
-    private void inicialitzar_menuBar() {
-        //Fitxer
-        menuFile.add(menuItemCrear);
-        menuFile.add(menuItemCarregar);
-        menuFile.add(menuItemTancar);
-        menuFile.add(menuItemDesar);
-
-        //Editar
-        menuEditar.add(menuItemSelectAll);
-        menuEditar.add(menuItemSelectFila);
-        menuEditar.add(menuItemSelectCol);
-
-        //Full
-        menuFull.add(menuItemAfegirFila);
-        menuFull.add(menuItemAfegirCol);
-        menuFull.add(menuItemElimFila);
-        menuFull.add(menuItemElimCol);
-        menuFull.add(menuItemCopiarBloc);
-        menuFull.add(menuItemMoureBloc);
-        menuFull.add(menuItemBuidarBloc);
-        menuFull.add(menuItemOrdenarBloc);
-        menuFull.add(menuItemTransposarBloc);
-
-        //Vista
-        menuVista.add(menuItemNightMode);
-        menuVista.add(menuItemCanviarEstil);
-
-        //Ajuda
-        menuAjuda.add(menuItemDocu);
-        menuAjuda.add(menuItemSobre);
-
-        //Barra Menu
-        menuBarVista.add(menuFile);
-        menuBarVista.add(menuEditar);
-        menuBarVista.add(menuFull);
-        menuBarVista.add(menuVista);
-        menuBarVista.add(menuAjuda);
-
-        mainFrame.setJMenuBar(menuBarVista);
-    }
 }

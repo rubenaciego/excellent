@@ -47,6 +47,8 @@ public class DriverControladorDomini {
         entry  = new Scanner(System.in);
         contr = new ControladorDomini();
         while (true) {
+            Document doc = contr.getDocument();
+
             System.out.println("Introdueix el nombre d'strings " +
                     "necessaris per codificar l'operació que vol " +
                     "executar");
@@ -61,7 +63,7 @@ public class DriverControladorDomini {
             }
 
             contr.executaOperacio(opSenseParsejar);
-            imprimirDoc();
+            if (doc != null) imprimirDoc();
             System.out.println("Introdueix 1 per continuar introduint un nou " +
                     "parsejat o 0 per abortar");
             int sortir = entry.nextInt();
