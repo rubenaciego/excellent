@@ -6,10 +6,12 @@ import domini.ExcepcioDomini;
 public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
+    private final WindowSecundaria secundaria;
 
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
+        secundaria = new WindowSecundaria();
     }
 
     public void afegeixFull()
@@ -27,7 +29,7 @@ public class ControladorVista {
 
     public void carregaDocument(String nom)
     {
-        String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT",nom};
+        String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT", nom};
         ExcepcioDomini.TipusError error = controladorDomini.executaOperacio(message);
 
         if (error != ExcepcioDomini.TipusError.NO_ERROR)
