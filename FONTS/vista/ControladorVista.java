@@ -53,11 +53,12 @@ public class ControladorVista {
     public void carregaDocument(String nom)
     {
         String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT", nom};
-        ExcepcioDomini.TipusError error = controladorDomini.executaOperacio(message);
 
-        if (error != ExcepcioDomini.TipusError.NO_ERROR)
-        {
-            System.out.println("Error desde presentació");
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         for (int i = 0; i < controladorDomini.getNumFulls(); ++i)
@@ -234,6 +235,84 @@ public class ControladorVista {
                 {"TRUNCA_NUMERO," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
                         filaDesti + "," + colDesti + "," + digitsTruncar};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void longitudText(int full, int filaOrigen, int colOrigen,
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_LONGITUD_TEXT"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void majuscules(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",CONVERTEIX_MAJUSCULES"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void minuscules(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",CONVERTEIX_MINUSCULES"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cerca(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti, String stringCercada) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",CERCA_OCURRENCIES",
+                        stringCercada};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void reemplaca(int full, int filaOrigen, int colOrigen,
+                      int numFiles, int numCols, int filaDesti,
+                      int colDesti, String stringCercada,
+                          String stringReemplacadora) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",REEMPLACA",
+                        stringCercada, stringReemplacadora};
         try {
             controladorDomini.executaOperacio(message);
         } catch (ExcepcioDomini e) {
