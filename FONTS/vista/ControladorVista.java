@@ -103,4 +103,139 @@ public class ControladorVista {
         }
     }
 
+    public void incrementar(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",INCREMENTAR"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void decrementar(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",DECREMENTAR"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void exponencial(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXPONENCIAL"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cosinus(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COSINUS"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void sinus(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",SINUS"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void cosinusHiperbolic(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COSINUS_HIPERBOLIC"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void sinusHiperbolic(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",SINUS_HIPERBOLIC"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void tangentHiperbolic(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",TANGENT_HIPERBOLIC"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void truncar(int full, int filaOrigen, int colOrigen,
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti, int digitsTruncar) {
+        String[] message =
+                {"TRUNCA_NUMERO," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + "," + digitsTruncar};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

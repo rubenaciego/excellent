@@ -155,6 +155,118 @@ public class MainWindow {
             }
         });
 
+        incrButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.incrementar(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        decrButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.decrementar(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        expButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.exponencial(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        cosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.cosinus(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        sinButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.sinus(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        coshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.cosinusHiperbolic(getFocusedFull(), s.row,
+                        s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        sinhButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.sinusHiperbolic(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        tanhButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.tangentHiperbolic(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        truncarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                // Testing
+                SeleccioTaula s = getCurrentSelection();
+                //TODO implementar digitstruncar
+                int digitsTruncar = 2;
+                controladorVista.truncar(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col, digitsTruncar);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+
     }
 
     private void inicialitzar_menuBar() {
