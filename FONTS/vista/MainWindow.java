@@ -48,6 +48,7 @@ public class MainWindow {
     private JButton cercaButton;
     private JButton afegirFullButton;
     private JButton elimFullButton;
+    private JButton convertirButton;
 
     //Menu
     private JMenuBar menuBarVista = new JMenuBar();
@@ -330,6 +331,7 @@ public class MainWindow {
         panel.add(scrollPane, gbc);
         table.setAutoResizeMode(0);
         table.setColumnSelectionAllowed(true);
+        table.setDropMode(DropMode.USE_SELECTION);
         table.setRowSelectionAllowed(true);
         table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         table.getTableHeader().setReorderingAllowed(false);
@@ -872,8 +874,17 @@ public class MainWindow {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel11.add(ComboBox, gbc);
+        convertirButton = new JButton();
+        convertirButton.setText("Convertir");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        panel11.add(convertirButton, gbc);
         convUniComboBox = new JLabel();
         convUniComboBox.setText("Conversio unitats");
         gbc = new GridBagConstraints();

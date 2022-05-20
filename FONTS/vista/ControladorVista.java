@@ -6,10 +6,15 @@ import domini.ExcepcioDomini;
 public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
+    //private final WindowSecundaria secundaria;
+
+    //private final WindowTruncar truncar;
 
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
+        //secundaria = new WindowSecundaria();
+        //truncar = new WindowTruncar();
     }
 
     public void afegeixFull()
@@ -48,12 +53,11 @@ public class ControladorVista {
     public void carregaDocument(String nom)
     {
         String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT", nom};
+        ExcepcioDomini.TipusError error = controladorDomini.executaOperacio(message);
 
-        try {
-            controladorDomini.executaOperacio(message);
-        } catch (ExcepcioDomini e) {
-            window.errorMessage(e.getMessage());
-            System.out.println(e.getMessage());
+        if (error != ExcepcioDomini.TipusError.NO_ERROR)
+        {
+            System.out.println("Error desde presentació");
         }
 
         for (int i = 0; i < controladorDomini.getNumFulls(); ++i)
