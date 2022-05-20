@@ -148,7 +148,10 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 // Testing
                 SeleccioTaula s = getCurrentSelection();
-                System.out.println(s.row + ", " + s.col + " " + s.nrows + ", " + s.ncols);
+                controladorVista.valorAbsolut(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
             }
         });
 

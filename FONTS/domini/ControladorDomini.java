@@ -78,7 +78,9 @@ public class ControladorDomini {
                 ArrayList<EntradaMatriuCeles> e = f.getBloc(srow, scol, numFiles, numCols).getEntrades();
 
                 for (EntradaMatriuCeles entrada : e)
-                    entrades.add(new EntradaTaula(entrada.getFila(), entrada.getColumna(), entrada.getCela().toString()));
+                    entrades.add(new EntradaTaula(entrada.getFila() + srow,
+                            entrada.getColumna() + scol,
+                            entrada.getCela().toString()));
             }
         }
 

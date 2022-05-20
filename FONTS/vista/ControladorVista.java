@@ -67,11 +67,19 @@ public class ControladorVista {
         window.setFocusedFull(0);
     }
 
-    public void modificaCela(String input, int full, int row, int col)
+    public void setEntradesFull (int full, int fila, int col,
+                                 int numFiles, int numCols) {
+        window.setEntradesFull(full, controladorDomini.getEntrades(full, fila,
+                col, numFiles, numCols));
+    }
+
+    public void modificaCela(String input, int full, int filaDesti,
+                             int colDesti)
     {
-        String[] message = {"OPERACIO_FULL," + full + ",,,,," + row + "," + col,
+        String[] message =
+                {"OPERACIO_FULL," + full + ",,,,," + filaDesti + "," + colDesti +
+                        ",MODIFICA_CELA",
                 input};
-        System.out.println(message);
         try {
             controladorDomini.executaOperacio(message);
         } catch (ExcepcioDomini e) {
@@ -79,4 +87,20 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
     }
+
+    public void valorAbsolut(int full, int filaOrigen, int colOrigen,
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
+        String[] message =
+                {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",VALOR_ABSOLUT"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

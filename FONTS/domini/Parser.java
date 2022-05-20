@@ -2,8 +2,6 @@ package domini;
 
 import util.Utilitats;
 
-import java.lang.*;
-import java.text.ParseException;
 import java.time.LocalDate;
 
 public class Parser {
@@ -43,15 +41,16 @@ public class Parser {
         }
 
         try {
+            //TODO mirar si es pot treure el primer if
             resultat.setIdFull(Integer.parseInt(splitted[1]));
             if (!splitted[8].equals(OperacioFull.ELIMINA_FILA.toString()) && !splitted[8].equals(
                     OperacioFull.ELIMINA_COLUMNA.toString())) {
-                resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
-                resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
-                resultat.setMidaFila(Integer.parseInt(splitted[4]));
-                resultat.setMidaColumna(Integer.parseInt(splitted[5]));
-                resultat.setFilaDesti(Integer.parseInt(splitted[6]));
-                resultat.setColumnaDesti(Integer.parseInt(splitted[7]));
+                if (!splitted[2].isEmpty()) resultat.setFilaOrigen(Integer.parseInt(splitted[2]));
+                if (!splitted[3].isEmpty()) resultat.setColumnaOrigen(Integer.parseInt(splitted[3]));
+                if (!splitted[4].isEmpty()) resultat.setMidaFila(Integer.parseInt(splitted[4]));
+                if (!splitted[5].isEmpty()) resultat.setMidaColumna(Integer.parseInt(splitted[5]));
+                if (!splitted[6].isEmpty()) resultat.setFilaDesti(Integer.parseInt(splitted[6]));
+                if (!splitted[7].isEmpty()) resultat.setColumnaDesti(Integer.parseInt(splitted[7]));
             }
         } catch (NumberFormatException e) {
             throw new ExcepcioParser(opSenseParsejar);
