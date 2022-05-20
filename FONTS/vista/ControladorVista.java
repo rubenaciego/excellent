@@ -66,4 +66,17 @@ public class ControladorVista {
 
         window.setFocusedFull(0);
     }
+
+    public void modificaCela(String input, int full, int row, int col)
+    {
+        String[] message = {"OPERACIO_FULL," + full + ",,,,," + row + "," + col,
+                input};
+        System.out.println(message);
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
 }

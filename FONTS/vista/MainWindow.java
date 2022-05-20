@@ -7,6 +7,7 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -219,6 +220,46 @@ public class MainWindow {
         table.getTableHeader().setReorderingAllowed(false);
         scrollPane.setViewportView(table);
 
+        TableCellListener listener = new TableCellListener(table, new Action() {
+            @Override
+            public Object getValue(String s) {
+                return null;
+            }
+
+            @Override
+            public void putValue(String s, Object o) {
+
+            }
+
+            @Override
+            public void setEnabled(boolean b) {
+
+            }
+
+            @Override
+            public boolean isEnabled() {
+                return false;
+            }
+
+            @Override
+            public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+
+            }
+
+            @Override
+            public void removePropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                TableCellListener l = (TableCellListener) actionEvent.getSource();
+                controladorVista.modificaCela((String) l.getNewValue(),
+                        getFocusedFull(),
+                        l.getRow(), l.getColumn());
+            }
+        });
+
         RowNumberTable rowNumberTable = new RowNumberTable(table);
         scrollPane.setRowHeaderView(rowNumberTable);
 
@@ -247,6 +288,11 @@ public class MainWindow {
         return new SeleccioTaula(table.convertRowIndexToModel(table.getSelectedRow()),
                 table.convertColumnIndexToModel(table.getSelectedColumn()),
                 table.getSelectedRowCount(), table.getSelectedColumnCount());
+    }
+
+    public ArrayList<EntradaTaula> getCurrentEntradesFull(SeleccioTaula seleccio) {
+        ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
+        return entrades;
     }
 
     public void buidaSeleccio(int full, SeleccioTaula seleccio) {
