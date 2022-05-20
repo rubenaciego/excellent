@@ -6,15 +6,17 @@ import domini.ExcepcioDomini;
 public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
-    //private final WindowSecundaria secundaria;
+    private final WindowSecundaria secundaria;
 
-    //private final WindowTruncar truncar;
+    private final WindowTruncar truncar;
+    private final WindowCerca cerca;
 
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
-        //secundaria = new WindowSecundaria();
-        //truncar = new WindowTruncar();
+        secundaria = new WindowSecundaria();
+        truncar = new WindowTruncar();
+        cerca = new WindowCerca();
     }
 
     public void afegeixFull()

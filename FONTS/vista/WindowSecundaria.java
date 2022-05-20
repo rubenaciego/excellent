@@ -7,6 +7,8 @@ public class WindowSecundaria {
 
     protected JFrame mainFrame;
     protected JPanel mainPanel;
+
+    protected JPanel contPanel;
     protected JPanel origenPanel;
     protected JPanel destiPanel;
     protected JPanel botonsPanel;
@@ -31,16 +33,27 @@ public class WindowSecundaria {
     protected void configuraUI() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
+
+        //Panell contenidor
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        contPanel = new JPanel();
+        contPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(contPanel, gbc);
+
         // Panell desti
         destiPanel = new JPanel();
         destiPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc;
-        gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        mainPanel.add(destiPanel, gbc);
+        contPanel.add(destiPanel, gbc);
         // Label desti
         destiLabel = new JLabel();
         destiLabel.setText("Desti:");
@@ -69,7 +82,7 @@ public class WindowSecundaria {
         gbc.gridy = 1;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        mainPanel.add(origenPanel, gbc);
+        contPanel.add(origenPanel, gbc);
         //Label origen
         origenLabel = new JLabel();
         origenLabel.setText("Origen:");
