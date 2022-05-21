@@ -147,7 +147,7 @@ public class MainWindow {
         absButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.valorAbsolut(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -159,7 +159,7 @@ public class MainWindow {
         incrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.incrementar(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -171,7 +171,7 @@ public class MainWindow {
         decrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.decrementar(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -183,7 +183,7 @@ public class MainWindow {
         expButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.exponencial(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -195,7 +195,7 @@ public class MainWindow {
         cosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.cosinus(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -207,7 +207,7 @@ public class MainWindow {
         sinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.sinus(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -219,7 +219,7 @@ public class MainWindow {
         coshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.cosinusHiperbolic(getFocusedFull(), s.row,
                         s.col,
@@ -232,7 +232,7 @@ public class MainWindow {
         sinhButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.sinusHiperbolic(getFocusedFull(), s.row, s.col,
                         s.nrows, s.ncols, s.row, s.col);
@@ -244,7 +244,7 @@ public class MainWindow {
         tanhButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.tangentHiperbolic(getFocusedFull(), s.row,
                         s.col, s.nrows, s.ncols, s.row, s.col);
@@ -256,7 +256,7 @@ public class MainWindow {
         truncarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 //TODO implementar digitstruncar
                 int digitsTruncar = 2;
@@ -270,7 +270,7 @@ public class MainWindow {
         longButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.longitudText(getFocusedFull(), s.row,
                         s.col, s.nrows, s.ncols, s.row, s.col);
@@ -282,7 +282,7 @@ public class MainWindow {
         majButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.majuscules(getFocusedFull(), s.row,
                         s.col, s.nrows, s.ncols, s.row, s.col);
@@ -294,7 +294,7 @@ public class MainWindow {
         minuscButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                
+
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.minuscules(getFocusedFull(), s.row,
                         s.col, s.nrows, s.ncols, s.row, s.col);
@@ -1062,6 +1062,8 @@ public class MainWindow {
         defaultComboBoxModel1.addElement("nmi -> km");
         defaultComboBoxModel1.addElement("m -> yd");
         defaultComboBoxModel1.addElement("yd -> m");
+        defaultComboBoxModel1.addElement("km2 -> hac");
+        defaultComboBoxModel1.addElement("hac -> km2");
         defaultComboBoxModel1.addElement("km2 -> acre");
         defaultComboBoxModel1.addElement("acre -> km2");
         defaultComboBoxModel1.addElement("km2 -> sqmi");
@@ -1080,6 +1082,8 @@ public class MainWindow {
         defaultComboBoxModel1.addElement("ºC -> ºF");
         defaultComboBoxModel1.addElement("ºC -> ºK");
         defaultComboBoxModel1.addElement("ºK -> ºC");
+        defaultComboBoxModel1.addElement("ºF -> ºK");
+        defaultComboBoxModel1.addElement("ºK -> ºF");
         ComboBox.setModel(defaultComboBoxModel1);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;

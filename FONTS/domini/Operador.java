@@ -323,6 +323,42 @@ public class Operador {
                     case HECTAREA_KM2:
                         val = num / 100.0;
                         break;
+                    case KG_TONA:
+                        val = num/1000;
+                        break;
+                    case TONA_KG:
+                        val = 1000*num;
+                        break;
+                    case G_UNCA:
+                        val = 0.035274*num;
+                        break;
+                    case UNCA_G:
+                        val = 28.35*num;
+                        break;
+                    case KM2_MILLA2:
+                        val = 0.386*num;
+                        break;
+                    case MILLA2_KM2:
+                        val = 2.5899*num;
+                        break;
+                    case M_IARDA:
+                        val = 1.0936*num;
+                        break;
+                    case IARDA_M:
+                        val = 0.9144*num;
+                        break;
+                    case KM_MILLAN:
+                        val = 0.539957*num;
+                        break;
+                    case MILLAN_KM:
+                        val = 1.852*num;
+                        break;
+                    case KM2_ACRE:
+                        val = 247.105*num;
+                        break;
+                    case ACRE_KM2:
+                        val = 0.00405*num;
+                        break;
                     default:
                         throw new IncompatibleClassChangeError("Conversió d'unitats " + conv + " desconeguda");
                 }
@@ -334,7 +370,6 @@ public class Operador {
                 result.setCela(e.getCela().copy(), e.getFila(), e.getColumna());
             }
         }
-
         return result;
     }
 

@@ -497,28 +497,34 @@ public class ControladorVista {
                 conv = "MILLA_KM";
                 break;
             case "km -> nmi":
-                conv = "Fx5";
+                conv = "KM_MILLAN";
                 break;
             case "nmi -> km":
-                conv = "Fx5";
+                conv = "MILLAN_KM";
                 break;
             case "m -> yd":
-                conv = "Fx4";
+                conv = "M_IARDA";
                 break;
             case "yd -> m":
-                conv = "Fx4";
+                conv = "IARDA_M";
                 break;
-            case "km2 -> acre":
+            case "km2 -> hac":
                 conv = "KM2_HECATAREA";
                 break;
-            case "acre -> km2":
+            case "hac -> km2":
                 conv = "HECTAREA_KM2";
                 break;
+            case "km2 -> acre":
+                conv = "KM2_ACRE";
+                break;
+            case "acre -> km2":
+                conv = "ACRE_KM2";
+                break;
             case "km2 -> sqmi":
-                conv = "Fx2";
+                conv = "KM2_MILLA2";
                 break;
             case "sqmi -> km2":
-                conv = "Fx3";
+                conv = "MILLA2_KM2";
                 break;
             case "l -> gal":
                 conv = "LITRE_GALO";
@@ -527,10 +533,10 @@ public class ControladorVista {
                 conv = "GALO_LITRE";
                 break;
             case "g -> oz":
-                conv = "Fx2";
+                conv = "G_UNCA";
                 break;
             case "oz -> g":
-                conv = "Fx2";
+                conv = "UNCA_G";
                 break;
             case "kg -> lb":
                 conv = "KG_LLIURA";
@@ -539,10 +545,10 @@ public class ControladorVista {
                 conv = "LLIURA_KG";
                 break;
             case "kg -> t":
-                conv = "F";
+                conv = "KG_TONA";
                 break;
             case "t -> kg":
-                conv = "F";
+                conv = "TONA_KG";
                 break;
             case "grad -> rad":
                 conv = "GRAUS_RAD";
@@ -564,7 +570,7 @@ public class ControladorVista {
                 break;
         }
         String[] message =
-                {"CONVERTEIX_UNITATS," + full + "," + filaOrigen + "," +
+                {"CONVERSIO_UNITATS," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
                         filaDesti + "," + colDesti + "," + conv};
         try {
@@ -574,5 +580,4 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
     }
-
 }
