@@ -321,4 +321,258 @@ public class ControladorVista {
         }
     }
 
+    public void mitjana(int full, int filaOrigen, int colOrigen,
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",MITJANA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void mediana(int full, int filaOrigen, int colOrigen,
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",MEDIANA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void variancia(int full, int filaOrigen, int colOrigen,
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",VARIANCIA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void desviacioEstandar(int full, int filaOrigen, int colOrigen,
+                          int numFiles, int numCols, int filaDesti,
+                          int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",DESVIACIO_ESTANDARD"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void covariancia(int full, int filaOrigen, int colOrigen,
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COVARIANCIA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void coeficientPearson(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COEFICIENT_PEARSON"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void extreureDia(int full, int filaOrigen, int colOrigen,
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_DIA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void extreureMes(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_MES"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void extreureAny(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_ANY"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void extreureDiaSetmana(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_DIA_SETMANA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void extreureHoroscop(int full, int filaOrigen, int colOrigen,
+                                   int numFiles, int numCols, int filaDesti,
+                                   int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_HOROSCOP"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void convertirUnitats(int full, int filaOrigen, int colOrigen,
+                                 int numFiles, int numCols, int filaDesti,
+                                 int colDesti, String conv) {
+        switch (conv) {
+            case "km -> mi":
+                conv = "KM_MILLA";
+                break;
+            case "mi -> km":
+                conv = "MILLA_KM";
+                break;
+            case "km -> nmi":
+                conv = "Fx5";
+                break;
+            case "nmi -> km":
+                conv = "Fx5";
+                break;
+            case "m -> yd":
+                conv = "Fx4";
+                break;
+            case "yd -> m":
+                conv = "Fx4";
+                break;
+            case "km2 -> acre":
+                conv = "KM2_HECATAREA";
+                break;
+            case "acre -> km2":
+                conv = "HECTAREA_KM2";
+                break;
+            case "km2 -> sqmi":
+                conv = "Fx2";
+                break;
+            case "sqmi -> km2":
+                conv = "Fx3";
+                break;
+            case "l -> gal":
+                conv = "LITRE_GALO";
+                break;
+            case "gal -> l":
+                conv = "GALO_LITRE";
+                break;
+            case "g -> oz":
+                conv = "Fx2";
+                break;
+            case "oz -> g":
+                conv = "Fx2";
+                break;
+            case "kg -> lb":
+                conv = "KG_LLIURA";
+                break;
+            case "lb -> kg":
+                conv = "LLIURA_KG";
+                break;
+            case "kg -> t":
+                conv = "F";
+                break;
+            case "t -> kg":
+                conv = "F";
+                break;
+            case "grad -> rad":
+                conv = "GRAUS_RAD";
+                break;
+            case "rad -> grad":
+                conv = "RAD_GRAUS";
+                break;
+            case "ºF -> ºC":
+                conv = "FAHRENHEIT_CELSIUS";
+                break;
+            case "ºC -> ºF":
+                conv = "CELSIU_FAHRENHEIT";
+                break;
+            case "ºC -> ºK":
+                conv = "CELSIUS_KELVIN";
+                break;
+            case "ºK -> ºC":
+                conv = "KELVIN_CELSIUS";
+                break;
+        }
+        String[] message =
+                {"CONVERTEIX_UNITATS," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + "," + conv};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

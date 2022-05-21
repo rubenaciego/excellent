@@ -333,6 +333,151 @@ public class MainWindow {
             }
         });
 
+        mitjanaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.mitjana(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        medianaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.mediana(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        varianciaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.variancia(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        desvEstButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.desviacioEstandar(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        covarianciaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.covariancia(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        coefCorrButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.coeficientPearson(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        diaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureDia(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        mesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureMes(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        anyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureAny(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        diaSetmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureDiaSetmana(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        horoscopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureHoroscop(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
+        convertirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                String conv = ComboBox.getSelectedItem().toString();
+                controladorVista.convertirUnitats(getFocusedFull(), s.row,
+                        s.col, s.nrows, s.ncols, s.row, s.col, conv);
+                controladorVista.setEntradesFull(getFocusedFull(), s.row, s.col,
+                        s.nrows, s.ncols);
+            }
+        });
+
 
     }
 
