@@ -147,7 +147,6 @@ public class MainWindow {
         absButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.valorAbsolut(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -157,7 +156,6 @@ public class MainWindow {
         incrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.incrementar(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -167,7 +165,6 @@ public class MainWindow {
         decrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.decrementar(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -177,7 +174,6 @@ public class MainWindow {
         expButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.exponencial(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -187,7 +183,6 @@ public class MainWindow {
         cosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.cosinus(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -207,7 +202,6 @@ public class MainWindow {
         coshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.cosinusHiperbolic(getFocusedFull(), s.fila,
                         s.col,
@@ -218,7 +212,6 @@ public class MainWindow {
         sinhButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.sinusHiperbolic(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -228,7 +221,6 @@ public class MainWindow {
         tanhButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.tangentHiperbolic(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -238,7 +230,6 @@ public class MainWindow {
         truncarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 //TODO implementar digitstruncar
                 int digitsTruncar = 2;
@@ -250,7 +241,6 @@ public class MainWindow {
         longButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.longitudText(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -260,7 +250,6 @@ public class MainWindow {
         majButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.majuscules(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -270,7 +259,6 @@ public class MainWindow {
         minuscButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.minuscules(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -423,8 +411,6 @@ public class MainWindow {
                         s.col, s.nfiles, s.ncols, s.fila, s.col, conv);
             }
         });
-
-
     }
 
     private void inicialitzar_menuBar() {
@@ -502,12 +488,10 @@ public class MainWindow {
 
             @Override
             public void putValue(String s, Object o) {
-
             }
 
             @Override
             public void setEnabled(boolean b) {
-
             }
 
             @Override
@@ -517,12 +501,10 @@ public class MainWindow {
 
             @Override
             public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
-
             }
 
             @Override
             public void removePropertyChangeListener(PropertyChangeListener propertyChangeListener) {
-
             }
 
             @Override
