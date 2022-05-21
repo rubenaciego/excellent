@@ -2,7 +2,6 @@ package domini;
 
 public class ExcepcioDomini extends RuntimeException {
     public enum TipusError {
-        NO_ERROR,
         FILA_COLUMNA_INVALIDA,
         CELA_FORA_LIMITS,
         INDEX_FULL_INVALID,

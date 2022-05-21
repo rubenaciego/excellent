@@ -2,18 +2,19 @@ package domini;
 
 import java.lang.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 
 public class CelaText extends Cela {
     private String text;
 
     public CelaText(String inputUsuari) {
-        super.setInputUsuari(inputUsuari);
+        super(inputUsuari);
         this.text = inputUsuari;
         tipusCela = TipusCela.TEXTUAL;
     }
 
     public CelaText(String inputUsuari, String text) {
-        super.setInputUsuari(inputUsuari);
+        super(inputUsuari);
         this.text = text;
         tipusCela = TipusCela.TEXTUAL;
     }

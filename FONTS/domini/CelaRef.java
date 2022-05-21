@@ -8,7 +8,7 @@ public class CelaRef extends Cela {
     private Cela celaReferenciada;
 
     public CelaRef(String inputUsuari, Cela celaRef) {
-        super.setInputUsuari(inputUsuari);
+        super(inputUsuari);
         celaReferenciada = celaRef;
         tipusCela = TipusCela.REFERENCIAL;
     }

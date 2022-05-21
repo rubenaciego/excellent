@@ -2,6 +2,7 @@ package domini;
 
 import java.lang.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 
 public abstract class Cela {
     public enum TipusCela {
@@ -13,6 +14,13 @@ public abstract class Cela {
 
     protected String inputUsuari;
     protected TipusCela tipusCela;
+    protected HashSet<CelaRef> referenciadores;
+
+    public Cela(String inputUsuari)
+    {
+        this.inputUsuari = inputUsuari;
+        referenciadores = new HashSet<CelaRef>();
+    }
 
     public String getInputUsuari() {
         return inputUsuari;
@@ -24,6 +32,10 @@ public abstract class Cela {
 
     public TipusCela getTipusCela() {
         return tipusCela;
+    }
+
+    public HashSet<CelaRef> getCelesReferenciadores() {
+        return referenciadores;
     }
 
     public abstract Double getNum();

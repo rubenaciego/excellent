@@ -1,6 +1,7 @@
 package domini;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class ControladorFull {
     private final Full full;
@@ -65,8 +66,7 @@ public class ControladorFull {
                 break;
             case CONVERTEIX_UNITATS:
                 bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
-                res = op.converteixUnitats(bloc,
-                        parsejat.getTipusConversioUnitats());
+                res = op.converteixUnitats(bloc, parsejat.getTipusConversioUnitats());
                 guardaBloc(res, filaDest, colDest);
                 break;
             case EXTREU_LONGITUD_TEXT:
@@ -105,40 +105,8 @@ public class ControladorFull {
                 guardaBloc(res, filaDest, colDest);
                 break;
             case MODIFICA_CELA:
-                Cela c = null;
                 ResultatParserCela resCela = parsejat.getResultatParserCela();
-
-                int fila = parsejat.getFilaDesti();
-                int col = parsejat.getColumnaDesti();
-
-                switch (resCela.getTipus()) {
-                    case NUMERICA:
-                        c = new CelaNum(resCela.getInputUsuari(), resCela.getValorNumeric());
-                        break;
-                    case DATADA:
-                        c = new CelaData(resCela.getInputUsuari(), resCela.getData());
-                        break;
-                    case REFERENCIAL:
-                        Cela cRef = full.getCela(resCela.getFilaRef(),
-                                resCela.getColRef());
-
-                        if (cRef != null) {
-                            if (cRef instanceof CelaRef) {
-                                resCela.setInputUsuari(cRef.getInputUsuari());
-                                cRef = ((CelaRef) cRef).getRef();
-                            }
-
-                            c = new CelaRef(resCela.getInputUsuari(), cRef);
-                        }
-                        break;
-                    case TEXTUAL:
-                        c = new CelaText(resCela.getInputUsuari());
-                        break;
-                    default:
-                        throw new IncompatibleClassChangeError("Tipus cel·la " + resCela.getTipus() + " desconegut");
-                }
-
-                full.setCela(c, fila, col);
+                modificaCela(resCela, parsejat.getFilaDesti(), parsejat.getColumnaDesti());
                 break;
             case AFEGEIX_COLUMNA:
                 full.afegeixColumna();
@@ -166,6 +134,41 @@ public class ControladorFull {
         }
     }
 
+    private void modificaCela(ResultatParserCela resCela, int fila, int col) {
+        Cela c = null;
+
+        if (resCela.inputUsuari.isEmpty()) return;
+
+        switch (resCela.getTipus()) {
+            case NUMERICA:
+                c = new CelaNum(resCela.getInputUsuari(), resCela.getValorNumeric());
+                break;
+            case DATADA:
+                c = new CelaData(resCela.getInputUsuari(), resCela.getData());
+                break;
+            case REFERENCIAL:
+                Cela cRef = full.getCela(resCela.getFilaRef(), resCela.getColRef());
+
+                if (cRef != null) {
+                    if (cRef instanceof CelaRef) {
+                        resCela.setInputUsuari(cRef.getInputUsuari());
+                        cRef = ((CelaRef) cRef).getRef();
+                    }
+
+                    c = new CelaRef(resCela.getInputUsuari(), cRef);
+                    cRef.getCelesReferenciadores().add((CelaRef)c);
+                }
+                break;
+            case TEXTUAL:
+                c = new CelaText(resCela.getInputUsuari());
+                break;
+            default:
+                throw new IncompatibleClassChangeError("Tipus cel·la " + resCela.getTipus() + " desconegut");
+        }
+
+        guardaCela(c, fila, col);
+    }
+
     private void guardaBloc(MatriuCeles bloc, int filaDest, int colDest) {
         if (full.blocInvalid(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols()))
             throw new ExcepcioForaLimits(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols(),
@@ -176,7 +179,31 @@ public class ControladorFull {
         for (EntradaMatriuCeles e : entrades) {
             int filaDesti = e.getFila() + filaDest;
             int colDesti = e.getColumna() + colDest;
-            full.setCela(e.getCela(), filaDesti, colDesti);
+            guardaCela(e.getCela(), filaDesti, colDesti);
         }
+    }
+
+    private void guardaCela(Cela c, int fila, int col) {
+        Cela prev = full.getCela(fila, col);
+
+        if (prev != null) {
+            /* Si la cel·la on escrivim no era buida hem de fer que totes les que la referenciaven
+             * ara facin referència a la nova cel·la
+             */
+            HashSet<CelaRef> refs = prev.getCelesReferenciadores();
+
+            /* Si la nova cel·la és una referència, aleshores fem que les cel·les que referenciaven a l'anterior (prev)
+             * passin a referenciar a la mateixa cel·la a la que fa referència la nova.
+             * En cas que la nova cel·la no sigui una refèrencia, les cel·les que referenciàven a l'anterior passen
+             * a referenciar a aquesta nova cel·la
+             */
+            Cela aRef = (c instanceof CelaRef ? ((CelaRef) c).getRef() : c);
+            aRef.getCelesReferenciadores().addAll(refs);
+
+            for (CelaRef r : refs)
+                r.setRef(aRef);
+        }
+
+        full.setCela(c, fila, col);
     }
 }

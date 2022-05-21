@@ -2,12 +2,13 @@ package domini;
 
 import java.lang.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 
 public class CelaNum extends Cela {
     private double valor;
 
     public CelaNum(String inputUsuari, double valorInput) {
-        super.setInputUsuari(inputUsuari);
+        super(inputUsuari);
         valor = valorInput;
         tipusCela = TipusCela.NUMERICA;
     }

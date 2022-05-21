@@ -87,7 +87,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, 1, 1));
+        setEntradesFull(full);
     }
 
     public void valorAbsolut(int full, int filaOrigen, int colOrigen,
@@ -104,7 +104,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void incrementar(int full, int filaOrigen, int colOrigen,
@@ -121,7 +121,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void decrementar(int full, int filaOrigen, int colOrigen,
@@ -138,7 +138,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void exponencial(int full, int filaOrigen, int colOrigen,
@@ -155,7 +155,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void cosinus(int full, int filaOrigen, int colOrigen,
@@ -172,7 +172,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void sinus(int full, int filaOrigen, int colOrigen,
@@ -189,7 +189,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void cosinusHiperbolic(int full, int filaOrigen, int colOrigen,
@@ -206,7 +206,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void sinusHiperbolic(int full, int filaOrigen, int colOrigen,
@@ -223,7 +223,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void tangentHiperbolic(int full, int filaOrigen, int colOrigen,
@@ -240,7 +240,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void truncar(int full, int filaOrigen, int colOrigen,
@@ -257,7 +257,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void longitudText(int full, int filaOrigen, int colOrigen,
@@ -274,7 +274,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void majuscules(int full, int filaOrigen, int colOrigen,
@@ -291,7 +291,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void minuscules(int full, int filaOrigen, int colOrigen,
@@ -308,7 +308,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
     public void cerca(int full, int filaOrigen, int colOrigen,
@@ -345,10 +345,11 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
+        setEntradesFull(full);
     }
 
-    private void setEntradesFull(int full, SeleccioTaula s) {
+    private void setEntradesFull(int full) {
+        SeleccioTaula s = new SeleccioTaula(0, 0, controladorDomini.getNumFiles(full), controladorDomini.getNumCols(full));
         window.buidaSeleccio(full, s);
         window.setEntradesFull(full, controladorDomini.getEntrades(full, s.fila, s.col, s.nfiles, s.ncols));
     }

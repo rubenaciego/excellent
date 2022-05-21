@@ -408,8 +408,7 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 TableCellListener l = (TableCellListener) actionEvent.getSource();
                 controladorVista.modificaCela((String) l.getNewValue(),
-                        getFocusedFull(),
-                        l.getRow(), l.getColumn());
+                        getFocusedFull(), l.getRow(), l.getColumn());
             }
         });
 
