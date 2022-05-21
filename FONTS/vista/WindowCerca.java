@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WindowCerca extends WindowSecundaria {
-    private JLabel cercaLabel;
-    private JPanel cercaPanel;
-    private JTextField entradaCerca;
+    protected JLabel cercaLabel;
+    protected JPanel cercaPanel;
+    protected JTextField entradaCerca;
 
     public WindowCerca() {
         mainFrame.setTitle("Cerca");
@@ -16,10 +16,11 @@ public class WindowCerca extends WindowSecundaria {
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
-
+@Override
     protected void configuraUI() {
         super.configuraUI();
-        // Panell xifres
+
+        // Panell cerca
         cercaPanel = new JPanel();
         cercaPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc;
@@ -29,7 +30,7 @@ public class WindowCerca extends WindowSecundaria {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         contPanel.add(cercaPanel, gbc);
-        //Xifres label
+        //Cerca label
         cercaLabel = new JLabel();
         cercaLabel.setEnabled(true);
         cercaLabel.setText("Cerca:");
@@ -39,7 +40,7 @@ public class WindowCerca extends WindowSecundaria {
         gbc.weightx = 1.0;
         gbc.insets = new Insets(15, 10, 10, 17);
         cercaPanel.add(cercaLabel, gbc);
-        //Entrada xifres
+        //Entrada cerca
         entradaCerca = new JTextField();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
