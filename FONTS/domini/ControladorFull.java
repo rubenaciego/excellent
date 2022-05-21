@@ -137,7 +137,7 @@ public class ControladorFull {
     private void modificaCela(ResultatParserCela resCela, int fila, int col) {
         Cela c = null;
 
-        if (resCela.inputUsuari.isEmpty()) return;
+        if (resCela.inputUsuari.isEmpty()) full.esborraCela(fila, col);
 
         switch (resCela.getTipus()) {
             case NUMERICA:
