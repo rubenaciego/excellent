@@ -7,9 +7,18 @@ public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
 
+    private final EliminaFilaWindow fila;
+    private final WindowTruncar truncar;
+    private final WindowOrdena ordre;
+    private final WindowTanca tanca;
+
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
+        fila = new EliminaFilaWindow();
+        truncar = new WindowTruncar();
+        ordre = new WindowOrdena();
+        tanca = new WindowTanca();
     }
 
     public void afegeixFull() {

@@ -3,47 +3,47 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 
-public class WindowTruncar extends WindowSecundaria {
+public class WindowReemplaca extends WindowCerca {
+    private JLabel reemplacaLabel;
+    private JPanel reemplPanel;
+    private JTextField reemplacaEntrada;
 
-    private JLabel xifresLabel;
-    private JPanel xifresPanel;
-    private JSpinner entradaXifres;
-
-    public WindowTruncar() {
-        mainFrame.setTitle("Truncar");
+    public WindowReemplaca() {
+        mainFrame.setTitle("Reemplaca");
         configuraUI();
         mainFrame.setContentPane(mainPanel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
-
+@Override
     protected void configuraUI() {
-        super.configuraUI();
-        // Panell xifres
-        xifresPanel = new JPanel();
-        xifresPanel.setLayout(new GridBagLayout());
+       super.configuraUI();
+
+        // Panell reemplaca
+        reemplPanel = new JPanel();
+        reemplPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        contPanel.add(xifresPanel, gbc);
+        mainPanel.add(reemplPanel, gbc);
 
-        //Xifres label
-        xifresLabel = new JLabel();
-        xifresLabel.setEnabled(true);
-        xifresLabel.setText("# Xifres:");
+        //Reemplaca label
+        reemplacaLabel = new JLabel();
+        reemplacaLabel.setEnabled(true);
+        reemplacaLabel.setText("Reemplaca:");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 1.0;
+        gbc.weightx = 0.5;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 3);
-        xifresPanel.add(xifresLabel, gbc);
-        //Entrada xifres
-        entradaXifres = new JSpinner();
+        reemplPanel.add(reemplacaLabel, gbc);
+        //Entrada reemplaca
+        reemplacaEntrada = new JTextField();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -51,6 +51,6 @@ public class WindowTruncar extends WindowSecundaria {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 20);
-        xifresPanel.add(entradaXifres, gbc);
+        reemplPanel.add(reemplacaEntrada, gbc);
     }
 }
