@@ -5,8 +5,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 
 public class MainWindow {
     private ControladorVista controladorVista;
-
     private JFrame mainFrame;
     private JPanel mainPanel;
     private JTabbedPane tabFulls;
@@ -59,13 +57,11 @@ public class MainWindow {
     private JMenuItem menuItemTancar = new JMenuItem("Tanca document");
     private JMenuItem menuItemDesar = new JMenuItem("Desa document");
 
-    //TODO: vista secundaria
     private JMenu menuEditar = new JMenu("Editar");
     private JMenuItem menuItemSelectAll = new JMenuItem("Selecciona-ho tot");
     private JMenuItem menuItemSelectFila = new JMenuItem("Selecciona fila...");
     private JMenuItem menuItemSelectCol = new JMenuItem("Selecciona columna...");
 
-    //TODO: vista secundaria
     private JMenu menuFull = new JMenu("Full");
     private JMenuItem menuItemAfegirFila = new JMenuItem("Afegeix fila");
     private JMenuItem menuItemAfegirCol = new JMenuItem("Afegeix columna");
@@ -77,16 +73,27 @@ public class MainWindow {
     private JMenuItem menuItemOrdenarBloc = new JMenuItem("Ordena bloc...");
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
 
-    //TODO: vista secundaria
     private JMenu menuVista = new JMenu("Vista");
     private JMenuItem menuItemNightMode = new JMenuItem("Activa el mode nocturn");
     private JMenuItem menuItemCanviarEstil = new JMenuItem("Canvia l'estil...");
 
-    //TODO: vista secundaria
     private JMenu menuAjuda = new JMenu("Ajuda");
     private JMenuItem menuItemDocu = new JMenuItem("Documentacio");
     private JMenuItem menuItemSobre = new JMenuItem("Sobre Excellent...");
 
+    //Menu Clic dret
+    private JPopupMenu menuClicDret;
+    private JMenuItem itAfFila = new JMenuItem("Afegeix fila");
+    private JMenuItem itAfCol = new JMenuItem("Afegeix columna");
+    private JMenuItem itElFila = new JMenuItem("Elimina fila/es");
+    private JMenuItem itElCol = new JMenuItem("Elimina columna/es");
+    private JMenuItem itSelFila = new JMenuItem("Selecciona fila/es");
+    private JMenuItem itSelCol = new JMenuItem("Selecciona columna/es");
+    private JMenuItem itBuida = new JMenuItem("Buida bloc");
+    private JMenuItem itCopia = new JMenuItem("Copia bloc");
+    private JMenuItem itMou = new JMenuItem("Mou bloc");
+    private JMenuItem itOrd = new JMenuItem("Ordena bloc");
+    private JMenuItem itTransp = new JMenuItem("Transposa bloc");
     //Fulls
     private ArrayList<TableModel> fullTables;
 
@@ -97,12 +104,11 @@ public class MainWindow {
 
         $$$setupUI$$$();
         inicialitzar_menuBar();
-
         mainFrame.setContentPane(mainPanel);
+        inicialitzar_menuContextual();
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setVisible(true);
-
 
         afegirFullButton.addActionListener(new ActionListener() {
             @Override
@@ -424,7 +430,31 @@ public class MainWindow {
             }
         });
 
+    }
 
+    private void inicialitzar_menuContextual() {
+        menuClicDret = new JPopupMenu();
+        menuClicDret.add(itAfFila);
+        menuClicDret.add(itAfCol);
+        menuClicDret.add(itElFila);
+        menuClicDret.add(itElCol);
+        menuClicDret.addSeparator();
+        menuClicDret.add(itSelFila);
+        menuClicDret.add(itSelCol);
+        menuClicDret.addSeparator();
+        menuClicDret.add(itBuida);
+        menuClicDret.add(itCopia);
+        menuClicDret.add(itMou);
+        menuClicDret.add(itOrd);
+        menuClicDret.add(itTransp);
+
+        mainPanel.addMouseListener(new MouseAdapter() {
+            public void mouseReleased(MouseEvent ME) {
+                if (SwingUtilities.isRightMouseButton(ME) && ME.getClickCount() == 1) {
+                    menuClicDret.show(ME.getComponent(), ME.getX(), ME.getY());
+                }
+            }
+        });
     }
 
     private void inicialitzar_menuBar() {
@@ -1101,4 +1131,5 @@ public class MainWindow {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }
