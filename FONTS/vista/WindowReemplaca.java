@@ -39,7 +39,8 @@ public class WindowReemplaca extends WindowCerca {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.5;
-        gbc.insets = new Insets(15, 4, 10, 3);
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(15, 10, 10, 3);
         reemplPanel.add(reemplacaLabel, gbc);
         //Entrada reemplaca
         reemplacaEntrada = new JTextField();
@@ -51,9 +52,5 @@ public class WindowReemplaca extends WindowCerca {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 20);
         reemplPanel.add(reemplacaEntrada, gbc);
-        cercaPanel.setVisible(false);
-        reemplPanel.setVisible(true);
-        cercaPanel.setVisible(true);
-        System.out.println("hola");
     }
 }

@@ -39,6 +39,7 @@ public class WindowTruncar extends WindowSecundaria {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 3);
         xifresPanel.add(xifresLabel, gbc);
         //Entrada xifres

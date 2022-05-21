@@ -61,6 +61,7 @@ public class WindowSecundaria {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 20);
         destiPanel.add(destiLabel, gbc);
         // Caixa text desti
@@ -90,6 +91,7 @@ public class WindowSecundaria {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 10);
         origenPanel.add(origenLabel, gbc);
         // Caixa text origen

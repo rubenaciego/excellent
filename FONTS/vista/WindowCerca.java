@@ -38,6 +38,7 @@ public class WindowCerca extends WindowSecundaria {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 17);
         cercaPanel.add(cercaLabel, gbc);
         //Entrada cerca
