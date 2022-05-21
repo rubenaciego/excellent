@@ -12,7 +12,7 @@ public class Utilitats {
         for (int i = 0; i < text.length(); ++i) {
             char c = text.charAt(i);
             if (c < 'A' || c > 'Z') return -1;
-            res = base * res  + (int)c;
+            res = base * res  + (int)(c - 'A');
         }
 
         return res;

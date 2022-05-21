@@ -6,15 +6,10 @@ import domini.ExcepcioDomini;
 public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
-    //private final WindowSecundaria secundaria;
-
-    //private final WindowTruncar truncar;
 
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
-        //secundaria = new WindowSecundaria();
-        //truncar = new WindowTruncar();
     }
 
     public void afegeixFull()
@@ -35,6 +30,15 @@ public class ControladorVista {
     public void esborraFull(int index)
     {
         // construeix missatge a controlador domini
+        String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL," + index};
+
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
         window.esborraFull(index);
     }
 
@@ -50,8 +54,7 @@ public class ControladorVista {
         }
     }
 
-    public void carregaDocument(String nom)
-    {
+    public void carregaDocument(String nom) {
         String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT", nom};
 
         try {
@@ -61,8 +64,7 @@ public class ControladorVista {
             System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < controladorDomini.getNumFulls(); ++i)
-        {
+        for (int i = 0; i < controladorDomini.getNumFulls(); ++i) {
             int files = controladorDomini.getNumFiles(i);
             int cols = controladorDomini.getNumCols(i);
             window.afegeixFull(files, cols);
@@ -72,15 +74,8 @@ public class ControladorVista {
         window.setFocusedFull(0);
     }
 
-    public void setEntradesFull (int full, int fila, int col,
-                                 int numFiles, int numCols) {
-        window.setEntradesFull(full, controladorDomini.getEntrades(full, fila,
-                col, numFiles, numCols));
-    }
-
     public void modificaCela(String input, int full, int filaDesti,
-                             int colDesti)
-    {
+                             int colDesti) {
         String[] message =
                 {"OPERACIO_FULL," + full + ",,,,," + filaDesti + "," + colDesti +
                         ",MODIFICA_CELA",
@@ -91,6 +86,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, 1, 1));
     }
 
     public void valorAbsolut(int full, int filaOrigen, int colOrigen,
@@ -106,6 +103,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void incrementar(int full, int filaOrigen, int colOrigen,
@@ -121,6 +120,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void decrementar(int full, int filaOrigen, int colOrigen,
@@ -136,6 +137,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void exponencial(int full, int filaOrigen, int colOrigen,
@@ -151,6 +154,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void cosinus(int full, int filaOrigen, int colOrigen,
@@ -166,6 +171,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void sinus(int full, int filaOrigen, int colOrigen,
@@ -181,6 +188,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void cosinusHiperbolic(int full, int filaOrigen, int colOrigen,
@@ -196,6 +205,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void sinusHiperbolic(int full, int filaOrigen, int colOrigen,
@@ -211,6 +222,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void tangentHiperbolic(int full, int filaOrigen, int colOrigen,
@@ -226,6 +239,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void truncar(int full, int filaOrigen, int colOrigen,
@@ -241,6 +256,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void longitudText(int full, int filaOrigen, int colOrigen,
@@ -256,6 +273,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void majuscules(int full, int filaOrigen, int colOrigen,
@@ -271,6 +290,8 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void minuscules(int full, int filaOrigen, int colOrigen,
@@ -286,11 +307,15 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
     public void cerca(int full, int filaOrigen, int colOrigen,
                              int numFiles, int numCols, int filaDesti,
                              int colDesti, String stringCercada) {
+
+        // CERCA NO FUNCIONA AIXI
         String[] message =
                 {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -319,6 +344,12 @@ public class ControladorVista {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
+
+        setEntradesFull(full, new SeleccioTaula(filaDesti, colDesti, numFiles, numCols));
     }
 
+    private void setEntradesFull(int full, SeleccioTaula s) {
+        window.buidaSeleccio(full, s);
+        window.setEntradesFull(full, controladorDomini.getEntrades(full, s.fila, s.col, s.nfiles, s.ncols));
+    }
 }

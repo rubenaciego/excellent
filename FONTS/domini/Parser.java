@@ -189,7 +189,7 @@ public class Parser {
             String fila = inputUsuari.substring(index);
             String col = inputUsuari.substring(1, index);
 
-            resultat.setFilaRef(Integer.parseInt(fila));
+            resultat.setFilaRef(Integer.parseInt(fila) - 1);
             resultat.setColRef(Utilitats.convertirBase26(col));
             resultat.setTipus(Cela.TipusCela.REFERENCIAL);
         } else {

@@ -1,15 +1,15 @@
 package vista;
 
 public class SeleccioTaula {
-    public int row;
+    public int fila;
     public int col;
-    public int nrows;
+    public int nfiles;
     public int ncols;
 
-    public SeleccioTaula(int r, int c, int nr, int nc) {
-        row = r;
+    public SeleccioTaula(int f, int c, int nf, int nc) {
+        fila = f;
         col = c;
-        nrows = nr;
+        nfiles = nf;
         ncols = nc;
     }
 }
