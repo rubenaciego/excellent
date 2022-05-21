@@ -12,8 +12,7 @@ public class ControladorVista {
         window = new MainWindow(this);
     }
 
-    public void afegeixFull()
-    {
+    public void afegeixFull() {
         String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL"};
 
         try {
@@ -27,8 +26,7 @@ public class ControladorVista {
         window.afegeixFull(controladorDomini.getNumFiles(i), controladorDomini.getNumCols(i));
     }
 
-    public void esborraFull(int index)
-    {
+    public void esborraFull(int index) {
         // construeix missatge a controlador domini
         String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL," + index};
 
@@ -42,8 +40,7 @@ public class ControladorVista {
         window.esborraFull(index);
     }
 
-    public void creaDocument(String nom)
-    {
+    public void creaDocument(String nom) {
         String[] message = {"OPERACIO_DOCUMENT,CREA_DOCUMENT", nom};
 
         try {
@@ -79,7 +76,7 @@ public class ControladorVista {
         String[] message =
                 {"OPERACIO_FULL," + full + ",,,,," + filaDesti + "," + colDesti +
                         ",MODIFICA_CELA",
-                input};
+                        input};
         try {
             controladorDomini.executaOperacio(message);
         } catch (ExcepcioDomini e) {
@@ -108,8 +105,8 @@ public class ControladorVista {
     }
 
     public void incrementar(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -125,8 +122,8 @@ public class ControladorVista {
     }
 
     public void decrementar(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -142,8 +139,8 @@ public class ControladorVista {
     }
 
     public void exponencial(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -159,8 +156,8 @@ public class ControladorVista {
     }
 
     public void cosinus(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -176,8 +173,8 @@ public class ControladorVista {
     }
 
     public void sinus(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                      int numFiles, int numCols, int filaDesti,
+                      int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -193,8 +190,8 @@ public class ControladorVista {
     }
 
     public void cosinusHiperbolic(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -210,8 +207,8 @@ public class ControladorVista {
     }
 
     public void sinusHiperbolic(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                                int numFiles, int numCols, int filaDesti,
+                                int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -227,8 +224,8 @@ public class ControladorVista {
     }
 
     public void tangentHiperbolic(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti) {
         String[] message =
                 {"OPERACIO_ARITMETICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -244,8 +241,8 @@ public class ControladorVista {
     }
 
     public void truncar(int full, int filaOrigen, int colOrigen,
-                                  int numFiles, int numCols, int filaDesti,
-                                  int colDesti, int digitsTruncar) {
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti, int digitsTruncar) {
         String[] message =
                 {"TRUNCA_NUMERO," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -261,8 +258,8 @@ public class ControladorVista {
     }
 
     public void longitudText(int full, int filaOrigen, int colOrigen,
-                        int numFiles, int numCols, int filaDesti,
-                        int colDesti) {
+                             int numFiles, int numCols, int filaDesti,
+                             int colDesti) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -278,8 +275,8 @@ public class ControladorVista {
     }
 
     public void majuscules(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                           int numFiles, int numCols, int filaDesti,
+                           int colDesti) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -295,8 +292,8 @@ public class ControladorVista {
     }
 
     public void minuscules(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti) {
+                           int numFiles, int numCols, int filaDesti,
+                           int colDesti) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -312,8 +309,8 @@ public class ControladorVista {
     }
 
     public void cerca(int full, int filaOrigen, int colOrigen,
-                             int numFiles, int numCols, int filaDesti,
-                             int colDesti, String stringCercada) {
+                      int numFiles, int numCols, int filaDesti,
+                      int colDesti, String stringCercada) {
 
         // CERCA NO FUNCIONA AIXI
         String[] message =
@@ -330,14 +327,298 @@ public class ControladorVista {
     }
 
     public void reemplaca(int full, int filaOrigen, int colOrigen,
-                      int numFiles, int numCols, int filaDesti,
-                      int colDesti, String stringCercada,
+                          int numFiles, int numCols, int filaDesti,
+                          int colDesti, String stringCercada,
                           String stringReemplacadora) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
                         filaDesti + "," + colDesti + ",REEMPLACA",
                         stringCercada, stringReemplacadora};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void mitjana(int full, int filaOrigen, int colOrigen,
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",MITJANA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void mediana(int full, int filaOrigen, int colOrigen,
+                        int numFiles, int numCols, int filaDesti,
+                        int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",MEDIANA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void variancia(int full, int filaOrigen, int colOrigen,
+                          int numFiles, int numCols, int filaDesti,
+                          int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",VARIANCIA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void desviacioEstandar(int full, int filaOrigen, int colOrigen,
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",DESVIACIO_ESTANDARD"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void covariancia(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COVARIANCIA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void coeficientPearson(int full, int filaOrigen, int colOrigen,
+                                  int numFiles, int numCols, int filaDesti,
+                                  int colDesti) {
+        String[] message =
+                {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COEFICIENT_PEARSON"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void extreureDia(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_DIA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void extreureMes(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_MES"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void extreureAny(int full, int filaOrigen, int colOrigen,
+                            int numFiles, int numCols, int filaDesti,
+                            int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_ANY"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void extreureDiaSetmana(int full, int filaOrigen, int colOrigen,
+                                   int numFiles, int numCols, int filaDesti,
+                                   int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_DIA_SETMANA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void extreureHoroscop(int full, int filaOrigen, int colOrigen,
+                                 int numFiles, int numCols, int filaDesti,
+                                 int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",EXTREU_HOROSCOP"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void convertirUnitats(int full, int filaOrigen, int colOrigen,
+                                 int numFiles, int numCols, int filaDesti,
+                                 int colDesti, String conv) {
+        switch (conv) {
+            case "km -> mi":
+                conv = "KM_MILLA";
+                break;
+            case "mi -> km":
+                conv = "MILLA_KM";
+                break;
+            case "km -> nmi":
+                conv = "KM_MILLAN";
+                break;
+            case "nmi -> km":
+                conv = "MILLAN_KM";
+                break;
+            case "m -> yd":
+                conv = "M_IARDA";
+                break;
+            case "yd -> m":
+                conv = "IARDA_M";
+                break;
+            case "km2 -> hac":
+                conv = "KM2_HECATAREA";
+                break;
+            case "hac -> km2":
+                conv = "HECTAREA_KM2";
+                break;
+            case "km2 -> acre":
+                conv = "KM2_ACRE";
+                break;
+            case "acre -> km2":
+                conv = "ACRE_KM2";
+                break;
+            case "km2 -> sqmi":
+                conv = "KM2_MILLA2";
+                break;
+            case "sqmi -> km2":
+                conv = "MILLA2_KM2";
+                break;
+            case "l -> gal":
+                conv = "LITRE_GALO";
+                break;
+            case "gal -> l":
+                conv = "GALO_LITRE";
+                break;
+            case "g -> oz":
+                conv = "G_UNCA";
+                break;
+            case "oz -> g":
+                conv = "UNCA_G";
+                break;
+            case "kg -> lb":
+                conv = "KG_LLIURA";
+                break;
+            case "lb -> kg":
+                conv = "LLIURA_KG";
+                break;
+            case "kg -> t":
+                conv = "KG_TONA";
+                break;
+            case "t -> kg":
+                conv = "TONA_KG";
+                break;
+            case "grad -> rad":
+                conv = "GRAUS_RAD";
+                break;
+            case "rad -> grad":
+                conv = "RAD_GRAUS";
+                break;
+            case "ºF -> ºC":
+                conv = "FAHRENHEIT_CELSIUS";
+                break;
+            case "ºC -> ºF":
+                conv = "CELSIU_FAHRENHEIT";
+                break;
+            case "ºC -> ºK":
+                conv = "CELSIUS_KELVIN";
+                break;
+            case "ºK -> ºC":
+                conv = "KELVIN_CELSIUS";
+                break;
+        }
+        String[] message =
+                {"CONVERSIO_UNITATS," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + "," + conv};
         try {
             controladorDomini.executaOperacio(message);
         } catch (ExcepcioDomini e) {

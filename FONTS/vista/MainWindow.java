@@ -303,6 +303,127 @@ public class MainWindow {
             }
         });
 
+        mitjanaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.mitjana(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        medianaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.mediana(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        varianciaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.variancia(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        desvEstButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.desviacioEstandar(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        covarianciaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.covariancia(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        coefCorrButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.coeficientPearson(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        diaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureDia(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        mesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureMes(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        anyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureAny(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        diaSetmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureDiaSetmana(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        horoscopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                controladorVista.extreureHoroscop(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+            }
+        });
+
+        convertirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO RELACIONAR AMB VISES
+                SeleccioTaula s = getCurrentSelection();
+                String conv = ComboBox.getSelectedItem().toString();
+                controladorVista.convertirUnitats(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols, s.fila, s.col, conv);
+            }
+        });
+
 
     }
 
@@ -886,6 +1007,8 @@ public class MainWindow {
         defaultComboBoxModel1.addElement("nmi -> km");
         defaultComboBoxModel1.addElement("m -> yd");
         defaultComboBoxModel1.addElement("yd -> m");
+        defaultComboBoxModel1.addElement("km2 -> hac");
+        defaultComboBoxModel1.addElement("hac -> km2");
         defaultComboBoxModel1.addElement("km2 -> acre");
         defaultComboBoxModel1.addElement("acre -> km2");
         defaultComboBoxModel1.addElement("km2 -> sqmi");
@@ -904,6 +1027,8 @@ public class MainWindow {
         defaultComboBoxModel1.addElement("ºC -> ºF");
         defaultComboBoxModel1.addElement("ºC -> ºK");
         defaultComboBoxModel1.addElement("ºK -> ºC");
+        defaultComboBoxModel1.addElement("ºF -> ºK");
+        defaultComboBoxModel1.addElement("ºK -> ºF");
         ComboBox.setModel(defaultComboBoxModel1);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;

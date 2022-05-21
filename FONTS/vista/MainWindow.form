@@ -396,6 +396,8 @@
                         <item value="nmi -&gt; km"/>
                         <item value="m -&gt; yd"/>
                         <item value="yd -&gt; m"/>
+                        <item value="km2 -&gt; hac"/>
+                        <item value="hac -&gt; km2"/>
                         <item value="km2 -&gt; acre"/>
                         <item value="acre -&gt; km2"/>
                         <item value="km2 -&gt; sqmi"/>
@@ -414,6 +416,8 @@
                         <item value="ºC -&gt; ºF"/>
                         <item value="ºC -&gt; ºK"/>
                         <item value="ºK -&gt; ºC"/>
+                        <item value="ºF -&gt; ºK"/>
+                        <item value="ºK -&gt; ºF"/>
                       </model>
                     </properties>
                   </component>
