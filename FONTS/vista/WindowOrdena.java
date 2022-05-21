@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WindowOrdena extends WindowSecundaria {
-    private JComboBox columnaOrdenaCombo;
+    private JSpinner columnaOrdenaSpin;
     private JLabel columnaOrdenacioLabel;
     private JLabel criteriLabel;
     private JComboBox criteriCombo;
@@ -44,7 +44,7 @@ public class WindowOrdena extends WindowSecundaria {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 10);
         columnaPanel.add(columnaOrdenacioLabel, gbc);
-        columnaOrdenaCombo = new JComboBox();
+        columnaOrdenaSpin = new JSpinner();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -52,7 +52,7 @@ public class WindowOrdena extends WindowSecundaria {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 20);
-        columnaPanel.add(columnaOrdenaCombo, gbc);
+        columnaPanel.add(columnaOrdenaSpin, gbc);
         columnaPanel.setVisible(true);
 
         criteriPanel = new JPanel();

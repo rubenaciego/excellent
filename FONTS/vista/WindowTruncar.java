@@ -7,7 +7,7 @@ public class WindowTruncar extends WindowSecundaria {
 
     private JLabel xifresLabel;
     private JPanel xifresPanel;
-    private JTextField entradaXifres;
+    private JSpinner entradaXifres;
 
     public WindowTruncar() {
         mainFrame.setTitle("Truncar");
@@ -43,7 +43,7 @@ public class WindowTruncar extends WindowSecundaria {
         gbc.insets = new Insets(15, 10, 10, 3);
         xifresPanel.add(xifresLabel, gbc);
         //Entrada xifres
-        entradaXifres = new JTextField();
+        entradaXifres = new JSpinner();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
