@@ -401,9 +401,9 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
-    public void desviacioEstandar(int full, int filaOrigen, int colOrigen,
-                                  int numFiles, int numCols, int filaDesti,
-                                  int colDesti) {
+    public void desviacioEstandard(int full, int filaOrigen, int colOrigen,
+                                   int numFiles, int numCols, int filaDesti,
+                                   int colDesti) {
         String[] message =
                 {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +

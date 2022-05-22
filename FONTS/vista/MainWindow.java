@@ -148,7 +148,7 @@ public class MainWindow {
 
                 String file = fd.getFile();
                 if (file != null)
-                    controladorVista.carregaDocument(file);
+                    controladorVista.carregaDocument(fd.getDirectory() + "/" + file);
             }
         });
 
@@ -334,7 +334,7 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.desviacioEstandar(getFocusedFull(), s.fila,
+                controladorVista.desviacioEstandard(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
             }
         });
