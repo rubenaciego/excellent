@@ -25,9 +25,10 @@ public class WindowSecundaria {
         mainFrame = new JFrame("Bloc");
         configuraUI();
         mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainFrame.pack();
-        mainFrame.setVisible(true);
+        mainFrame.setVisible(false);
+
     }
 
     protected void configuraUI() {

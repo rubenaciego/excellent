@@ -19,9 +19,9 @@ public class SpinnerWindow {
         mainFrame = new JFrame(titol);
         configuraUI(accio);
         mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainFrame.pack();
-        mainFrame.setVisible(true);
+        mainFrame.setVisible(false);
     }
 
     private void configuraUI(String accio) {

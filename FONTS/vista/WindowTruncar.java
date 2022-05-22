@@ -2,20 +2,65 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowTruncar extends WindowSecundaria {
 
     private JLabel xifresLabel;
     private JPanel xifresPanel;
     private JSpinner entradaXifres;
+    String origen;
+    String desti;
+    int digitsTruncar;
 
     public WindowTruncar() {
         mainFrame.setTitle("Truncar");
         configuraUI();
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
+    }
+
+    public void oculta() {
+        mainFrame.setVisible(false);
+    }
+
+    public void mostra(int filaOrigen, int colOrigen) {
+
         mainFrame.setVisible(true);
+
+        dAcordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainFrame.setVisible(false);
+                origen = entradaOrigen.getText();
+                entradaOrigen.setText("");
+                desti = entradaDesti.getText();
+                entradaDesti.setText("");
+                digitsTruncar = (Integer) entradaXifres.getValue();
+                entradaXifres.setValue(0);
+            }
+        });
+
+        cancelaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainFrame.setVisible(false);
+                entradaOrigen.setText("");
+                entradaDesti.setText("");
+                entradaXifres.setValue(0);
+            }
+        });
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public String getDesti() {
+        return desti;
+    }
+
+    public int getDigitsTruncar() {
+        return digitsTruncar;
     }
 
     protected void configuraUI() {
