@@ -20,9 +20,6 @@ public class WindowOrdena extends WindowSecundaria {
         mainFrame.setVisible(true);
     }
 
-
-    /**/
-
     @Override
     protected void configuraUI() {
         super.configuraUI();
@@ -31,10 +28,10 @@ public class WindowOrdena extends WindowSecundaria {
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
-        mainPanel.add(columnaPanel, gbc);
+        contPanel.add(columnaPanel, gbc);
         columnaOrdenacioLabel = new JLabel();
         columnaOrdenacioLabel.setText("Columna Ordenacio:");
         gbc = new GridBagConstraints();
@@ -59,9 +56,9 @@ public class WindowOrdena extends WindowSecundaria {
         criteriPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.fill = GridBagConstraints.BOTH;
-        mainPanel.add(criteriPanel, gbc);
+        contPanel.add(criteriPanel, gbc);
         criteriLabel = new JLabel();
         criteriLabel.setText("Criteri:");
         gbc = new GridBagConstraints();

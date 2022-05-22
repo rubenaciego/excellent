@@ -3,7 +3,7 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 
-public class EliminaFilaWindow {
+public class SpinnerWindow {
     private JFrame mainFrame;
     private JPanel mainPanel;
     private JPanel botonsPanel;
@@ -15,16 +15,16 @@ public class EliminaFilaWindow {
     private JLabel columnaAEliminarLabel;
     private JSpinner spinnerCol;
 
-    public EliminaFilaWindow() {
-        mainFrame = new JFrame("Elimina Fila");
-        configuraUI();
+    public SpinnerWindow(String titol, String accio) {
+        mainFrame = new JFrame(titol);
+        configuraUI(accio);
         mainFrame.setContentPane(mainPanel);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.pack();
         mainFrame.setVisible(true);
     }
 
-    private void configuraUI() {
+    private void configuraUI(String accio) {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         botonsPanel = new JPanel();
@@ -71,7 +71,7 @@ public class EliminaFilaWindow {
         gbc.fill = GridBagConstraints.BOTH;
         mainPanel.add(eliminaPanel, gbc);
         columnaAEliminarLabel = new JLabel();
-        columnaAEliminarLabel.setText("Fila a eliminar:");
+        columnaAEliminarLabel.setText(accio);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
