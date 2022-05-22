@@ -1,6 +1,6 @@
 CP = LIB
 SRC_PATH = FONTS
-LIBS = $(CP)/byte-buddy.jar:$(CP)/commons-beanutils.jar:$(CP)/commons-collections3-3.2.2.jar:$(CP)/commons-lang-2.6.jar:$(CP)/commons-lang-3.jar:$(CP)/commons-logging-1.2.jar:$(CP)/ezmorph-1.0.6.jar:$(CP)/json-lib-2.4.jar:$(CP)/junit4.jar:$(CP)/mockito-core-2.23.0.jar:$(CP)/objenesis.jar:$(CP)/opencsv.jar
+LIBS = $(CP)/byte-buddy.jar:$(CP)/commons-beanutils.jar:$(CP)/commons-collections3-3.2.2.jar:$(CP)/commons-lang-2.6.jar:$(CP)/commons-lang3.jar:$(CP)/commons-logging-1.2.jar:$(CP)/ezmorph-1.0.6.jar:$(CP)/json-lib-2.4.jar:$(CP)/junit4.jar:$(CP)/mockito-core-2.23.0.jar:$(CP)/objenesis.jar:$(CP)/opencsv.jar
 JC = javac
 JAR = jar
 JFLAGS =
@@ -15,7 +15,7 @@ all: $(EXEC)
 class: $(CLASS)
 
 %.jar: class
-	mkdir -p $(EXEC_DIR)/test; cd $(SRC_PATH); jar cfem ../$(subst runners/,,$@) $(patsubst %.jar,%, $(subst $(EXEC_DIR)/,, $@)) ../manifest.txt *.class vista/*.class domini/*.class dades/*.class util/*.class test/*.class test/runners/*.class drivers/*.class
+	mkdir -p $(EXEC_DIR)/test; cd $(SRC_PATH); jar cfem ../$(subst $(EXEC_DIR)/Application.jar,$(EXEC_DIR)/app/Application.jar,$(subst runners/,,$@)) $(patsubst %.jar,%, $(subst $(EXEC_DIR)/,, $@)) ../manifest.txt *.class vista/*.class domini/*.class dades/*.class util/*.class test/*.class test/runners/*.class drivers/*.class
 
 %.class: %.java
 	$(JC) $(JFLAGS) -cp $(LIBS):$(SRC_PATH) $<

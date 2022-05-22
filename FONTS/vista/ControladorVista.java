@@ -16,7 +16,6 @@ public class ControladorVista {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
         w2 = new WindowSecundaria();
-
     }
 
     public void afegeixFull() {
@@ -34,8 +33,7 @@ public class ControladorVista {
     }
 
     public void esborraFull(int index) {
-        // construeix missatge a controlador domini
-        String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL," + index};
+        String[] message = {"OPERACIO_DOCUMENT,ELIMINA_FULL," + index};
 
         try {
             controladorDomini.executaOperacio(message);
@@ -622,6 +620,7 @@ public class ControladorVista {
                 conv = "KELVIN_CELSIUS";
                 break;
         }
+
         String[] message =
                 {"CONVERSIO_UNITATS," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +

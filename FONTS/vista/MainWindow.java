@@ -12,7 +12,8 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 public class MainWindow {
-    private ControladorVista controladorVista;
+    private final ControladorVista controladorVista;
+
     private JFrame mainFrame;
     private JPanel mainPanel;
     private JTabbedPane tabFulls;
@@ -287,7 +288,7 @@ public class MainWindow {
         reemplacaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 String stringCercada = "hola";
                 String stringReemplacadora = "adeu";
 
@@ -301,7 +302,7 @@ public class MainWindow {
         mitjanaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.mitjana(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -311,7 +312,7 @@ public class MainWindow {
         medianaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.mediana(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -321,7 +322,7 @@ public class MainWindow {
         varianciaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.variancia(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -331,7 +332,7 @@ public class MainWindow {
         desvEstButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.desviacioEstandar(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -341,7 +342,7 @@ public class MainWindow {
         covarianciaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.covariancia(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -351,7 +352,7 @@ public class MainWindow {
         coefCorrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.coeficientPearson(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -361,7 +362,7 @@ public class MainWindow {
         diaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.extreureDia(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -371,7 +372,7 @@ public class MainWindow {
         mesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.extreureMes(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -381,7 +382,7 @@ public class MainWindow {
         anyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.extreureAny(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -391,7 +392,7 @@ public class MainWindow {
         diaSetmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.extreureDiaSetmana(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -401,7 +402,7 @@ public class MainWindow {
         horoscopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.extreureHoroscop(getFocusedFull(), s.fila,
                         s.col, s.nfiles, s.ncols, s.fila, s.col);
@@ -411,7 +412,7 @@ public class MainWindow {
         convertirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISES
+                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
                 String conv = ComboBox.getSelectedItem().toString();
                 controladorVista.convertirUnitats(getFocusedFull(), s.fila,
@@ -1115,5 +1116,4 @@ public class MainWindow {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
 }
