@@ -308,17 +308,16 @@ public class ControladorVista {
     }
 
     public void cerca(int full, int filaOrigen, int colOrigen,
-                      int numFiles, int numCols, int filaDesti,
-                      int colDesti, String stringCercada) {
-
-        // CERCA NO FUNCIONA AIXI
+                      int numFiles, int numCols, String stringCercada) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
-                        colOrigen + "," + numFiles + "," + numCols + "," +
-                        filaDesti + "," + colDesti + ",CERCA_OCURRENCIES",
+                        colOrigen + "," + numFiles + "," + numCols + ",-1,-1,CERCA_OCURRENCIES",
                         stringCercada};
         try {
             controladorDomini.executaOperacio(message);
+            String res = controladorDomini.getCelaResultat(full);
+
+            System.out.println(res);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -613,6 +612,8 @@ public class ControladorVista {
             case "ºK -> ºC":
                 conv = "KELVIN_CELSIUS";
                 break;
+            default:
+                throw new UnsupportedOperationException("Conversió " + conv + " desconeguda");
         }
 
         String[] message =

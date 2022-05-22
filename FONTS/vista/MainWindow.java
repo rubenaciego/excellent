@@ -293,7 +293,7 @@ public class MainWindow {
 
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.cerca(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col, stringCercada);
+                        s.col, s.nfiles, s.ncols, stringCercada);
             }
         });
 
