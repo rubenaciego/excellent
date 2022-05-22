@@ -1,5 +1,8 @@
 package vista;
 
+import javafx.util.Pair;
+import util.Utilitats;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -200,7 +203,6 @@ public class MainWindow {
         sinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 SeleccioTaula s = getCurrentSelection();
                 controladorVista.sinus(getFocusedFull(), s.fila, s.col,
                         s.nfiles, s.ncols, s.fila, s.col);
@@ -239,10 +241,20 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                //TODO implementar digitstruncar
-                int digitsTruncar = 2;
-                controladorVista.truncar(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col, digitsTruncar);
+                WindowTruncar w = new WindowTruncar(mainFrame);
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    int digitsTruncar = w.getDigitsTruncar();
+                    controladorVista.truncar(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue(), digitsTruncar);
+                }
             }
         });
 

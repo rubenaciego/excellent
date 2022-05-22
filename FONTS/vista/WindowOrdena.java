@@ -11,9 +11,8 @@ public class WindowOrdena extends WindowSecundaria {
     private JPanel columnaPanel;
     private JPanel criteriPanel;
 
-    public WindowOrdena() {
-        mainFrame.setTitle("Ordena");
-        configuraUI();
+    public WindowOrdena(JFrame frame) {
+        super(frame, "Ordena");
     }
 
     @Override
@@ -78,5 +77,4 @@ public class WindowOrdena extends WindowSecundaria {
         gbc.insets = new Insets(10, 10, 10, 20);
         criteriPanel.add(criteriCombo, gbc);
     }
-
 }

@@ -8,17 +8,13 @@ public class WindowReemplaca extends WindowCerca {
     private JPanel reemplPanel;
     private JTextField reemplacaEntrada;
 
-    public WindowReemplaca() {
-        mainFrame.setTitle("Reemplaca");
-        configuraUI();
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+    public WindowReemplaca(JFrame frame) {
+        super(frame, "Reemplaça");
     }
-@Override
+
+    @Override
     protected void configuraUI() {
-       super.configuraUI();
+        super.configuraUI();
 
         // Panell reemplaca
         reemplPanel = new JPanel();

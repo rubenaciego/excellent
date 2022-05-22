@@ -1,6 +1,6 @@
 CP = LIB
 SRC_PATH = FONTS
-LIBS = $(CP)/byte-buddy.jar:$(CP)/commons-beanutils.jar:$(CP)/commons-collections3-3.2.2.jar:$(CP)/commons-lang-2.6.jar:$(CP)/commons-lang3.jar:$(CP)/commons-logging-1.2.jar:$(CP)/ezmorph-1.0.6.jar:$(CP)/json-lib-2.4.jar:$(CP)/junit4.jar:$(CP)/mockito-core-2.23.0.jar:$(CP)/objenesis.jar:$(CP)/opencsv.jar
+LIBS = $(CP)/byte-buddy.jar:$(CP)/commons-beanutils.jar:$(CP)/commons-collections3-3.2.2.jar:$(CP)/commons-lang-2.6.jar:$(CP)/commons-lang3.jar:$(CP)/commons-logging-1.2.jar:$(CP)/ezmorph-1.0.6.jar:$(CP)/json-lib-2.4.jar:$(CP)/junit4.jar:$(CP)/mockito-core-2.23.0.jar:$(CP)/objenesis.jar:$(CP)/opencsv.jar:$(CP)/javafx-base-11.jar
 JC = javac
 JAR = jar
 JFLAGS =

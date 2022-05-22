@@ -7,15 +7,9 @@ public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
 
-    private final WindowSecundaria w2;
-    /*private final SpinnerWindow eli;
-    private final WindowOrdena ordre;
-    private final WindowTanca tanca;*/
-
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
-        w2 = new WindowSecundaria();
     }
 
     public void afegeixFull() {

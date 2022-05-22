@@ -8,11 +8,15 @@ public class WindowCerca extends WindowSecundaria {
     protected JPanel cercaPanel;
     protected JTextField entradaCerca;
 
-    public WindowCerca() {
-        mainFrame.setTitle("Cerca");
-        configuraUI();
+    public WindowCerca(JFrame frame) {
+        super(frame, "Cerca");
     }
-@Override
+
+    protected WindowCerca(JFrame frame, String title) {
+        super(frame, title);
+    }
+
+    @Override
     protected void configuraUI() {
         super.configuraUI();
 

@@ -10,59 +10,24 @@ public class WindowTruncar extends WindowSecundaria {
     private JLabel xifresLabel;
     private JPanel xifresPanel;
     private JSpinner entradaXifres;
-    String origen;
-    String desti;
-    int digitsTruncar;
 
-    public WindowTruncar() {
-        mainFrame.setTitle("Truncar");
-        configuraUI();
-    }
-
-    public void oculta() {
-        mainFrame.setVisible(false);
-    }
-
-    public void mostra(int filaOrigen, int colOrigen) {
-
-        mainFrame.setVisible(true);
-
-        dAcordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                mainFrame.setVisible(false);
-                origen = entradaOrigen.getText();
-                entradaOrigen.setText("");
-                desti = entradaDesti.getText();
-                entradaDesti.setText("");
-                digitsTruncar = (Integer) entradaXifres.getValue();
-                entradaXifres.setValue(0);
-            }
-        });
-
-        cancelaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                mainFrame.setVisible(false);
-                entradaOrigen.setText("");
-                entradaDesti.setText("");
-                entradaXifres.setValue(0);
-            }
-        });
+    public WindowTruncar(JFrame frame) {
+        super(frame, "Truncar");
     }
 
     public String getOrigen() {
-        return origen;
+        return entradaOrigen.getText();
     }
 
     public String getDesti() {
-        return desti;
+        return entradaDesti.getText();
     }
 
     public int getDigitsTruncar() {
-        return digitsTruncar;
+        return (int)entradaXifres.getValue();
     }
 
+    @Override
     protected void configuraUI() {
         super.configuraUI();
         // Panell xifres
