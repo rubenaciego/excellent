@@ -31,60 +31,38 @@ public class ControladorDomini {
         return document;
     }
 
-    public int getNumFulls()
-    {
-        if (document != null)
-            return document.getNumFulls();
+    public int getNumFulls() {
+        if (document == null)
+            throw new ExcepcioNoDocument("Error: no hi ha document obert");
 
-        return -1;
+        return controladorsFull.size();
     }
 
-    public int getNumFiles(int full)
-    {
-        if (document != null)
-        {
-            Full f = document.getFull(full);
+    public int getNumFiles(int full) {
+        if (document == null)
+            throw new ExcepcioNoDocument("Error: no hi ha document obert");
+        if (full < 0 || full >= controladorsFull.size())
+            throw new ExcepcioIndexFull(full, controladorsFull.size());
 
-            if (f != null)
-                return f.getNumFiles();
-        }
-
-        return -1;
+        return controladorsFull.get(full).getNumFiles();
     }
 
-    public int getNumCols(int full)
-    {
-        if (document != null)
-        {
-            Full f = document.getFull(full);
+    public int getNumCols(int full) {
+        if (document == null)
+            throw new ExcepcioNoDocument("Error: no hi ha document obert");
+        if (full < 0 || full >= controladorsFull.size())
+            throw new ExcepcioIndexFull(full, controladorsFull.size());
 
-            if (f != null)
-                return f.getNumCols();
-        }
-
-        return -1;
+        return controladorsFull.get(full).getNumCols();
     }
 
-    public ArrayList<EntradaTaula> getEntrades(int full, int srow, int scol, int numFiles, int numCols)
-    {
-        ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
+    public ArrayList<EntradaTaula> getEntrades(int full, int srow, int scol, int numFiles, int numCols) {
+        if (document == null)
+            throw new ExcepcioNoDocument("Error: no hi ha document obert");
+        if (full < 0 || full >= controladorsFull.size())
+            throw new ExcepcioIndexFull(full, controladorsFull.size());
 
-        if (document != null)
-        {
-            Full f = document.getFull(full);
-
-            if (f != null)
-            {
-                ArrayList<EntradaMatriuCeles> e = f.getBloc(srow, scol, numFiles, numCols).getEntrades();
-
-                for (EntradaMatriuCeles entrada : e)
-                    entrades.add(new EntradaTaula(entrada.getFila() + srow,
-                            entrada.getColumna() + scol,
-                            entrada.getCela().toString()));
-            }
-        }
-
-        return entrades;
+        return controladorsFull.get(full).getEntrades(srow, scol, numFiles, numCols);
     }
 
     public void executaOperacio(String[] opSenseParsejar) {
@@ -150,6 +128,15 @@ public class ControladorDomini {
             default:
                 throw new IncompatibleClassChangeError("Operació " + resultat.getTipusOpDocument() + " desconeguda");
         }
+    }
+
+    public String getCelaResultat(int full) {
+        if (document == null)
+            throw new ExcepcioNoDocument("Error: no hi ha document obert");
+        if (full < 0 || full >= controladorsFull.size())
+            throw new ExcepcioIndexFull(full, controladorsFull.size());
+
+        return controladorsFull.get(full).getCelaResultat();
     }
 
     private void creaDocument(String nomDocument) {

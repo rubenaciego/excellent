@@ -48,7 +48,7 @@ public class Utilitats {
     }
 
     /**
-     * @param text Converteix un text que representa dos números, un en format base 26 amb A-Z i
+     * @param text Converteix un text que representa dos números, un en format "base 26" amb A-Z i
      *             l'altre en decimal a un parell format pel valor numèric dels dos nombres
      * @return Un pair amb els dos nombres i null si l'entrada no és correcte
      */
@@ -70,6 +70,11 @@ public class Utilitats {
         else return null;
     }
 
+    /**
+     * @param f Fila
+     * @param c Columna
+     * @return Converteix la fila i columna a la representació en "base 26" amb A-Z seguida d'un número decimal
+     */
     public static String convertirATextCela(int f, int c) {
         return convertirABase26(c) + Integer.toString(f + 1);
     }
