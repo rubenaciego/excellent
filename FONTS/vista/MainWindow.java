@@ -15,6 +15,19 @@ public class MainWindow {
     private ControladorVista controladorVista;
     private JFrame mainFrame;
     private JPanel mainPanel;
+    private JPanel opPanel;
+    private JPanel opAritPanel;
+    private JPanel opAritButtPanel;
+    private JPanel opEstPanel;
+    private JPanel opEstButtPanel;
+    private JPanel opTextPanel;
+    private JPanel opTextButtPanel;
+    private JPanel opDataPanel;
+    private JPanel opDataButtPanel;
+    private JPanel opConvPanel;
+    private JPanel opConvButtPanel;
+    private JPanel spacer;
+    private JPanel buttFullsPanel;
     private JTabbedPane tabFulls;
     private JButton absButton;
     private JButton expButton;
@@ -47,6 +60,10 @@ public class MainWindow {
     private JButton afegirFullButton;
     private JButton elimFullButton;
     private JButton convertirButton;
+    private JLabel operacionsAritmetiquesLabel;
+    private JLabel operacionsEstadistiquesLabel;
+    private JLabel operacionsTextualsLabel;
+    private JLabel operacionsDeDatesLabel;
 
     //Menu
     private JMenuBar menuBarVista = new JMenuBar();
@@ -102,7 +119,7 @@ public class MainWindow {
         fullTables = new ArrayList<TableModel>();
         mainFrame = new JFrame("Excellent");
 
-        $$$setupUI$$$();
+        configuraUI();
         inicialitzar_menuBar();
         mainFrame.setContentPane(mainPanel);
         inicialitzar_menuContextual();
@@ -624,6 +641,553 @@ public class MainWindow {
         JOptionPane.showMessageDialog(mainFrame, error, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    private void configuraUI() {
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridBagLayout());
+        opPanel = new JPanel();
+        opPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        mainPanel.add(opPanel, gbc);
+        opAritPanel = new JPanel();
+        opAritPanel.setLayout(new GridBagLayout());
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        opPanel.add(opAritPanel, gbc);
+        opAritPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+
+        // Panell operacions aritmetiques
+        opAritButtPanel = new JPanel();
+        opAritButtPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        opAritPanel.add(opAritButtPanel, gbc);
+
+        cosButton = new JButton();
+        cosButton.setText("Cos");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(cosButton, gbc);
+
+        sinButton = new JButton();
+        sinButton.setText("Sin");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(sinButton, gbc);
+
+        coshButton = new JButton();
+        coshButton.setText("Cosh");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(coshButton, gbc);
+
+        sinhButton = new JButton();
+        sinhButton.setText("Sinh");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(sinhButton, gbc);
+
+        tanhButton = new JButton();
+        tanhButton.setText("Tanh");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(tanhButton, gbc);
+
+        absButton = new JButton();
+        absButton.setText("Abs");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(absButton, gbc);
+
+        decrButton = new JButton();
+        decrButton.setText("Decr");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(decrButton, gbc);
+
+        expButton = new JButton();
+        expButton.setText("Exp");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(expButton, gbc);
+
+        incrButton = new JButton();
+        incrButton.setText("Incr");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(incrButton, gbc);
+
+        truncarButton = new JButton();
+        truncarButton.setText("Truncar");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritButtPanel.add(truncarButton, gbc);
+
+        operacionsAritmetiquesLabel = new JLabel();
+        operacionsAritmetiquesLabel.setText("Operacions aritmetiques");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opAritPanel.add(operacionsAritmetiquesLabel, gbc);
+
+        // Panell operacions estadistiques
+        opEstPanel = new JPanel();
+        opEstPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        opPanel.add(opEstPanel, gbc);
+        opEstPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+
+        opEstButtPanel = new JPanel();
+        opEstButtPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        opEstPanel.add(opEstButtPanel, gbc);
+
+        covarianciaButton = new JButton();
+        covarianciaButton.setText("Covariancia");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstButtPanel.add(covarianciaButton, gbc);
+
+        desvEstButton = new JButton();
+        desvEstButton.setText("DesvEst");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstButtPanel.add(desvEstButton, gbc);
+
+        coefCorrButton = new JButton();
+        coefCorrButton.setText("CoefCorr");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstButtPanel.add(coefCorrButton, gbc);
+
+        mitjanaButton = new JButton();
+        mitjanaButton.setText("Mitjana");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstButtPanel.add(mitjanaButton, gbc);
+
+        varianciaButton = new JButton();
+        varianciaButton.setText("Variancia");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstButtPanel.add(varianciaButton, gbc);
+
+        medianaButton = new JButton();
+        medianaButton.setText("Mediana");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstButtPanel.add(medianaButton, gbc);
+
+        operacionsEstadistiquesLabel = new JLabel();
+        operacionsEstadistiquesLabel.setText("Operacions estadistiques");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opEstPanel.add(operacionsEstadistiquesLabel, gbc);
+
+        opTextPanel = new JPanel();
+        opTextPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        opPanel.add(opTextPanel, gbc);
+        opTextPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+
+        opTextButtPanel = new JPanel();
+        opTextButtPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        opTextPanel.add(opTextButtPanel, gbc);
+
+        reemplacaButton = new JButton();
+        reemplacaButton.setText("Reemplaca");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opTextButtPanel.add(reemplacaButton, gbc);
+
+        longButton = new JButton();
+        longButton.setText("Long");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opTextButtPanel.add(longButton, gbc);
+
+        minuscButton = new JButton();
+        minuscButton.setText("Minusc");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opTextButtPanel.add(minuscButton, gbc);
+
+        majButton = new JButton();
+        majButton.setText("Majusc");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opTextButtPanel.add(majButton, gbc);
+
+        cercaButton = new JButton();
+        cercaButton.setText("Cerca");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opTextButtPanel.add(cercaButton, gbc);
+
+        operacionsTextualsLabel = new JLabel();
+        operacionsTextualsLabel.setText("Operacions textuals");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opTextPanel.add(operacionsTextualsLabel, gbc);
+
+        opDataPanel = new JPanel();
+        opDataPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        opPanel.add(opDataPanel, gbc);
+        opDataPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+
+        opDataButtPanel = new JPanel();
+        opDataButtPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        opDataPanel.add(opDataButtPanel, gbc);
+
+        diaSetmButton = new JButton();
+        diaSetmButton.setText("DiaSetm");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opDataButtPanel.add(diaSetmButton, gbc);
+
+        horoscopButton = new JButton();
+        horoscopButton.setText("Horoscop");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opDataButtPanel.add(horoscopButton, gbc);
+
+        diaButton = new JButton();
+        diaButton.setText("Dia");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opDataButtPanel.add(diaButton, gbc);
+
+        anyButton = new JButton();
+        anyButton.setText("Any");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opDataButtPanel.add(anyButton, gbc);
+
+        mesButton = new JButton();
+        mesButton.setText("Mes");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opDataButtPanel.add(mesButton, gbc);
+
+        operacionsDeDatesLabel = new JLabel();
+        operacionsDeDatesLabel.setText("Operacions de dates");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opDataPanel.add(operacionsDeDatesLabel, gbc);
+
+        opConvPanel = new JPanel();
+        opConvPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        opPanel.add(opConvPanel, gbc);
+        opConvPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-4473925)));
+
+        opConvButtPanel = new JPanel();
+        opConvButtPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        opConvPanel.add(opConvButtPanel, gbc);
+        ComboBox = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        defaultComboBoxModel1.addElement("km -> mi");
+        defaultComboBoxModel1.addElement("mi -> km");
+        defaultComboBoxModel1.addElement("km -> nmi");
+        defaultComboBoxModel1.addElement("nmi -> km");
+        defaultComboBoxModel1.addElement("m -> yd");
+        defaultComboBoxModel1.addElement("yd -> m");
+        defaultComboBoxModel1.addElement("km2 -> hac");
+        defaultComboBoxModel1.addElement("hac -> km2");
+        defaultComboBoxModel1.addElement("km2 -> acre");
+        defaultComboBoxModel1.addElement("acre -> km2");
+        defaultComboBoxModel1.addElement("km2 -> sqmi");
+        defaultComboBoxModel1.addElement("sqmi -> km2");
+        defaultComboBoxModel1.addElement("l -> gal");
+        defaultComboBoxModel1.addElement("gal -> l");
+        defaultComboBoxModel1.addElement("g -> oz");
+        defaultComboBoxModel1.addElement("oz -> g");
+        defaultComboBoxModel1.addElement("kg -> lb");
+        defaultComboBoxModel1.addElement("lb -> kg");
+        defaultComboBoxModel1.addElement("kg -> t");
+        defaultComboBoxModel1.addElement("t -> kg");
+        defaultComboBoxModel1.addElement("grad -> rad");
+        defaultComboBoxModel1.addElement("rad -> grad");
+        defaultComboBoxModel1.addElement("ºF -> ºC");
+        defaultComboBoxModel1.addElement("ºC -> ºF");
+        defaultComboBoxModel1.addElement("ºC -> ºK");
+        defaultComboBoxModel1.addElement("ºK -> ºC");
+        defaultComboBoxModel1.addElement("ºF -> ºK");
+        defaultComboBoxModel1.addElement("ºK -> ºF");
+        ComboBox.setModel(defaultComboBoxModel1);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opConvButtPanel.add(ComboBox, gbc);
+
+        convertirButton = new JButton();
+        convertirButton.setText("Convertir");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opConvButtPanel.add(convertirButton, gbc);
+
+        convUniComboBox = new JLabel();
+        convUniComboBox.setText("Conversio unitats");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        opConvPanel.add(convUniComboBox, gbc);
+
+        spacer = new JPanel();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 5;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        opPanel.add(spacer, gbc);
+
+        tabFulls = new JTabbedPane();
+        tabFulls.setTabPlacement(3);
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.ipady = 500;
+        mainPanel.add(tabFulls, gbc);
+
+        buttFullsPanel = new JPanel();
+        buttFullsPanel.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        mainPanel.add(buttFullsPanel, gbc);
+
+        afegirFullButton = new JButton();
+        afegirFullButton.setText("+");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        buttFullsPanel.add(afegirFullButton, gbc);
+        elimFullButton = new JButton();
+        elimFullButton.setText("-");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        buttFullsPanel.add(elimFullButton, gbc);
+    }
+
+    {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+        $$$setupUI$$$();
+    }
+
     /**
      * Method generated by IntelliJ IDEA GUI Designer
      * >>> IMPORTANT!! <<<
@@ -762,14 +1326,14 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel3.add(truncarButton, gbc);
-        final JLabel label1 = new JLabel();
-        label1.setText("Operacions aritmetiques");
+        operacionsAritmetiquesLabel = new JLabel();
+        operacionsAritmetiquesLabel.setText("Operacions aritmetiques");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel2.add(label1, gbc);
+        panel2.add(operacionsAritmetiquesLabel, gbc);
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
@@ -849,14 +1413,14 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel5.add(medianaButton, gbc);
-        final JLabel label2 = new JLabel();
-        label2.setText("Operacions estadistiques");
+        operacionsEstadistiquesLabel = new JLabel();
+        operacionsEstadistiquesLabel.setText("Operacions estadistiques");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel4.add(label2, gbc);
+        panel4.add(operacionsEstadistiquesLabel, gbc);
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
@@ -924,14 +1488,14 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel7.add(cercaButton, gbc);
-        final JLabel label3 = new JLabel();
-        label3.setText("Operacions textuals");
+        operacionsTextualsLabel = new JLabel();
+        operacionsTextualsLabel.setText("Operacions textuals");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel6.add(label3, gbc);
+        panel6.add(operacionsTextualsLabel, gbc);
         final JPanel panel8 = new JPanel();
         panel8.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
@@ -1001,14 +1565,14 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel9.add(mesButton, gbc);
-        final JLabel label4 = new JLabel();
-        label4.setText("Operacions de dates");
+        operacionsDeDatesLabel = new JLabel();
+        operacionsDeDatesLabel.setText("Operacions de dates");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel8.add(label4, gbc);
+        panel8.add(operacionsDeDatesLabel, gbc);
         final JPanel panel10 = new JPanel();
         panel10.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();

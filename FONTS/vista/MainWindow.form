@@ -123,7 +123,7 @@
                   </component>
                 </children>
               </grid>
-              <component id="d6169" class="javax.swing.JLabel">
+              <component id="d6169" class="javax.swing.JLabel" binding="operacionsAritmetiquesLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
@@ -206,7 +206,7 @@
                   </component>
                 </children>
               </grid>
-              <component id="aa078" class="javax.swing.JLabel">
+              <component id="aa078" class="javax.swing.JLabel" binding="operacionsEstadistiquesLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
@@ -280,7 +280,7 @@
                   </component>
                 </children>
               </grid>
-              <component id="d03e9" class="javax.swing.JLabel">
+              <component id="d03e9" class="javax.swing.JLabel" binding="operacionsTextualsLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
@@ -354,7 +354,7 @@
                   </component>
                 </children>
               </grid>
-              <component id="d81f2" class="javax.swing.JLabel">
+              <component id="d81f2" class="javax.swing.JLabel" binding="operacionsDeDatesLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>

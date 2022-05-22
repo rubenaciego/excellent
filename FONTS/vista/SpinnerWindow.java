@@ -9,11 +9,11 @@ public class SpinnerWindow {
     private JPanel botonsPanel;
     private JPanel spacer1;
     private JPanel spacer2;
-    private JPanel eliminaPanel;
+    private JPanel opPanel;
     private JButton cancelaButton;
     private JButton dAcordButton;
-    private JLabel columnaAEliminarLabel;
-    private JSpinner spinnerCol;
+    private JLabel opLabel;
+    private JSpinner spinnerOp;
 
     public SpinnerWindow(String titol, String accio) {
         mainFrame = new JFrame(titol);
@@ -63,23 +63,23 @@ public class SpinnerWindow {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.VERTICAL;
         mainPanel.add(spacer1, gbc);
-        eliminaPanel = new JPanel();
-        eliminaPanel.setLayout(new GridBagLayout());
+        opPanel = new JPanel();
+        opPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        mainPanel.add(eliminaPanel, gbc);
-        columnaAEliminarLabel = new JLabel();
-        columnaAEliminarLabel.setText(accio);
+        mainPanel.add(opPanel, gbc);
+        opLabel = new JLabel();
+        opLabel.setText(accio);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 10, 10, 10);
-        eliminaPanel.add(columnaAEliminarLabel, gbc);
-        spinnerCol = new JSpinner();
+        opPanel.add(opLabel, gbc);
+        spinnerOp = new JSpinner();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -87,7 +87,7 @@ public class SpinnerWindow {
         gbc.insets = new Insets(10, 10, 10, 20);
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        eliminaPanel.add(spinnerCol, gbc);
+        opPanel.add(spinnerOp, gbc);
         spacer2 = new JPanel();
         gbc = new GridBagConstraints();
         gbc.gridx = 0;

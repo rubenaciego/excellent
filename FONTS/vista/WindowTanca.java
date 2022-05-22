@@ -7,11 +7,10 @@ public class WindowTanca {
     private JFrame mainFrame;
     private JPanel mainPanel;
     private JPanel buttonsPanel;
-
     private JPanel spacer;
     private JButton tancaButton;
     private JButton cancelaButton;
-    private JButton desaISurtButton;
+    private JButton desaTancaButton;
     private JLabel tancaLabel;
 
     public WindowTanca() {
@@ -51,14 +50,14 @@ public class WindowTanca {
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         buttonsPanel.add(cancelaButton, gbc);
-        desaISurtButton = new JButton();
-        desaISurtButton.setText("Desa i tanca");
+        desaTancaButton = new JButton();
+        desaTancaButton.setText("Desa i tanca");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        buttonsPanel.add(desaISurtButton, gbc);
+        buttonsPanel.add(desaTancaButton, gbc);
         tancaLabel = new JLabel();
         tancaLabel.setText("Estas segur que vols tancar?");
         gbc = new GridBagConstraints();
