@@ -174,8 +174,6 @@ public class ControladorFull {
             throw new ExcepcioForaLimits(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols(),
                     full.getNumFiles(), full.getNumCols());
 
-        full.buidaBloc(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols());
-
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
 
         for (EntradaMatriuCeles e : entrades) {
