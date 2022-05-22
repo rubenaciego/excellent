@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WindowTanca {
-    private JFrame mainFrame;
+    private JDialog mainDialog;
     private JPanel mainPanel;
     private JPanel buttonsPanel;
     private JPanel spacer;
@@ -13,13 +13,13 @@ public class WindowTanca {
     private JButton desaTancaButton;
     private JLabel tancaLabel;
 
-    public WindowTanca() {
-        mainFrame = new JFrame("Tanca document");
+    public WindowTanca(JFrame frame) {
+        mainDialog = new JDialog(frame, "Tanca document", Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+        mainDialog.setContentPane(mainPanel);
+        mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        mainDialog.pack();
+        mainDialog.setVisible(false);
     }
 
     private void configuraUI() {

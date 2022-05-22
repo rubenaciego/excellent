@@ -1,7 +1,9 @@
 package domini;
 
+import javafx.util.Pair;
 import util.Utilitats;
 
+import java.rmi.UnexpectedException;
 import java.time.LocalDate;
 
 public class Parser {
@@ -178,19 +180,10 @@ public class Parser {
                     Integer.parseInt(DDMMAAAA[0])));
             resultat.setTipus(Cela.TipusCela.DATADA);
         } else if (inputUsuari.matches("^=[A-Z]+[1-9][0-9]*$")) {
-            int index = 0;
-            char c;
+            Pair<Integer, Integer> p = Utilitats.convertirAIndexs(inputUsuari.substring(1));
 
-            do {
-                ++index;
-                c = inputUsuari.charAt(index);
-            } while (c >= 'A' && c <= 'Z');
-
-            String fila = inputUsuari.substring(index);
-            String col = inputUsuari.substring(1, index);
-
-            resultat.setFilaRef(Integer.parseInt(fila) - 1);
-            resultat.setColRef(Utilitats.convertirBase26(col));
+            resultat.setFilaRef(p.getKey());
+            resultat.setColRef(p.getValue());
             resultat.setTipus(Cela.TipusCela.REFERENCIAL);
         } else {
             resultat.setTipus(Cela.TipusCela.TEXTUAL);

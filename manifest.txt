@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Class-Path: ../../LIB/byte-buddy.jar ../../LIB/commons-beanutils.jar ../../LIB/commons-collections3-3.2.2.jar ../../LIB/commons-lang-2.6.jar ../../LIB/commons-lang-3.jar ../../LIB/commons-logging-1.2.jar ../../LIB/ezmorph-1.0.6.jar ../../LIB/json-lib-2.4.jar ../../LIB/junit4.jar ../../LIB/mockito-core-2.23.0.jar ../../LIB/objenesis.jar ../../LIB/opencsv.jar
+Class-Path: ../../LIB/byte-buddy.jar ../../LIB/commons-beanutils.jar ../../LIB/commons-collections3-3.2.2.jar ../../LIB/commons-lang-2.6.jar ../../LIB/commons-lang3.jar ../../LIB/commons-logging-1.2.jar ../../LIB/ezmorph-1.0.6.jar ../../LIB/json-lib-2.4.jar ../../LIB/junit4.jar ../../LIB/mockito-core-2.23.0.jar ../../LIB/objenesis.jar  ../../LIB/opencsv.jar ../../LIB/javafx-base-11.jar

@@ -7,16 +7,9 @@ public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
 
-    private final WindowSecundaria w2;
-    /*private final SpinnerWindow eli;
-    private final WindowOrdena ordre;
-    private final WindowTanca tanca;*/
-
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
-        w2 = new WindowSecundaria();
-
     }
 
     public void afegeixFull() {
@@ -34,8 +27,7 @@ public class ControladorVista {
     }
 
     public void esborraFull(int index) {
-        // construeix missatge a controlador domini
-        String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL," + index};
+        String[] message = {"OPERACIO_DOCUMENT,ELIMINA_FULL," + index};
 
         try {
             controladorDomini.executaOperacio(message);
@@ -403,9 +395,9 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
-    public void desviacioEstandar(int full, int filaOrigen, int colOrigen,
-                                  int numFiles, int numCols, int filaDesti,
-                                  int colDesti) {
+    public void desviacioEstandard(int full, int filaOrigen, int colOrigen,
+                                   int numFiles, int numCols, int filaDesti,
+                                   int colDesti) {
         String[] message =
                 {"OPERACIO_ESTADISTICA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
@@ -622,6 +614,7 @@ public class ControladorVista {
                 conv = "KELVIN_CELSIUS";
                 break;
         }
+
         String[] message =
                 {"CONVERSIO_UNITATS," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +

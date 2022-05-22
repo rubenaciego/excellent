@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowTruncar extends WindowSecundaria {
 
@@ -9,15 +11,15 @@ public class WindowTruncar extends WindowSecundaria {
     private JPanel xifresPanel;
     private JSpinner entradaXifres;
 
-    public WindowTruncar() {
-        mainFrame.setTitle("Truncar");
-        configuraUI();
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+    public WindowTruncar(JFrame frame) {
+        super(frame, "Truncar");
     }
 
+    public int getDigitsTruncar() {
+        return (int)entradaXifres.getValue();
+    }
+
+    @Override
     protected void configuraUI() {
         super.configuraUI();
         // Panell xifres

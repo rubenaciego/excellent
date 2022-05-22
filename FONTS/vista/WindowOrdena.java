@@ -11,15 +11,9 @@ public class WindowOrdena extends WindowSecundaria {
     private JPanel columnaPanel;
     private JPanel criteriPanel;
 
-    public WindowOrdena() {
-        mainFrame.setTitle("Ordena");
-        configuraUI();
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+    public WindowOrdena(JFrame frame) {
+        super(frame, "Ordena");
     }
-
     @Override
     protected void configuraUI() {
         super.configuraUI();
@@ -82,5 +76,4 @@ public class WindowOrdena extends WindowSecundaria {
         gbc.insets = new Insets(10, 10, 10, 20);
         criteriPanel.add(criteriCombo, gbc);
     }
-
 }
