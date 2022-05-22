@@ -25,6 +25,14 @@ public class WindowSecundaria {
 
     protected boolean success;
 
+    public String getOrigen() {
+        return entradaOrigen.getText();
+    }
+
+    public String getDesti() {
+        return entradaDesti.getText();
+    }
+
     public WindowSecundaria(JFrame frame, String title) {
         mainDialog = new JDialog(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();

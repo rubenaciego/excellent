@@ -14,7 +14,6 @@ public class WindowOrdena extends WindowSecundaria {
     public WindowOrdena(JFrame frame) {
         super(frame, "Ordena");
     }
-
     @Override
     protected void configuraUI() {
         super.configuraUI();

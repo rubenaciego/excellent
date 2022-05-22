@@ -159,8 +159,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.valorAbsolut(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.valorAbsolut(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -168,8 +179,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.incrementar(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.incrementar(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -177,8 +199,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.decrementar(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.decrementar(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -186,8 +219,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.exponencial(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.exponencial(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -195,8 +239,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.cosinus(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.cosinus(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -213,9 +268,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.cosinusHiperbolic(getFocusedFull(), s.fila,
-                        s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.cosinusHiperbolic(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -223,8 +288,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.sinusHiperbolic(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.sinusHiperbolic(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -232,8 +308,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.tangentHiperbolic(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.tangentHiperbolic(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -262,8 +349,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.longitudText(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.longitudText(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -271,8 +369,19 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.majuscules(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.majuscules(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -280,144 +389,289 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.minuscules(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.minuscules(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         cercaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
-                String stringCercada = "hola";
-
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.cerca(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col, stringCercada);
+
+                WindowCerca w = new WindowCerca(mainFrame);
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    String stringCercada = w.getStringCercada();
+
+                    controladorVista.cerca(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue(), stringCercada);
+                }
             }
         });
 
         reemplacaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
-                String stringCercada = "hola";
-                String stringReemplacadora = "adeu";
-
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.reemplaca(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col, stringCercada,
-                        stringReemplacadora);
+
+                WindowReemplaca w = new WindowReemplaca(mainFrame);
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    String stringCercada = w.getStringCercada();
+                    String stringReemplacadora = w.getStringReemplacadora();
+
+                    controladorVista.reemplaca(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue(), stringCercada,
+                            stringReemplacadora);
+                }
             }
         });
 
         mitjanaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.mitjana(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.mitjana(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         medianaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.mediana(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.mediana(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         varianciaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.variancia(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.variancia(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         desvEstButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.desviacioEstandard(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.desviacioEstandard(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         covarianciaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.covariancia(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.covariancia(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         coefCorrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.coeficientPearson(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.coeficientPearson(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         diaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.extreureDia(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.extreureDia(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         mesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.extreureMes(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.extreureMes(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         anyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.extreureAny(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.extreureAny(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         diaSetmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.extreureDiaSetmana(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.extreureDiaSetmana(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
         horoscopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.extreureHoroscop(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.extreureHoroscop(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -425,10 +679,22 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO RELACIONAR AMB VISTES
-                SeleccioTaula s = getCurrentSelection();
                 String conv = ComboBox.getSelectedItem().toString();
-                controladorVista.convertirUnitats(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col, conv);
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.convertirUnitats(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue(), conv);
+                }
             }
         });
     }

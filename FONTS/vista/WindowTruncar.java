@@ -15,14 +15,6 @@ public class WindowTruncar extends WindowSecundaria {
         super(frame, "Truncar");
     }
 
-    public String getOrigen() {
-        return entradaOrigen.getText();
-    }
-
-    public String getDesti() {
-        return entradaDesti.getText();
-    }
-
     public int getDigitsTruncar() {
         return (int)entradaXifres.getValue();
     }

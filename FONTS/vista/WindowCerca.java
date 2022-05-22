@@ -16,6 +16,8 @@ public class WindowCerca extends WindowSecundaria {
         super(frame, title);
     }
 
+    public String getStringCercada() {return entradaDesti.getText();}
+
     @Override
     protected void configuraUI() {
         super.configuraUI();

@@ -12,6 +12,8 @@ public class WindowReemplaca extends WindowCerca {
         super(frame, "Reemplaça");
     }
 
+    public String getStringReemplacadora() {return reemplacaEntrada.getText();}
+
     @Override
     protected void configuraUI() {
         super.configuraUI();
