@@ -90,6 +90,12 @@ public class MainWindow {
     //Fulls
     private ArrayList<TableModel> fullTables;
 
+    //Vistes secundària
+    private final EliminaFilaWindow fila;
+    private final WindowTruncar truncar;
+    private final WindowOrdena ordre;
+    private final WindowTanca tanca;
+
     public MainWindow(ControladorVista controlador) {
         this.controladorVista = controlador;
         fullTables = new ArrayList<TableModel>();
@@ -103,6 +109,10 @@ public class MainWindow {
         mainFrame.pack();
         mainFrame.setVisible(true);
 
+        fila = new EliminaFilaWindow();
+        truncar = new WindowTruncar();
+        ordre = new WindowOrdena();
+        tanca = new WindowTanca();
 
         afegirFullButton.addActionListener(new ActionListener() {
             @Override
@@ -231,10 +241,8 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                //TODO implementar digitstruncar
-                int digitsTruncar = 2;
                 controladorVista.truncar(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols, s.fila, s.col, digitsTruncar);
+                        s.col, s.nfiles, s.ncols, s.fila, s.col);
             }
         });
 
@@ -543,11 +551,6 @@ public class MainWindow {
         return new SeleccioTaula(table.convertRowIndexToModel(table.getSelectedRow()),
                 table.convertColumnIndexToModel(table.getSelectedColumn()),
                 table.getSelectedRowCount(), table.getSelectedColumnCount());
-    }
-
-    public ArrayList<EntradaTaula> getCurrentEntradesFull(SeleccioTaula seleccio) {
-        ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
-        return entrades;
     }
 
     public void buidaSeleccio(int full, SeleccioTaula seleccio) {

@@ -19,9 +19,9 @@ public class EliminaColWindow {
         mainFrame = new JFrame("Elimina Columna");
         configuraUI();
         mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainFrame.pack();
-        mainFrame.setVisible(true);
+        mainFrame.setVisible(false);
     }
 
     private void configuraUI() {

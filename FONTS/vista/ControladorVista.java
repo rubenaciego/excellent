@@ -7,18 +7,9 @@ public class ControladorVista {
     private final ControladorDomini controladorDomini;
     private final MainWindow window;
 
-    private final EliminaFilaWindow fila;
-    private final WindowTruncar truncar;
-    private final WindowOrdena ordre;
-    private final WindowTanca tanca;
-
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
-        fila = new EliminaFilaWindow();
-        truncar = new WindowTruncar();
-        ordre = new WindowOrdena();
-        tanca = new WindowTanca();
     }
 
     public void afegeixFull() {
@@ -251,11 +242,12 @@ public class ControladorVista {
 
     public void truncar(int full, int filaOrigen, int colOrigen,
                         int numFiles, int numCols, int filaDesti,
-                        int colDesti, int digitsTruncar) {
+                        int colDesti) {
+        truncar.mostra(filaOrigen, colOrigen);
         String[] message =
                 {"TRUNCA_NUMERO," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
-                        filaDesti + "," + colDesti + "," + digitsTruncar};
+                        filaDesti + "," + colDesti + "," + truncar.getDigitsTruncar()};
         try {
             controladorDomini.executaOperacio(message);
         } catch (ExcepcioDomini e) {

@@ -14,10 +14,6 @@ public class WindowOrdena extends WindowSecundaria {
     public WindowOrdena() {
         mainFrame.setTitle("Ordena");
         configuraUI();
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setVisible(true);
     }
 
 
