@@ -21,7 +21,6 @@ public class WindowCerca extends WindowSecundaria {
     @Override
     protected void configuraUI() {
         super.configuraUI();
-
         // Panell cerca
         cercaPanel = new JPanel();
         cercaPanel.setLayout(new GridBagLayout());

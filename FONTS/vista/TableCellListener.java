@@ -14,8 +14,7 @@ import java.beans.PropertyChangeListener;
  *
  *  The source of the Action is a TableCellListener instance.
  */
-public class TableCellListener implements PropertyChangeListener, Runnable
-{
+public class TableCellListener implements PropertyChangeListener, Runnable {
     private JTable table;
     private Action action;
 
@@ -25,31 +24,29 @@ public class TableCellListener implements PropertyChangeListener, Runnable
     private Object newValue;
 
     /**
-     *  Create a TableCellListener.
+     * Create a TableCellListener.
      *
-     *  @param table   the table to be monitored for data changes
-     *  @param action  the Action to invoke when cell data is changed
+     * @param table  the table to be monitored for data changes
+     * @param action the Action to invoke when cell data is changed
      */
-    public TableCellListener(JTable table, Action action)
-    {
+    public TableCellListener(JTable table, Action action) {
         this.table = table;
         this.action = action;
-        this.table.addPropertyChangeListener( this );
+        this.table.addPropertyChangeListener(this);
         //TODO see if the line below is necessary
         this.table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
     }
 
     /**
-     *  Create a TableCellListener with a copy of all the data relevant to
-     *  the change of data for a given cell.
+     * Create a TableCellListener with a copy of all the data relevant to
+     * the change of data for a given cell.
      *
-     *  @param row  the row of the changed cell
-     *  @param column  the column of the changed cell
-     *  @param oldValue  the old data of the changed cell
-     *  @param newValue  the new data of the changed cell
+     * @param row      the row of the changed cell
+     * @param column   the column of the changed cell
+     * @param oldValue the old data of the changed cell
+     * @param newValue the new data of the changed cell
      */
-    private TableCellListener(JTable table, int row, int column, Object oldValue, Object newValue)
-    {
+    private TableCellListener(JTable table, int row, int column, Object oldValue, Object newValue) {
         this.table = table;
         this.row = row;
         this.column = column;
@@ -58,64 +55,58 @@ public class TableCellListener implements PropertyChangeListener, Runnable
     }
 
     /**
-     *  Get the column that was last edited
+     * Get the column that was last edited
      *
-     *  @return the column that was edited
+     * @return the column that was edited
      */
-    public int getColumn()
-    {
+    public int getColumn() {
         return column;
     }
 
     /**
-     *  Get the new value in the cell
+     * Get the new value in the cell
      *
-     *  @return the new value in the cell
+     * @return the new value in the cell
      */
-    public Object getNewValue()
-    {
+    public Object getNewValue() {
         return newValue;
     }
 
     /**
-     *  Get the old value of the cell
+     * Get the old value of the cell
      *
-     *  @return the old value of the cell
+     * @return the old value of the cell
      */
-    public Object getOldValue()
-    {
+    public Object getOldValue() {
         return oldValue;
     }
 
     /**
-     *  Get the row that was last edited
+     * Get the row that was last edited
      *
-     *  @return the row that was edited
+     * @return the row that was edited
      */
-    public int getRow()
-    {
+    public int getRow() {
         return row;
     }
 
     /**
-     *  Get the table of the cell that was changed
+     * Get the table of the cell that was changed
      *
-     *  @return the table of the cell that was changed
+     * @return the table of the cell that was changed
      */
-    public JTable getTable()
-    {
+    public JTable getTable() {
         return table;
     }
+
     //
 //  Implement the PropertyChangeListener interface
 //
     @Override
-    public void propertyChange(PropertyChangeEvent e)
-    {
+    public void propertyChange(PropertyChangeEvent e) {
         //  A cell has started/stopped editing
 
-        if ("tableCellEditor".equals(e.getPropertyName()))
-        {
+        if ("tableCellEditor".equals(e.getPropertyName())) {
             if (table.isEditing())
                 processEditingStarted();
             else
@@ -126,23 +117,22 @@ public class TableCellListener implements PropertyChangeListener, Runnable
     /*
      *  Save information of the cell about to be edited
      */
-    private void processEditingStarted()
-    {
+    private void processEditingStarted() {
         //  The invokeLater is necessary because the editing row and editing
         //  column of the table have not been set when the "tableCellEditor"
         //  PropertyChangeEvent is fired.
         //  This results in the "run" method being invoked
 
-        SwingUtilities.invokeLater( this );
+        SwingUtilities.invokeLater(this);
     }
+
     /*
      *  See above.
      */
     @Override
-    public void run()
-    {
-        row = table.convertRowIndexToModel( table.getEditingRow() );
-        column = table.convertColumnIndexToModel( table.getEditingColumn() );
+    public void run() {
+        row = table.convertRowIndexToModel(table.getEditingRow());
+        column = table.convertColumnIndexToModel(table.getEditingColumn());
         oldValue = table.getModel().getValueAt(row, column);
         newValue = null;
     }
@@ -150,14 +140,12 @@ public class TableCellListener implements PropertyChangeListener, Runnable
     /*
      *	Update the Cell history when necessary
      */
-    private void processEditingStopped()
-    {
+    private void processEditingStopped() {
         newValue = table.getModel().getValueAt(row, column);
 
         //  The data has changed, invoke the supplied Action
 
-        if (! newValue.equals(oldValue))
-        {
+        if (!newValue.equals(oldValue)) {
             //  Make a copy of the data in case another cell starts editing
             //  while processing this change
 
