@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SpinnerWindow {
-    private JFrame mainFrame;
+    private JDialog mainDialog;
     private JPanel mainPanel;
     private JPanel botonsPanel;
     private JPanel spacer1;
@@ -15,13 +15,13 @@ public class SpinnerWindow {
     private JLabel opLabel;
     private JSpinner spinnerOp;
 
-    public SpinnerWindow(String titol, String accio) {
-        mainFrame = new JFrame(titol);
+    public SpinnerWindow(JFrame frame, String titol, String accio) {
+        mainDialog = new JDialog(frame, titol,Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI(accio);
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        mainFrame.pack();
-        mainFrame.setVisible(false);
+        mainDialog.setContentPane(mainPanel);
+        mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        mainDialog.pack();
+        mainDialog.setVisible(false);
     }
 
     private void configuraUI(String accio) {
