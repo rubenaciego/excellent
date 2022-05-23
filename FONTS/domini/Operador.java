@@ -583,9 +583,6 @@ public class Operador {
         for (EntradaMatriuCeles e : entrades)
             result.setCela(e.getCela().copy(), nouOrdre.get(e.getFila()), e.getColumna());
 
-        for (int i = 0; i < nouOrdre.size(); ++i)
-            System.out.println(nouOrdre.get(i));
-
         return result;
     }
 

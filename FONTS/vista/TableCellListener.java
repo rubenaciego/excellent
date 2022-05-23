@@ -100,8 +100,8 @@ public class TableCellListener implements PropertyChangeListener, Runnable {
     }
 
     //
-//  Implement the PropertyChangeListener interface
-//
+    //  Implement the PropertyChangeListener interface
+    //
     @Override
     public void propertyChange(PropertyChangeEvent e) {
         //  A cell has started/stopped editing
