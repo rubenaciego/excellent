@@ -1,5 +1,7 @@
 package domini;
 
+import vista.EntradaTaula;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -132,6 +134,32 @@ public class ControladorFull {
             default:
                 throw new IncompatibleClassChangeError("Operació " + parsejat.getTipusOpFull() + " desconeguda");
         }
+    }
+
+    public int getNumFiles() {
+        return full.getNumFiles();
+    }
+
+    public int getNumCols() {
+        return full.getNumCols();
+    }
+
+    public String getCelaResultat() {
+        Cela c = full.getCela(-1, -1);
+        if (c != null) return c.toString();
+        return "";
+    }
+
+    public ArrayList<EntradaTaula> getEntrades(int srow, int scol, int numFiles, int numCols) {
+        ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
+        ArrayList<EntradaMatriuCeles> e = full.getBloc(srow, scol, numFiles, numCols).getEntrades();
+
+        for (EntradaMatriuCeles entrada : e)
+            entrades.add(new EntradaTaula(entrada.getFila() + srow,
+                    entrada.getColumna() + scol,
+                    entrada.getCela().toString()));
+
+        return entrades;
     }
 
     private void modificaCela(ResultatParserCela resCela, int fila, int col) {

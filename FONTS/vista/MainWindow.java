@@ -426,7 +426,6 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-
                 WindowCerca w = new WindowCerca(mainFrame);
                 w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
 
@@ -438,10 +437,8 @@ public class MainWindow {
                     if (origen == null || desti == null) return;
 
                     String stringCercada = w.getStringCercada();
-
-                    controladorVista.cerca(getFocusedFull(), origen.getKey(),
-                            origen.getValue(), s.nfiles, s.ncols,
-                            desti.getKey(), desti.getValue(), stringCercada);
+                    controladorVista.cerca(getFocusedFull(), s.fila,
+                            s.col, s.nfiles, s.ncols, stringCercada);
                 }
             }
         });
