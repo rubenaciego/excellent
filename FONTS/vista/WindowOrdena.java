@@ -14,6 +14,9 @@ public class WindowOrdena extends WindowSecundaria {
     public WindowOrdena(JFrame frame) {
         super(frame, "Ordena");
     }
+
+    public String getCriteri() {return criteriCombo.getSelectedItem().toString();}
+    public int getColOrd() {return (int)columnaOrdenaSpin.getValue();}
     @Override
     protected void configuraUI() {
         super.configuraUI();
