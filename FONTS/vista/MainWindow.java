@@ -94,10 +94,6 @@ public class MainWindow {
     private JMenuItem menuItemOrdenarBloc = new JMenuItem("Ordena bloc...");
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
 
-    private JMenu menuVista = new JMenu("Vista");
-    private JMenuItem menuItemNightMode = new JMenuItem("Activa el mode nocturn");
-    private JMenuItem menuItemCanviarEstil = new JMenuItem("Canvia l'estil...");
-
     private JMenu menuAjuda = new JMenu("Ajuda");
     private JMenuItem menuItemDocu = new JMenuItem("Documentacio");
     private JMenuItem menuItemSobre = new JMenuItem("Sobre Excellent...");
@@ -756,10 +752,6 @@ public class MainWindow {
         menuFull.add(menuItemOrdenarBloc);
         menuFull.add(menuItemTransposarBloc);
 
-        //Vista
-        menuVista.add(menuItemNightMode);
-        menuVista.add(menuItemCanviarEstil);
-
         //Ajuda
         menuAjuda.add(menuItemDocu);
         menuAjuda.add(menuItemSobre);
@@ -768,7 +760,6 @@ public class MainWindow {
         menuBarVista.add(menuFile);
         menuBarVista.add(menuEditar);
         menuBarVista.add(menuFull);
-        menuBarVista.add(menuVista);
         menuBarVista.add(menuAjuda);
 
         mainFrame.setJMenuBar(menuBarVista);
