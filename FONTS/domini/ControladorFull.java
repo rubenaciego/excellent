@@ -194,7 +194,8 @@ public class ControladorFull {
                 throw new IncompatibleClassChangeError("Tipus cel·la " + resCela.getTipus() + " desconegut");
         }
 
-        guardaCela(c, fila, col);
+        actualitzaReferencies(c, fila, col);
+        full.setCela(c, fila, col);
     }
 
     private void guardaBloc(MatriuCeles bloc, int filaDest, int colDest) {
@@ -207,11 +208,19 @@ public class ControladorFull {
         for (EntradaMatriuCeles e : entrades) {
             int filaDesti = e.getFila() + filaDest;
             int colDesti = e.getColumna() + colDest;
-            guardaCela(e.getCela(), filaDesti, colDesti);
+            actualitzaReferencies(e.getCela(), filaDesti, colDesti);
+        }
+
+        full.buidaBloc(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols());
+
+        for (EntradaMatriuCeles e : entrades) {
+            int filaDesti = e.getFila() + filaDest;
+            int colDesti = e.getColumna() + colDest;
+            full.setCela(e.getCela(), filaDesti, colDesti);
         }
     }
 
-    private void guardaCela(Cela c, int fila, int col) {
+    private void actualitzaReferencies(Cela c, int fila, int col) {
         Cela prev = full.getCela(fila, col);
 
         if (prev != null) {
@@ -231,7 +240,5 @@ public class ControladorFull {
             for (CelaRef r : refs)
                 r.setRef(aRef);
         }
-
-        full.setCela(c, fila, col);
     }
 }

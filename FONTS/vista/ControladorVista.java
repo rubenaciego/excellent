@@ -651,9 +651,9 @@ public class ControladorVista {
                        int numFiles, int numCols, int filaDesti,
                        int colDesti, String criteri, int colOrd) {
         String[] message =
-                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                {"ORDENA," + full + "," + filaOrigen + "," +
                         colOrigen + "," + numFiles + "," + numCols + "," +
-                        filaDesti + "," + colDesti + ",ORDENA" + "," +
+                        filaDesti + "," + colDesti + "," +
                 criteri + "," + colOrd};
         try {
             controladorDomini.executaOperacio(message);

@@ -739,7 +739,7 @@ public class MainWindow {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    String criteri = w.getCriteri();
+                    String criteri = w.getCriteri().toUpperCase();
                     int colOrd = w.getColOrd();
 
                     // Millor mostrar error quan entrada no sigui correcte
