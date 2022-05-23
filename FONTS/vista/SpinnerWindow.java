@@ -24,6 +24,8 @@ public class SpinnerWindow {
         mainFrame.setVisible(false);
     }
 
+    public int getValue() {return (int)spinnerOp.getValue();}
+
     private void configuraUI(String accio) {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());

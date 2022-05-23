@@ -692,7 +692,6 @@ public class MainWindow {
         convertirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO RELACIONAR AMB VISTES
                 String conv = ComboBox.getSelectedItem().toString();
                 SeleccioTaula s = getCurrentSelection();
                 WindowSecundaria w = new WindowSecundaria(mainFrame, "");
@@ -709,6 +708,131 @@ public class MainWindow {
                             origen.getValue(), s.nfiles, s.ncols,
                             desti.getKey(), desti.getValue(), conv);
                 }
+            }
+        });
+
+        menuItemTransposarBloc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.transposaBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue());
+                }
+            }
+        });
+
+        menuItemOrdenarBloc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowOrdena w = new WindowOrdena(mainFrame);
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    String criteri = w.getCriteri();
+                    int colOrd = w.getColOrd();
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.ordenaBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue(), criteri, colOrd);
+                }
+            }
+        });
+
+        menuItemMoureBloc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.mouBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue());
+                }
+            }
+        });
+
+        menuItemCopiarBloc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.copiaBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue());
+                }
+            }
+        });
+
+        menuItemBuidarBloc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+
+                controladorVista.buidaBloc(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols);
+            }
+        });
+
+        menuItemAfegirFila.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.afegeixFila(getFocusedFull());
+            }
+        });
+
+        menuItemAfegirCol.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.afegeixColumna(getFocusedFull());
+            }
+        });
+
+        menuItemElimCol.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.eliminaColumna(getFocusedFull(), 0);
+            }
+        });
+
+        menuItemElimFila.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.eliminaFila(getFocusedFull(), 0);
             }
         });
     }

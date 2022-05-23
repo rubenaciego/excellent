@@ -630,6 +630,146 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    public void transposaBloc(int full, int filaOrigen, int colOrigen,
+                          int numFiles, int numCols, int filaDesti,
+                          int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",TRANSPOSA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void ordenaBloc(int full, int filaOrigen, int colOrigen,
+                       int numFiles, int numCols, int filaDesti,
+                       int colDesti, String criteri, int colOrd) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",ORDENA" + "," +
+                criteri + "," + colOrd};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void mouBloc(int full, int filaOrigen, int colOrigen,
+                           int numFiles, int numCols, int filaDesti,
+                           int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",MOU_BLOC"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void copiaBloc(int full, int filaOrigen, int colOrigen,
+                          int numFiles, int numCols, int filaDesti,
+                          int colDesti) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        filaDesti + "," + colDesti + ",COPIA_BLOC"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void buidaBloc(int full, int filaOrigen, int colOrigen,
+                          int numFiles, int numCols) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + filaOrigen + "," +
+                        colOrigen + "," + numFiles + "," + numCols + "," +
+                        "," + ",BUIDA_BLOC"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void afegeixFila(int full) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + "," +
+                        "," + "," + "," + "," + ",AFEGEIX_FILA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void afegeixColumna(int full) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + "," +
+                        "," + "," + "," + "," + ",AFEGEIX_COLUMNA"};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void eliminaFila(int full, int n) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + "," +
+                        "," + "," + "," + "," + ",ELIMINA_FILA" + "," + n};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
+
+    public void eliminaColumna(int full, int n) {
+        String[] message =
+                {"OPERACIO_FULL," + full + "," + "," +
+                        "," + "," + "," + "," + ",ELIMINA_COLUMNA" + "," + n};
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+        setEntradesFull(full);
+    }
     private void setEntradesFull(int full) {
         SeleccioTaula s = new SeleccioTaula(0, 0, controladorDomini.getNumFiles(full), controladorDomini.getNumCols(full));
         window.buidaSeleccio(full, s);
