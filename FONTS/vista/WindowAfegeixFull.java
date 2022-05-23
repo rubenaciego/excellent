@@ -20,7 +20,7 @@ public class WindowAfegeixFull {
     private JDialog mainDialog;
 
     public WindowAfegeixFull(JFrame frame) {
-        mainDialog = new JDialog(frame, "Crea document", Dialog.ModalityType.DOCUMENT_MODAL);
+        mainDialog = new JDialog(frame, "Afegeix full", Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();
         mainDialog.setContentPane(mainPanel);
         mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
