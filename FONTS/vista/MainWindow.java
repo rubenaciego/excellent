@@ -190,7 +190,15 @@ public class MainWindow {
         menuItemTancar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controladorVista.tancaDocument();
+                WindowTanca w = new WindowTanca(mainFrame);
+                w.mostra();
+
+                if (w.getTanca()) {
+                    if (w.getDesa())
+                        controladorVista.desaDocument();
+
+                    controladorVista.tancaDocument();
+                }
             }
         });
 

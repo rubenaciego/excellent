@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowTanca {
     private JDialog mainDialog;
@@ -12,6 +14,8 @@ public class WindowTanca {
     private JButton cancelaButton;
     private JButton desaTancaButton;
     private JLabel tancaLabel;
+    private boolean tanca;
+    private boolean desa;
 
     public WindowTanca(JFrame frame) {
         mainDialog = new JDialog(frame, "Tanca document", Dialog.ModalityType.DOCUMENT_MODAL);
@@ -20,6 +24,42 @@ public class WindowTanca {
         mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainDialog.pack();
         mainDialog.setVisible(false);
+        tanca = desa = false;
+
+        desaTancaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+                tanca = desa = true;
+            }
+        });
+
+        tancaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+                tanca = true;
+            }
+        });
+
+        cancelaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+            }
+        });
+    }
+
+    public void mostra() {
+        mainDialog.setVisible(true);
+    }
+
+    public boolean getTanca() {
+        return tanca;
+    }
+
+    public boolean getDesa() {
+        return desa;
     }
 
     private void configuraUI() {
