@@ -112,11 +112,11 @@ public class MainWindow {
     private JMenuItem itOrd = new JMenuItem("Ordena bloc");
     private JMenuItem itTransp = new JMenuItem("Transposa bloc");
     //Fulls
-    private ArrayList<TableModel> fullTables;
+    private ArrayList<DefaultTableModel> fullTables;
 
     public MainWindow(ControladorVista controlador) {
         this.controladorVista = controlador;
-        fullTables = new ArrayList<TableModel>();
+        fullTables = new ArrayList<DefaultTableModel>();
         mainFrame = new JFrame("Excellent");
 
         configuraUI();
@@ -1011,6 +1011,26 @@ public class MainWindow {
     public void setFocusedFull(int full) {
         if (full >= 0 && full < fullTables.size())
             tabFulls.setSelectedIndex(full);
+    }
+
+    public void afegeixFila(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setRowCount(m.getRowCount() + 1);
+    }
+
+    public void afegeixColumna(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setColumnCount(m.getColumnCount() + 1);
+    }
+
+    public void eliminaFila(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setRowCount(m.getRowCount() - 1);
+    }
+
+    public void eliminaColumna(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setColumnCount(m.getColumnCount() - 1);
     }
 
     public void errorMessage(String error) {
