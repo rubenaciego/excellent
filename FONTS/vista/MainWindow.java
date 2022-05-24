@@ -75,6 +75,7 @@ public class MainWindow {
     private JMenu menuFile = new JMenu("Fitxer");
     private JMenuItem menuItemCrear = new JMenuItem("Crea document");
     private JMenuItem menuItemCarregar = new JMenuItem("Carrega document");
+    private JMenuItem menuItemReanomena = new JMenuItem("Reanomena document");
     private JMenuItem menuItemTancar = new JMenuItem("Tanca document");
     private JMenuItem menuItemDesar = new JMenuItem("Desa document");
 
@@ -145,7 +146,9 @@ public class MainWindow {
         menuItemCrear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controladorVista.creaDocument("doc.json");
+                WindowCreaDoc w = new WindowCreaDoc(mainFrame, "Crea document");
+                if (w.mostra())
+                    controladorVista.creaDocument(w.getDocumentName());
             }
         });
 
@@ -165,6 +168,29 @@ public class MainWindow {
                 String file = fd.getFile();
                 if (file != null)
                     controladorVista.carregaDocument(fd.getDirectory() + "/" + file);
+            }
+        });
+
+        menuItemReanomena.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                WindowCreaDoc w = new WindowCreaDoc(mainFrame, "Reanomena document");
+                if (w.mostra())
+                    controladorVista.reanomenaDocument(w.getDocumentName());
+            }
+        });
+
+        menuItemDesar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.desaDocument();
+            }
+        });
+
+        menuItemTancar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.tancaDocument();
             }
         });
 
@@ -855,6 +881,7 @@ public class MainWindow {
         //Fitxer
         menuFile.add(menuItemCrear);
         menuFile.add(menuItemCarregar);
+        menuFile.add(menuItemReanomena);
         menuFile.add(menuItemTancar);
         menuFile.add(menuItemDesar);
 
@@ -963,6 +990,11 @@ public class MainWindow {
         setFocusedFull(fullTables.size() - 1);
     }
 
+    public void esborraFulls() {
+        tabFulls.removeAll();
+        fullTables.clear();
+    }
+
     public void esborraFull(int index) {
         if (index >= 0 && index < fullTables.size()) {
             tabFulls.remove(index);
@@ -975,6 +1007,10 @@ public class MainWindow {
 
     public int getFocusedFull() {
         return tabFulls.getSelectedIndex();
+    }
+
+    public void setTitol(String titol) {
+        mainFrame.setTitle(titol);
     }
 
     public SeleccioTaula getCurrentSelection() {

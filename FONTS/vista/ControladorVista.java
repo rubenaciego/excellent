@@ -42,6 +42,43 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
+            window.setTitol("Excellent - " + nom);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void reanomenaDocument(String nom) {
+        String[] message = {"OPERACIO_DOCUMENT,CANVIA_NOM_DOCUMENT", nom};
+
+        try {
+            controladorDomini.executaOperacio(message);
+            window.setTitol("Excellent - " + nom);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void desaDocument() {
+        String[] message = {"OPERACIO_DOCUMENT,DESA_DOCUMENT"};
+
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void tancaDocument() {
+        String[] message = {"OPERACIO_DOCUMENT,TANCA_DOCUMENT"};
+
+        try {
+            controladorDomini.executaOperacio(message);
+            window.esborraFulls();
+            window.setTitol("Excellent");
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -53,6 +90,7 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
+            window.setTitol("Excellent - " + nom);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
