@@ -1,9 +1,8 @@
 package vista;
 
-import util.Utilitats;
-
 import javax.swing.*;
 import java.awt.*;
+import util.Utilitats;
 
 public class WindowOrdena extends WindowSecundaria {
     private JComboBox columnaOrdenaSpin;
@@ -18,7 +17,7 @@ public class WindowOrdena extends WindowSecundaria {
     }
 
     public String getCriteri() {return criteriCombo.getSelectedItem().toString();}
-    public int getColOrd() {return Utilitats.convertirBase26(columnaOrdenaSpin.getSelectedItem().toString()); }
+    public int getColOrd() {return Utilitats.convertirBase26(columnaOrdenaSpin.getSelectedItem().toString());}
     @Override
     protected void configuraUI() {
         super.configuraUI();
