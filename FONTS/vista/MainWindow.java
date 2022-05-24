@@ -734,6 +734,7 @@ public class MainWindow {
                 SeleccioTaula s = getCurrentSelection();
                 WindowOrdena w = new WindowOrdena(mainFrame);
                 w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                w.setEntradesColumna(s.col, fullTables.get(getFocusedFull()).getColumnCount());
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
@@ -747,7 +748,7 @@ public class MainWindow {
 
                     controladorVista.ordenaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
-                            desti.getKey(), desti.getValue(), criteri, colOrd);
+                            desti.getKey(), desti.getValue(), criteri, colOrd - origen.getValue());
                 }
             }
         });
