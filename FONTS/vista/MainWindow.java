@@ -866,6 +866,137 @@ public class MainWindow {
                 controladorVista.eliminaFila(getFocusedFull(), 0);
             }
         });
+
+        itAfFila.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.afegeixFila(getFocusedFull());
+            }
+        });
+
+        itAfCol.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.afegeixColumna(getFocusedFull());
+            }
+        });
+
+        itElFila.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                int fila = s.fila;
+                controladorVista.eliminaFila(getFocusedFull(), fila);
+            }
+        });
+
+        itElCol.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                int col = s.col;
+                controladorVista.eliminaColumna(getFocusedFull(), col);
+            }
+        });
+
+        itBuida.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+
+                controladorVista.buidaBloc(getFocusedFull(), s.fila,
+                        s.col, s.nfiles, s.ncols);
+            }
+        });
+
+        itCopia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.copiaBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue());
+                }
+            }
+        });
+
+        itMou.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.mouBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue());
+                }
+            }
+        });
+
+        itOrd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowOrdena w = new WindowOrdena(mainFrame);
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                w.setEntradesColumna(s.col, fullTables.get(getFocusedFull()).getColumnCount());
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    String criteri = w.getCriteri().toUpperCase();
+                    int colOrd = w.getColOrd();
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.ordenaBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue(), criteri, colOrd - origen.getValue());
+                }
+            }
+        });
+
+        itTransp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
+                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    // Millor mostrar error quan entrada no sigui correcte
+                    if (origen == null || desti == null) return;
+
+                    controladorVista.transposaBloc(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols,
+                            desti.getKey(), desti.getValue());
+                }
+            }
+        });
+
     }
 
     private void inicialitzar_menuContextual() {
