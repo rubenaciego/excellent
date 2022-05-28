@@ -17,13 +17,12 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
+            int i = controladorDomini.getNumFulls() - 1;
+            window.afegeixFull(controladorDomini.getNumFiles(i), controladorDomini.getNumCols(i));
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
-
-        int i = controladorDomini.getNumFulls() - 1;
-        window.afegeixFull(controladorDomini.getNumFiles(i), controladorDomini.getNumCols(i));
     }
 
     public void esborraFull(int index) {
@@ -31,12 +30,11 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
+            window.esborraFull(index);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
         }
-
-        window.esborraFull(index);
     }
 
     public void creaDocument(String nom) {
@@ -44,6 +42,43 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
+            window.setTitol("Excellent - " + nom);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void reanomenaDocument(String nom) {
+        String[] message = {"OPERACIO_DOCUMENT,CANVIA_NOM_DOCUMENT", nom};
+
+        try {
+            controladorDomini.executaOperacio(message);
+            window.setTitol("Excellent - " + nom);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void desaDocument() {
+        String[] message = {"OPERACIO_DOCUMENT,DESA_DOCUMENT"};
+
+        try {
+            controladorDomini.executaOperacio(message);
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void tancaDocument() {
+        String[] message = {"OPERACIO_DOCUMENT,TANCA_DOCUMENT"};
+
+        try {
+            controladorDomini.executaOperacio(message);
+            window.esborraFulls();
+            window.setTitol("Excellent");
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -55,6 +90,7 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
+            window.setTitol("Excellent - " + nom);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -721,6 +757,7 @@ public class ControladorVista {
                         "," + "," + "," + "," + ",AFEGEIX_FILA"};
         try {
             controladorDomini.executaOperacio(message);
+            window.afegeixFila(full);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -735,6 +772,7 @@ public class ControladorVista {
                         "," + "," + "," + "," + ",AFEGEIX_COLUMNA"};
         try {
             controladorDomini.executaOperacio(message);
+            window.afegeixColumna(full);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -749,6 +787,7 @@ public class ControladorVista {
                         "," + "," + "," + "," + ",ELIMINA_FILA" + "," + n};
         try {
             controladorDomini.executaOperacio(message);
+            window.eliminaFila(full);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -763,6 +802,7 @@ public class ControladorVista {
                         "," + "," + "," + "," + ",ELIMINA_COLUMNA" + "," + n};
         try {
             controladorDomini.executaOperacio(message);
+            window.eliminaColumna(full);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());

@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WindowCreaDoc {
 
@@ -16,13 +18,40 @@ public class WindowCreaDoc {
     private JTextField entradaDoc;
     private JLabel nomDocumentLabel;
 
-    public WindowCreaDoc(JFrame frame) {
-        mainDialog = new JDialog(frame, "Crea document", Dialog.ModalityType.DOCUMENT_MODAL);
+    private boolean success;
+
+    public WindowCreaDoc(JFrame frame, String title) {
+        mainDialog = new JDialog(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();
         mainDialog.setContentPane(mainPanel);
         mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainDialog.pack();
         mainDialog.setVisible(false);
+        success = false;
+
+        dAcordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+                success = true;
+            }
+        });
+
+        cancelaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+            }
+        });
+    }
+
+    public boolean mostra() {
+        mainDialog.setVisible(true);
+        return success;
+    }
+
+    public String getDocumentName() {
+        return entradaDoc.getText();
     }
 
     public void configuraUI() {

@@ -5,10 +5,10 @@ import java.awt.*;
 import util.Utilitats;
 
 public class WindowOrdena extends WindowSecundaria {
-    private JComboBox columnaOrdenaSpin;
+    private JComboBox<String> columnaOrdenaSpin;
     private JLabel columnaOrdenacioLabel;
     private JLabel criteriLabel;
-    private JComboBox criteriCombo;
+    private JComboBox<String> criteriCombo;
     private JPanel columnaPanel;
     private JPanel criteriPanel;
 
@@ -16,8 +16,24 @@ public class WindowOrdena extends WindowSecundaria {
         super(frame, "Ordena");
     }
 
-    public String getCriteri() {return criteriCombo.getSelectedItem().toString();}
-    public int getColOrd() {return Utilitats.convertirBase26(columnaOrdenaSpin.getSelectedItem().toString());}
+    public String getCriteri() {
+        return criteriCombo.getSelectedItem().toString();
+    }
+
+    public int getColOrd() {
+        return Utilitats.convertirBase26(columnaOrdenaSpin.getSelectedItem().toString());
+    }
+
+    public void setEntradesColumna(int col, int ncols) {
+        DefaultComboBoxModel<String> ordenaModel = new DefaultComboBoxModel<String>();
+        for (int i = 0; i < ncols; ++i)
+            ordenaModel.addElement(Utilitats.convertirABase26(i));
+
+        columnaOrdenaSpin.setModel(ordenaModel);
+        columnaOrdenaSpin.setSelectedIndex(col);
+        mainDialog.pack();
+    }
+
     @Override
     protected void configuraUI() {
         super.configuraUI();
@@ -39,7 +55,7 @@ public class WindowOrdena extends WindowSecundaria {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 10);
         columnaPanel.add(columnaOrdenacioLabel, gbc);
-        columnaOrdenaSpin = new JComboBox();
+        columnaOrdenaSpin = new JComboBox<String>();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -66,8 +82,8 @@ public class WindowOrdena extends WindowSecundaria {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(15, 10, 10, 10);
         criteriPanel.add(criteriLabel, gbc);
-        criteriCombo = new JComboBox();
-        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        criteriCombo = new JComboBox<String>();
+        final DefaultComboBoxModel<String> defaultComboBoxModel1 = new DefaultComboBoxModel<String>();
         defaultComboBoxModel1.addElement("Ascendent");
         defaultComboBoxModel1.addElement("Descendent");
         criteriCombo.setModel(defaultComboBoxModel1);

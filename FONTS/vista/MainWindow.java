@@ -75,6 +75,7 @@ public class MainWindow {
     private JMenu menuFile = new JMenu("Fitxer");
     private JMenuItem menuItemCrear = new JMenuItem("Crea document");
     private JMenuItem menuItemCarregar = new JMenuItem("Carrega document");
+    private JMenuItem menuItemReanomena = new JMenuItem("Reanomena document");
     private JMenuItem menuItemTancar = new JMenuItem("Tanca document");
     private JMenuItem menuItemDesar = new JMenuItem("Desa document");
 
@@ -112,11 +113,11 @@ public class MainWindow {
     private JMenuItem itOrd = new JMenuItem("Ordena bloc");
     private JMenuItem itTransp = new JMenuItem("Transposa bloc");
     //Fulls
-    private ArrayList<TableModel> fullTables;
+    private ArrayList<DefaultTableModel> fullTables;
 
     public MainWindow(ControladorVista controlador) {
         this.controladorVista = controlador;
-        fullTables = new ArrayList<TableModel>();
+        fullTables = new ArrayList<DefaultTableModel>();
         mainFrame = new JFrame("Excellent");
 
         configuraUI();
@@ -145,7 +146,9 @@ public class MainWindow {
         menuItemCrear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controladorVista.creaDocument("doc.json");
+                WindowCreaDoc w = new WindowCreaDoc(mainFrame, "Crea document");
+                if (w.mostra())
+                    controladorVista.creaDocument(w.getDocumentName());
             }
         });
 
@@ -165,6 +168,37 @@ public class MainWindow {
                 String file = fd.getFile();
                 if (file != null)
                     controladorVista.carregaDocument(fd.getDirectory() + "/" + file);
+            }
+        });
+
+        menuItemReanomena.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                WindowCreaDoc w = new WindowCreaDoc(mainFrame, "Reanomena document");
+                if (w.mostra())
+                    controladorVista.reanomenaDocument(w.getDocumentName());
+            }
+        });
+
+        menuItemDesar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.desaDocument();
+            }
+        });
+
+        menuItemTancar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                WindowTanca w = new WindowTanca(mainFrame);
+                w.mostra();
+
+                if (w.getTanca()) {
+                    if (w.getDesa())
+                        controladorVista.desaDocument();
+
+                    controladorVista.tancaDocument();
+                }
             }
         });
 
@@ -734,6 +768,7 @@ public class MainWindow {
                 SeleccioTaula s = getCurrentSelection();
                 WindowOrdena w = new WindowOrdena(mainFrame);
                 w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                w.setEntradesColumna(s.col, fullTables.get(getFocusedFull()).getColumnCount());
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
@@ -747,7 +782,7 @@ public class MainWindow {
 
                     controladorVista.ordenaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
-                            desti.getKey(), desti.getValue(), criteri, colOrd);
+                            desti.getKey(), desti.getValue(), criteri, colOrd - origen.getValue());
                 }
             }
         });
@@ -854,6 +889,7 @@ public class MainWindow {
         //Fitxer
         menuFile.add(menuItemCrear);
         menuFile.add(menuItemCarregar);
+        menuFile.add(menuItemReanomena);
         menuFile.add(menuItemTancar);
         menuFile.add(menuItemDesar);
 
@@ -962,6 +998,11 @@ public class MainWindow {
         setFocusedFull(fullTables.size() - 1);
     }
 
+    public void esborraFulls() {
+        tabFulls.removeAll();
+        fullTables.clear();
+    }
+
     public void esborraFull(int index) {
         if (index >= 0 && index < fullTables.size()) {
             tabFulls.remove(index);
@@ -974,6 +1015,10 @@ public class MainWindow {
 
     public int getFocusedFull() {
         return tabFulls.getSelectedIndex();
+    }
+
+    public void setTitol(String titol) {
+        mainFrame.setTitle(titol);
     }
 
     public SeleccioTaula getCurrentSelection() {
@@ -1010,6 +1055,26 @@ public class MainWindow {
     public void setFocusedFull(int full) {
         if (full >= 0 && full < fullTables.size())
             tabFulls.setSelectedIndex(full);
+    }
+
+    public void afegeixFila(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setRowCount(m.getRowCount() + 1);
+    }
+
+    public void afegeixColumna(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setColumnCount(m.getColumnCount() + 1);
+    }
+
+    public void eliminaFila(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setRowCount(m.getRowCount() - 1);
+    }
+
+    public void eliminaColumna(int full) {
+        DefaultTableModel m = fullTables.get(full);
+        m.setColumnCount(m.getColumnCount() - 1);
     }
 
     public void errorMessage(String error) {
