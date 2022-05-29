@@ -856,14 +856,43 @@ public class MainWindow {
         menuItemElimCol.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controladorVista.eliminaColumna(getFocusedFull(), 0);
+                SeleccioTaula s = getCurrentSelection();
+
+                int ncols = fullTables.get(getFocusedFull()).getColumnCount();
+
+                SpinnerWindow w = new SpinnerWindow(mainFrame, "",
+                        "Selecciona l'índex de la columna a eliminar", ncols);
+
+                if (s.col >= 0) w.setDefault(s.col + 1);
+                else w.setDefault(1);
+
+                if (w.mostra()) {
+                    int col = w.getValue();
+
+                    controladorVista.eliminaColumna(getFocusedFull(), (col - 1));
+                }
             }
         });
 
         menuItemElimFila.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controladorVista.eliminaFila(getFocusedFull(), 0);
+                SeleccioTaula s = getCurrentSelection();
+
+                int nfiles = fullTables.get(getFocusedFull()).getRowCount();
+
+                SpinnerWindow w = new SpinnerWindow(mainFrame, "",
+                        "Selecciona l'índex de la fila a eliminar", nfiles);
+
+                if (s.fila >= 0) w.setDefault(s.fila + 1);
+                else w.setDefault(1);
+
+                if (w.mostra()) {
+                    int fila = w.getValue();
+
+                    controladorVista.eliminaFila(getFocusedFull(),
+                            (fila - 1));
+                }
             }
         });
 
@@ -886,7 +915,8 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
                 int fila = s.fila;
-                controladorVista.eliminaFila(getFocusedFull(), fila);
+                for (int i = 0; i < s.nfiles; ++i)
+                    controladorVista.eliminaFila(getFocusedFull(), fila);
             }
         });
 
@@ -895,7 +925,8 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
                 int col = s.col;
-                controladorVista.eliminaColumna(getFocusedFull(), col);
+                for (int i = 0; i < s.ncols; ++i)
+                    controladorVista.eliminaColumna(getFocusedFull(), col);
             }
         });
 
@@ -2266,4 +2297,5 @@ public class MainWindow {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SpinnerWindow {
     private JDialog mainDialog;
@@ -14,17 +16,45 @@ public class SpinnerWindow {
     private JButton dAcordButton;
     private JLabel opLabel;
     private JSpinner spinnerOp;
+    protected boolean success;
 
-    public SpinnerWindow(JFrame frame, String titol, String accio) {
+    int maxSpin;
+
+
+    public SpinnerWindow(JFrame frame, String titol, String accio, int nmax) {
         mainDialog = new JDialog(frame, titol,Dialog.ModalityType.DOCUMENT_MODAL);
+        maxSpin = nmax;
         configuraUI(accio);
         mainDialog.setContentPane(mainPanel);
         mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainDialog.pack();
         mainDialog.setVisible(false);
+        success = false;
+
+        dAcordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+                success = true;
+            }
+        });
+
+        cancelaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+            }
+        });
     }
 
     public int getValue() {return (int)spinnerOp.getValue();}
+
+    public void setDefault(int n) {spinnerOp.setValue(n);}
+
+    public boolean mostra() {
+        mainDialog.setVisible(true);
+        return success;
+    }
 
     private void configuraUI(String accio) {
         mainPanel = new JPanel();
@@ -81,7 +111,15 @@ public class SpinnerWindow {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(10, 10, 10, 10);
         opPanel.add(opLabel, gbc);
-        spinnerOp = new JSpinner();
+
+        SpinnerNumberModel m_numberSpinnerModel;
+        int current = 1;
+        int min = 1;
+        int max = maxSpin;
+        int step = 1;
+        m_numberSpinnerModel = new SpinnerNumberModel(current, min, max, step);
+        spinnerOp = new JSpinner(m_numberSpinnerModel);
+
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
