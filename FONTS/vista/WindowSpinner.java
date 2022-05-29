@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SpinnerWindow {
+public class WindowSpinner {
     private JDialog mainDialog;
     private JPanel mainPanel;
     private JPanel botonsPanel;
@@ -21,7 +21,7 @@ public class SpinnerWindow {
     int maxSpin;
 
 
-    public SpinnerWindow(JFrame frame, String titol, String accio, int nmax) {
+    public WindowSpinner(JFrame frame, String titol, String accio, int nmax) {
         mainDialog = new JDialog(frame, titol,Dialog.ModalityType.DOCUMENT_MODAL);
         maxSpin = nmax;
         configuraUI(accio);
