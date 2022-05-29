@@ -8,9 +8,7 @@ import java.lang.Math;
 import net.sf.json.*;
 
 /**
- * @class Operador
- * @brief Classe operador singleton, realitza diverses operacions sobre matrius de cel·les i
- * retorna un resultat
+ * Classe operador singleton, realitza diverses operacions sobre matrius de cel·les i retorna un resultat
  */
 public class Operador {
     private static Operador operador = null;
@@ -18,6 +16,10 @@ public class Operador {
     private Operador() {
     }
 
+    /**
+     * S'obté la instància de l'Operador, típica del patró Singleton
+     * @return la instància de l'Operador
+     */
     public static Operador getInstance() {
         if (operador == null)
             operador = new Operador();
@@ -25,6 +27,11 @@ public class Operador {
         return operador;
     }
 
+    /**
+     * Substitueix cada CelaData de bloc per una CelaText amb l'horòscop corresponent a la CelaData original
+     * @param bloc bloc original on s'aplica l'operació
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles extreuHoroscop(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -44,6 +51,11 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaData de bloc per una CelaNum amb l'any corresponent a la CelaData original
+     * @param bloc bloc original on s'aplica l'operació
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles extreuAny(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -61,6 +73,11 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaData de bloc per una CelaNum amb el mes corresponent a la CelaData original
+     * @param bloc bloc original on s'aplica l'operació
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles extreuMes(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -78,6 +95,11 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaData de bloc per una CelaNum amb el dia corresponent a la CelaData original
+     * @param bloc bloc original on s'aplica l'operació
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles extreuDia(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -95,6 +117,11 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaData de bloc per una CelaText amb el dia de la setmana corresponent a la CelaData original
+     * @param bloc bloc original on s'aplica l'operació
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles extreuDiaSetmana(MatriuCeles bloc) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -115,6 +142,12 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaNum de bloc per una CelaNum amb el valor resultant d’executar l’operació aritmètica unària op
+     * @param bloc bloc original on s'aplica l'operació
+     * @param op operació aritmètica unària que s'executa
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles executaOperacioAritmeticaUnaria(MatriuCeles bloc, OperacioAritmetica op) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -168,9 +201,10 @@ public class Operador {
     }
 
     /**
-     * @param bloc Bloc on executar l'operació estadística
-     * @param op   Operació estadística a executar
-     * @return Matriu de cel·les que només conté una cel·la, el resultat de l'operació
+     * Efectua la funció estadística op a cada CelaNum de la MatriuCeles bloc d’entrada.
+     * @param bloc bloc on executar l'operació estadística
+     * @param op operació estadística a executar
+     * @return bloc resultant després d'aplicar l'operació
      */
     public MatriuCeles executaOperacioEstadistica(MatriuCeles bloc, OperacioEstadistica op) {
         double res = 0.0;
@@ -245,6 +279,12 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaNum de bloc per una CelaNum amb el valor resultant de truncar el valor de la CelaNum original
+     * @param bloc bloc original on s'aplica l'operació
+     * @param n número de decimals a truncar
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles truncaNumero(MatriuCeles bloc, int n) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -263,6 +303,12 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Substitueix cada CelaNum de bloc per una CelaNum amb el valor resultant d'executar la conversió d'unitats conv sobre el valor de la CelaNum original
+     * @param bloc bloc original on s'aplica l'operació
+     * @param conv conversió d'unitats a executar
+     * @return bloc resultant després d'aplicar l'operació
+     */
     public MatriuCeles converteixUnitats(MatriuCeles bloc, ConversioUnitats conv) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -374,9 +420,9 @@ public class Operador {
     }
 
     /**
-     * @param bloc Bloc de cel·les on aplicar l'operació
+     * Substitueix cada CelaText de bloc per una CelaNum amb la longitud del text de la CelaText original
+     * @param bloc bloc original on s'aplica l'operació
      * @return Bloc resultat d'aplicar l'operació
-     * @brief Extreu la longitud de les cel·les textuals
      */
     public MatriuCeles extreuLongitudText(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -399,10 +445,10 @@ public class Operador {
     }
 
     /**
-     * @param bloc    Bloc on cercar ocurrències
-     * @param aCercar Text a cercar
-     * @return Una matriu de cel·les amb una sola cel·la textual que conté el resultat de la cerca en format JSON,
-     * on s'indica el nombre total d'ocurrències i les ocurrències dins de cada cel·la i les posicions on s'han trobat
+     * Cerca el número d’ocurrències total i, per cada CelaText, el número d’ocurrències i els índexs on es troba aCercar.
+     * @param bloc bloc on cercar ocurrències
+     * @param aCercar text a cercar
+     * @return Una matriu de cel·les amb una sola cel·la textual que conté el resultat de la cerca en format JSON
      */
     public MatriuCeles cercaOcurrencies(MatriuCeles bloc, String aCercar) {
         ArrayList<EntradaMatriuCeles> entrades = bloc.getEntrades();
@@ -445,9 +491,9 @@ public class Operador {
     }
 
     /**
-     * @param bloc Bloc que convertir a majúscules
-     * @return Matriu de cel·les resultat de la mateixa mida que el bloc on les cel·les textuals s'han convertit a
-     * majúscules
+     * Substitueix cada CelaText de bloc per una CelaText amb el text en majúscules de la CelaText original
+     * @param bloc bloc que convertir a majúscules
+     * @return Bloc resultat d'aplicar l'operació
      */
     public MatriuCeles converteixMajuscules(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -470,9 +516,9 @@ public class Operador {
     }
 
     /**
-     * @param bloc Bloc que convertir a minúscules
-     * @return Matriu de cel·les resultat de la mateixa mida que el bloc on les cel·les textuals s'han convertit a
-     * minúscules
+     * Substitueix cada CelaText de bloc per una CelaText amb el text en minúscules de la CelaText original
+     * @param bloc bloc que convertir a minúscules
+     * @return Bloc resultat d'aplicar l'operació
      */
     public MatriuCeles converteixMinuscules(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -495,8 +541,9 @@ public class Operador {
     }
 
     /**
-     * @param bloc Bloc a transposar
-     * @return Mateix bloc de mida transposada i transposat
+     * Transposa la MatriuCeles bloc
+     * @param bloc bloc a transposar
+     * @return Mateix bloc transposat i de dimensions
      */
     public MatriuCeles transposa(MatriuCeles bloc) {
         MatriuCeles result = new MatriuCeles(bloc.getNumCols(), bloc.getNumFiles());
@@ -509,11 +556,11 @@ public class Operador {
     }
 
     /**
-     * @param bloc        Bloc on realitzar la substitució
-     * @param aCercar     Text a reemplaçar
-     * @param aSubstituir Text reemplaçat
-     * @return Matriu de cel·les de la mateixa mida on a les cel·les textuals s'ha reemplçat el text aCercar pel
-     * text aSubstituir
+     * Substitueix cada CelaText de bloc per una CelaText amb totes les ocurrències de aCercar reemplaçades per aSubstituir
+     * @param bloc bloc on realitzar la substitució
+     * @param aCercar text a reemplaçar
+     * @param aSubstituir text reemplaçat
+     * @return Bloc resultat d'aplicar l'operació
      */
     public MatriuCeles reemplaca(MatriuCeles bloc, String aCercar, String aSubstituir) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -536,11 +583,11 @@ public class Operador {
     }
 
     /**
+     * Ordena les files de bloc respecte l'ordre marcat per la columna col i el criteri d'ordenació criteri
      * @param bloc    Bloc on realitzar l'ordenació
      * @param col     Columna del bloc respecta la que ordenar
-     * @param criteri Criteri respecte el qual es realitza l'ordenació
-     * @return Retorna el mateix bloc però amb les files permutades respecte l'ordre marcat per la columna col
-     * i el criteri d'ordenació
+     * @param criteri Criteri respecte al qual es realitza l'ordenació
+     * @return Bloc resultat d'aplicar l'operació
      */
     public MatriuCeles ordena(MatriuCeles bloc, int col, CriteriOrdenacio criteri) {
         MatriuCeles result = new MatriuCeles(bloc.getNumFiles(), bloc.getNumCols());
@@ -586,6 +633,12 @@ public class Operador {
         return result;
     }
 
+    /**
+     * Extreu el signe de l'horòscop
+     * @param dia dia de la data en qüestió
+     * @param mes mes de la data en qüestió
+     * @return El signe del zodíac corresponent a la data
+     */
     private String horoscop(int dia, int mes) {
         String astroSign = "";
 
@@ -654,8 +707,9 @@ public class Operador {
     }
 
     /**
+     * Calcula la mitjana de dades
      * @param dades Vector sobre el que calcular la mitjana
-     * @return Mitjana dels valors del vector
+     * @return la mitjana dels valors
      */
     private double mitjana(ArrayList<Double> dades) {
         if (dades.size() == 0) return 0.0;
@@ -670,8 +724,9 @@ public class Operador {
     }
 
     /**
+     * Calcula la medina de dades
      * @param dades Vector sobre el que calcular la mediana
-     * @return Mediana dels valors del vector
+     * @return la mediana dels valors
      */
     private double mediana(ArrayList<Double> dades) {
         if (dades.size() == 0) return 0.0;
@@ -680,8 +735,9 @@ public class Operador {
     }
 
     /**
+     * Calcula la variància
      * @param dades Vector sobre el que calcular la variància
-     * @return Variància dels valors del vector
+     * @return la variància dels valors
      */
     private double variancia(ArrayList<Double> dades) {
         if (dades.size() == 0) return 0.0;
@@ -697,14 +753,16 @@ public class Operador {
     }
 
     /**
+     * Calcula la desviació estàndard
      * @param dades Vector sobre el que calcular la variància
-     * @return Desviació estàndard dels valors del vector
+     * @return la desviació estàndard dels valors
      */
     private double desviacioEstandard(ArrayList<Double> dades) {
         return Math.sqrt(variancia(dades));
     }
 
     /**
+     * Calcula la covariància
      * @param x Primer conjunt de dades de mida n
      * @param y Segon conjunt de dades de mida n
      * @return Covariància entre les dades de x i y
@@ -726,6 +784,7 @@ public class Operador {
     }
 
     /**
+     * Calcula el coeficient de correlació de Pearson
      * @param x Primer conjunt de dades de mida n
      * @param y Segon conjunt de dades de mida n
      * @return Coeficient de Pearson entre les dades de x i y

@@ -3,16 +3,34 @@ package domini;
 import java.util.Iterator;
 import java.util.concurrent.*;
 
+/**
+ * Classe que hereda de MatriuCeles i és l’objecte de modificació principal de l’aplicació.
+ */
 public class Full extends MatriuCeles {
+    /**
+     * Cela especial que es pot usar per obtenir resultats que ocupin una sola Cela.
+     */
     private Cela celaResultat;
 
+    /**
+     * Constructora per defecte
+     */
     public Full() {
         super();
     }
 
+    /**
+     * Constructora principal
+     * @param files número de files del nou Full
+     * @param cols número de columnes del nou Full
+     */
     public Full(int files, int cols) {
         super(files, cols);
     }
+
+    /**
+     * {@inheritDoc}
+     */
 
     @Override
     public Cela getCela(int fila, int col) {
@@ -26,6 +44,13 @@ public class Full extends MatriuCeles {
         else super.setCela(novaCela, fila, col);
     }
 
+    /**
+     * Esborra totes les entrades del Full contingudes al bloc definit per la Cela superior esquerra indexada per (filaIni, colIni) i que té numFiles files i numCols columnes.
+     * @param filaIni fila de la Cela superior esquerra del bloc
+     * @param colIni columna de la Cela superior esquerra del bloc
+     * @param numFiles número de files del bloc
+     * @param numCols número de columnes del bloc
+     */
     public void buidaBloc(int filaIni, int colIni, int numFiles, int numCols) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
@@ -39,6 +64,16 @@ public class Full extends MatriuCeles {
         }
     }
 
+    /**
+     * Copia totes les entrades del Full contingudes al bloc definit per la Cela superior esquerra indexada per (filaIni, colIni) i que té numFiles files i numCols columnes.
+     * El destí de les entrades copiades és el bloc definit per la Cela superior esquerra indexada per (filaFi, colFi) i que té numFiles files i numCols columnes.
+     * @param filaIni fila de la Cela superior esquerra del bloc inicial
+     * @param colIni columna de la Cela superior esquerra del bloc inicial
+     * @param numFiles número de files del bloc
+     * @param numCols número de columnes del bloc
+     * @param filaFi fila de la Cela superior esquerra del bloc final
+     * @param colFi columna de la Cela superior esquerra del bloc final
+     */
     public void copiaBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);
@@ -67,6 +102,16 @@ public class Full extends MatriuCeles {
         }
     }
 
+    /**
+     * Mou totes les entrades del Full contingudes al bloc definit per la Cela superior esquerra indexada per (filaIni, colIni) i que té numFiles files i numCols columnes.
+     * El destí de les entrades copiades és el bloc definit per la Cela superior esquerra indexada per (filaFi, colFi) i que té numFiles files i numCols columnes.
+     * @param filaIni fila de la Cela superior esquerra del bloc inicial
+     * @param colIni columna de la Cela superior esquerra del bloc inicial
+     * @param numFiles número de files del bloc
+     * @param numCols número de columnes del bloc
+     * @param filaFi fila de la Cela superior esquerra del bloc final
+     * @param colFi columna de la Cela superior esquerra del bloc final
+     */
     public void mouBloc(int filaIni, int colIni, int numFiles, int numCols, int filaFi, int colFi) {
         if (blocInvalid(filaIni, colIni, numFiles, numCols))
             throw new ExcepcioForaLimits(filaIni, colIni, numFiles, numCols, this.numFiles, this.numCols);

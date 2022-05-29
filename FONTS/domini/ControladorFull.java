@@ -5,15 +5,32 @@ import vista.EntradaTaula;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Controlador que fa d’intermediari entre el Controlador Domini i un Full quan s’executen Operacions sobre el Full.
+ */
 public class ControladorFull {
+    /**
+     * Full corresponent a l'actual ControladorFull
+     */
     private final Full full;
+    /**
+     * Operador encarregat d'executar totes les operacions de full
+     */
     private final Operador op;
 
+    /**
+     * Constructora principal
+     * @param full full corresponent al nou ControladorFull
+     */
     public ControladorFull(Full full) {
         this.full = full;
         op = Operador.getInstance();
     }
 
+    /**
+     * Executa l’operació que li delega el ControladorDomini
+     * @param parsejat representa l’operació a executar i tots els paràmetres necessaris per la seva execució
+     */
     public void executaOperacio(ResultatParserFull parsejat) {
         int filaIni = parsejat.getFilaOrigen();
         int colIni = parsejat.getColumnaOrigen();
@@ -145,20 +162,40 @@ public class ControladorFull {
         }
     }
 
+    /**
+     * Getter del número de files del full associat
+     * @return el número de files del full associat
+     */
     public int getNumFiles() {
         return full.getNumFiles();
     }
 
+    /**
+     * Getter del número de columnes del full associat
+     * @return el número de columnes del full associat
+     */
     public int getNumCols() {
         return full.getNumCols();
     }
 
+    /**
+     * Getter de la Cela resultat del full associat
+     * @return la Cela resultat en format String
+     */
     public String getCelaResultat() {
         Cela c = full.getCela(-1, -1);
         if (c != null) return c.toString();
         return "";
     }
 
+    /**
+     * S’obtenen totes les entrades no nul·les del bloc del full associat definit per la Cela superior esquerra indexada per (srow, scol) i que té numFiles files i numCols columnes.
+     * @param srow fila de la Cela superior esquerra del bloc inicial
+     * @param scol columna de la Cela superior esquerra del bloc inicial
+     * @param numFiles número de files del bloc
+     * @param numCols número de columnes del bloc
+     * @return les entrades no nul·les del bloc especificat
+     */
     public ArrayList<EntradaTaula> getEntrades(int srow, int scol, int numFiles, int numCols) {
         ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
         ArrayList<EntradaMatriuCeles> e = full.getBloc(srow, scol, numFiles, numCols).getEntrades();
@@ -171,6 +208,12 @@ public class ControladorFull {
         return entrades;
     }
 
+    /**
+     * Modifica la Cela identificada per fila i col del full segons la informació especificada resCela
+     * @param resCela resultat obtingut del Parser referent a la Cela
+     * @param fila fila on està situada la Cela
+     * @param col columna on està situada la Cela
+     */
     private void modificaCela(ResultatParserCela resCela, int fila, int col) {
         Cela c = null;
 
@@ -207,6 +250,13 @@ public class ControladorFull {
         full.setCela(c, fila, col);
     }
 
+    /**
+     * Afegeix la MatriuCeles al bloc del full associat que comença a la Cela superior esquerra indexada per (filaDest, colDest)
+     * @param bloc MatriuCeles que actualitza el full associat
+     * @param filaDest fila de la Cela superior esquerra del bloc destí
+     * @param colDest columna de la Cela superior esquerra del bloc destí
+     * @throws ExcepcioForaLimits si el bloc definit cau fora dels límits del full associat
+     */
     private void guardaBloc(MatriuCeles bloc, int filaDest, int colDest) {
         if (full.blocInvalid(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols()))
             throw new ExcepcioForaLimits(filaDest, colDest, bloc.getNumFiles(), bloc.getNumCols(),
@@ -229,6 +279,12 @@ public class ControladorFull {
         }
     }
 
+    /**
+     * Actualitza les referències de la Cela c indexada a (fila, col)
+     * @param c nova Cela a la que s'han d'actualitzar les referències
+     * @param fila fila on està situada c
+     * @param col columna on està situada c
+     */
     private void actualitzaReferencies(Cela c, int fila, int col) {
         Cela prev = full.getCela(fila, col);
 
