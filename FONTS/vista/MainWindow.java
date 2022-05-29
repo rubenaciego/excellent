@@ -217,10 +217,16 @@ public class MainWindow {
                 int nfiles = fullTables.get(getFocusedFull()).getRowCount();
                 int ncols = fullTables.get(getFocusedFull()).getColumnCount();
                 WindowSpinner w = new WindowSpinner(mainFrame, "",
-                        "Selecciona l'índex de la fila a seleccionar", nfiles);
+                        "Selecciona l'índex de la fila a seleccionar", nfiles
+                        , false);
+
+                SeleccioTaula s = getCurrentSelection();
+
+                if (s.fila >= 0) w.setDefault(s.fila + 1);
+                else w.setDefault(1);
 
                 if (w.mostra()) {
-                    int f = w.getValue();
+                    int f = w.getValue() - 1;
                     JPanel panel = (JPanel) tabFulls.getSelectedComponent();
                     JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
                     table.setRowSelectionInterval(f, f);
@@ -235,7 +241,13 @@ public class MainWindow {
                 int nfiles = fullTables.get(getFocusedFull()).getRowCount();
                 int ncols = fullTables.get(getFocusedFull()).getColumnCount();
                 WindowSpinner w = new WindowSpinner(mainFrame, "",
-                        "Selecciona l'índex de la columna a seleccionar", ncols);
+                        "Selecciona l'índex de la columna a seleccionar",
+                        ncols, true);
+
+                SeleccioTaula s = getCurrentSelection();
+
+                if (s.col >= 0) w.setDefault(s.col + 1);
+                else w.setDefault(1);
 
                 if (w.mostra()) {
                     int c = w.getValue();
@@ -906,7 +918,8 @@ public class MainWindow {
                 int ncols = fullTables.get(getFocusedFull()).getColumnCount();
 
                 WindowSpinner w = new WindowSpinner(mainFrame, "",
-                        "Selecciona l'índex de la columna a eliminar", ncols);
+                        "Selecciona l'índex de la columna a eliminar", ncols,
+                        true);
 
                 if (s.col >= 0) w.setDefault(s.col + 1);
                 else w.setDefault(1);
@@ -927,7 +940,8 @@ public class MainWindow {
                 int nfiles = fullTables.get(getFocusedFull()).getRowCount();
 
                 WindowSpinner w = new WindowSpinner(mainFrame, "",
-                        "Selecciona l'índex de la fila a eliminar", nfiles);
+                        "Selecciona l'índex de la fila a eliminar", nfiles,
+                        false);
 
                 if (s.fila >= 0) w.setDefault(s.fila + 1);
                 else w.setDefault(1);

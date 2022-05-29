@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import util.*;
 
 public class WindowSpinner {
     private JDialog mainDialog;
@@ -17,13 +18,15 @@ public class WindowSpinner {
     private JLabel opLabel;
     private JSpinner spinnerOp;
     protected boolean success;
+    boolean usaLletres;
 
     int maxSpin;
 
-
-    public WindowSpinner(JFrame frame, String titol, String accio, int nmax) {
+    public WindowSpinner(JFrame frame, String titol, String accio, int nmax,
+                         boolean lletres) {
         mainDialog = new JDialog(frame, titol,Dialog.ModalityType.DOCUMENT_MODAL);
         maxSpin = nmax;
+        usaLletres = lletres;
         configuraUI(accio);
         mainDialog.setContentPane(mainPanel);
         mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -47,9 +50,15 @@ public class WindowSpinner {
         });
     }
 
-    public int getValue() {return (int)spinnerOp.getValue();}
+    public int getValue() {
+        if (!usaLletres) return (int)spinnerOp.getValue();
+        else return Utilitats.convertirBase26(spinnerOp.getValue().toString());
+    }
 
-    public void setDefault(int n) {spinnerOp.setValue(n);}
+    public void setDefault(int n) {
+        if (!usaLletres)  spinnerOp.setValue(n);
+        else spinnerOp.setValue(Utilitats.convertirABase26(n-1));
+    }
 
     public boolean mostra() {
         mainDialog.setVisible(true);
@@ -112,13 +121,24 @@ public class WindowSpinner {
         gbc.insets = new Insets(10, 10, 10, 10);
         opPanel.add(opLabel, gbc);
 
-        SpinnerNumberModel m_numberSpinnerModel;
-        int current = 1;
-        int min = 1;
-        int max = maxSpin;
-        int step = 1;
-        m_numberSpinnerModel = new SpinnerNumberModel(current, min, max, step);
-        spinnerOp = new JSpinner(m_numberSpinnerModel);
+        if (!usaLletres){
+            SpinnerNumberModel m_numberSpinnerModel;
+
+            int current = 1;
+            int min = 1;
+            int max = maxSpin;
+            int step = 1;
+            m_numberSpinnerModel = new SpinnerNumberModel(current, min, max, step);
+            spinnerOp = new JSpinner(m_numberSpinnerModel);
+        } else {
+            SpinnerListModel m_stringSpinnerModel;
+            String[] llistaCols = new String[maxSpin];
+            for (int i = 0; i < maxSpin; ++i) {
+                llistaCols[i] = Utilitats.convertirABase26(i);
+            }
+            m_stringSpinnerModel = new SpinnerListModel(llistaCols);
+            spinnerOp = new JSpinner(m_stringSpinnerModel);
+        }
 
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
