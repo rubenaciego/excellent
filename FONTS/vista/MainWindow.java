@@ -263,15 +263,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Valor absolut");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.valorAbsolut(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -283,15 +293,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Incrementar");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.incrementar(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -303,15 +323,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Decrementar");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.decrementar(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -323,15 +353,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Exponencial");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.exponencial(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -343,15 +383,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Cosinus");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.cosinus(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -362,9 +412,31 @@ public class MainWindow {
         sinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
                 SeleccioTaula s = getCurrentSelection();
-                controladorVista.sinus(getFocusedFull(), s.fila, s.col,
-                        s.nfiles, s.ncols, s.fila, s.col);
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Sinus");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
+
+                if (w.mostra()) {
+                    Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
+                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
+
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
+
+                    controladorVista.sinus(getFocusedFull(), origen.getKey(),
+                            origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
+                }
             }
         });
 
@@ -372,15 +444,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Cosh");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.cosinusHiperbolic(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -392,15 +474,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Sinh");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.sinusHiperbolic(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -412,15 +504,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Tanh");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.tangentHiperbolic(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -433,14 +535,24 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
                 WindowTruncar w = new WindowTruncar(mainFrame);
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     int digitsTruncar = w.getDigitsTruncar();
                     controladorVista.truncar(getFocusedFull(), origen.getKey(),
@@ -453,15 +565,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Longitud del text");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.longitudText(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -473,15 +595,23 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Convertir a majúscules");
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.majuscules(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -493,15 +623,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Convertir a minúscules");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.minuscules(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -514,14 +654,17 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
                 WindowCerca w = new WindowCerca(mainFrame);
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
-                    Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
 
                     String stringCercada = w.getStringCercada();
                     controladorVista.cerca(getFocusedFull(), s.fila,
@@ -542,8 +685,14 @@ public class MainWindow {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     String stringCercada = w.getStringCercada();
                     String stringReemplacadora = w.getStringReemplacadora();
@@ -560,15 +709,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Mitjana");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.mitjana(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -580,15 +739,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Mediana");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.mediana(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -600,15 +769,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Variància");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.variancia(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -620,15 +799,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Desviació estàndard");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.desviacioEstandard(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -640,15 +829,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Covariància");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.covariancia(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -660,15 +859,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Coeficient de correlació");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.coeficientPearson(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -680,15 +889,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Extreu dia");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.extreureDia(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -700,15 +919,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Extreu mes");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.extreureMes(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -720,15 +949,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Extreu any");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.extreureAny(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -740,15 +979,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Extreu dia de la setmana");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.extreureDiaSetmana(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -760,15 +1009,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Extreu horòscop");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.extreureHoroscop(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols, desti.getKey(), desti.getValue());
@@ -781,15 +1040,25 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 String conv = ComboBox.getSelectedItem().toString();
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Convertir unitats");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.convertirUnitats(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -802,15 +1071,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Transposa bloc");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.transposaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -824,7 +1103,12 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
                 WindowOrdena w = new WindowOrdena(mainFrame);
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
+
                 w.setEntradesColumna(s.col, fullTables.get(getFocusedFull()).getColumnCount());
 
                 if (w.mostra()) {
@@ -834,8 +1118,14 @@ public class MainWindow {
                     String criteri = w.getCriteri().toUpperCase();
                     int colOrd = w.getColOrd();
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.ordenaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -848,15 +1138,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Mou bloc");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.mouBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -869,15 +1169,25 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Copia bloc");
+
+                if (!s.empty())
+                    w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else
+                    w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.copiaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -891,8 +1201,8 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
 
-                controladorVista.buidaBloc(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols);
+                if (!s.empty())
+                    controladorVista.buidaBloc(getFocusedFull(), s.fila, s.col, s.nfiles, s.ncols);
             }
         });
 
@@ -921,13 +1231,12 @@ public class MainWindow {
                         "Selecciona l'índex de la columna a eliminar", ncols,
                         true);
 
-                if (s.col >= 0) w.setDefault(s.col + 1);
+                if (!s.empty()) w.setDefault(s.col + 1);
                 else w.setDefault(1);
 
                 if (w.mostra()) {
                     int col = w.getValue();
-
-                    controladorVista.eliminaColumna(getFocusedFull(), (col - 1));
+                    controladorVista.eliminaColumna(getFocusedFull(), col - 1);
                 }
             }
         });
@@ -943,14 +1252,12 @@ public class MainWindow {
                         "Selecciona l'índex de la fila a eliminar", nfiles,
                         false);
 
-                if (s.fila >= 0) w.setDefault(s.fila + 1);
+                if (!s.empty()) w.setDefault(s.fila + 1);
                 else w.setDefault(1);
 
                 if (w.mostra()) {
                     int fila = w.getValue();
-
-                    controladorVista.eliminaFila(getFocusedFull(),
-                            (fila - 1));
+                    controladorVista.eliminaFila(getFocusedFull(), fila - 1);
                 }
             }
         });
@@ -974,10 +1281,13 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 int ncols = fullTables.get(getFocusedFull()).getColumnCount();
                 SeleccioTaula s = getCurrentSelection();
-                JPanel panel = (JPanel) tabFulls.getSelectedComponent();
-                JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
-                table.setRowSelectionInterval(s.fila, s.fila + s.nfiles - 1);
-                table.setColumnSelectionInterval(0, ncols - 1);
+
+                if (!s.empty()) {
+                    JPanel panel = (JPanel) tabFulls.getSelectedComponent();
+                    JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
+                    table.setRowSelectionInterval(s.fila, s.fila + s.nfiles - 1);
+                    table.setColumnSelectionInterval(0, ncols - 1);
+                }
             }
         });
 
@@ -986,10 +1296,13 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 int nfiles = fullTables.get(getFocusedFull()).getRowCount();
                 SeleccioTaula s = getCurrentSelection();
-                JPanel panel = (JPanel) tabFulls.getSelectedComponent();
-                JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
-                table.setRowSelectionInterval(0, nfiles - 1);
-                table.setColumnSelectionInterval(s.col, s.col + s.ncols - 1);
+
+                if (!s.empty()) {
+                    JPanel panel = (JPanel) tabFulls.getSelectedComponent();
+                    JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
+                    table.setRowSelectionInterval(0, nfiles - 1);
+                    table.setColumnSelectionInterval(s.col, s.col + s.ncols - 1);
+                }
             }
         });
 
@@ -997,9 +1310,12 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                int fila = s.fila;
-                for (int i = 0; i < s.nfiles; ++i)
-                    controladorVista.eliminaFila(getFocusedFull(), fila);
+
+                if (!s.empty()) {
+                    int fila = s.fila;
+                    for (int i = 0; i < s.nfiles; ++i)
+                        controladorVista.eliminaFila(getFocusedFull(), fila);
+                }
             }
         });
 
@@ -1007,9 +1323,12 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                int col = s.col;
-                for (int i = 0; i < s.ncols; ++i)
-                    controladorVista.eliminaColumna(getFocusedFull(), col);
+
+                if (!s.empty()) {
+                    int col = s.col;
+                    for (int i = 0; i < s.ncols; ++i)
+                        controladorVista.eliminaColumna(getFocusedFull(), col);
+                }
             }
         });
 
@@ -1018,8 +1337,8 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
 
-                controladorVista.buidaBloc(getFocusedFull(), s.fila,
-                        s.col, s.nfiles, s.ncols);
+                if (!s.empty())
+                    controladorVista.buidaBloc(getFocusedFull(), s.fila, s.col, s.nfiles, s.ncols);
             }
         });
 
@@ -1027,15 +1346,23 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Copia bloc");
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.copiaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -1048,15 +1375,23 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Mou bloc");
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.mouBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -1070,7 +1405,10 @@ public class MainWindow {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
                 WindowOrdena w = new WindowOrdena(mainFrame);
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
+
                 w.setEntradesColumna(s.col, fullTables.get(getFocusedFull()).getColumnCount());
 
                 if (w.mostra()) {
@@ -1080,8 +1418,14 @@ public class MainWindow {
                     String criteri = w.getCriteri().toUpperCase();
                     int colOrd = w.getColOrd();
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.ordenaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -1094,15 +1438,23 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-                WindowSecundaria w = new WindowSecundaria(mainFrame, "");
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                WindowSecundaria w = new WindowSecundaria(mainFrame, "Transposa bloc");
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
                     Pair<Integer, Integer> desti = Utilitats.convertirAIndexs(w.getDesti());
 
-                    // Millor mostrar error quan entrada no sigui correcte
-                    if (origen == null || desti == null) return;
+                    if (origen == null) {
+                        errorMessage("Error en la cel·la d'origen " + w.getOrigen());
+                        return;
+                    }
+                    if (desti == null) {
+                        errorMessage("Error en la cel·la de destí " + w.getDesti());
+                        return;
+                    }
 
                     controladorVista.transposaBloc(getFocusedFull(), origen.getKey(),
                             origen.getValue(), s.nfiles, s.ncols,
@@ -1110,7 +1462,6 @@ public class MainWindow {
                 }
             }
         });
-
     }
 
     private void inicialitzar_menuContextual() {

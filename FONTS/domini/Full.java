@@ -100,7 +100,7 @@ public class Full extends MatriuCeles {
 
     @Override
     public boolean blocInvalid(int filaIni, int colIni, int numFiles, int numCols) {
-        if (filaIni == -1 && colIni == -1 && numFiles == 1 && numCols == 1) return false;
+        if (filaIni == -1 && colIni == -1 && numFiles <= 1 && numCols <= 1) return false;
         return super.blocInvalid(filaIni, colIni, numFiles, numCols);
     }
 }

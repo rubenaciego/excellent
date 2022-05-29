@@ -12,4 +12,8 @@ public class SeleccioTaula {
         nfiles = nf;
         ncols = nc;
     }
+
+    public boolean empty() {
+        return nfiles == 0 || ncols == 0 || fila == -1 || col == -1;
+    }
 }

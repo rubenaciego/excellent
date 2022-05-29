@@ -57,7 +57,7 @@ public class WindowSpinner {
 
     public void setDefault(int n) {
         if (!usaLletres)  spinnerOp.setValue(n);
-        else spinnerOp.setValue(Utilitats.convertirABase26(n-1));
+        else spinnerOp.setValue(Utilitats.convertirABase26(n - 1));
     }
 
     public boolean mostra() {
@@ -133,9 +133,10 @@ public class WindowSpinner {
         } else {
             SpinnerListModel m_stringSpinnerModel;
             String[] llistaCols = new String[maxSpin];
-            for (int i = 0; i < maxSpin; ++i) {
+
+            for (int i = 0; i < maxSpin; ++i)
                 llistaCols[i] = Utilitats.convertirABase26(i);
-            }
+
             m_stringSpinnerModel = new SpinnerListModel(llistaCols);
             spinnerOp = new JSpinner(m_stringSpinnerModel);
         }

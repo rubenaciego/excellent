@@ -94,7 +94,15 @@ public class ControladorFull {
             case TRANSPOSA:
                 bloc = full.getBloc(filaIni, colIni, numFiles, numCols);
                 res = op.transposa(bloc);
-                full.buidaBloc(filaIni, colIni, numFiles, numCols);
+
+                if (filaIni == filaDest && colIni == colDest)
+                {
+                    if (numFiles > numCols)
+                        full.buidaBloc(filaIni + numCols, colIni ,numFiles - numCols, numCols);
+                    else if (numCols > numFiles)
+                        full.buidaBloc(filaIni, colIni + numFiles, numFiles, numCols - numFiles);
+                }
+
                 guardaBloc(res, filaDest, colDest);
                 break;
             case REEMPLACA:
