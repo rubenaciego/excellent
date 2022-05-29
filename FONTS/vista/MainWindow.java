@@ -96,7 +96,7 @@ public class MainWindow {
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
 
     private JMenu menuAjuda = new JMenu("Ajuda");
-    private JMenuItem menuItemDocu = new JMenuItem("Documentacio");
+    private JMenuItem menuItemDocu = new JMenuItem("Documentació");
     private JMenuItem menuItemSobre = new JMenuItem("Sobre Excellent...");
 
     //Menu Clic dret
@@ -1312,6 +1312,10 @@ public class MainWindow {
         JOptionPane.showMessageDialog(mainFrame, error, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    private boolean algunFull() {
+        return fullTables.size() > 0;
+    }
+
     private void configuraUI() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
@@ -1456,7 +1460,7 @@ public class MainWindow {
         opAritButtPanel.add(truncarButton, gbc);
 
         operacionsAritmetiquesLabel = new JLabel();
-        operacionsAritmetiquesLabel.setText("Operacions aritmetiques");
+        operacionsAritmetiquesLabel.setText("Operacions aritmètiques");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -1487,7 +1491,7 @@ public class MainWindow {
         opEstPanel.add(opEstButtPanel, gbc);
 
         covarianciaButton = new JButton();
-        covarianciaButton.setText("Covariancia");
+        covarianciaButton.setText("Covariància");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -1531,7 +1535,7 @@ public class MainWindow {
         opEstButtPanel.add(mitjanaButton, gbc);
 
         varianciaButton = new JButton();
-        varianciaButton.setText("Variancia");
+        varianciaButton.setText("Variància");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -1553,7 +1557,7 @@ public class MainWindow {
         opEstButtPanel.add(medianaButton, gbc);
 
         operacionsEstadistiquesLabel = new JLabel();
-        operacionsEstadistiquesLabel.setText("Operacions estadistiques");
+        operacionsEstadistiquesLabel.setText("Operacions estadístiques");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -1583,7 +1587,7 @@ public class MainWindow {
         opTextPanel.add(opTextButtPanel, gbc);
 
         reemplacaButton = new JButton();
-        reemplacaButton.setText("Reemplaca");
+        reemplacaButton.setText("Reemplaça");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -1605,7 +1609,7 @@ public class MainWindow {
         opTextButtPanel.add(longButton, gbc);
 
         minuscButton = new JButton();
-        minuscButton.setText("Minusc");
+        minuscButton.setText("Minúsc");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -1616,7 +1620,7 @@ public class MainWindow {
         opTextButtPanel.add(minuscButton, gbc);
 
         majButton = new JButton();
-        majButton.setText("Majusc");
+        majButton.setText("Majúsc");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -1677,7 +1681,7 @@ public class MainWindow {
         opDataButtPanel.add(diaSetmButton, gbc);
 
         horoscopButton = new JButton();
-        horoscopButton.setText("Horoscop");
+        horoscopButton.setText("Horòscop");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -1799,7 +1803,7 @@ public class MainWindow {
         opConvButtPanel.add(convertirButton, gbc);
 
         convUniComboBox = new JLabel();
-        convUniComboBox.setText("Conversio unitats");
+        convUniComboBox.setText("Conversió d'unitats");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -1998,7 +2002,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel3.add(truncarButton, gbc);
         operacionsAritmetiquesLabel = new JLabel();
-        operacionsAritmetiquesLabel.setText("Operacions aritmetiques");
+        operacionsAritmetiquesLabel.setText("Operacions aritmètiques");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -2025,7 +2029,7 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.BOTH;
         panel4.add(panel5, gbc);
         covarianciaButton = new JButton();
-        covarianciaButton.setText("Covariancia");
+        covarianciaButton.setText("Covariància");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -2065,7 +2069,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel5.add(mitjanaButton, gbc);
         varianciaButton = new JButton();
-        varianciaButton.setText("Variancia");
+        varianciaButton.setText("Variància");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -2085,7 +2089,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel5.add(medianaButton, gbc);
         operacionsEstadistiquesLabel = new JLabel();
-        operacionsEstadistiquesLabel.setText("Operacions estadistiques");
+        operacionsEstadistiquesLabel.setText("Operacions estadístiques");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -2112,7 +2116,7 @@ public class MainWindow {
         gbc.fill = GridBagConstraints.BOTH;
         panel6.add(panel7, gbc);
         reemplacaButton = new JButton();
-        reemplacaButton.setText("Reemplaca");
+        reemplacaButton.setText("Reemplaça");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -2132,7 +2136,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel7.add(longButton, gbc);
         minuscButton = new JButton();
-        minuscButton.setText("Minusc");
+        minuscButton.setText("Minúsc");
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -2142,7 +2146,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel7.add(minuscButton, gbc);
         majButton = new JButton();
-        majButton.setText("Majusc");
+        majButton.setText("Majúsc");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -2197,7 +2201,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel9.add(diaSetmButton, gbc);
         horoscopButton = new JButton();
-        horoscopButton.setText("Horoscop");
+        horoscopButton.setText("Horòscop");
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -2311,7 +2315,7 @@ public class MainWindow {
         gbc.insets = new Insets(5, 5, 5, 5);
         panel11.add(convertirButton, gbc);
         convUniComboBox = new JLabel();
-        convUniComboBox.setText("Conversio unitats");
+        convUniComboBox.setText("Conversió d'unitats");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;

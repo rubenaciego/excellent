@@ -129,7 +129,7 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Operacions aritmetiques"/>
+                  <text value="Operacions aritmètiques"/>
                 </properties>
               </component>
             </children>
@@ -156,7 +156,7 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <text value="Covariancia"/>
+                      <text value="Covariància"/>
                     </properties>
                   </component>
                   <component id="f0b" class="javax.swing.JButton" binding="desvEstButton">
@@ -192,7 +192,7 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <text value="Variancia"/>
+                      <text value="Variància"/>
                     </properties>
                   </component>
                   <component id="eff77" class="javax.swing.JButton" binding="medianaButton">
@@ -212,7 +212,7 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Operacions estadistiques"/>
+                  <text value="Operacions estadístiques"/>
                 </properties>
               </component>
             </children>
@@ -239,7 +239,7 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <text value="Reemplaca"/>
+                      <text value="Reemplaça"/>
                     </properties>
                   </component>
                   <component id="64e88" class="javax.swing.JButton" binding="longButton">
@@ -257,7 +257,7 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <text value="Minusc"/>
+                      <text value="Minúsc"/>
                     </properties>
                   </component>
                   <component id="5ecb5" class="javax.swing.JButton" binding="majButton">
@@ -266,7 +266,7 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <text value="Majusc"/>
+                      <text value="Majúsc"/>
                     </properties>
                   </component>
                   <component id="e75b0" class="javax.swing.JButton" binding="cercaButton" default-binding="true">
@@ -322,7 +322,7 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                     </constraints>
                     <properties>
-                      <text value="Horoscop"/>
+                      <text value="Horòscop"/>
                     </properties>
                   </component>
                   <component id="925c3" class="javax.swing.JButton" binding="diaButton">
@@ -438,7 +438,7 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Conversio unitats"/>
+                  <text value="Conversió d'unitats"/>
                 </properties>
               </component>
             </children>
