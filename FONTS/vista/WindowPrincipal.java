@@ -2862,11 +2862,11 @@ public class WindowPrincipal {
         mainPanel.add(barraInput, gbc);
         barraInput.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         entradaInput = new JTextField();
-        entradaInput.setMinimumSize(new Dimension(1699, 130));
+        entradaInput.setMinimumSize(new Dimension(1699, 0));
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
-        gbc.weightx = 2.0;
+        gbc.weightx = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         barraInput.add(entradaInput, gbc);
