@@ -1560,7 +1560,7 @@ public class WindowPrincipal {
 
                 if (w.mostra()) {
                     int col = w.getValue();
-                    controladorVista.eliminaColumna(getFocusedFull(), col - 1);
+                    controladorVista.eliminaColumna(getFocusedFull(), col);
                 }
             }
         });
