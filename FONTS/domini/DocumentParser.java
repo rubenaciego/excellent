@@ -2,8 +2,10 @@ package domini;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import javafx.util.Pair;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
+import util.Utilitats;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -210,9 +212,9 @@ public class DocumentParser {
     private void afegeixCelesRef(Full full, ArrayList<EntradaMatriuCeles> celesRef) {
         for (EntradaMatriuCeles e : celesRef) {
             String refTxt = e.getCela().getInputUsuari();
-            int split = refTxt.indexOf(':');
-            int fRef = Integer.parseInt(refTxt.substring(0, split));
-            int cRef = Integer.parseInt(refTxt.substring(split + 1));
+            Pair<Integer, Integer> p = Utilitats.convertirAIndexs(refTxt.substring(1));
+            int fRef = p.getKey();
+            int cRef = p.getValue();
             Cela aRef = full.getCela(fRef, cRef);
 
             if (aRef != null) {
