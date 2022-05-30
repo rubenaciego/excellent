@@ -76,7 +76,7 @@ public class ControladorDominiTest {
         controladorDomini = new ControladorDomini(mockDocument,
                 mockControladorsFull);
         controladorDomini.executaOperacio(opSenseParsejarTest3);
-        verify(mockDocument, times(1)).afegeixFull();
+        verify(mockDocument, times(1)).afegeixFull(100, 100);
     }
 
 

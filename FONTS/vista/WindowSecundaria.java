@@ -66,7 +66,9 @@ public class WindowSecundaria {
      * Camp per poder entrar el destí de l’operació.
      */
     protected JTextField entradaDesti;
-
+    /**
+     * Indicador si s'ha sortit cancel·lant
+     */
     protected boolean success;
 
     /**
@@ -126,7 +128,7 @@ public class WindowSecundaria {
 
     /**
      * Fa visible la WindowSecundaria
-     * @return true
+     * @return retorna si s'ha sortit cancel·lant
      */
     public boolean mostra() {
         mainDialog.setVisible(true);

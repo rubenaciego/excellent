@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class WindowPrincipal {
     /**
-     *  Instància corresponent al controladorVista.
+     * Instància corresponent al controladorVista.
      */
     private final ControladorVista controladorVista;
     /**
@@ -406,6 +406,7 @@ public class WindowPrincipal {
     /**
      * Constructora principal. S'encarrega de crear tots els elements necessaris per aconseguir l'aspecte visual corresponent
      * i també tots els actionListeners que tots els botons i semblants de l'aplicació requereixen
+     *
      * @param controlador el controlador de la capa de presentació
      */
     public WindowPrincipal(ControladorVista controlador) {
@@ -1582,10 +1583,16 @@ public class WindowPrincipal {
         menuItemAfegirFull.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controladorVista.afegeixFull();
+                WindowAfegeixFull w = new WindowAfegeixFull(mainFrame);
 
-                if (!fullTables.isEmpty())
-                    habilitaControls();
+                if (w.mostra()) {
+                    int files = w.getNumFiles();
+                    int cols = w.getNumCols();
+                    controladorVista.afegeixFull(files, cols);
+
+                    if (!fullTables.isEmpty())
+                        habilitaControls();
+                }
             }
         });
 
@@ -2004,6 +2011,7 @@ public class WindowPrincipal {
 
     /**
      * S’afegeix un nou full al document
+     *
      * @param nrows número de files del nou full
      * @param ncols número de columnes del nou full
      */
@@ -2126,6 +2134,7 @@ public class WindowPrincipal {
 
     /**
      * S’esborra el full del document obert
+     *
      * @param index índex del full que es vol esborrar
      */
     public void esborraFull(int index) {
@@ -2140,6 +2149,7 @@ public class WindowPrincipal {
 
     /**
      * Getter de l'índex de full seleccionat o actual
+     *
      * @return el índex del full
      */
     public int getFocusedFull() {
@@ -2148,6 +2158,7 @@ public class WindowPrincipal {
 
     /**
      * Setter del document
+     *
      * @param titol títol del document obert
      */
     public void setDocument(String titol) {
@@ -2165,6 +2176,7 @@ public class WindowPrincipal {
 
     /**
      * Getter de les cel·les de la taula actual que es troben seleccionades
+     *
      * @return La selecció de cel·les en qüestió
      */
     public SeleccioTaula getCurrentSelection() {
@@ -2178,7 +2190,8 @@ public class WindowPrincipal {
 
     /**
      * Es buiden les cel·les del full especificades a la selecció.
-     * @param full índex del full d'on es buiden les cel·les
+     *
+     * @param full     índex del full d'on es buiden les cel·les
      * @param seleccio selecció corresponent a les cel·les a buidar
      */
     public void buidaSeleccio(int full, SeleccioTaula seleccio) {
@@ -2191,7 +2204,8 @@ public class WindowPrincipal {
 
     /**
      * Es modifiquen les cel·les del full especificades a la selecció.
-     * @param full índex del full d'on es modifiquen les cel·les
+     *
+     * @param full     índex del full d'on es modifiquen les cel·les
      * @param entrades selecció corresponent a les cel·les a modificar
      */
     public void setEntradesFull(int full, ArrayList<EntradaTaula> entrades) {
@@ -2207,6 +2221,7 @@ public class WindowPrincipal {
 
     /**
      * Es canvia el full actual
+     *
      * @param full l'índex del nou full actual
      */
     public void setFocusedFull(int full) {
@@ -2216,6 +2231,7 @@ public class WindowPrincipal {
 
     /**
      * Afegeix una fila a la JTable del full
+     *
      * @param full índex del full on afegir la fila
      */
     public void afegeixFila(int full) {
@@ -2225,6 +2241,7 @@ public class WindowPrincipal {
 
     /**
      * Afegeix una columna a la JTable del full
+     *
      * @param full índex del full on afegir la columna
      */
     public void afegeixColumna(int full) {
@@ -2234,6 +2251,7 @@ public class WindowPrincipal {
 
     /**
      * Elimina una fila de la JTable del full
+     *
      * @param full índex del full on eliminar la fila
      */
     public void eliminaFila(int full) {
@@ -2243,6 +2261,7 @@ public class WindowPrincipal {
 
     /**
      * Elimina una columna de la JTable del full
+     *
      * @param full índex del full on eliminar la columna
      */
     public void eliminaColumna(int full) {
@@ -2252,8 +2271,9 @@ public class WindowPrincipal {
 
     /**
      * Mostra una finestra emergent
+     *
      * @param titol Títol de la finestra
-     * @param msg Missatge a mostrar
+     * @param msg   Missatge a mostrar
      */
     public void missatge(String titol, String msg) {
         JOptionPane.showMessageDialog(mainFrame, msg, titol, JOptionPane.PLAIN_MESSAGE);
@@ -2261,6 +2281,7 @@ public class WindowPrincipal {
 
     /**
      * Fa apareixer una vista o diàleg indicant un error.
+     *
      * @param error missatge d'error
      */
     public void errorMessage(String error) {

@@ -191,7 +191,7 @@ public class ControladorDomini {
                 if (document == null)
                     throw new ExcepcioNoDocument("Error: no hi ha cap document obert");
 
-                document.afegeixFull();
+                document.afegeixFull(resultat.getNumFiles(), resultat.getNumCols());
                 controladorsFull.add(new ControladorFull(
                         document.getFull(document.getNumFulls() - 1)));
                 break;

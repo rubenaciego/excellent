@@ -55,7 +55,6 @@ public class WindowSpinner {
      * Indica si s'estan usant lletres
      */
     boolean usaLletres;
-
     /**
      * El nombre màxim que arriba el Spinner
      */
@@ -116,8 +115,8 @@ public class WindowSpinner {
     }
 
     /**
-     * Es mostra la finestra
-     * @return true
+     * Fa visible la finestra
+     * @return retorna si s'ha sortit cancel·lant
      */
     public boolean mostra() {
         mainDialog.setVisible(true);

@@ -20,14 +20,6 @@ public class Document {
      * Conjunt dels Full que conté el document
      */
     private final ArrayList<Full> fulls;
-    /**
-     * Valor predeterminat del número de files d'un full
-     */
-    private static final int DEFAULT_FILES = 100;
-    /**
-     * Valor predeterminat del número de columnes d'un full
-     */
-    private static final int DEFAULT_COLS = 100;
 
     /**
      * Constructora principal del document
@@ -77,13 +69,6 @@ public class Document {
      */
     public int getNumFulls() {
         return fulls.size();
-    }
-
-    /**
-     * Afegeix un nou full al final
-     */
-    public void afegeixFull() {
-        fulls.add(new Full(DEFAULT_FILES, DEFAULT_COLS));
     }
 
     /**

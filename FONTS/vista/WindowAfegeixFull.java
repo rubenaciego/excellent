@@ -1,7 +1,10 @@
 package vista;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *  Classe corresponent a la vista que apareix en pitjar a l’opció de AFEGEIX_FULL.
@@ -63,6 +66,10 @@ public class WindowAfegeixFull {
      * Contenidor principal de la vista.
      */
     private JDialog mainDialog;
+    /**
+     * Indicador si s'ha sortit cancel·lant
+     */
+    private boolean success;
 
     /**
      * Constructora principal
@@ -75,6 +82,45 @@ public class WindowAfegeixFull {
         mainDialog.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         mainDialog.pack();
         mainDialog.setVisible(false);
+        success = false;
+
+        cancelaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+            }
+        });
+
+        dAcordButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mainDialog.setVisible(false);
+                success = true;
+            }
+        });
+    }
+
+    /**
+     * Fa visible la WindowSecundaria
+     * @return retorna si s'ha sortit cancel·lant
+     */
+    public boolean mostra() {
+        mainDialog.setVisible(true);
+        return success;
+    }
+
+    /**
+     * @return retorna el nombre de files
+     */
+    public int getNumFiles() {
+        return (Integer)spinnerFiles.getValue();
+    }
+
+    /**
+     * @return retorna el nombre de columnes
+     */
+    public int getNumCols() {
+        return (Integer)spinnerCols.getValue();
     }
 
     /**
@@ -158,7 +204,7 @@ public class WindowAfegeixFull {
         gbc.insets = new Insets(10, 10, 10, 10);
         filesPanel.add(numFilesLabel, gbc);
 
-        spinnerFiles = new JSpinner();
+        spinnerFiles = new JSpinner(new SpinnerNumberModel(100, 1, Integer.MAX_VALUE, 1));
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -186,7 +232,7 @@ public class WindowAfegeixFull {
         gbc.insets = new Insets(10, 10, 10, 0);
         colsPanel.add(numColumnesLabel, gbc);
 
-        spinnerCols = new JSpinner();
+        spinnerCols = new JSpinner(new SpinnerNumberModel(100, 1, Integer.MAX_VALUE, 1));
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;

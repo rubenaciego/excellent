@@ -48,7 +48,7 @@ public class DocumentTest {
     @Test
     public void testFulls() {
         for (int i = 0; i < 10; ++i)
-            document.afegeixFull();
+            document.afegeixFull(100, 100);
 
         assertEquals(10, document.getNumFulls());
         ArrayList<Full> fulls = new ArrayList<Full>();
@@ -77,7 +77,7 @@ public class DocumentTest {
     @Test
     public void testFullInvalid() {
         for (int i = 0; i < 10; ++i)
-            document.afegeixFull();
+            document.afegeixFull(100, 100);
 
         boolean excep = false;
 

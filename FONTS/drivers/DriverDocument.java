@@ -82,7 +82,7 @@ public class DriverDocument {
                     imprimir();
                     break;
                 case "AFEGIR_FULL":
-                    doc.afegeixFull();
+                    doc.afegeixFull(100, 100);
                     imprimir();
                     break;
                 case "ELIMINAR_FULL":

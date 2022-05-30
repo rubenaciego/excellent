@@ -51,6 +51,24 @@ public class ControladorVista {
     }
 
     /**
+     * Afegeix un full
+     * @param files Nombre de files
+     * @param cols Nombre de columnes
+     */
+    public void afegeixFull(int files, int cols) {
+        String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL", Integer.toString(files), Integer.toString(cols)};
+
+        try {
+            controladorDomini.executaOperacio(message);
+            int i = controladorDomini.getNumFulls() - 1;
+            window.afegeixFull(controladorDomini.getNumFiles(i), controladorDomini.getNumCols(i));
+        } catch (ExcepcioDomini e) {
+            window.errorMessage(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
      * Esborra un full demanat
      * @param index index del full a esborrar
      */

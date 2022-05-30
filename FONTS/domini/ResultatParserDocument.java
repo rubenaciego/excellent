@@ -19,6 +19,47 @@ public class ResultatParserDocument {
     private String nomDocument;
 
     /**
+     * Nombre de files del nou full, si s'escau
+     */
+    private int numFiles;
+    /**
+     * Nombre de columnes del nou full, si s'escau
+     */
+    private int numCols;
+
+    /**
+     * Setter de numFiles
+     * @param files numFiles
+     */
+    public void setNumFiles(int files) {
+        numFiles = files;
+    }
+
+    /**
+     * Getter de numFiles
+     * @return numFiles
+     */
+    public int getNumFiles() {
+        return numFiles;
+    }
+
+    /**
+     * Setter de numCols
+     * @param cols numCols
+     */
+    public void setNumCols(int cols) {
+        numCols = cols;
+    }
+
+    /**
+     * Getter de numCols
+     * @return numCols
+     */
+    public int getNumCols() {
+        return numCols;
+    }
+
+    /**
      * Getter del id del full
      * @return id del full
      */

@@ -5,6 +5,7 @@ import util.Utilitats;
 
 import java.rmi.UnexpectedException;
 import java.time.LocalDate;
+import java.util.IllegalFormatCodePointException;
 
 /**
  * Parser que decodifica missatges que corresponen a operacions a realitzar
@@ -40,9 +41,6 @@ public class Parser {
      * necessaris per executar l'operació
      */
     public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
-        // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
-        // les necessàries?
-        // Pensar paràmetres de modificar cel·la
         if (opSenseParsejar.length == 0)
             throw new ExcepcioParser(opSenseParsejar);
 
@@ -167,6 +165,21 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new ExcepcioParser(opSenseParsejar);
             }
+        } else if (op == OperacioDocument.AFEGEIX_FULL) {
+            int files = 100;
+            int cols = 100;
+
+            if (opSenseParsejar.length == 3) {
+                try {
+                    files = Integer.parseInt(opSenseParsejar[1]);
+                    cols = Integer.parseInt(opSenseParsejar[2]);
+                } catch (NumberFormatException e) {
+                    throw new ExcepcioParser(opSenseParsejar);
+                }
+            }
+
+            resultat.setNumFiles(files);
+            resultat.setNumCols(cols);
         }
 
         return resultat;
