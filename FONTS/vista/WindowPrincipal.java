@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 
-public class MainWindow {
+public class WindowPrincipal {
     private final ControladorVista controladorVista;
 
     private JFrame mainFrame;
@@ -43,7 +43,7 @@ public class MainWindow {
     private JButton coshButton;
     private JButton sinhButton;
     private JButton tanhButton;
-    private JComboBox ComboBox;
+    private JComboBox comboBox;
     private JButton covarianciaButton;
     private JButton desvEstButton;
     private JButton coefCorrButton;
@@ -114,8 +114,9 @@ public class MainWindow {
     private JMenuItem itTransp = new JMenuItem("Transposa bloc");
     //Fulls
     private ArrayList<DefaultTableModel> fullTables;
+    private boolean documentObert;
 
-    public MainWindow(ControladorVista controlador) {
+    public WindowPrincipal(ControladorVista controlador) {
         this.controladorVista = controlador;
         fullTables = new ArrayList<DefaultTableModel>();
         mainFrame = new JFrame("Excellent");
@@ -129,10 +130,16 @@ public class MainWindow {
         mainFrame.pack();
         mainFrame.setVisible(true);
 
+        documentObert = false;
+        deshabilitaControls();
+
         afegirFullButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 controladorVista.afegeixFull();
+
+                if (!fullTables.isEmpty())
+                    habilitaControls();
             }
         });
 
@@ -140,6 +147,9 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 controladorVista.esborraFull(getFocusedFull());
+
+                if (fullTables.isEmpty())
+                    deshabilitaControls();
             }
         });
 
@@ -147,8 +157,13 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 WindowCreaDoc w = new WindowCreaDoc(mainFrame, "Crea document");
-                if (w.mostra())
+
+                if (w.mostra()) {
                     controladorVista.creaDocument(w.getDocumentName());
+
+                    if (documentObert)
+                        habilitaControls();
+                }
             }
         });
 
@@ -166,8 +181,12 @@ public class MainWindow {
                 fd.setVisible(true);
 
                 String file = fd.getFile();
-                if (file != null)
+                if (file != null) {
                     controladorVista.carregaDocument(fd.getDirectory() + "/" + file);
+
+                    if (documentObert)
+                        habilitaControls();
+                }
             }
         });
 
@@ -198,6 +217,9 @@ public class MainWindow {
                         controladorVista.desaDocument();
 
                     controladorVista.tancaDocument();
+
+                    if (!documentObert)
+                        deshabilitaControls();
                 }
             }
         });
@@ -1038,7 +1060,7 @@ public class MainWindow {
         convertirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String conv = ComboBox.getSelectedItem().toString();
+                String conv = comboBox.getSelectedItem().toString();
                 SeleccioTaula s = getCurrentSelection();
                 WindowSecundaria w = new WindowSecundaria(mainFrame, "Convertir unitats");
 
@@ -1464,6 +1486,108 @@ public class MainWindow {
         });
     }
 
+    private void habilitaControls() {
+        if (documentObert) {
+            afegirFullButton.setEnabled(true);
+            elimFullButton.setEnabled(true);
+            menuItemReanomena.setEnabled(true);
+            menuItemTancar.setEnabled(true);
+            menuItemDesar.setEnabled(true);
+
+            if (!fullTables.isEmpty()) {
+                absButton.setEnabled(true);
+                expButton.setEnabled(true);
+                incrButton.setEnabled(true);
+                decrButton.setEnabled(true);
+                truncarButton.setEnabled(true);
+                cosButton.setEnabled(true);
+                sinButton.setEnabled(true);
+                coshButton.setEnabled(true);
+                sinhButton.setEnabled(true);
+                tanhButton.setEnabled(true);
+                covarianciaButton.setEnabled(true);
+                desvEstButton.setEnabled(true);
+                coefCorrButton.setEnabled(true);
+                mitjanaButton.setEnabled(true);
+                varianciaButton.setEnabled(true);
+                medianaButton.setEnabled(true);
+                reemplacaButton.setEnabled(true);
+                longButton.setEnabled(true);
+                minuscButton.setEnabled(true);
+                majButton.setEnabled(true);
+                diaButton.setEnabled(true);
+                mesButton.setEnabled(true);
+                anyButton.setEnabled(true);
+                diaSetmButton.setEnabled(true);
+                horoscopButton.setEnabled(true);
+                cercaButton.setEnabled(true);
+                convertirButton.setEnabled(true);
+                menuItemSelectAll.setEnabled(true);
+                menuItemSelectFila.setEnabled(true);
+                menuItemSelectCol.setEnabled(true);
+                menuItemAfegirFila.setEnabled(true);
+                menuItemAfegirCol.setEnabled(true);
+                menuItemElimFila.setEnabled(true);
+                menuItemElimCol.setEnabled(true);
+                menuItemCopiarBloc.setEnabled(true);
+                menuItemMoureBloc.setEnabled(true);
+                menuItemBuidarBloc.setEnabled(true);
+                menuItemOrdenarBloc.setEnabled(true);
+                menuItemTransposarBloc.setEnabled(true);
+            }
+        }
+    }
+
+    private void deshabilitaControls() {
+        absButton.setEnabled(false);
+        expButton.setEnabled(false);
+        incrButton.setEnabled(false);
+        decrButton.setEnabled(false);
+        truncarButton.setEnabled(false);
+        cosButton.setEnabled(false);
+        sinButton.setEnabled(false);
+        coshButton.setEnabled(false);
+        sinhButton.setEnabled(false);
+        tanhButton.setEnabled(false);
+        covarianciaButton.setEnabled(false);
+        desvEstButton.setEnabled(false);
+        coefCorrButton.setEnabled(false);
+        mitjanaButton.setEnabled(false);
+        varianciaButton.setEnabled(false);
+        medianaButton.setEnabled(false);
+        reemplacaButton.setEnabled(false);
+        longButton.setEnabled(false);
+        minuscButton.setEnabled(false);
+        majButton.setEnabled(false);
+        diaButton.setEnabled(false);
+        mesButton.setEnabled(false);
+        anyButton.setEnabled(false);
+        diaSetmButton.setEnabled(false);
+        horoscopButton.setEnabled(false);
+        cercaButton.setEnabled(false);
+        convertirButton.setEnabled(false);
+        menuItemSelectAll.setEnabled(false);
+        menuItemSelectFila.setEnabled(false);
+        menuItemSelectCol.setEnabled(false);
+        menuItemAfegirFila.setEnabled(false);
+        menuItemAfegirCol.setEnabled(false);
+        menuItemElimFila.setEnabled(false);
+        menuItemElimCol.setEnabled(false);
+        menuItemCopiarBloc.setEnabled(false);
+        menuItemMoureBloc.setEnabled(false);
+        menuItemBuidarBloc.setEnabled(false);
+        menuItemOrdenarBloc.setEnabled(false);
+        menuItemTransposarBloc.setEnabled(false);
+
+        if (!documentObert) {
+            afegirFullButton.setEnabled(false);
+            elimFullButton.setEnabled(false);
+            menuItemReanomena.setEnabled(false);
+            menuItemTancar.setEnabled(false);
+            menuItemDesar.setEnabled(false);
+        }
+    }
+
     private void inicialitzar_menuContextual() {
         menuClicDret = new JPopupMenu();
         menuClicDret.add(itAfFila);
@@ -1613,8 +1737,14 @@ public class MainWindow {
         return tabFulls.getSelectedIndex();
     }
 
-    public void setTitol(String titol) {
-        mainFrame.setTitle(titol);
+    public void setDocument(String titol) {
+        mainFrame.setTitle("Excellent - " + titol);
+        documentObert = true;
+    }
+
+    public void tancaDocument() {
+        mainFrame.setTitle("Excellent");
+        documentObert = false;
     }
 
     public SeleccioTaula getCurrentSelection() {
@@ -2119,7 +2249,7 @@ public class MainWindow {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         opConvPanel.add(opConvButtPanel, gbc);
-        ComboBox = new JComboBox();
+        comboBox = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
         defaultComboBoxModel1.addElement("km -> mi");
         defaultComboBoxModel1.addElement("mi -> km");
@@ -2149,14 +2279,14 @@ public class MainWindow {
         defaultComboBoxModel1.addElement("ºK -> ºC");
         defaultComboBoxModel1.addElement("ºF -> ºK");
         defaultComboBoxModel1.addElement("ºK -> ºF");
-        ComboBox.setModel(defaultComboBoxModel1);
+        comboBox.setModel(defaultComboBoxModel1);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        opConvButtPanel.add(ComboBox, gbc);
+        opConvButtPanel.add(comboBox, gbc);
 
         convertirButton = new JButton();
         convertirButton.setText("Convertir");
@@ -2222,9 +2352,9 @@ public class MainWindow {
     }
 
     {
-        // GUI initializer generated by IntelliJ IDEA GUI Designer
-        // >>> IMPORTANT!! <<<
-        // DO NOT EDIT OR ADD ANY CODE HERE!
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
         $$$setupUI$$$();
     }
 
@@ -2633,7 +2763,7 @@ public class MainWindow {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         panel10.add(panel11, gbc);
-        ComboBox = new JComboBox();
+        comboBox = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
         defaultComboBoxModel1.addElement("km -> mi");
         defaultComboBoxModel1.addElement("mi -> km");
@@ -2663,14 +2793,14 @@ public class MainWindow {
         defaultComboBoxModel1.addElement("ºK -> ºC");
         defaultComboBoxModel1.addElement("ºF -> ºK");
         defaultComboBoxModel1.addElement("ºK -> ºF");
-        ComboBox.setModel(defaultComboBoxModel1);
+        comboBox.setModel(defaultComboBoxModel1);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
-        panel11.add(ComboBox, gbc);
+        panel11.add(comboBox, gbc);
         convertirButton = new JButton();
         convertirButton.setText("Convertir");
         gbc = new GridBagConstraints();
@@ -2729,7 +2859,11 @@ public class MainWindow {
         panel12.add(elimFullButton, gbc);
     }
 
+    /**
+     * @noinspection ALL
+     */
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

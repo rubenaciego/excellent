@@ -14,7 +14,7 @@ public class ControladorVista {
     /**
      * Finestra de la vista principal del programa
      */
-    private final MainWindow window;
+    private final WindowPrincipal window;
 
     /**
      * Constructor principal del controlador que l'enllaça amb un controlador
@@ -24,7 +24,7 @@ public class ControladorVista {
      */
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
-        window = new MainWindow(this);
+        window = new WindowPrincipal(this);
     }
 
     /**
@@ -68,7 +68,7 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
-            window.setTitol("Excellent - " + nom);
+            window.setDocument(nom);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -84,7 +84,7 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
-            window.setTitol("Excellent - " + nom);
+            window.setDocument(nom);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -114,7 +114,7 @@ public class ControladorVista {
         try {
             controladorDomini.executaOperacio(message);
             window.esborraFulls();
-            window.setTitol("Excellent");
+            window.tancaDocument();
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
@@ -130,7 +130,7 @@ public class ControladorVista {
 
         try {
             controladorDomini.executaOperacio(message);
-            window.setTitol("Excellent - " + nom);
+            window.setDocument(nom);
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());
