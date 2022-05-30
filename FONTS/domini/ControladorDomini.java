@@ -8,29 +8,69 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Controlador de la capa de Domini i principal controlador de l'aplicació.
+ */
 public class ControladorDomini {
+    /**
+     * Document sobre el que s'està treballant en la capa de Domini.
+     */
     private Document document;
+    /**
+     * Controladors de tots els fulls del document sobre el que s'està
+     * treballant.
+     */
     private ArrayList<ControladorFull> controladorsFull;
+    /**
+     * Controlador de la capa de Dades per gestionar la persistència.
+     */
     private final ControladorDades controladorDades;
+    /**
+     * Controlador de la capa de Dades per gestionar les vistes de l'aplicació.
+     */
     private final ControladorVista controladorVista;
+    /**
+     * Parser encarregat de decodificar les instruccions que arribin al
+     * controlador.
+     */
     private final Parser parser;
 
+    /**
+     * Constructora principal que inicialitza també controladors de dades i
+     * vista.
+     */
     public ControladorDomini() {
         parser = Parser.getInstance();
         controladorDades = new ControladorDades();
         controladorVista = new ControladorVista(this);
     }
 
+    /**
+     * Constructora secundaria que inicialitza un controlador domini i hi
+     * carrega un document i els controladors dels fulls del document
+     * @param document document que es carrega al controlador
+     * @param controladorsFull controladors dels fulls del document que s'ha
+     *                         carregat
+     */
     public ControladorDomini(Document document, ArrayList<ControladorFull> controladorsFull) {
         this();
         this.document = document;
         this.controladorsFull = controladorsFull;
     }
 
+    /**
+     * Getter que retorna el document sobre el que està treballant el
+     * controlador.
+     * @return el document sobre el que està treballant el controlador
+     */
     public Document getDocument() {
         return document;
     }
 
+    /**
+     * Getter del nombre de fulls del document sobre el que està treballant el controlador.
+     * @return nombre de fulls del document sobre el que està treballant el controlador
+     */
     public int getNumFulls() {
         if (document == null)
             throw new ExcepcioNoDocument("Error: no hi ha document obert");
@@ -38,6 +78,13 @@ public class ControladorDomini {
         return controladorsFull.size();
     }
 
+    /**
+     * Getter del nombre de files del full especificat del document sobre el
+     * que està treballant el controlador.
+     * @param full full del que es vol obtenir el nombre de files
+     * @return nombre de files del full especificat del document sobre el que
+     * està treballant el controlador
+     */
     public int getNumFiles(int full) {
         if (document == null)
             throw new ExcepcioNoDocument("Error: no hi ha document obert");
@@ -47,6 +94,13 @@ public class ControladorDomini {
         return controladorsFull.get(full).getNumFiles();
     }
 
+    /**
+     * Getter del nombre de columnes del full especificat del document sobre el
+     * que està treballant el controlador.
+     * @param full full del que es vol obtenir el nombre de columnes
+     * @return nombre de columnes del full del document sobre el
+     *      * que està treballant el controlador
+     */
     public int getNumCols(int full) {
         if (document == null)
             throw new ExcepcioNoDocument("Error: no hi ha document obert");
@@ -56,6 +110,18 @@ public class ControladorDomini {
         return controladorsFull.get(full).getNumCols();
     }
 
+    /**
+     * Getter d'un bloc de les entrades d'un full del document sobre el que
+     * està treballant el controlador.
+     * @param full full del que es vol obtenir les entrades
+     * @param srow fila des d'on començar a obtenir les entrades
+     * @param scol columna des d'on començar a obtenir les entrades
+     * @param numFiles nombre de files d'entrades a obtenir
+     * @param numCols nombre de columnes d'entrades a obtenir
+     * @return les entrades no nul·les del full especificat que formin part de
+     * l'interval
+     * [srow, srow+numFiles]x[scol+numCols]
+     */
     public ArrayList<EntradaTaula> getEntrades(int full, int srow, int scol, int numFiles, int numCols) {
         if (document == null)
             throw new ExcepcioNoDocument("Error: no hi ha document obert");
@@ -65,6 +131,10 @@ public class ControladorDomini {
         return controladorsFull.get(full).getEntrades(srow, scol, numFiles, numCols);
     }
 
+    /**
+     * Executa l'operació donada per un missatge.
+     * @param opSenseParsejar missatge que codifica l'operació sense parsejar
+     */
     public void executaOperacio(String[] opSenseParsejar) {
         if (opSenseParsejar.length == 0)
             throw new ExcepcioParser(opSenseParsejar);
@@ -85,7 +155,10 @@ public class ControladorDomini {
     }
 
     /**
-     * @brief Executa l'operació codificada dins resultat
+     * Executa una operació sobre el document en que s'està treballant.
+     * @param resultat resultat del parsejat del missatge que codifica
+     *                 l'operació amb tots els paràmetres necessaris per a la
+     *                 seva correcta execució
      */
     private void executaOperacioDocument(ResultatParserDocument resultat) {
         switch (resultat.getTipusOpDocument()) {
@@ -130,6 +203,12 @@ public class ControladorDomini {
         }
     }
 
+    /**
+     * Getter de la cel·la resultat d'un full del document sobre el que
+     * està treballant el controlador.
+     * @param full full del que es vol obtenir la cel·la resultat
+     * @return retorna el contingut de la cel·la resultat del full indicat
+     */
     public String getCelaResultat(int full) {
         if (document == null)
             throw new ExcepcioNoDocument("Error: no hi ha document obert");
@@ -139,11 +218,19 @@ public class ControladorDomini {
         return controladorsFull.get(full).getCelaResultat();
     }
 
+    /**
+     * Crea un nou document i el carrega per treballar sobre el mateix.
+     * @param nomDocument nom del document que a crear
+     */
     private void creaDocument(String nomDocument) {
         document = new Document(nomDocument);
         controladorsFull = new ArrayList<ControladorFull>();
     }
 
+    /**
+     * Carrega de memòria un document sobre el que treballar.
+     * @param nomDocument nom del document a carregar
+     */
     private void carregaDocument(String nomDocument) {
         String documentTxt;
 
@@ -163,11 +250,17 @@ public class ControladorDomini {
             controladorsFull.add(new ControladorFull(document.getFull(i)));
     }
 
+    /**
+     * Tanca el document sobre el que s'està treballant.
+     */
     private void tancaDocument() {
         document = null;
         controladorsFull = null;
     }
 
+    /**
+     * Desa a memòria el document sobre el que s'està treballant.
+     */
     private void desaDocument() {
         document.setDataModificacio(LocalDateTime.now());
         FormatDocument format = getTypeFromExtension(document.getNom());
@@ -181,6 +274,11 @@ public class ControladorDomini {
         }
     }
 
+    /**
+     * Retorna el format del document especificat (CVS o JSON).
+     * @param nom nom del document del que es vol extreure el format en memòria.
+     * @return el format d'arxiu del document especificat.
+     */
     private FormatDocument getTypeFromExtension(String nom) {
         int index = nom.lastIndexOf('.');
 

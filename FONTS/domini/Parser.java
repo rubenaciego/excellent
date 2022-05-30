@@ -6,12 +6,26 @@ import util.Utilitats;
 import java.rmi.UnexpectedException;
 import java.time.LocalDate;
 
+/**
+ * Parser que decodifica missatges que corresponen a operacions a realitzar
+ * pel Controlador Domini. Classe Singleton.
+ */
 public class Parser {
+    /**
+     * Parser que decodifica els missatges.
+     */
     private static Parser parser;
 
+    /**
+     * Contructora del Parser.
+     */
     private Parser() {
     }
 
+    /**
+     * Retorna l'instància del parser i si no existeix el crea.
+     * @return el parser
+     */
     public static Parser getInstance() {
         if (parser == null)
             parser = new Parser();
@@ -20,7 +34,10 @@ public class Parser {
     }
 
     /**
-     * @brief Fa el parseig d'una operació associada a full
+     * Decodifica una operació associada a un full
+     * @param opSenseParsejar missatge de l'operació a decodificar
+     * @return resultat de la decodificació amb tots els paràmetres
+     * necessaris per executar l'operació
      */
     public ResultatParserFull parseOpFull(String[] opSenseParsejar) {
         // Qüestió a considerar, hauríem de tirar excepció quan l'string té més coses de
@@ -114,7 +131,10 @@ public class Parser {
     }
 
     /**
-     * @brief Fa el parseig d'una operació associada a document
+     * Decodifica una operació associada a un document
+     * @param opSenseParsejar missatge de l'operació a decodificar
+     * @return resultat de la decodificació amb tots els paràmetres
+     * necessaris per executar l'operació
      */
     public ResultatParserDocument parseOpDocument(String[] opSenseParsejar) {
         String[] splitted = opSenseParsejar[0].split(",");
@@ -152,6 +172,11 @@ public class Parser {
         return resultat;
     }
 
+    /**
+     * Extreu el tipus t'operació que codifica el missatge a decodificar.
+     * @param opSenseParsejar missatge a decodificar
+     * @return el tipus de l'operació a realitzar
+     */
     public TipusOperacio parseTipusOperacio(String opSenseParsejar) {
         int pos = opSenseParsejar.indexOf(',');
 
@@ -164,6 +189,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Extreu el tipus de dada i dada especificat per un text
+      * @param inputUsuari text que especifica la dada a decodificar
+     * @return decodificació contenent el tipus de dada i el seu valor
+     */
     private ResultatParserCela parseResultatCela(String inputUsuari) {
         ResultatParserCela resultat = new ResultatParserCela();
         resultat.setInputUsuari(inputUsuari);

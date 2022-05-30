@@ -14,8 +14,19 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Lector i parser per a convertir un objecte amb un format adequat en un
+ * document.
+ */
 public class DocumentParser {
 
+    /**
+     * Converteix un element de text amb un format acceptat (CSV o JSON) a un
+     * document.
+     * @param txt text a convertir en document
+     * @param format format en que està codificat el text
+     * @return document resultant de la conversió
+     */
     public Document parseFrom(String txt, FormatDocument format) {
         switch (format) {
             case CSV:
@@ -27,6 +38,11 @@ public class DocumentParser {
         }
     }
 
+    /**
+     * Converteix un text extret d'un CVS a un document.
+     * @param csv text codificat en CSV
+     * @return document resultant de la conversió
+     */
     public Document parseFromCSV(String csv) {
         CSVReader reader = new CSVReader(new StringReader(csv));
         String[] line;
@@ -107,6 +123,11 @@ public class DocumentParser {
         return document;
     }
 
+    /**
+     * Converteix un text extret d'un JSON a un document.
+     * @param json text codificat en JSON
+     * @return document resultant de la conversió
+     */
     public Document parseFromJSON(String json) {
         Document document = new Document("");
 
@@ -151,6 +172,11 @@ public class DocumentParser {
         return document;
     }
 
+    /**
+     * Obte una cel·la d'un objecte JSON
+     * @param json JSON del que obtenir una cel·la
+     * @return cel·la obtinguda
+     */
     private Cela getCelaFromJSON(JSONObject json) {
         Cela res;
         String inputUsuari = json.getString("inputUsuari");
@@ -176,6 +202,11 @@ public class DocumentParser {
         return res;
     }
 
+    /**
+     * Resol les referències entre cel·les en un full
+     * @param full full en que resoldre les referències
+     * @param celesRef cel·les referència a resoldre
+     */
     private void afegeixCelesRef(Full full, ArrayList<EntradaMatriuCeles> celesRef) {
         for (EntradaMatriuCeles e : celesRef) {
             String refTxt = e.getCela().getInputUsuari();

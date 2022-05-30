@@ -6,14 +6,30 @@ import net.sf.json.JSONObject;
 import java.io.StringWriter;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Conversor d'un document al format adequat per al seu emmagatzematge en
+ * memòria i persistència.
+ */
 public class DocumentConverter {
 
+    /**
+     * Document a convertir al format adequat per emmagatzemar en memòria.
+     */
     private final Document document;
 
+    /**
+     * Contructora principal que carrega el document a convertir.
+     * @param doc document a convertir
+     */
     public DocumentConverter(Document doc) {
         document = doc;
     }
 
+    /**
+     * Converteix el document al format especificat (CSV o JSON).
+     * @param format format al que convertir el document
+     * @return document convertit al format especificat
+     */
     public String convertTo(FormatDocument format) {
         switch (format) {
             case CSV:
@@ -25,6 +41,10 @@ public class DocumentConverter {
         }
     }
 
+    /**
+     * Converteix el document a CSV
+     * @return el document codificat com a CSV
+     */
     public String convertToCSV() {
         StringWriter sw = new StringWriter();
         CSVWriter writer = new CSVWriter(sw);
@@ -46,6 +66,10 @@ public class DocumentConverter {
         return sw.toString();
     }
 
+    /**
+     * Converteix el document a JSON
+     * @return el document codificat com a JSON
+     */
     public String convertToJSON() {
         JSONObject json = new JSONObject();
 
@@ -67,6 +91,11 @@ public class DocumentConverter {
         return json.toString();
     }
 
+    /**
+     * Afegeix a un JSON una cel·la codificada adequadament.
+     * @param json json al que afegir la cel·la
+     * @param e cel·la a afegir al json
+     */
     private void afegeixCelaJSON(JSONObject json, EntradaMatriuCeles e) {
         Cela c = e.getCela();
         JSONObject cela = new JSONObject();
@@ -93,6 +122,11 @@ public class DocumentConverter {
         json.put(e.getFila() + ":" + e.getColumna(), cela);
     }
 
+    /**
+     * Afegeix a un CSV una cel·la codificada adequadament.
+     * @param writer CSV al que afegir la cel·la
+     * @param e cel·la a afegir al json
+     */
     private void afegeixCelaCSV(CSVWriter writer, EntradaMatriuCeles e) {
         Cela c = e.getCela();
         String value;

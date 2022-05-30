@@ -1,5 +1,8 @@
 package domini;
 
+/**
+ * Conversions d'unitats implementades en l'aplicació.
+ */
 public enum ConversioUnitats {
     RAD_GRAUS, GRAUS_RAD, KM_MILLA, MILLA_KM, KG_LLIURA, LLIURA_KG, LITRE_GALO,
     GALO_LITRE, CELSIUS_KELVIN, KELVIN_CELSIUS, KELVIN_FAHRENHEIT,

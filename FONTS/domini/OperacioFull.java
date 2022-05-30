@@ -1,5 +1,8 @@
 package domini;
 
+/**
+ * Operacions sobre fulls implementades en l'aplicació.
+ */
 public enum OperacioFull {
     EXTREU_HOROSCOP, EXTREU_ANY, EXTREU_MES, EXTREU_DIA, EXTREU_DIA_SETMANA,
     EXECUTA_OPERACIO_ARITMETICA_UNARIA, EXECUTA_FUNCIO_ESTADISTICA,
