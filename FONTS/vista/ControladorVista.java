@@ -1134,6 +1134,10 @@ public class ControladorVista {
      *                  aplicar l'operació
      * @param numFiles nombre de files del bloc
      * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
      * @param criteri criteri d'ordenació
      * @param colOrd columna respecte la qual ordenar
      */
@@ -1226,10 +1230,6 @@ public class ControladorVista {
      *                  aplicar l'operació
      * @param numFiles nombre de files del bloc
      * @param numCols nombre de columnes del bloc
-     * @param filaDesti fila de l'inici del bloc de desti sobre el que
-     *                  aplicar l'operació
-     * @param colDesti columna de l'inici del bloc de desti sobre el que
-     *                 aplicar l'operació
      */
     public void buidaBloc(int full, int filaOrigen, int colOrigen,
                           int numFiles, int numCols) {

@@ -88,6 +88,8 @@ public class Document {
 
     /**
      * Afegeix un nou full al final
+     * @param files nombre de files del full
+     * @param cols nombre de columnes del full
      */
     public void afegeixFull(int files, int cols) {
         fulls.add(new Full(files, cols));
@@ -95,7 +97,7 @@ public class Document {
 
     /**
      * Elimina un full a la posició especificada
-     * @param idFull Índex del full que es vol eliminar
+     * @param idFull índex del full que es vol eliminar
      * @throws ExcepcioIndexFull si el full amb índex idFull no existeix
      */
     public void eliminaFull(int idFull) {
@@ -107,7 +109,7 @@ public class Document {
 
     /**
      * Obté full a la posició especificada
-     * @param idFull Índex del full
+     * @param idFull índex del full
      * @return Full en la posició especificada
      * @throws ExcepcioIndexFull si el full amb índex idFull no existeix
      */

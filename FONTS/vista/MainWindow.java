@@ -2729,9 +2729,6 @@ public class MainWindow {
         panel12.add(elimFullButton, gbc);
     }
 
-    /**
-     * @noinspection ALL
-     */
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }

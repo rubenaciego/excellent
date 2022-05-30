@@ -5,11 +5,11 @@ package vista;
  */
 public class EntradaTaula {
     /**
-     * Índex de la fila que ocupa l'entrada
+     * índex de la fila que ocupa l'entrada
      */
     public int fila;
     /**
-     * Índex de la columna que ocupa l'entrada
+     * índex de la columna que ocupa l'entrada
      */
     public int columna;
     /**
