@@ -2250,14 +2250,27 @@ public class WindowPrincipal {
         m.setColumnCount(m.getColumnCount() - 1);
     }
 
+    /**
+     * Mostra una finestra emergent
+     * @param titol Títol de la finestra
+     * @param msg Missatge a mostrar
+     */
     public void missatge(String titol, String msg) {
         JOptionPane.showMessageDialog(mainFrame, msg, titol, JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * Fa apareixer una vista o diàleg indicant un error.
+     * @param error missatge d'error
+     */
     public void errorMessage(String error) {
         JOptionPane.showMessageDialog(mainFrame, error, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Actualitza la barra d'entrada al valor d'input usuari associat a la cel·la seleccionada
+     * o la deshabilita si no hi ha una sola cel·la seleccionada
+     */
     private void actualitzaBarraEntrada() {
         int f = getFocusedFull();
 
