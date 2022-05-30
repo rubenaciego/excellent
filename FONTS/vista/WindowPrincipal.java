@@ -449,6 +449,9 @@ public class WindowPrincipal {
         menuItemCrear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (documentObert)
+                    if (!dialegTancarDocument()) return;
+
                 WindowCreaDoc w = new WindowCreaDoc(mainFrame, "Crea document");
 
                 if (w.mostra()) {
@@ -463,6 +466,9 @@ public class WindowPrincipal {
         menuItemCarregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if (documentObert)
+                    if (!dialegTancarDocument()) return;
+
                 FileDialog fd = new FileDialog(mainFrame, "Escull un arxiu", FileDialog.LOAD);
                 fd.setFilenameFilter(new FilenameFilter() {
                     @Override
@@ -2173,6 +2179,23 @@ public class WindowPrincipal {
     public void tancaDocument() {
         mainFrame.setTitle("Excellent");
         documentObert = false;
+    }
+
+    public boolean dialegTancarDocument() {
+        WindowTanca w = new WindowTanca(mainFrame);
+        w.mostra();
+
+        if (w.getTanca()) {
+            if (w.getDesa())
+                controladorVista.desaDocument();
+
+            controladorVista.tancaDocument();
+
+            if (!documentObert)
+                deshabilitaControls();
+        }
+
+        return w.getTanca();
     }
 
     /**
