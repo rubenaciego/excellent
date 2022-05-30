@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 BASEDIR=$(dirname "$BASH_SOURCE")
-java -jar $BASEDIR/app/Application.jar 
+cd $BASEDIR
+java -jar app/Application.jar 

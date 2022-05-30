@@ -1,6 +1,7 @@
 package vista;
 
 import javafx.util.Pair;
+import org.mockito.internal.matchers.Null;
 import util.Utilitats;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class WindowPrincipal {
@@ -1482,6 +1484,29 @@ public class WindowPrincipal {
                             origen.getValue(), s.nfiles, s.ncols,
                             desti.getKey(), desti.getValue());
                 }
+            }
+        });
+
+        menuItemDocu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO: Canviar el fixter pel manual
+                final String docFile = "../DOCS/index.html";
+                try {
+                    Desktop.getDesktop().open(new File(docFile));
+                } catch (NullPointerException | IOException | IllegalArgumentException ignored) {
+                    errorMessage("Error obrint l'arxiu de documentació " + docFile +
+                            "\nPotser no s'està executant el programa amb l'script run.sh");
+                }
+            }
+        });
+
+        menuItemSobre.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                final String about = "Software desenvolupat per:" + "\nJofre Costa" +
+                    "\nMariona Jaramillo" + "\nFrancesc Pifarré" + "\nRubén Aciego";
+                JOptionPane.showMessageDialog(mainFrame, about, "Sobre Excellent", JOptionPane.PLAIN_MESSAGE);
             }
         });
     }
