@@ -5,34 +5,91 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ *  Classe corresponent a la vista que apareix en pitjar la gran majoria dels botons corresponents a operacions de WindowPrincipal.
+ */
 public class WindowSecundaria {
 
+    /**
+     * Contenidor principal de la vista.
+     */
     protected JDialog mainDialog;
+    /**
+     * Panell contenidor de mainFrame.
+     */
     protected JPanel mainPanel;
-
+    /**
+     * Panell que conté els principals elements de la vista.
+     */
     protected JPanel contPanel;
+    /**
+     * Panell que conté els elements relacionats amb la introducció de l’origen.
+    */
     protected JPanel origenPanel;
+    /**
+     * Panell que conté els elements relacionats amb la introducció del destí.
+     */
     protected JPanel destiPanel;
+    /**
+     * Panell que conté els botons d’acceptar o cancel·lar l’operació.
+     */
     protected JPanel botonsPanel;
+    /**
+     * Espaiador superior
+     */
     protected JPanel spacerSup;
+    /**
+     * Espaiador inferior
+     */
     protected JPanel spacerInf;
+    /**
+     * Etiqueta del panell de destí.
+     */
     protected JLabel destiLabel;
+    /**
+     * Camp per poder entrar el punt d’origen de l’operació.
+     */
     protected JTextField entradaOrigen;
+    /**
+     * Botó per cancel·lar l’operació.
+     */
     protected JButton cancelaButton;
+    /**
+     * Botó per acceptar l’operació.
+     */
     protected JButton dAcordButton;
+    /**
+     * Etiqueta del panell d'origen.
+    */
     protected JLabel origenLabel;
+    /**
+     * Camp per poder entrar el destí de l’operació.
+     */
     protected JTextField entradaDesti;
 
     protected boolean success;
 
+    /**
+     * Getter del text del camp entradaOrigen
+     * @return el contingut de entradaOrigen
+     */
     public String getOrigen() {
         return entradaOrigen.getText();
     }
 
+    /**
+     * Getter del text del camp entradaDesti
+     * @return el contigut de entradaDesti
+     */
     public String getDesti() {
         return entradaDesti.getText();
     }
 
+    /**
+     * Constructora principal
+     * @param frame el contenidor de la nova WindowSecundaria
+     * @param title el títol de la WindowSecundaria
+     */
     public WindowSecundaria(JFrame frame, String title) {
         mainDialog = new JDialog(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();
@@ -58,20 +115,35 @@ public class WindowSecundaria {
         });
     }
 
+    /**
+     * Setter del contingut per defecte
+     * @param cela el contingut per defecte
+     */
     public void setDefault(String cela) {
         entradaOrigen.setText(cela);
         entradaDesti.setText(cela);
     }
 
+    /**
+     * Fa visible la WindowSecundaria
+     * @return true
+     */
     public boolean mostra() {
         mainDialog.setVisible(true);
         return success;
     }
 
+    /**
+     * Amaga la WindowSecundaria
+     */
     public void amaga() {
         mainDialog.setVisible(false);
     }
 
+    /**
+     * Configura tots els elements de UI per tal que se situïn a les seves posicions corresponents
+     * i tinguin la mida, marges, alineacions… Correctes.
+     */
     protected void configuraUI() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());

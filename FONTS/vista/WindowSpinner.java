@@ -7,21 +7,68 @@ import java.awt.event.ActionListener;
 import util.*;
 
 public class WindowSpinner {
+    /**
+     * Contenidor principal de la vista.
+     */
     private JDialog mainDialog;
+    /**
+     * Es tracta del panell contenidor de mainFrame.
+     */
     private JPanel mainPanel;
+    /**
+     * Panell que conté els botons d’acceptar o cancel·lar l’operació.
+     */
     private JPanel botonsPanel;
+    /**
+     * Espaiador superior.
+     */
     private JPanel spacer1;
+    /**
+     * Espaiador inferior.
+     */
     private JPanel spacer2;
+    /**
+     * Panell que conté els elements relacionats amb l’operació a executar.
+     */
     private JPanel opPanel;
+    /**
+     * Botó per cancel·lar l’operació.
+     */
     private JButton cancelaButton;
+    /**
+     * Botó per acceptar l’operació.
+     */
     private JButton dAcordButton;
+    /**
+     * Etiqueta del panell d’operacions.
+     */
     private JLabel opLabel;
+    /**
+     * Camp per introduir l’enter sobre el que s’executarà la corresponent operació.
+     */
     private JSpinner spinnerOp;
+    /**
+     * Indica èxit d'algun resultat
+     */
     protected boolean success;
+    /**
+     * Indica si s'estan usant lletres
+     */
     boolean usaLletres;
 
+    /**
+     * El nombre màxim que arriba el Spinner
+     */
     int maxSpin;
 
+    /**
+     * Contructora principal
+     * @param frame el contenidor de la WindowSpinner
+     * @param titol el títol de la WindowSpinner
+     * @param accio indica l'acció que es realitza
+     * @param nmax el número màxim que pot arribar el Spinner
+     * @param lletres indica si s'usen lletres en el Spinner
+     */
     public WindowSpinner(JFrame frame, String titol, String accio, int nmax,
                          boolean lletres) {
         mainDialog = new JDialog(frame, titol,Dialog.ModalityType.DOCUMENT_MODAL);
@@ -50,21 +97,39 @@ public class WindowSpinner {
         });
     }
 
+    /**
+     * Getter del valor del Spinner
+     * @return el valor del Spinner
+     */
     public int getValue() {
         if (!usaLletres) return (int)spinnerOp.getValue();
         else return Utilitats.convertirBase26(spinnerOp.getValue().toString());
     }
 
+    /**
+     * Setter del valor per defecte
+     * @param n el valor per defecte
+     */
     public void setDefault(int n) {
         if (!usaLletres)  spinnerOp.setValue(n);
         else spinnerOp.setValue(Utilitats.convertirABase26(n - 1));
     }
 
+    /**
+     * Es mostra la finestra
+     * @return true
+     */
     public boolean mostra() {
         mainDialog.setVisible(true);
         return success;
     }
 
+    /**
+     * configura tots els elements de UI per tal que se situïn a les seves
+     * posicions corresponents i tinguin la mida, marges, alineacions… Correctes.
+     * A més, afegeix com a text de l’etiqueta opLabel la String accio.
+     * @param accio el text corresponent a l'acció que s'executa
+     */
     private void configuraUI(String accio) {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());

@@ -3,22 +3,71 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *  Classe corresponent a la vista que apareix en pitjar a l’opció de AFEGEIX_FULL.
+ */
 public class WindowAfegeixFull {
+    /**
+     * Botó per cancel·lar l’operació.
+     */
     private JButton cancelaButton;
+    /**
+     * Botó per acceptar l’operació.
+     */
     private JButton dAcordButton;
+    /**
+     * Camp per introduir el número de files.
+     */
     private JSpinner spinnerFiles;
+    /**
+     * Etiqueta del panell de número de files.
+     */
     private JLabel numFilesLabel;
+    /**
+     * Etiqueta del panell de número de columnes.
+     */
     private JLabel numColumnesLabel;
+    /**
+     * Camp per introduir el número de columnes.
+     */
     private JSpinner spinnerCols;
+    /**
+     * Espaiador superior
+     */
     private JPanel spacerSup;
+    /**
+     * Espaiador inferior
+     */
     private JPanel spacerInf;
+    /**
+     * Panell que conté els elements per introduir el número de columnes.
+     */
     private JPanel colsPanel;
+    /**
+     * Panell que conté els elements per introduir el número de files.
+     */
     private JPanel filesPanel;
+    /**
+     * Panell que conté els elements principals de la finestra.
+     */
     private JPanel contPanel;
+    /**
+     * Panell que conté els botons per triar l’operació pertinent.
+     */
     private JPanel buttonsPanel;
+    /**
+     * Panell contenidor de mainFrame.
+     */
     private JPanel mainPanel;
+    /**
+     * Contenidor principal de la vista.
+     */
     private JDialog mainDialog;
 
+    /**
+     * Constructora principal
+     * @param frame el contenidor de la WindowAfegeixFull
+     */
     public WindowAfegeixFull(JFrame frame) {
         mainDialog = new JDialog(frame, "Afegeix full", Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();
@@ -28,6 +77,10 @@ public class WindowAfegeixFull {
         mainDialog.setVisible(false);
     }
 
+    /**
+     * Configura tots els elements de UI per tal que se situïn a les seves posicions
+     * corresponents i tinguin la mida, marges, alineacions… Correctes.
+     */
     public void configuraUI() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());

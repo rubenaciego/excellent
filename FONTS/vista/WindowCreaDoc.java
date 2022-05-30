@@ -5,21 +5,61 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe corresponent a la vista que apareix en pitjar a l’opció de CREA_DOCUMENT.
+ */
 public class WindowCreaDoc {
-
+    /**
+     * Contenidor principal de la vista.
+     */
     private JDialog mainDialog;
+    /**
+     * Panell contenidor de mainFrame.
+     */
     private JPanel mainPanel;
+    /**
+     * Panell que conté els botons per triar l’operació pertinent.
+     */
     private JPanel buttonsPanel;
+    /**
+     * Panell que conté els elements relacionats amb l'entrada del títol.
+     */
     private JPanel nomDocPanel;
+    /**
+     * Espaiador superior
+     */
     private JPanel spacerSup;
+    /**
+     * Espaiador inferior
+     */
     private JPanel spacerInf;
+    /**
+     * Botó per cancel·lar l’operació.
+     */
     private JButton cancelaButton;
+    /**
+     * Botó per acceptar l’operació.
+     */
     private JButton dAcordButton;
+    /**
+     * Camp per poder entrar el nom del nou document.
+     */
     private JTextField entradaDoc;
+    /**
+     * Etiqueta del panell del nom del nou document.
+     */
     private JLabel nomDocumentLabel;
 
+    /**
+     * Indica si hi ha hagut èxit en l'operació
+     */
     private boolean success;
 
+    /**
+     * Constructora principal
+     * @param frame el contenidor de la WindowCreaDoc
+     * @param title el títol de la finestra
+     */
     public WindowCreaDoc(JFrame frame, String title) {
         mainDialog = new JDialog(frame, title, Dialog.ModalityType.DOCUMENT_MODAL);
         configuraUI();
@@ -45,15 +85,27 @@ public class WindowCreaDoc {
         });
     }
 
+    /**
+     * Mostra la WindowCreaDoc actual
+     * @return true si hi ha hagut èxit, false altrament
+     */
     public boolean mostra() {
         mainDialog.setVisible(true);
         return success;
     }
 
+    /**
+     * Getter del nom del document
+     * @return el nom del document
+     */
     public String getDocumentName() {
         return entradaDoc.getText();
     }
 
+    /**
+     * Configura tots els elements de UI per tal que se situïn a les seves posicions
+     * corresponents i tinguin la mida, marges, alineacions… Correctes.
+     */
     public void configuraUI() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
