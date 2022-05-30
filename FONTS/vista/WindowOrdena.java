@@ -4,26 +4,64 @@ import javax.swing.*;
 import java.awt.*;
 import util.Utilitats;
 
+/**
+ * Classe corresponent a la vista que apareix en pitjar el botó corresponent a l’operació ORDENA.
+ */
 public class WindowOrdena extends WindowSecundaria {
+    /**
+     * Camp per introduir la columna del bloc sobre la qual ordenar.
+     */
     private JComboBox<String> columnaOrdenaSpin;
+    /**
+     * Etiqueta del panell de la columna d’ordenació.
+     */
     private JLabel columnaOrdenacioLabel;
+    /**
+     * Etiqueta del panell del criteri d’ordenació.
+     */
     private JLabel criteriLabel;
+    /**
+     * Botó desplegable per escollir el criteri d’ordenació.
+     */
     private JComboBox<String> criteriCombo;
+    /**
+     * Panell que conté els elements relacionats amb la introducció de la columna d’ordenació.
+     */
     private JPanel columnaPanel;
+    /**
+     * Panell que conté els elements relacionats amb la introducció del criteri d’ordenació.
+     */
     private JPanel criteriPanel;
 
+    /**
+     * Constructora principal
+     * @param frame el contenidor de la WindowOrdena
+     */
     public WindowOrdena(JFrame frame) {
         super(frame, "Ordena");
     }
 
+    /**
+     * Getter del criteri d'ordenació
+     * @return el criteri d'ordenació
+     */
     public String getCriteri() {
         return criteriCombo.getSelectedItem().toString();
     }
 
+    /**
+     * Getter de la columna respecte a la qual ordenar
+     * @return l'índex de la columna en qüestió
+     */
     public int getColOrd() {
         return Utilitats.convertirBase26(columnaOrdenaSpin.getSelectedItem().toString());
     }
 
+    /**
+     * Setter del menu desplegable de la columna a triar
+     * @param col índex seleccionat de base
+     * @param ncols número de columnes total
+     */
     public void setEntradesColumna(int col, int ncols) {
         DefaultComboBoxModel<String> ordenaModel = new DefaultComboBoxModel<String>();
         for (int i = 0; i < ncols; ++i)
@@ -33,6 +71,10 @@ public class WindowOrdena extends WindowSecundaria {
         columnaOrdenaSpin.setSelectedIndex(col);
         mainDialog.pack();
     }
+
+    /**
+     * {@inheritDoc}
+     */
 
     @Override
     protected void configuraUI() {

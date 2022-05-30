@@ -5,20 +5,43 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe corresponent a la vista que apareix en pitjar el botó corresponent a l’operació TRUNCA_NUMERO.
+ */
 public class WindowTruncar extends WindowSecundaria {
 
+    /**
+     * Etiqueta del panell d’introducció de xifres.
+     */
     private JLabel xifresLabel;
+    /**
+     * Panell que conté els elements relacionats amb la introducció del número de xifres a truncar.
+     */
     private JPanel xifresPanel;
+    /**
+     * Camp per poder entrar el número de xifres a truncar.
+     */
     private JSpinner entradaXifres;
 
+    /**
+     * Constructora principal
+     * @param frame el contenidor de la WindowSecundaria
+     */
     public WindowTruncar(JFrame frame) {
         super(frame, "Truncar");
     }
 
+    /**
+     * Getter dels dígits a truncar
+     * @return els nombre de dígits a truncar
+     */
     public int getDigitsTruncar() {
         return (int)entradaXifres.getValue();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void configuraUI() {
         super.configuraUI();

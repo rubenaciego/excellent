@@ -2,6 +2,9 @@ package util;
 
 import javafx.util.Pair;
 
+/**
+ * Classe que no es pot instanciar i que conté diversos mètodes d’utilitat general.
+ */
 public class Utilitats {
 
     private Utilitats() {}
