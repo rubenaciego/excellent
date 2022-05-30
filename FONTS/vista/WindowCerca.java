@@ -10,6 +10,7 @@ public class WindowCerca extends WindowSecundaria {
 
     public WindowCerca(JFrame frame) {
         super(frame, "Cerca");
+        destiPanel.setVisible(false);
     }
 
     protected WindowCerca(JFrame frame, String title) {

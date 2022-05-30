@@ -10,6 +10,7 @@ public class WindowReemplaca extends WindowCerca {
 
     public WindowReemplaca(JFrame frame) {
         super(frame, "Reemplaça");
+        destiPanel.setVisible(true);
     }
 
     public String getStringReemplacadora() {return reemplacaEntrada.getText();}

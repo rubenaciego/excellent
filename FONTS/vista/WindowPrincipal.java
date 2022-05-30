@@ -701,9 +701,10 @@ public class WindowPrincipal {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
-
                 WindowReemplaca w = new WindowReemplaca(mainFrame);
-                w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+
+                if (!s.empty()) w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
+                else w.setDefault("A1");
 
                 if (w.mostra()) {
                     Pair<Integer, Integer> origen = Utilitats.convertirAIndexs(w.getOrigen());
@@ -1505,7 +1506,7 @@ public class WindowPrincipal {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 final String about = "Software desenvolupat per:" + "\nJofre Costa" +
-                    "\nMariona Jaramillo" + "\nFrancesc Pifarré" + "\nRubén Aciego";
+                        "\nMariona Jaramillo" + "\nFrancesc Pifarré" + "\nRubén Aciego";
                 missatge("Sobre Excellent", about);
             }
         });
@@ -2894,5 +2895,4 @@ public class WindowPrincipal {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
 }
