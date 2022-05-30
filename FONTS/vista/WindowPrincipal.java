@@ -1843,13 +1843,13 @@ public class WindowPrincipal {
     private void habilitaControls() {
         if (documentObert) {
             afegirFullButton.setEnabled(true);
-            elimFullButton.setEnabled(true);
             menuItemReanomena.setEnabled(true);
             menuItemTancar.setEnabled(true);
             menuItemDesar.setEnabled(true);
             menuItemAfegirFull.setEnabled(true);
 
             if (!fullTables.isEmpty()) {
+                elimFullButton.setEnabled(true);
                 absButton.setEnabled(true);
                 expButton.setEnabled(true);
                 incrButton.setEnabled(true);
@@ -1945,7 +1945,8 @@ public class WindowPrincipal {
             menuItemTancar.setEnabled(false);
             menuItemDesar.setEnabled(false);
             menuItemAfegirFull.setEnabled(false);
-        }
+        } else if (fullTables.isEmpty())
+            elimFullButton.setEnabled(false);
     }
 
     /**
