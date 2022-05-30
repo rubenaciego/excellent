@@ -1365,6 +1365,18 @@ public class ControladorVista {
 
         setEntradesFull(full);
     }
+
+    /**
+     * Getter de l'string input usuari de la cel·la
+     * @param full full on és la cel·la
+     * @param fila fila de cel·la
+     * @param col columna de cel·la
+     * @return inputUsuari de la cel·la i un string buit si no hi ha cap
+     */
+    public String getInputUsuari(int full, int fila, int col) {
+        return controladorDomini.getInputUsuari(full, fila, col);
+    }
+
     /**
      * Actualitza les entrades d'un full a la vista principal
      * @param full full on es troba el bloc sobre el que aplicar l'operació

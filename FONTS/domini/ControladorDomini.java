@@ -111,6 +111,22 @@ public class ControladorDomini {
     }
 
     /**
+     * Getter de l'string input usuari de la cel·la
+     * @param full full on és la cel·la
+     * @param fila fila de cel·la
+     * @param col columna de cel·la
+     * @return inputUsuari de la cel·la i un string buit si no hi ha cap
+     */
+    public String getInputUsuari(int full, int fila, int col) {
+        if (document == null)
+            throw new ExcepcioNoDocument("Error: no hi ha document obert");
+        if (full < 0 || full >= controladorsFull.size())
+            throw new ExcepcioIndexFull(full, controladorsFull.size());
+
+        return controladorsFull.get(full).getInputUsuari(fila, col);
+    }
+
+    /**
      * Getter d'un bloc de les entrades d'un full del document sobre el que
      * està treballant el controlador.
      * @param full full del que es vol obtenir les entrades

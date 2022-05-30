@@ -189,6 +189,18 @@ public class ControladorFull {
     }
 
     /**
+     * Getter de l'string input usuari de la cel·la
+     * @param fila fila de cel·la
+     * @param col columna de cel·la
+     * @return inputUsuari de la cel·la i un string buit si no hi ha cap
+     */
+    public String getInputUsuari(int fila, int col) {
+        Cela c = full.getCela(fila, col);
+        if (c == null) return "";
+        return c.getInputUsuari();
+    }
+
+    /**
      * S’obtenen totes les entrades no nul·les del bloc del full associat definit per la Cela superior esquerra indexada per (srow, scol) i que té numFiles files i numCols columnes.
      * @param srow fila de la Cela superior esquerra del bloc inicial
      * @param scol columna de la Cela superior esquerra del bloc inicial

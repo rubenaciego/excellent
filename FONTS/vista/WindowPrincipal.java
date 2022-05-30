@@ -5,6 +5,10 @@ import util.Utilitats;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
@@ -1527,6 +1531,22 @@ public class WindowPrincipal {
                 missatge("Sobre Excellent", about);
             }
         });
+
+        entradaInput.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                SeleccioTaula s = getCurrentSelection();
+                assert (s.nfiles == 1 && s.ncols == 1);
+                controladorVista.modificaCela(entradaInput.getText(), getFocusedFull(), s.fila, s.col);
+            }
+        });
+
+        tabFulls.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                actualitzaBarraEntrada();
+            }
+        });
     }
 
     private void habilitaControls() {
@@ -1578,7 +1598,6 @@ public class WindowPrincipal {
                 menuItemBuidarBloc.setEnabled(true);
                 menuItemOrdenarBloc.setEnabled(true);
                 menuItemTransposarBloc.setEnabled(true);
-                entradaInput.setEnabled(true);
             }
         }
     }
@@ -1699,7 +1718,6 @@ public class WindowPrincipal {
         int numFull = fullTables.size() + 1;
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        tabFulls.addTab("Full " + numFull, panel);
         final JScrollPane scrollPane = new JScrollPane();
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -1762,7 +1780,15 @@ public class WindowPrincipal {
             }
         });
 
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                actualitzaBarraEntrada();
+            }
+        });
+
         fullTables.add(model);
+        tabFulls.addTab("Full " + numFull, panel);
         setFocusedFull(fullTables.size() - 1);
     }
 
@@ -1823,6 +1849,8 @@ public class WindowPrincipal {
 
             for (EntradaTaula e : entrades)
                 model.setValueAt(e.valor, e.fila, e.columna);
+
+            actualitzaBarraEntrada();
         }
     }
 
@@ -1859,8 +1887,22 @@ public class WindowPrincipal {
         JOptionPane.showMessageDialog(mainFrame, error, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
-    private boolean algunFull() {
-        return fullTables.size() > 0;
+    private void actualitzaBarraEntrada() {
+        int f = getFocusedFull();
+
+        if (f != -1) {
+            SeleccioTaula s = getCurrentSelection();
+
+            if (s.nfiles == 1 && s.ncols == 1) {
+                String inputUsuari = controladorVista.getInputUsuari(f, s.fila, s.col);
+                entradaInput.setEnabled(true);
+                entradaInput.setText(inputUsuari);
+                return;
+            }
+        }
+
+        entradaInput.setEnabled(false);
+        entradaInput.setText("");
     }
 
     private void configuraUI() {
@@ -2968,4 +3010,5 @@ public class WindowPrincipal {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }
