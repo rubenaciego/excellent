@@ -5,10 +5,7 @@ import util.Utilitats;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
@@ -1783,7 +1780,33 @@ public class WindowPrincipal {
         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                actualitzaBarraEntrada();
+                if (!listSelectionEvent.getValueIsAdjusting()) {
+                    actualitzaBarraEntrada();
+                }
+            }
+        });
+
+        table.getColumnModel().addColumnModelListener(new TableColumnModelListener() {
+            @Override
+            public void columnAdded(TableColumnModelEvent tableColumnModelEvent) {
+            }
+
+            @Override
+            public void columnRemoved(TableColumnModelEvent tableColumnModelEvent) {
+            }
+
+            @Override
+            public void columnMoved(TableColumnModelEvent tableColumnModelEvent) {
+            }
+
+            @Override
+            public void columnMarginChanged(ChangeEvent changeEvent) {
+            }
+
+            @Override
+            public void columnSelectionChanged(ListSelectionEvent listSelectionEvent) {
+                if (!listSelectionEvent.getValueIsAdjusting())
+                    actualitzaBarraEntrada();
             }
         });
 
