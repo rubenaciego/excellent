@@ -16,114 +16,398 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe corresponent a la vista principal de l’aplicació.
+ */
 public class WindowPrincipal {
+    /**
+     *  Instància corresponent al controladorVista.
+     */
     private final ControladorVista controladorVista;
-
+    /**
+     * Contenidor principal de la vista.
+     */
     private JFrame mainFrame;
+    /**
+     * Es tracta del panell contenidor de mainFrame
+     */
     private JPanel mainPanel;
+    /**
+     * Panell contenidor de tots els blocs i botons d’operacions.
+     */
     private JPanel opPanel;
+    /**
+     * Panell on trobem les operacions aritmètiques.
+     */
     private JPanel opAritPanel;
+    /**
+     * Panell on trobem els botons corresponents a les operacions aritmètiques.
+     */
     private JPanel opAritButtPanel;
+    /**
+     * Panell on trobem les operacions estadístiques.
+     */
     private JPanel opEstPanel;
+    /**
+     * Panell on trobem els botons corresponents a les operacions estadístiques.
+     */
     private JPanel opEstButtPanel;
+    /**
+     * Panell on trobem les operacions textuals.
+     */
     private JPanel opTextPanel;
+    /**
+     * Panell on trobem els botons corresponents a les operacions textuals.
+     */
     private JPanel opTextButtPanel;
+    /**
+     * Panell on trobem les operacions de dates.
+     */
     private JPanel opDataPanel;
+    /**
+     * Panell on trobem els botons corresponents a les operacions sobre dates.
+     */
     private JPanel opDataButtPanel;
+    /**
+     * Panell on trobem les operacions de conversió d’unitats.
+     */
     private JPanel opConvPanel;
+    /**
+     * Panell on trobem els botons corresponents a la conversió d’unitats.
+     */
     private JPanel opConvButtPanel;
+    /**
+     * Espaiador pel panell d’operacions.
+     */
     private JPanel spacer;
+    /**
+     * Panell contenidor dels botons d’afegiment i eliminació de fulls.
+     */
     private JPanel buttFullsPanel;
+    /**
+     * Estructura contenidora dels fulls de la vista.
+     */
     private JTabbedPane tabFulls;
+    /**
+     * Botó corresponent a l’operació de VALOR_ABSOLUT.
+     */
     private JButton absButton;
+    /**
+     * Botó corresponent a l’operació d’EXPONENCIAL.
+     */
     private JButton expButton;
+    /**
+     * Botó corresponent a l’operació d’INCREMENTAR.
+     */
     private JButton incrButton;
+    /**
+     * Botó corresponent a l’operació de DECREMENTAR.
+     */
     private JButton decrButton;
+    /**
+     * Botó corresponent a l’operació de TRUNCA_NUMERO.
+     */
     private JButton truncarButton;
+    /**
+     * Botó corresponent a l’operació de COSINUS.
+     */
     private JButton cosButton;
+    /**
+     * Botó corresponent a l’operació de SINUS.
+     */
     private JButton sinButton;
+    /**
+     * Botó corresponent a l’operació de COSINUS_HIPERBOLIC.
+     */
     private JButton coshButton;
+    /**
+     * Botó corresponent a l’operació de SINUS_HIPERBOLIC.
+     */
     private JButton sinhButton;
+    /**
+     * Botó corresponent a l’operació de TANGENT_HIPERBOLIC.
+     */
     private JButton tanhButton;
+    /**
+     * Botó desplegable per triar la conversió d’unitats pertinent.
+     */
     private JComboBox comboBox;
+    /**
+     * Botó corresponent a l’operació de COVARIANCIA.
+     */
     private JButton covarianciaButton;
+    /**
+     * Botó corresponent a l’operació de DESVIACIO_ESTANDAR.
+     */
     private JButton desvEstButton;
+    /**
+     * Botó corresponent a l’operació de COEFICIENT_PEARSON.
+     */
     private JButton coefCorrButton;
+    /**
+     * Botó corresponent a l’operació de MITJANA.
+     */
     private JButton mitjanaButton;
+    /**
+     * Botó corresponent a l’operació de VARIANCIA.
+     */
     private JButton varianciaButton;
+    /**
+     * Botó corresponent a l’operació de MEDIANA.
+     */
     private JButton medianaButton;
+    /**
+     * Botó corresponent a l’operació de REEMPLACA.
+     */
     private JButton reemplacaButton;
+    /**
+     * Botó corresponent a l’operació de EXTREU_LONGITUT_TEXT.
+     */
     private JButton longButton;
+    /**
+     * Botó corresponent a l’operació de CONVERTEIX_MINUSCULES.
+     */
     private JButton minuscButton;
+    /**
+     * Botó corresponent a l’operació de CONVERTEIX_MAJUSCULES.
+     */
     private JButton majButton;
+    /**
+     * Botó corresponent a l’operació de EXTREU_DIA.
+     */
     private JButton diaButton;
+    /**
+     * Botó corresponent a l’operació de EXTREU_MES.
+     */
     private JButton mesButton;
+    /**
+     * Botó corresponent a l’operació de EXTREU_ANY.
+     */
     private JButton anyButton;
+    /**
+     * Botó corresponent a l’operació de EXTREU_DIA_SETMANA.
+     */
     private JButton diaSetmButton;
+    /**
+     * Botó corresponent a l’operació de EXTREU_HOROSCOP.
+     */
     private JButton horoscopButton;
+    /**
+     * Menú amb totes les opcions possibles de conversió d’unitats.
+     */
     private JLabel convUniComboBox;
+    /**
+     * Botó corresponent a l’operació de CERCA.
+     */
     private JButton cercaButton;
+    /**
+     * Botó corresponent a l’operació de AFEGEIX_FULL.
+     */
     private JButton afegirFullButton;
+    /**
+     * Botó corresponent a l’operació de ELIMINA_FULL.
+     */
     private JButton elimFullButton;
+    /**
+     * Botó corresponent a l’operació de CONVERTEIX_UNITATS.
+     */
     private JButton convertirButton;
+    /**
+     * Etiqueta corresponent al panell d’operacions aritmètiques.
+     */
     private JLabel operacionsAritmetiquesLabel;
+    /**
+     * Etiqueta corresponent al panell d’operacions estadístiques.
+     */
     private JLabel operacionsEstadistiquesLabel;
+    /**
+     * Etiqueta corresponent al panell d’operacions textuals.
+     */
     private JLabel operacionsTextualsLabel;
+    /**
+     * Etiqueta corresponent al panell d’operacions sobre dates.
+     */
     private JLabel operacionsDeDatesLabel;
+    /**
+     * Camp on poder entrar i veure l'input de l'usuari
+     */
     private JTextField entradaInput;
+    /**
+     * Etiqueta corresponent al panell de l'input de l'usuari.
+     */
     private JLabel inputLabel;
+    /**
+     * Panell contenidor de tots els elements corresponents a la barra d'input
+     */
     private JPanel barraInput;
 
-    private JPanel espaiadorInput;
-
-    //Menu
+    /**
+     * Barra de menú
+     */
     private JMenuBar menuBarVista = new JMenuBar();
-
+    /**
+     * Apartat Fitxer de la barra de menú.
+     */
     private JMenu menuFile = new JMenu("Fitxer");
+    /**
+     * Botó corresponent a l’operació de CREA_DOCUMENT.
+     */
     private JMenuItem menuItemCrear = new JMenuItem("Crea document");
+    /**
+     * Botó corresponent a l’operació de CARREGA_DOCUMENT.
+     */
     private JMenuItem menuItemCarregar = new JMenuItem("Carrega document");
+    /**
+     * Botó corresponent a l'operació de CANVIA_NOM_DOCUMENT.
+     */
     private JMenuItem menuItemReanomena = new JMenuItem("Reanomena document");
+    /**
+     * Botó corresponent a l’operació de TANCA_DOCUMENT.
+     */
     private JMenuItem menuItemTancar = new JMenuItem("Tanca document");
+    /**
+     * Botó corresponent a l’operació de DESA_DOCUMENT.
+     */
     private JMenuItem menuItemDesar = new JMenuItem("Desa document");
 
+    /**
+     * Apartat Editar de la barra de menú.
+     */
     private JMenu menuEditar = new JMenu("Editar");
+    /**
+     * Botó per seleccionar totes les cel·les del full present.
+     */
     private JMenuItem menuItemSelectAll = new JMenuItem("Selecciona-ho tot");
+    /**
+     * Botó per seleccionar una fila del full present.
+     */
     private JMenuItem menuItemSelectFila = new JMenuItem("Selecciona fila...");
+    /**
+     * Botó per seleccionar una columnadel full present.
+     */
     private JMenuItem menuItemSelectCol = new JMenuItem("Selecciona columna...");
 
+    /**
+     * Apartat Full de la barra de menú.
+     */
     private JMenu menuFull = new JMenu("Full");
+    /**
+     * Botó per afegir una fila del full present.
+     */
     private JMenuItem menuItemAfegirFila = new JMenuItem("Afegeix fila");
+    /**
+     * Botó per afegir una columna del full present.
+     */
     private JMenuItem menuItemAfegirCol = new JMenuItem("Afegeix columna");
+    /**
+     * Botó per eliminar una fila del full present.
+     */
     private JMenuItem menuItemElimFila = new JMenuItem("Elimina fila...");
+    /**
+     * Botó per eliminar una columna del full present.
+     */
     private JMenuItem menuItemElimCol = new JMenuItem("Elimina columna...");
+    /**
+     * Botó corresponent a l’operació de COPIAR_BLOC.
+     */
     private JMenuItem menuItemCopiarBloc = new JMenuItem("Copia bloc...");
+    /**
+     * Botó corresponent a l’operació de MOURE_BLOC.
+     */
     private JMenuItem menuItemMoureBloc = new JMenuItem("Mou bloc...");
+    /**
+     * Botó corresponent a l’operació de BUIDAR_BLOC.
+     */
     private JMenuItem menuItemBuidarBloc = new JMenuItem("Buidar bloc...");
+    /**
+     * Botó corresponent a l’operació de ORDENAR_BLOC.
+     */
     private JMenuItem menuItemOrdenarBloc = new JMenuItem("Ordena bloc...");
+    /**
+     * Botó corresponent a l’operació de TRANSPOSAR_BLOC.
+     */
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
+    /**
+     * Botó corresponent a l'operació AFEGIR_FULL.
+     */
     private JMenuItem menuItemAfegirFull = new JMenuItem("Afegeix full");
 
+    /**
+     * Apartat Ajuda de la barra de menú.
+     */
     private JMenu menuAjuda = new JMenu("Ajuda");
+    /**
+     * Botó per accedir a la documentació de l’aplicació.
+     */
     private JMenuItem menuItemDocu = new JMenuItem("Documentació");
+    /**
+     * Botó per obtenir més informació sobre l’aplicació.
+     */
     private JMenuItem menuItemSobre = new JMenuItem("Sobre Excellent...");
 
-    //Menu Clic dret
+    /**
+     * Menu correponent al menú contextual (clic dret)
+     */
     private JPopupMenu menuClicDret;
+    /**
+     * Botó per afegir una fila al full present des del menú contextual.
+     */
     private JMenuItem itAfFila = new JMenuItem("Afegeix fila");
+    /**
+     * Botó per afegir una columna al full present des del menú contextual.
+     */
     private JMenuItem itAfCol = new JMenuItem("Afegeix columna");
+    /**
+     * Botó per eliminar una fila del full present des del menú contextual.
+     */
     private JMenuItem itElFila = new JMenuItem("Elimina fila/es");
+    /**
+     * Botó per eliminar una columna del full present des del menú contextual.
+     */
     private JMenuItem itElCol = new JMenuItem("Elimina columna/es");
+    /**
+     * Botó per seleccionar una fila del full present des del menú contextual.
+     */
     private JMenuItem itSelFila = new JMenuItem("Selecciona fila/es");
+    /**
+     * Botó per seleccionar una columna del full present des del menú contextual.
+     */
     private JMenuItem itSelCol = new JMenuItem("Selecciona columna/es");
+    /**
+     * Botó per buidar el bloc seleccionat del full present des del menú contextual.
+     */
     private JMenuItem itBuida = new JMenuItem("Buida bloc");
+    /**
+     * Botó per copiar el bloc seleccionat del full present des del menú contextual.
+     */
     private JMenuItem itCopia = new JMenuItem("Copia bloc");
+    /**
+     * Botó per moure el bloc seleccionat del full present des del menú contextual.
+     */
     private JMenuItem itMou = new JMenuItem("Mou bloc");
+    /**
+     * Botó per ordenar bloc seleccionat del full present des del menú contextual.
+     */
     private JMenuItem itOrd = new JMenuItem("Ordena bloc");
+    /**
+     * Botó per transposar el bloc seleccionat del full present des del menú contextual.
+     */
     private JMenuItem itTransp = new JMenuItem("Transposa bloc");
-    //Fulls
+
+    /**
+     * Llistat de les taules del fulls del document en que s’esta treballant.
+     */
     private ArrayList<DefaultTableModel> fullTables;
+    /**
+     * Indica si tenim un document obert en aquest moment
+     */
     private boolean documentObert;
 
+    /**
+     * Constructora principal. S'encarrega de crear tots els elements necessaris per aconseguir l'aspecte visual corresponent
+     * i també tots els actionListeners que tots els botons i semblants de l'aplicació requereixen
+     * @param controlador el controlador de la capa de presentació
+     */
     public WindowPrincipal(ControladorVista controlador) {
         this.controladorVista = controlador;
         fullTables = new ArrayList<DefaultTableModel>();
@@ -1546,6 +1830,9 @@ public class WindowPrincipal {
         });
     }
 
+    /**
+     * Habilita els controls i botons necessaris
+     */
     private void habilitaControls() {
         if (documentObert) {
             afegirFullButton.setEnabled(true);
@@ -1599,6 +1886,9 @@ public class WindowPrincipal {
         }
     }
 
+    /**
+     * Deshabilita els controls i botons necessaris per evitar errors
+     */
     private void deshabilitaControls() {
         absButton.setEnabled(false);
         expButton.setEnabled(false);
@@ -1651,6 +1941,9 @@ public class WindowPrincipal {
         }
     }
 
+    /**
+     * S’executen les accions necessàries per inicialitzar el menu contextual o de clic dret
+     */
     private void inicialitzar_menuContextual() {
         menuClicDret = new JPopupMenu();
         menuClicDret.add(itAfFila);
@@ -1668,6 +1961,9 @@ public class WindowPrincipal {
         menuClicDret.add(itTransp);
     }
 
+    /**
+     * S’executen les accions necessàries per inicialitzar el barra superior de la WindowPrincipal.
+     */
     private void inicialitzar_menuBar() {
         //Fitxer
         menuFile.add(menuItemCrear);
@@ -1706,6 +2002,11 @@ public class WindowPrincipal {
         mainFrame.setJMenuBar(menuBarVista);
     }
 
+    /**
+     * S’afegeix un nou full al document
+     * @param nrows número de files del nou full
+     * @param ncols número de columnes del nou full
+     */
     public void afegeixFull(int nrows, int ncols) {
         DefaultTableModel model = new DefaultTableModel();
         JTable table = new JTable(model);
@@ -1815,11 +2116,18 @@ public class WindowPrincipal {
         setFocusedFull(fullTables.size() - 1);
     }
 
+    /**
+     * Esborra tots els fulls
+     */
     public void esborraFulls() {
         tabFulls.removeAll();
         fullTables.clear();
     }
 
+    /**
+     * S’esborra el full del document obert
+     * @param index índex del full que es vol esborrar
+     */
     public void esborraFull(int index) {
         if (index >= 0 && index < fullTables.size()) {
             tabFulls.remove(index);
@@ -1830,20 +2138,35 @@ public class WindowPrincipal {
         }
     }
 
+    /**
+     * Getter de l'índex de full seleccionat o actual
+     * @return el índex del full
+     */
     public int getFocusedFull() {
         return tabFulls.getSelectedIndex();
     }
 
+    /**
+     * Setter del document
+     * @param titol títol del document obert
+     */
     public void setDocument(String titol) {
         mainFrame.setTitle("Excellent - " + titol);
         documentObert = true;
     }
 
+    /**
+     * Tanca el document actual
+     */
     public void tancaDocument() {
         mainFrame.setTitle("Excellent");
         documentObert = false;
     }
 
+    /**
+     * Getter de les cel·les de la taula actual que es troben seleccionades
+     * @return La selecció de cel·les en qüestió
+     */
     public SeleccioTaula getCurrentSelection() {
         JPanel panel = (JPanel) tabFulls.getSelectedComponent();
         JTable table = (JTable) (((JScrollPane) panel.getComponent(0)).getViewport().getView());
@@ -1853,11 +2176,11 @@ public class WindowPrincipal {
                 table.getSelectedRowCount(), table.getSelectedColumnCount());
     }
 
-    public ArrayList<EntradaTaula> getCurrentEntradesFull(SeleccioTaula seleccio) {
-        ArrayList<EntradaTaula> entrades = new ArrayList<EntradaTaula>();
-        return entrades;
-    }
-
+    /**
+     * Es buiden les cel·les del full especificades a la selecció.
+     * @param full índex del full d'on es buiden les cel·les
+     * @param seleccio selecció corresponent a les cel·les a buidar
+     */
     public void buidaSeleccio(int full, SeleccioTaula seleccio) {
         TableModel model = fullTables.get(full);
 
@@ -1866,6 +2189,11 @@ public class WindowPrincipal {
                 model.setValueAt("", i + seleccio.fila, j + seleccio.col);
     }
 
+    /**
+     * Es modifiquen les cel·les del full especificades a la selecció.
+     * @param full índex del full d'on es modifiquen les cel·les
+     * @param entrades selecció corresponent a les cel·les a modificar
+     */
     public void setEntradesFull(int full, ArrayList<EntradaTaula> entrades) {
         if (full >= 0 && full < fullTables.size()) {
             TableModel model = fullTables.get(full);
@@ -1877,26 +2205,46 @@ public class WindowPrincipal {
         }
     }
 
+    /**
+     * Es canvia el full actual
+     * @param full l'índex del nou full actual
+     */
     public void setFocusedFull(int full) {
         if (full >= 0 && full < fullTables.size())
             tabFulls.setSelectedIndex(full);
     }
 
+    /**
+     * Afegeix una fila a la JTable del full
+     * @param full índex del full on afegir la fila
+     */
     public void afegeixFila(int full) {
         DefaultTableModel m = fullTables.get(full);
         m.setRowCount(m.getRowCount() + 1);
     }
 
+    /**
+     * Afegeix una columna a la JTable del full
+     * @param full índex del full on afegir la columna
+     */
     public void afegeixColumna(int full) {
         DefaultTableModel m = fullTables.get(full);
         m.setColumnCount(m.getColumnCount() + 1);
     }
 
+    /**
+     * Elimina una fila de la JTable del full
+     * @param full índex del full on eliminar la fila
+     */
     public void eliminaFila(int full) {
         DefaultTableModel m = fullTables.get(full);
         m.setRowCount(m.getRowCount() - 1);
     }
 
+    /**
+     * Elimina una columna de la JTable del full
+     * @param full índex del full on eliminar la columna
+     */
     public void eliminaColumna(int full) {
         DefaultTableModel m = fullTables.get(full);
         m.setColumnCount(m.getColumnCount() - 1);
@@ -1928,6 +2276,10 @@ public class WindowPrincipal {
         entradaInput.setText("");
     }
 
+    /**
+     * Configura tots els elements de UI per tal que se situïn a les seves
+     * posicions corresponents i tinguin la mida, marges, alineacions… Correctes.
+     */
     private void configuraUI() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());

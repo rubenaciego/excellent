@@ -3,21 +3,46 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe corresponent a la vista que apareix en pitjar el botó corresponent a l’operació CERCA_OCURRENCIES.
+ */
 public class WindowCerca extends WindowSecundaria {
+    /**
+     * Etiqueta del panell de cerca.
+     */
     protected JLabel cercaLabel;
+    /**
+     * Panell que conté els elements relacionats amb la introducció del text a cercar.
+     */
     protected JPanel cercaPanel;
+    /**
+     * Camp per poder entrar el text a cercar.
+     */
     protected JTextField entradaCerca;
 
+    /**
+     * Constructora principal
+     * @param frame el contenidor de la WindowSecundaria
+     */
     public WindowCerca(JFrame frame) {
         super(frame, "Cerca");
         destiPanel.setVisible(false);
     }
 
+    /**
+     * Constructora principal amb afegir títol
+     * @param frame el contenidor de la WindowCerca
+     * @param title el títol de la WindowCerca
+     */
     protected WindowCerca(JFrame frame, String title) {
         super(frame, title);
     }
 
     public String getStringCercada() {return entradaCerca.getText();}
+
+    /**
+     * {@inheritDoc}
+     */
 
     @Override
     protected void configuraUI() {
