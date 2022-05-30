@@ -5,8 +5,9 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/*
- *  Code retrieved from http://www.camick.com/java/source/TableCellListener.java
+/**
+ *  Code retrieved from
+ *  <a href="http://www.camick.com/java/source/TableCellListener.java">link</a>
  *  This class listens for changes made to the data in the table via the
  *  TableCellEditor. When editing is started, the value of the cell is saved
  *  When editing is stopped the new value is saved. When the old and new

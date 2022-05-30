@@ -3,15 +3,33 @@ package vista;
 import domini.ControladorDomini;
 import domini.ExcepcioDomini;
 
+/**
+ * Controlador de la capa de presentació.
+ */
 public class ControladorVista {
+    /**
+     * Controlador de domini enllaçat
+     */
     private final ControladorDomini controladorDomini;
+    /**
+     * Finestra de la vista principal del programa
+     */
     private final MainWindow window;
 
+    /**
+     * Constructor principal del controlador que l'enllaça amb un controlador
+     * de domini
+     * @param controladorDomini controlador de domini amb que enllaçar el de
+     *                          vista
+     */
     public ControladorVista(ControladorDomini controladorDomini) {
         this.controladorDomini = controladorDomini;
         window = new MainWindow(this);
     }
 
+    /**
+     * Afegeix un full
+     */
     public void afegeixFull() {
         String[] message = {"OPERACIO_DOCUMENT,AFEGEIX_FULL"};
 
@@ -25,6 +43,10 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Esborra un full demanat
+     * @param index index del full a esborrar
+     */
     public void esborraFull(int index) {
         String[] message = {"OPERACIO_DOCUMENT,ELIMINA_FULL," + index};
 
@@ -37,6 +59,10 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Crea un document
+     * @param nom nom del document a crear
+     */
     public void creaDocument(String nom) {
         String[] message = {"OPERACIO_DOCUMENT,CREA_DOCUMENT", nom};
 
@@ -49,6 +75,10 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Reanomena un document
+     * @param nom nou nom del document
+     */
     public void reanomenaDocument(String nom) {
         String[] message = {"OPERACIO_DOCUMENT,CANVIA_NOM_DOCUMENT", nom};
 
@@ -61,6 +91,9 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Desa un document en memòria
+     */
     public void desaDocument() {
         String[] message = {"OPERACIO_DOCUMENT,DESA_DOCUMENT"};
 
@@ -72,6 +105,9 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Tanca el document carregat a l'aplicació
+     */
     public void tancaDocument() {
         String[] message = {"OPERACIO_DOCUMENT,TANCA_DOCUMENT"};
 
@@ -85,6 +121,10 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Carrega un document a l'aplicació
+     * @param nom nom del document a carregar
+     */
     public void carregaDocument(String nom) {
         String[] message = {"OPERACIO_DOCUMENT,CARREGA_DOCUMENT", nom};
 
@@ -106,6 +146,13 @@ public class ControladorVista {
         window.setFocusedFull(0);
     }
 
+    /**
+     * Modifica una cel·la donada d'un full amb un nou contingut
+     * @param input nou contingut de la cel·la
+     * @param full full on es troba la cel·la a modificar
+     * @param filaDesti fila que ocupa la cel·la a modificar
+     * @param colDesti columna que ocupa la cel·la a modificar
+     */
     public void modificaCela(String input, int full, int filaDesti,
                              int colDesti) {
         String[] message =
@@ -122,6 +169,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el valor absolut d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void valorAbsolut(int full, int filaOrigen, int colOrigen,
                              int numFiles, int numCols, int filaDesti,
                              int colDesti) {
@@ -139,6 +200,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula l'increment d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void incrementar(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -156,6 +231,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el decrement d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void decrementar(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -173,6 +262,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula l'exponencial d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void exponencial(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -190,6 +293,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el cosinus d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void cosinus(int full, int filaOrigen, int colOrigen,
                         int numFiles, int numCols, int filaDesti,
                         int colDesti) {
@@ -207,6 +324,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el sinus d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void sinus(int full, int filaOrigen, int colOrigen,
                       int numFiles, int numCols, int filaDesti,
                       int colDesti) {
@@ -224,6 +355,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el cosinus hiperbòlic d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void cosinusHiperbolic(int full, int filaOrigen, int colOrigen,
                                   int numFiles, int numCols, int filaDesti,
                                   int colDesti) {
@@ -241,6 +386,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el sinus hiperbòlic d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void sinusHiperbolic(int full, int filaOrigen, int colOrigen,
                                 int numFiles, int numCols, int filaDesti,
                                 int colDesti) {
@@ -258,6 +417,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la tangent hiperbòlica d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void tangentHiperbolic(int full, int filaOrigen, int colOrigen,
                                   int numFiles, int numCols, int filaDesti,
                                   int colDesti) {
@@ -275,6 +448,21 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el truncament d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     * @param digitsTruncar xifra del dígit al qual truncar
+     */
     public void truncar(int full, int filaOrigen, int colOrigen,
                         int numFiles, int numCols, int filaDesti,
                         int colDesti, int digitsTruncar) {
@@ -292,6 +480,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la longitut del text d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void longitudText(int full, int filaOrigen, int colOrigen,
                              int numFiles, int numCols, int filaDesti,
                              int colDesti) {
@@ -309,6 +511,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Converteix a majúscules d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void majuscules(int full, int filaOrigen, int colOrigen,
                            int numFiles, int numCols, int filaDesti,
                            int colDesti) {
@@ -326,6 +542,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Converteix a minúscules d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void minuscules(int full, int filaOrigen, int colOrigen,
                            int numFiles, int numCols, int filaDesti,
                            int colDesti) {
@@ -343,6 +573,17 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Cerca en un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param stringCercada expressió a cercar
+     */
     public void cerca(int full, int filaOrigen, int colOrigen,
                       int numFiles, int numCols, String stringCercada) {
         String[] message =
@@ -360,6 +601,24 @@ public class ControladorVista {
         }
     }
 
+    /**
+     * Reemplaça en un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param stringCercada expressió a cercar
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     * @param stringReemplacadora expressió per la qual reemplaçar
+     *                            l'expressió a cercar
+     *
+     */
     public void reemplaca(int full, int filaOrigen, int colOrigen,
                           int numFiles, int numCols, int filaDesti,
                           int colDesti, String stringCercada,
@@ -379,6 +638,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la mitjana d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void mitjana(int full, int filaOrigen, int colOrigen,
                         int numFiles, int numCols, int filaDesti,
                         int colDesti) {
@@ -396,6 +669,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la mediana d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void mediana(int full, int filaOrigen, int colOrigen,
                         int numFiles, int numCols, int filaDesti,
                         int colDesti) {
@@ -413,6 +700,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la variància d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void variancia(int full, int filaOrigen, int colOrigen,
                           int numFiles, int numCols, int filaDesti,
                           int colDesti) {
@@ -430,6 +731,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la desviació estàndard d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void desviacioEstandard(int full, int filaOrigen, int colOrigen,
                                    int numFiles, int numCols, int filaDesti,
                                    int colDesti) {
@@ -447,6 +762,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula la covariància d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void covariancia(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -464,6 +793,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Calcula el coeficient de Pearson d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void coeficientPearson(int full, int filaOrigen, int colOrigen,
                                   int numFiles, int numCols, int filaDesti,
                                   int colDesti) {
@@ -481,6 +824,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Extreu el dia d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void extreureDia(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -498,6 +855,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Extreu el mes d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void extreureMes(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -515,6 +886,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Extreu l'any d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void extreureAny(int full, int filaOrigen, int colOrigen,
                             int numFiles, int numCols, int filaDesti,
                             int colDesti) {
@@ -532,6 +917,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Extreu el dia de la setmana d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void extreureDiaSetmana(int full, int filaOrigen, int colOrigen,
                                    int numFiles, int numCols, int filaDesti,
                                    int colDesti) {
@@ -549,6 +948,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Extreu l'horòscop d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void extreureHoroscop(int full, int filaOrigen, int colOrigen,
                                  int numFiles, int numCols, int filaDesti,
                                  int colDesti) {
@@ -566,6 +979,21 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Converteix les unitas d'un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     * @param conv conversió d'unitats a efectuar
+     */
     public void convertirUnitats(int full, int filaOrigen, int colOrigen,
                                  int numFiles, int numCols, int filaDesti,
                                  int colDesti, String conv) {
@@ -666,6 +1094,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Transposa un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void transposaBloc(int full, int filaOrigen, int colOrigen,
                           int numFiles, int numCols, int filaDesti,
                           int colDesti) {
@@ -683,6 +1125,18 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Ordena un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param criteri criteri d'ordenació
+     * @param colOrd columna respecte la qual ordenar
+     */
     public void ordenaBloc(int full, int filaOrigen, int colOrigen,
                        int numFiles, int numCols, int filaDesti,
                        int colDesti, String criteri, int colOrd) {
@@ -701,6 +1155,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Mou un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void mouBloc(int full, int filaOrigen, int colOrigen,
                            int numFiles, int numCols, int filaDesti,
                            int colDesti) {
@@ -718,6 +1186,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Copia un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void copiaBloc(int full, int filaOrigen, int colOrigen,
                           int numFiles, int numCols, int filaDesti,
                           int colDesti) {
@@ -735,6 +1217,20 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Buida un bloc de cel·les d'un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param filaOrigen fila de l'inici del bloc d'origen sobre el que
+     *                   aplicar l'operació
+     * @param colOrigen columna de l'inici del bloc d'origen sobre el que
+     *                  aplicar l'operació
+     * @param numFiles nombre de files del bloc
+     * @param numCols nombre de columnes del bloc
+     * @param filaDesti fila de l'inici del bloc de desti sobre el que
+     *                  aplicar l'operació
+     * @param colDesti columna de l'inici del bloc de desti sobre el que
+     *                 aplicar l'operació
+     */
     public void buidaBloc(int full, int filaOrigen, int colOrigen,
                           int numFiles, int numCols) {
         String[] message =
@@ -751,6 +1247,10 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Afegeix una fila a un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     */
     public void afegeixFila(int full) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + "," +
@@ -766,6 +1266,10 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Afegeix una columna a un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     */
     public void afegeixColumna(int full) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + "," +
@@ -781,6 +1285,11 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Elimina una fila a un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param n índex de la fila a eliminar
+     */
     public void eliminaFila(int full, int n) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + "," +
@@ -796,6 +1305,11 @@ public class ControladorVista {
         setEntradesFull(full);
     }
 
+    /**
+     * Elimina una columna a un full
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     * @param n índex de la columna a eliminar
+     */
     public void eliminaColumna(int full, int n) {
         String[] message =
                 {"OPERACIO_FULL," + full + "," + "," +
@@ -810,6 +1324,10 @@ public class ControladorVista {
 
         setEntradesFull(full);
     }
+    /**
+     * Actualitza les entrades d'un full a la vista principal
+     * @param full full on es troba el bloc sobre el que aplicar l'operació
+     */
     private void setEntradesFull(int full) {
         SeleccioTaula s = new SeleccioTaula(0, 0, controladorDomini.getNumFiles(full), controladorDomini.getNumCols(full));
         window.buidaSeleccio(full, s);
