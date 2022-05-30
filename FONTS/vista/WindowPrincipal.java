@@ -69,6 +69,11 @@ public class WindowPrincipal {
     private JLabel operacionsEstadistiquesLabel;
     private JLabel operacionsTextualsLabel;
     private JLabel operacionsDeDatesLabel;
+    private JTextField entradaInput;
+    private JLabel inputLabel;
+    private JPanel barraInput;
+
+    private JPanel espaiadorInput;
 
     //Menu
     private JMenuBar menuBarVista = new JMenuBar();
@@ -95,6 +100,7 @@ public class WindowPrincipal {
     private JMenuItem menuItemBuidarBloc = new JMenuItem("Buidar bloc...");
     private JMenuItem menuItemOrdenarBloc = new JMenuItem("Ordena bloc...");
     private JMenuItem menuItemTransposarBloc = new JMenuItem("Transposa bloc...");
+    private JMenuItem menuItemAfegirFull = new JMenuItem("Afegeix full");
 
     private JMenu menuAjuda = new JMenu("Ajuda");
     private JMenuItem menuItemDocu = new JMenuItem("Documentació");
@@ -1288,6 +1294,16 @@ public class WindowPrincipal {
             }
         });
 
+        menuItemAfegirFull.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                controladorVista.afegeixFull();
+
+                if (!fullTables.isEmpty())
+                    habilitaControls();
+            }
+        });
+
         itAfFila.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -1520,6 +1536,7 @@ public class WindowPrincipal {
             menuItemReanomena.setEnabled(true);
             menuItemTancar.setEnabled(true);
             menuItemDesar.setEnabled(true);
+            menuItemAfegirFull.setEnabled(true);
 
             if (!fullTables.isEmpty()) {
                 absButton.setEnabled(true);
@@ -1561,6 +1578,7 @@ public class WindowPrincipal {
                 menuItemBuidarBloc.setEnabled(true);
                 menuItemOrdenarBloc.setEnabled(true);
                 menuItemTransposarBloc.setEnabled(true);
+                entradaInput.setEnabled(true);
             }
         }
     }
@@ -1605,6 +1623,7 @@ public class WindowPrincipal {
         menuItemBuidarBloc.setEnabled(false);
         menuItemOrdenarBloc.setEnabled(false);
         menuItemTransposarBloc.setEnabled(false);
+        entradaInput.setEnabled(false);
 
         if (!documentObert) {
             afegirFullButton.setEnabled(false);
@@ -1612,6 +1631,7 @@ public class WindowPrincipal {
             menuItemReanomena.setEnabled(false);
             menuItemTancar.setEnabled(false);
             menuItemDesar.setEnabled(false);
+            menuItemAfegirFull.setEnabled(false);
         }
     }
 
@@ -1655,6 +1675,7 @@ public class WindowPrincipal {
         menuFull.add(menuItemBuidarBloc);
         menuFull.add(menuItemOrdenarBloc);
         menuFull.add(menuItemTransposarBloc);
+        menuFull.add(menuItemAfegirFull);
 
         //Ajuda
         menuAjuda.add(menuItemDocu);
@@ -2348,7 +2369,7 @@ public class WindowPrincipal {
         tabFulls.setTabPlacement(3);
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
@@ -2359,7 +2380,7 @@ public class WindowPrincipal {
         buttFullsPanel.setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.VERTICAL;
         mainPanel.add(buttFullsPanel, gbc);
@@ -2380,6 +2401,32 @@ public class WindowPrincipal {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         buttFullsPanel.add(elimFullButton, gbc);
+
+        barraInput = new JPanel();
+        barraInput.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(barraInput, gbc);
+        barraInput.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        entradaInput = new JTextField();
+        entradaInput.setMinimumSize(new Dimension(1699, 130));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 2.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        barraInput.add(entradaInput, gbc);
+        inputLabel = new JLabel();
+        inputLabel.setText("Input: ");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        barraInput.add(inputLabel, gbc);
     }
 
     {
@@ -2888,6 +2935,31 @@ public class WindowPrincipal {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         panel12.add(elimFullButton, gbc);
+        barraInput = new JPanel();
+        barraInput.setLayout(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(barraInput, gbc);
+        barraInput.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        entradaInput = new JTextField();
+        entradaInput.setMinimumSize(new Dimension(1699, 130));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 2.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        barraInput.add(entradaInput, gbc);
+        inputLabel = new JLabel();
+        inputLabel.setText("Input: ");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        barraInput.add(inputLabel, gbc);
     }
 
     /**
