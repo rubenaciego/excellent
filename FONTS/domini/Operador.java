@@ -472,17 +472,18 @@ public class Operador {
                         break;
                 }
 
-                JSONObject cela = new JSONObject();
-                cela.put("ocurrencies", count);
-                cela.put("indexs", indices);
+                if (count != 0) {
+                    JSONObject cela = new JSONObject();
+                    cela.put("ocurrencies", count);
+                    cela.put("indexs", indices);
 
-                obj.put(e.getFila() + ":" + e.getColumna(), cela);
-                total += count;
+                    obj.put(e.getFila() + ":" + e.getColumna(), cela);
+                    total += count;
+                }
             }
         }
 
         obj.put("ocurrencies", total);
-        // problema que posar d'input usuari
         CelaText c = new CelaText("cercaOcurrencies(" + aCercar + ")", obj.toString());
         MatriuCeles mc = new MatriuCeles(1, 1);
         mc.setCela(c, 0, 0);

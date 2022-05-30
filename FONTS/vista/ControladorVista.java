@@ -2,6 +2,13 @@ package vista;
 
 import domini.ControladorDomini;
 import domini.ExcepcioDomini;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import util.Utilitats;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Controlador de la capa de presentació.
@@ -594,7 +601,41 @@ public class ControladorVista {
             controladorDomini.executaOperacio(message);
             String res = controladorDomini.getCelaResultat(full);
 
-            System.out.println(res);
+            JSONObject json = JSONObject.fromObject(res);
+            StringBuilder sb = new StringBuilder();
+
+            sb.append("String cercada: ");
+            sb.append(stringCercada);
+            sb.append("\nOcurrències totals: ");
+            sb.append(json.getInt("ocurrencies"));
+
+            for (Iterator it = json.keys(); it.hasNext(); ) {
+                String key = (String) it.next();
+                if (key.equals("ocurrencies"))
+                    continue;
+
+                JSONObject cela = json.getJSONObject(key);
+                int count = cela.getInt("ocurrencies");
+                JSONArray indices = cela.getJSONArray("indexs");
+
+                int i = key.indexOf(':');
+                int fila = Integer.parseInt(key.substring(0, i)) + filaOrigen;
+                int col = Integer.parseInt(key.substring(i + 1)) + colOrigen;
+                String c = Utilitats.convertirATextCela(fila, col);
+
+                sb.append("\n\nCel·la ");
+                sb.append(c);
+                sb.append(": ");
+                sb.append(count);
+                sb.append(" ocurrència/es\nÍndexos:");
+
+                for (int j = 0; j < indices.size(); ++j) {
+                    sb.append(' ');
+                    sb.append(indices.getInt(j));
+                }
+            }
+
+            window.missatge("Resultat cerca", sb.toString());
         } catch (ExcepcioDomini e) {
             window.errorMessage(e.getMessage());
             System.out.println(e.getMessage());

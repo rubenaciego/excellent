@@ -1506,7 +1506,7 @@ public class WindowPrincipal {
             public void actionPerformed(ActionEvent actionEvent) {
                 final String about = "Software desenvolupat per:" + "\nJofre Costa" +
                     "\nMariona Jaramillo" + "\nFrancesc Pifarré" + "\nRubén Aciego";
-                JOptionPane.showMessageDialog(mainFrame, about, "Sobre Excellent", JOptionPane.PLAIN_MESSAGE);
+                missatge("Sobre Excellent", about);
             }
         });
     }
@@ -1826,6 +1826,10 @@ public class WindowPrincipal {
     public void eliminaColumna(int full) {
         DefaultTableModel m = fullTables.get(full);
         m.setColumnCount(m.getColumnCount() - 1);
+    }
+
+    public void missatge(String titol, String msg) {
+        JOptionPane.showMessageDialog(mainFrame, msg, titol, JOptionPane.PLAIN_MESSAGE);
     }
 
     public void errorMessage(String error) {
