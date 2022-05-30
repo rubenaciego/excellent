@@ -1,7 +1,6 @@
 package vista;
 
 import javafx.util.Pair;
-import org.mockito.internal.matchers.Null;
 import util.Utilitats;
 
 import javax.swing.*;
@@ -1131,8 +1130,10 @@ public class WindowPrincipal {
 
                 if (!s.empty())
                     w.setDefault(Utilitats.convertirATextCela(s.fila, s.col));
-                else
+                else {
                     w.setDefault("A1");
+                    s.col = 1;
+                }
 
                 w.setEntradesColumna(s.col, fullTables.get(getFocusedFull()).getColumnCount());
 
