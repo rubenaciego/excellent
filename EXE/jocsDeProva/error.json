@@ -1,0 +1,13 @@
+{
+  "dataModificacio": "2022-05-30T19:59:29.706337",
+  "numFulls": 1,
+  "full0": {
+    "numFiles": 100,
+    "numCols": 100,
+    "4:3": {
+      "inputUsuari": "aaaa",
+      "type": "TEXTUAL",
+      "value": "aaaa"
+    }
+  }
+}
