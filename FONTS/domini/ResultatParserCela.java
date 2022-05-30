@@ -12,19 +12,19 @@ public class ResultatParserCela {
      */
     String inputUsuari;
     /**
-     * Valor numèric de la cel·la, si escau
+     * Valor numèric de la cel·la, si s'escau
      */
     double valorNumeric;
     /**
-     * Data corresponent al valor de la cel·la, si escau
+     * Data corresponent al valor de la cel·la, si s'escau
      */
     LocalDate data;
     /**
-     * Fila de la cel·la a la qual referencia la cel·la, si escau
+     * Fila de la cel·la a la qual referencia la cel·la, si s'escau
      */
     int filaRef;
     /**
-     * Columna de la cel·la a la qual referencia la cel·la, si escau
+     * Columna de la cel·la a la qual referencia la cel·la, si s'escau
      */
     int colRef;
     /**
