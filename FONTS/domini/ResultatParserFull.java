@@ -9,27 +9,27 @@ import java.util.Objects;
  */
 public class ResultatParserFull {
     /**
-     * id del full sobre el que aplicar l'operació, si escau
+     * id del full sobre el que aplicar l'operació, si s'escau
      */
     private int idFull;
     /**
      * Fila de l'inici del bloc d'origen sobre el que aplicar l'operació, si
-     * escau
+     * s'escau
      */
     private int filaOrigen;
     /**
      * Fila de l'inici del bloc de destí sobre el que aplicar l'operació, si
-     * escau
+     * s'escau
      */
     private int filaDesti;
     /**
      * Columna de l'inici del bloc d'origen sobre el que aplicar l'operació, si
-     * escau
+     * s'escau
      */
     private int columnaOrigen;
     /**
      * Columna de l'inici del bloc de destí sobre el que aplicar l'operació, si
-     * escau
+     * s'escau
      */
     private int columnaDesti;
     /**
@@ -41,15 +41,15 @@ public class ResultatParserFull {
      */
     private int midaColumna;
     /**
-     * Nombre de dígits a truncar, si escau
+     * Nombre de dígits a truncar, si s'escau
      */
     private int digitsTruncar;
     /**
-     * Nombre de la fila o columna a eliminar, si escau
+     * Nombre de la fila o columna a eliminar, si s'escau
      */
     private int filaColEliminar;
     /**
-     * Nombre de la columna respecte la qual ordenar, si escau
+     * Nombre de la columna respecte la qual ordenar, si s'escau
      */
     private int columnaOrdenacio;
     /**
@@ -57,30 +57,30 @@ public class ResultatParserFull {
      */
     private OperacioFull tipusOperacioFull;
     /**
-     * Tipus de l'operació aritmètica a executar, si escau
+     * Tipus de l'operació aritmètica a executar, si s'escau
      */
     private OperacioAritmetica tipusOperacioAritmetica;
     /**
-     * Tipus de l'operació estadística a executar, si escau
+     * Tipus de l'operació estadística a executar, si s'escau
      */private OperacioEstadistica tipusOperacioEstadistica;
     /**
-     * Conversió d'unitats a executar, si escau
+     * Conversió d'unitats a executar, si s'escau
      */
      private ConversioUnitats tipusConversioUnitats;
     /**
-     * Criteri d'ordenació a utilitzar, si escau
+     * Criteri d'ordenació a utilitzar, si s'escau
      */
      private CriteriOrdenacio tipusCriteriOrdenacio;
     /**
-     * String a cercar, si escau
+     * String a cercar, si s'escau
      */
      private String stringCercada;
     /**
-     * String per la qual reemplaçar la cercada, si escau
+     * String per la qual reemplaçar la cercada, si s'escau
      */
      private String stringRemplacadora;
     /**
-     * Resultat del parser sobre una cel·la, si escau
+     * Resultat del parser sobre una cel·la, si s'escau
      */
      private ResultatParserCela resultatParserCela;
 

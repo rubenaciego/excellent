@@ -6,7 +6,7 @@ import java.lang.*;
  */
 public class ResultatParserDocument {
     /**
-     * id del full sobre el que aplicar l'operació, si escau
+     * id del full sobre el que aplicar l'operació, si s'escau
      */
     private int idFull;
     /**
@@ -14,7 +14,7 @@ public class ResultatParserDocument {
      */
     private OperacioDocument tipusOperacioDocument;
     /**
-     * Nom del document, si escau
+     * Nom del document, si s'escau
      */
     private String nomDocument;
 
