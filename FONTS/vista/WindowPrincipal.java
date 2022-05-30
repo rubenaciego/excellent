@@ -1549,7 +1549,8 @@ public class WindowPrincipal {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
 
-                int ncols = fullTables.get(getFocusedFull()).getColumnCount();
+                int full = getFocusedFull();
+                int ncols = fullTables.get(full).getColumnCount();
 
                 WindowSpinner w = new WindowSpinner(mainFrame, "",
                         "Selecciona l'índex de la columna a eliminar", ncols,
@@ -1560,7 +1561,10 @@ public class WindowPrincipal {
 
                 if (w.mostra()) {
                     int col = w.getValue();
-                    controladorVista.eliminaColumna(getFocusedFull(), col - 1);
+                    controladorVista.eliminaColumna(getFocusedFull(), col);
+
+                    if (fullTables.get(full).getColumnCount() == 0)
+                        controladorVista.afegeixColumna(full);
                 }
             }
         });
@@ -1570,7 +1574,8 @@ public class WindowPrincipal {
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
 
-                int nfiles = fullTables.get(getFocusedFull()).getRowCount();
+                int full = getFocusedFull();
+                int nfiles = fullTables.get(full).getRowCount();
 
                 WindowSpinner w = new WindowSpinner(mainFrame, "",
                         "Selecciona l'índex de la fila a eliminar", nfiles,
@@ -1582,6 +1587,9 @@ public class WindowPrincipal {
                 if (w.mostra()) {
                     int fila = w.getValue();
                     controladorVista.eliminaFila(getFocusedFull(), fila - 1);
+
+                    if (fullTables.get(full).getRowCount() == 0)
+                        controladorVista.afegeixFila(full);
                 }
             }
         });
@@ -1650,11 +1658,15 @@ public class WindowPrincipal {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
+                int full = getFocusedFull();
 
                 if (!s.empty()) {
                     int fila = s.fila;
                     for (int i = 0; i < s.nfiles; ++i)
-                        controladorVista.eliminaFila(getFocusedFull(), fila);
+                        controladorVista.eliminaFila(full, fila);
+
+                    if (fullTables.get(full).getRowCount() == 0)
+                        controladorVista.afegeixFila(full);
                 }
             }
         });
@@ -1663,11 +1675,15 @@ public class WindowPrincipal {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 SeleccioTaula s = getCurrentSelection();
+                int full = getFocusedFull();
 
                 if (!s.empty()) {
                     int col = s.col;
                     for (int i = 0; i < s.ncols; ++i)
-                        controladorVista.eliminaColumna(getFocusedFull(), col);
+                        controladorVista.eliminaColumna(full, col);
+
+                    if (fullTables.get(full).getColumnCount() == 0)
+                        controladorVista.afegeixColumna(full);
                 }
             }
         });
